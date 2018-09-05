@@ -1,0 +1,52 @@
+{
+  "name": "vue-typescript-admin-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test": "yarn test:unit && yarn test:e2e"
+  },
+  "dependencies": {
+    "@types/js-cookie": "^2.1.0",
+    "@types/nprogress": "^0.0.29",
+    "@types/webpack-env": "^1.13.6",
+    "axios": "^0.18.0",
+    "element-ui": "^2.3.6",
+    "js-cookie": "^2.2.0",
+    "normalize.css": "^8.0.0",
+    "nprogress": "^0.2.0",
+    "register-service-worker": "^1.0.0",
+    "vue": "^2.5.17",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^7.0.0",
+    "vue-router": "^3.0.1",
+    "vue-svgicon": "^3.1.0",
+    "vuex": "^3.0.1",
+    "vuex-class": "^0.3.1",
+    "vuex-module-decorators": "^0.4.3",
+    "webpack": "^4.17.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.4",
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-e2e-cypress": "^3.0.1",
+    "@vue/cli-plugin-pwa": "^3.0.1",
+    "@vue/cli-plugin-typescript": "^3.0.1",
+    "@vue/cli-plugin-unit-jest": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-core": "7.0.0-bridge.0",
+    "eslint": "^5.5.0",
+    "jest": "^23.5.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "ts-jest": "^23.0.0",
+    "typescript": "^3.0.0",
+    "vue-cli-plugin-element-ui": "^1.1.2",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
