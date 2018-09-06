@@ -1,6 +1,7 @@
 # vue-typescript-admin-template
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+[![CircleCI](https://circleci.com/gh/Armour/vue-typescript-admin-template/tree/master.svg?style=shield)](https://circleci.com/gh/Armour/vue-typescript-admin-template/tree/master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Template from jarvis](https://img.shields.io/badge/Hi-Jarvis-ff69b4.svg)](https://github.com/Armour/Jarvis)
 
