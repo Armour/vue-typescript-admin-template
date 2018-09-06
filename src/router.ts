@@ -4,6 +4,17 @@ import Layout from '@/views/layout/Layout.vue';
 
 Vue.use(Router);
 
+/*
+  redirect:                      if `redirect: noredirect`, it won't redirect if click on the breadcrumb
+  meta: {
+    title: 'title'               the name showed in submenu and breadcrumb (recommend set)
+    icon: 'svg-name'             the icon showed in the sidebar
+    hidden: true                 if `hidden: true`, this route will not show in the sidebar (default is false)
+    alwaysShow: true             if set to true, it will always show the root menu
+                                 if not set, only show with nested mode if there are more than one route under its children
+  }
+*/
+
 export default new Router({
   mode: 'history',
   scrollBehavior: () => ({ x: 0, y: 0 }),
@@ -105,6 +116,7 @@ export default new Router({
         {
           path: 'menu2',
           component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
+          name: 'Menu2',
           meta: { title: 'menu2' },
         },
       ],

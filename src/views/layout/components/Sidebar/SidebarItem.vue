@@ -1,17 +1,17 @@
 <template>
-  <div class="menu-wrapper">
-    <template v-if="hasOneShowingChild(item.children) && !onlyOneChild.children">
+  <div v-if="item.children && (!item.meta || !item.meta.hidden)" class="menu-wrapper">
+    <template v-if="hasOneShowingChild(item.children) && !onlyOneChild.children && (!item.meta || !item.meta.alwaysShow)">
       <a :href="onlyOneChild.path" target="_blank" @click="clickLink(onlyOneChild.path, $event)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown': !isNest}">
           <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon" :title="onlyOneChild.meta.title" />
         </el-menu-item>
       </a>
     </template>
-    <el-submenu v-else-if="item.meta && !item.meta.hidden" :index="item.name || item.path">
+    <el-submenu v-else :index="item.name || item.path">
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta.icon" :title="item.meta.title" />
       </template>
-      <template v-for="child in item.children" v-if="!child.hidden">
+      <template v-for="child in item.children" v-if="!child.meta || !child.meta.hidden">
         <sidebar-item
           v-if="child.children && child.children.length > 0"
           :is-nest="true"
@@ -37,6 +37,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import Item from './Item.vue';
 
 @Component({
+  // Set 'name' here to prevent uglifyjs from causing recursive component not work
+  // See https://medium.com/haiiro-io/element-component-name-with-vue-class-component-f3b435656561 for detail
+  name: 'SidebarItem',
   components: { Item },
 })
 export default class SidebarItem extends Vue {
@@ -49,10 +52,10 @@ export default class SidebarItem extends Vue {
   hasOneShowingChild(children: Route[]) {
     if (!children) { return false; }
     const showingChildren = children.filter((item: Route) => {
-      if (!item.meta || item.meta && item.meta.hidden) {
+      if (item.meta && item.meta.hidden) {
         return false;
       } else {
-        this.onlyOneChild = item; // temp set(will be used if only has one showing child)
+        this.onlyOneChild = item; // This will only be used if hasOneShowingChild return true
         return true;
       }
     });

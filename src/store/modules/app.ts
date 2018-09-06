@@ -18,7 +18,7 @@ export interface AppState {
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule {
   sidebar: AppState['sidebar'] = {
-    opened: Cookies.get('sidebarStatus') === 'opened',
+    opened: Cookies.get('sidebarStatus') !== 'closed',
     withoutAnimation: false,
   };
   device: AppState['device'] = DeviceType.Desktop;
