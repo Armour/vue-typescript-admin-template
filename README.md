@@ -8,15 +8,15 @@
 
 ## Live demo
 
-[Admin Panel](https://vue-typescript-admin-template-htlrrjbekr.now.sh)
+[Admin Panel](https://vue-typescript-admin-template-fpexftyrnt.now.sh/)
 
 ## Related Project
 
-[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) (main reference code)
+[PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) (main reference code)
 
-[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
+[PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
 
-[electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
+[PanJiaChen/electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
 
 ## Project setup
 
