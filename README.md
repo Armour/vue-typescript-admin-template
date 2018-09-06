@@ -10,6 +10,10 @@
 
 [Admin Panel](https://vue-typescript-admin-template-eirxbfrvll.now.sh)
 
+## Screenshots
+
+![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
+
 ## Related Project
 
 [PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) (main reference code)
