@@ -8,7 +8,7 @@
 
 ## Live demo
 
-[Admin Panel](https://vue-typescript-admin-template-fpexftyrnt.now.sh/)
+[Admin Panel](https://vue-typescript-admin-template-eirxbfrvll.now.sh)
 
 ## Related Project
 
