@@ -3,7 +3,7 @@ import { login, logout, getInfo } from '@/api/login';
 import { getToken, setToken, removeToken } from '@/utils/auth';
 import store from '@/store';
 
-export interface UserState {
+export interface IUserState {
   token: string;
   name: string;
   avatar: string;
@@ -12,10 +12,10 @@ export interface UserState {
 
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule {
-  token: UserState['token'] = '';
-  name: UserState['name'] = '';
-  avatar: UserState['avatar'] = '';
-  roles: UserState['roles'] = [];
+  token: IUserState['token'] = '';
+  name: IUserState['name'] = '';
+  avatar: IUserState['avatar'] = '';
+  roles: IUserState['roles'] = [];
 
   @Mutation
   SET_TOKEN(token: string) {

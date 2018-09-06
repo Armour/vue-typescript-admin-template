@@ -7,5 +7,5 @@
 </template>
 
 <script lang="ts">
-export {};
+export default {};
 </script>

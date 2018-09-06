@@ -7,7 +7,7 @@ export enum DeviceType {
   Desktop,
 }
 
-export interface AppState {
+export interface IAppState {
   device: DeviceType;
   sidebar: {
     opened: boolean;
@@ -17,11 +17,11 @@ export interface AppState {
 
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule {
-  sidebar: AppState['sidebar'] = {
+  sidebar: IAppState['sidebar'] = {
     opened: Cookies.get('sidebarStatus') !== 'closed',
     withoutAnimation: false,
   };
-  device: AppState['device'] = DeviceType.Desktop;
+  device: IAppState['device'] = DeviceType.Desktop;
 
   @Mutation
   TOGGLE_SIDEBAR(withoutAnimation: boolean) {
