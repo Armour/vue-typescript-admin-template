@@ -13,7 +13,7 @@ router.beforeEach((to: Route, from: Route, next: any) => {
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' });
-      NProgress.done(); // if current page is dashboard will not trigger afterEach hook, so manually handle it
+      NProgress.done(); // If current page is dashboard will not trigger afterEach hook, so manually handle it
     } else {
       if (UserModule.roles.length === 0) {
         UserModule.GetInfo().then(() => {
