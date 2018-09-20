@@ -41,6 +41,7 @@ import { isValidUsername } from '@/utils/validate';
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { UserModule } from '@/store/modules/user';
 import { Form as ElForm } from 'element-ui';
+import { Route } from 'vue-router';
 
 const validateUsername = (rule: any, value: string, callback: any) => {
   if (!isValidUsername(value)) {
@@ -69,6 +70,12 @@ export default class Login extends Vue {
   };
   loading = false;
   pwdType = 'password';
+  redirect: string | undefined = undefined;
+
+  @Watch('$route', { immediate: true })
+  OnRouteChange(route: Route) {
+    this.redirect = route.query && route.query.redirect;
+  }
 
   showPwd() {
     if (this.pwdType === 'password') {
@@ -84,7 +91,7 @@ export default class Login extends Vue {
         this.loading = true;
         UserModule.Login(this.loginForm).then(() => {
           this.loading = false;
-          this.$router.push({ path: '/' });
+          this.$router.push({ path: this.redirect || '/' });
         }).catch(() => {
           this.loading = false;
         });
