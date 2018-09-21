@@ -11,11 +11,11 @@ export interface IUserState {
 }
 
 @Module({ dynamic: true, store, name: 'user' })
-class User extends VuexModule {
-  token: IUserState['token'] = '';
-  name: IUserState['name'] = '';
-  avatar: IUserState['avatar'] = '';
-  roles: IUserState['roles'] = [];
+class User extends VuexModule implements IUserState {
+  token = '';
+  name = '';
+  avatar = '';
+  roles = [];
 
   @Mutation
   SET_TOKEN(token: string) {

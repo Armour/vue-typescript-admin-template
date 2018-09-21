@@ -16,12 +16,12 @@ export interface IAppState {
 }
 
 @Module({ dynamic: true, store, name: 'app' })
-class App extends VuexModule {
-  sidebar: IAppState['sidebar'] = {
+class App extends VuexModule implements IAppState {
+  sidebar = {
     opened: Cookies.get('sidebarStatus') !== 'closed',
     withoutAnimation: false,
   };
-  device: IAppState['device'] = DeviceType.Desktop;
+  device = DeviceType.Desktop;
 
   @Mutation
   TOGGLE_SIDEBAR(withoutAnimation: boolean) {
