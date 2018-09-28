@@ -1,11 +1,11 @@
 <template>
   <div v-if="item.children && (!item.meta || !item.meta.hidden)" class="menu-wrapper">
     <template v-if="hasOneShowingChild(item.children) && !onlyOneChild.children && (!item.meta || !item.meta.alwaysShow)">
-      <a :href="onlyOneChild.path" target="_blank" @click="clickLink(onlyOneChild.path, $event)">
+      <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown': !isNest}">
           <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon || item.meta.icon" :title="onlyOneChild.meta.title" />
         </el-menu-item>
-      </a>
+      </app-link>
     </template>
     <el-submenu v-else :index="item.name || item.path">
       <template slot="title">
@@ -19,11 +19,11 @@
           :key="child.path"
           :base-path="resolvePath(child.path)"
           class="nest-menu"/>
-        <a v-else :href="child.path" :key="child.name" target="_blank" @click="clickLink(child.path, $event)">
+        <app-link v-else :to="resolvePath(child.path)" :key="child.name">
           <el-menu-item :index="resolvePath(child.path)">
             <item v-if="child.meta" :icon="child.meta.icon" :title="child.meta.title" />
           </el-menu-item>
-        </a>
+        </app-link>
       </template>
     </el-submenu>
   </div>
@@ -35,12 +35,13 @@ import { Route } from 'vue-router';
 import { validateURL } from '@/utils/validate';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Item from './Item.vue';
+import AppLink from './Link.vue';
 
 @Component({
   // Set 'name' here to prevent uglifyjs from causing recursive component not work
   // See https://medium.com/haiiro-io/element-component-name-with-vue-class-component-f3b435656561 for detail
   name: 'SidebarItem',
-  components: { Item },
+  components: { Item, AppLink },
 })
 export default class SidebarItem extends Vue {
   @Prop({ required: true }) item!: Route;
@@ -63,18 +64,14 @@ export default class SidebarItem extends Vue {
   }
 
   resolvePath(routePath: string) {
+    if (this.isExternalLink(routePath)) {
+      return routePath;
+    }
     return path.resolve(this.basePath, routePath);
   }
 
   isExternalLink(routePath: string) {
     return validateURL(routePath);
-  }
-
-  clickLink(routePath: string, e: Event) {
-    if (!this.isExternalLink(routePath)) {
-      e.preventDefault();
-      this.$router.push(this.resolvePath(routePath));
-    }
   }
 }
 </script>
