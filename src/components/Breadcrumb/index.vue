@@ -12,6 +12,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { RouteRecord } from 'vue-router';
+import pathToRegexp from 'path-to-regexp';
 
 @Component
 export default class Breadcrumb extends Vue {
@@ -27,7 +28,15 @@ export default class Breadcrumb extends Vue {
   }
 
   getBreadcrumb() {
-    let matched = this.$route.matched.filter((item) => item.name);
+    const { params } = this.$route;
+    let matched = this.$route.matched.filter((item) => {
+      if (item.name) {
+        // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
+        const toPath = pathToRegexp.compile(item.path);
+        item.path = toPath(params);
+        return true;
+      }
+    });
     const first = matched[0];
     if (first && first.name !== 'dashboard') {
       matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }} as RouteRecord].concat(matched);

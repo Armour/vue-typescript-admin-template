@@ -19,6 +19,7 @@
     "js-cookie": "^2.2.0",
     "normalize.css": "^8.0.0",
     "nprogress": "^0.2.0",
+    "path-to-regexp": "^2.4.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
