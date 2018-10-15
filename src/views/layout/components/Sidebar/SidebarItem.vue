@@ -32,7 +32,7 @@
 <script lang="ts">
 import path from 'path';
 import { Route } from 'vue-router';
-import { validateURL } from '@/utils/validate';
+import { isExternal } from '@/utils/validate';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Item from './Item.vue';
 import AppLink from './Link.vue';
@@ -71,7 +71,7 @@ export default class SidebarItem extends Vue {
   }
 
   isExternalLink(routePath: string) {
-    return validateURL(routePath);
+    return isExternal(routePath);
   }
 }
 </script>

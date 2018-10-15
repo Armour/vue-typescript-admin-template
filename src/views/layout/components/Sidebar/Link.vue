@@ -9,14 +9,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { validateURL } from '@/utils/validate';
+import { isExternal } from '@/utils/validate';
 
 @Component
 export default class Link extends Vue {
   @Prop({ required: true }) to!: string;
 
   isExternalLink(routePath: string) {
-    return validateURL(routePath);
+    return isExternal(routePath);
   }
 }
 </script>
