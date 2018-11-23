@@ -68,4 +68,4 @@ class User extends VuexModule implements IUserState {
   }
 }
 
-export const UserModule = getModule(User.prototype);
+export const UserModule = getModule(User);

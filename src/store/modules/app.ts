@@ -58,4 +58,4 @@ class App extends VuexModule implements IAppState {
   }
 }
 
-export const AppModule = getModule(App.prototype);
+export const AppModule = getModule(App);
