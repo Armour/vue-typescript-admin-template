@@ -74,7 +74,9 @@ export default class Login extends Vue {
 
   @Watch('$route', { immediate: true })
   OnRouteChange(route: Route) {
-    this.redirect = route.query && route.query.redirect;
+    // TODO: remove the "as string" hack after v4 release for vue-router
+    // See https://github.com/vuejs/vue-router/pull/2050 for details
+    this.redirect = route.query && route.query.redirect as string;
   }
 
   showPwd() {
