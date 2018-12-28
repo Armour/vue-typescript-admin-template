@@ -29,7 +29,7 @@
     "vuex": "^3.0.1",
     "vuex-class": "^0.3.1",
     "vuex-module-decorators": "^0.9.7",
-    "webpack": "^4.27.1"
+    "webpack": "^4.28.2"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
@@ -41,7 +41,7 @@
     "@vue/cli-service": "^3.2.0",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-core": "7.0.0-bridge.0",
-    "eslint": "^5.10.0",
+    "eslint": "^5.11.1",
     "jest": "^23.6.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
