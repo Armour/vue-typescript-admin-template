@@ -52,7 +52,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Form extends Vue {
-  form = {
+  private form = {
     name: '',
     region: '',
     date1: '',
@@ -63,11 +63,11 @@ export default class Form extends Vue {
     desc: '',
   };
 
-  onSubmit() {
+  private onSubmit() {
     this.$message('submit!');
   }
 
-  onCancel() {
+  private onCancel() {
     this.$message({
       message: 'cancel!',
       type: 'warning',

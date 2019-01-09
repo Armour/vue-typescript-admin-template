@@ -33,7 +33,7 @@ export default class Layout extends mixins(ResizeMixin) {
     };
   }
 
-  handleClickOutside() {
+  private handleClickOutside() {
     AppModule.CloseSideBar(false);
   }
 }

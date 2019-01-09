@@ -13,9 +13,9 @@ import { isExternal } from '@/utils/validate';
 
 @Component
 export default class Link extends Vue {
-  @Prop({ required: true }) to!: string;
+  @Prop({ required: true }) private to!: string;
 
-  isExternalLink(routePath: string) {
+  private isExternalLink(routePath: string) {
     return isExternal(routePath);
   }
 }

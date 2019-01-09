@@ -16,17 +16,17 @@ export default class ResizeHandlerMixin extends Vue {
   }
 
   @Watch('$route')
-  OnRouteChange() {
+  private OnRouteChange() {
     if (this.device === DeviceType.Mobile && this.sidebar.opened) {
       AppModule.CloseSideBar(false);
     }
   }
 
-  beforeMount() {
+  private beforeMount() {
     window.addEventListener('resize', this.resizeHandler);
   }
 
-  mounted() {
+  private mounted() {
     const isMobile = this.isMobile();
     if (isMobile) {
       AppModule.ToggleDevice(DeviceType.Mobile);
@@ -34,12 +34,12 @@ export default class ResizeHandlerMixin extends Vue {
     }
   }
 
-  isMobile() {
+  private isMobile() {
     const rect = body.getBoundingClientRect();
     return rect.width - RATIO < WIDTH;
   }
 
-  resizeHandler() {
+  private resizeHandler() {
     if (!document.hidden) {
       const isMobile = this.isMobile();
       AppModule.ToggleDevice(isMobile ? DeviceType.Mobile : DeviceType.Desktop);

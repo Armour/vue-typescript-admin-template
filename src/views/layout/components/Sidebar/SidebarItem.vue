@@ -11,7 +11,7 @@
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta.icon" :title="item.meta.title" />
       </template>
-      <template v-for="child in item.children" v-if="!child.meta || !child.meta.hidden">
+      <template v-for="child in childrenFilter(item.children)">
         <sidebar-item
           v-if="child.children && child.children.length > 0"
           :is-nest="true"
@@ -41,16 +41,19 @@ import AppLink from './Link.vue';
   // Set 'name' here to prevent uglifyjs from causing recursive component not work
   // See https://medium.com/haiiro-io/element-component-name-with-vue-class-component-f3b435656561 for detail
   name: 'SidebarItem',
-  components: { Item, AppLink },
+  components: {
+    Item,
+    AppLink,
+  },
 })
 export default class SidebarItem extends Vue {
-  @Prop({ required: true }) item!: Route;
-  @Prop({ default: false }) isNest!: boolean;
-  @Prop({ default: '' }) basePath!: string;
+  @Prop({ required: true }) private item!: Route;
+  @Prop({ default: false }) private isNest!: boolean;
+  @Prop({ default: '' }) private basePath!: string;
 
-  onlyOneChild: Route | null = null;
+  private onlyOneChild: Route | null = null;
 
-  hasOneShowingChild(children: Route[]) {
+  private hasOneShowingChild(children: Route[]) {
     if (!children) { return false; }
     const showingChildren = children.filter((item: Route) => {
       if (item.meta && item.meta.hidden) {
@@ -63,15 +66,19 @@ export default class SidebarItem extends Vue {
     return showingChildren.length === 1;
   }
 
-  resolvePath(routePath: string) {
+  private resolvePath(routePath: string) {
     if (this.isExternalLink(routePath)) {
       return routePath;
     }
     return path.resolve(this.basePath, routePath);
   }
 
-  isExternalLink(routePath: string) {
+  private isExternalLink(routePath: string) {
     return isExternal(routePath);
+  }
+
+  private childrenFilter(children: Route[]) {
+    return children.filter((child) => !child.meta || !child.meta.hidden);
   }
 }
 </script>

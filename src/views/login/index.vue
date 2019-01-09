@@ -40,8 +40,8 @@
 import { isValidUsername } from '@/utils/validate';
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { UserModule } from '@/store/modules/user';
-import { Form as ElForm } from 'element-ui';
 import { Route } from 'vue-router';
+import { ElForm } from 'element-ui/types/form';
 
 const validateUsername = (rule: any, value: string, callback: any) => {
   if (!isValidUsername(value)) {
@@ -60,26 +60,26 @@ const validatePass = (rule: any, value: string, callback: any) => {
 
 @Component
 export default class Login extends Vue {
-  loginForm = {
+  private loginForm = {
     username: 'admin',
     password: 'admin',
   };
-  loginRules = {
+  private loginRules = {
     username: [{ required: true, trigger: 'blur', validator: validateUsername }],
     password: [{ required: true, trigger: 'blur', validator: validatePass }],
   };
-  loading = false;
-  pwdType = 'password';
-  redirect: string | undefined = undefined;
+  private loading = false;
+  private pwdType = 'password';
+  private redirect: string | undefined = undefined;
 
   @Watch('$route', { immediate: true })
-  OnRouteChange(route: Route) {
+  private OnRouteChange(route: Route) {
     // TODO: remove the "as string" hack after v4 release for vue-router
     // See https://github.com/vuejs/vue-router/pull/2050 for details
     this.redirect = route.query && route.query.redirect as string;
   }
 
-  showPwd() {
+  private showPwd() {
     if (this.pwdType === 'password') {
       this.pwdType = '';
     } else {
@@ -87,7 +87,7 @@ export default class Login extends Vue {
     }
   }
 
-  handleLogin() {
+  private handleLogin() {
     (this.$refs.loginForm as ElForm).validate((valid: boolean) => {
       if (valid) {
         this.loading = true;
@@ -98,7 +98,6 @@ export default class Login extends Vue {
           this.loading = false;
         });
       } else {
-        console.error('Login: error submit!!');
         return false;
       }
     });

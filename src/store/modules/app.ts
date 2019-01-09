@@ -17,14 +17,27 @@ export interface IAppState {
 
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
-  sidebar = {
+  public sidebar = {
     opened: Cookies.get('sidebarStatus') !== 'closed',
     withoutAnimation: false,
   };
-  device = DeviceType.Desktop;
+  public device = DeviceType.Desktop;
+
+  @Action({ commit: 'TOGGLE_SIDEBAR' })
+  public ToggleSideBar(withoutAnimation: boolean) {
+    return withoutAnimation;
+  }
+  @Action({ commit: 'CLOSE_SIDEBAR' })
+  public CloseSideBar(withoutAnimation: boolean) {
+    return withoutAnimation;
+  }
+  @Action({ commit: 'TOGGLE_DEVICE' })
+  public ToggleDevice(device: DeviceType) {
+    return device;
+  }
 
   @Mutation
-  TOGGLE_SIDEBAR(withoutAnimation: boolean) {
+  private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
     if (this.sidebar.opened) {
       Cookies.set('sidebarStatus', 'closed');
     } else {
@@ -34,27 +47,14 @@ class App extends VuexModule implements IAppState {
     this.sidebar.withoutAnimation = withoutAnimation;
   }
   @Mutation
-  CLOSE_SIDEBAR(withoutAnimation: boolean) {
+  private CLOSE_SIDEBAR(withoutAnimation: boolean) {
     Cookies.set('sidebarStatus', 'closed');
     this.sidebar.opened = false;
     this.sidebar.withoutAnimation = withoutAnimation;
   }
   @Mutation
-  TOGGLE_DEVICE(device: DeviceType) {
+  private TOGGLE_DEVICE(device: DeviceType) {
     this.device = device;
-  }
-
-  @Action({ commit: 'TOGGLE_SIDEBAR' })
-  ToggleSideBar(withoutAnimation: boolean) {
-    return withoutAnimation;
-  }
-  @Action({ commit: 'CLOSE_SIDEBAR' })
-  CloseSideBar(withoutAnimation: boolean) {
-    return withoutAnimation;
-  }
-  @Action({ commit: 'TOGGLE_DEVICE' })
-  ToggleDevice(device: DeviceType) {
-    return device;
   }
 }
 

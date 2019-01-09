@@ -31,8 +31,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Hamburger extends Vue {
-  @Prop({ default: false }) isActive!: boolean;
-  @Prop({ default: null }) toggleClick!: () => void;
+  @Prop({ default: false }) private isActive!: boolean;
+  @Prop({ default: null }) private toggleClick!: () => void;
 }
 </script>
 

@@ -59,15 +59,15 @@ import { Component, Vue } from 'vue-property-decorator';
   },
 })
 export default class Table extends Vue {
-  list = null;
-  listLoading = true;
-  listQuery = {};
+  private list = null;
+  private listLoading = true;
+  private listQuery = {};
 
-  created() {
+  private created() {
     this.fetchData();
   }
 
-  fetchData() {
+  private fetchData() {
     this.listLoading = true;
     getList(this.listQuery).then((response) => {
       this.list = response.data.items;

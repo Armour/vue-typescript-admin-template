@@ -9,6 +9,7 @@ Vue.use(Router);
   meta: {
     title: 'title'               the name showed in submenu and breadcrumb (recommend set)
     icon: 'svg-name'             the icon showed in the sidebar
+    breadcrumb: false            if false, the item will be hidden in breadcrumb (default is true)
     hidden: true                 if `hidden: true`, this route will not show in the sidebar (default is false)
     alwaysShow: true             if set to true, it will always show the root menu
                                  if not set, only show with nested mode if there are more than one route under its children

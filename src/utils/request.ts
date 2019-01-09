@@ -3,17 +3,16 @@ import { Message, MessageBox } from 'element-ui';
 import { getToken } from '@/utils/auth';
 import { UserModule } from '@/store/modules/user';
 
-// 创建axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_MOCK_API,
   timeout: 5000,
 });
 
-// request 拦截器
+// Request interceptors
 service.interceptors.request.use(
   (config) => {
     if (UserModule.token) {
-      config.headers['X-Token'] = getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['X-Token'] = getToken(); // Add your custom headers here for request
     }
     return config;
   },
@@ -23,12 +22,15 @@ service.interceptors.request.use(
   },
 );
 
-// respone 拦截器
+// Response interceptors
 service.interceptors.response.use(
   (response) => {
-    /**
-     * code为非20000是抛错 可结合自己业务进行修改
-     */
+    // Example here:
+    // code == 200000: valid
+    // code == 50008: invalid token
+    // code == 50012: already login in other place
+    // code == 50014: token expired
+    // You can change this part for your own usage.
     const res = response.data;
     if (res.code !== 20000) {
       Message({
@@ -36,10 +38,6 @@ service.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000,
       });
-
-      // 50008: 非法的token
-      // 50012: 其他客户端登录了
-      // 50014: Token 过期了
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         MessageBox.confirm(
           '你已被登出，可以取消继续留在该页面，或者重新登录',
@@ -51,11 +49,11 @@ service.interceptors.response.use(
           },
         ).then(() => {
           UserModule.FedLogOut().then(() => {
-            location.reload(); // 为了重新实例化vue-router对象 避免bug
+            location.reload();  // 为了重新实例化vue-router对象 避免bug
           });
         });
       }
-      return Promise.reject('error');
+      return Promise.reject('error with code: ' + res.code);
     } else {
       return response.data;
     }

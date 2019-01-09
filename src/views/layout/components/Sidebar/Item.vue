@@ -10,7 +10,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class MenuItem extends Vue {
-  @Prop({ default: '' }) icon!: string;
-  @Prop({ default: '' }) title!: string;
+  @Prop({ default: '' }) private icon!: string;
+  @Prop({ default: '' }) private title!: string;
 }
 </script>

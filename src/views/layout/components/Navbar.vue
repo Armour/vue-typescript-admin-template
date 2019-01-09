@@ -43,13 +43,13 @@ export default class Navbar extends Vue {
     return UserModule.avatar;
   }
 
-  toggleSideBar() {
+  private toggleSideBar() {
     AppModule.ToggleSideBar(false);
   }
 
-  logout() {
+  private logout() {
     UserModule.LogOut().then(() => {
-      location.reload(); // 为了重新实例化vue-router对象 避免bug
+      location.reload();  // 为了重新实例化vue-router对象 避免bug
     });
   }
 }

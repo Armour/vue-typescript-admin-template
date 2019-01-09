@@ -12,18 +12,13 @@ export interface IUserState {
 
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
-  token = '';
-  name = '';
-  avatar = '';
-  roles = [];
-
-  @Mutation
-  SET_TOKEN(token: string) {
-    this.token = token;
-  }
+  public token = '';
+  public name = '';
+  public avatar = '';
+  public roles = [];
 
   @Action({ commit: 'SET_TOKEN' })
-  async Login(userInfo: { username: string, password: string}) {
+  public async Login(userInfo: { username: string, password: string}) {
     const username = userInfo.username.trim();
     const { data } = await login(username, userInfo.password);
     setToken(data.token);
@@ -31,13 +26,13 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action({ commit: 'SET_TOKEN' })
-  async FedLogOut() {
+  public async FedLogOut() {
     removeToken();
     return '';
   }
 
   @MutationAction({ mutate: [ 'roles', 'name', 'avatar' ] })
-  async GetInfo() {
+  public async GetInfo() {
     const token = getToken();
     if (token === undefined) {
       throw Error('GetInfo: token is undefined!');
@@ -55,7 +50,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @MutationAction({ mutate: [ 'token', 'roles' ] })
-  async LogOut() {
+  public async LogOut() {
     if (getToken() === undefined) {
       throw Error('LogOut: token is undefined!');
     }
@@ -65,6 +60,11 @@ class User extends VuexModule implements IUserState {
       token: '',
       roles: [],
     };
+  }
+
+  @Mutation
+  private SET_TOKEN(token: string) {
+    this.token = token;
   }
 }
 

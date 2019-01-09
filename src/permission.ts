@@ -32,7 +32,7 @@ router.beforeEach((to: Route, from: Route, next: any) => {
     if (whiteList.indexOf(to.path) !== -1) {
       next();
     } else {
-      next(`/login?redirect=${to.path}`); // 否则全部重定向到登录页
+      next(`/login?redirect=${to.path}`); // Redirect to login page
       NProgress.done();
     }
   }

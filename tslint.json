@@ -15,8 +15,6 @@
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "max-line-length": false,
-    "member-access": false,
-    "no-console": [true, "warning"],
     "no-consecutive-blank-lines": false
   }
 }
