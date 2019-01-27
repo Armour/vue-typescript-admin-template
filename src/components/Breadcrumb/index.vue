@@ -28,17 +28,13 @@ export default class Breadcrumb extends Vue {
   }
 
   private getBreadcrumb() {
-    let matched = this.$route.matched.filter((item) => {
-      if (item.name) {
-        return true;
-      }
-    });
+    let matched = this.$route.matched.filter((item) => item.name);
     const first = matched[0];
     if (first && first.name !== 'dashboard') {
       matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }} as RouteRecord].concat(matched);
     }
     this.breadcrumbs = matched.filter((item) => {
-      return item.meta.title && item.meta.breadcrumb !== false;
+      return item.meta && item.meta.title && item.meta.breadcrumb !== false;
     });
   }
 
