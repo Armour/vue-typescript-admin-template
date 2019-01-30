@@ -13,7 +13,7 @@
 
 ## Screenshots
 
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
+![demo](./demo/demo.gif)
 
 ## Related Project
 
