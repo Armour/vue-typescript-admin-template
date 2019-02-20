@@ -7,7 +7,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:11
 
     working_directory: ~/vue-typescript-admin-template
 

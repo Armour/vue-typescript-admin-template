@@ -7,18 +7,22 @@ Vue.use(Router);
 /*
   redirect:                      if `redirect: noredirect`, it won't redirect if click on the breadcrumb
   meta: {
-    title: 'title'               the name showed in submenu and breadcrumb (recommend set)
+    title: 'title'               the name showed in subMenu and breadcrumb (recommend set)
     icon: 'svg-name'             the icon showed in the sidebar
     breadcrumb: false            if false, the item will be hidden in breadcrumb (default is true)
-    hidden: true                 if `hidden: true`, this route will not show in the sidebar (default is false)
-    alwaysShow: true             if set to true, it will always show the root menu
-                                 if not set, only show with nested mode if there are more than one route under its children
+    hidden: true                 if true, this route will not show in the sidebar (default is false)
   }
 */
 
 export default new Router({
   mode: 'history',
-  scrollBehavior: () => ({ x: 0, y: 0 }),
+  scrollBehavior: (to, from, savedPosition) => {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
   base: process.env.BASE_URL,
   routes: [
     { path: '/login', component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue') },
@@ -78,31 +82,31 @@ export default new Router({
           path: 'menu1',
           component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index.vue'),
           name: 'Menu1',
-          meta: { title: 'menu1' },
+          meta: { title: 'Menu1' },
           children: [
             {
               path: 'menu1-1',
               component: () => import(/* webpackChunkName: "menu1-1" */ '@/views/nested/menu1/menu1-1/index.vue'),
               name: 'Menu1-1',
-              meta: { title: 'menu1-1' },
+              meta: { title: 'Menu1-1' },
             },
             {
               path: 'menu1-2',
               component: () => import(/* webpackChunkName: "menu1-2" */ '@/views/nested/menu1/menu1-2/index.vue'),
               name: 'Menu1-2',
-              meta: { title: 'menu1-2' },
+              meta: { title: 'Menu1-2' },
               children: [
                 {
                   path: 'menu1-2-1',
                   component: () => import(/* webpackChunkName: "menu1-2-1" */ '@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
                   name: 'Menu1-2-1',
-                  meta: { title: 'menu1-2-1' },
+                  meta: { title: 'Menu1-2-1' },
                 },
                 {
                   path: 'menu1-2-2',
                   component: () => import(/* webpackChunkName: "menu1-2-2" */ '@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
                   name: 'Menu1-2-2',
-                  meta: { title: 'menu1-2-2' },
+                  meta: { title: 'Menu1-2-2' },
                 },
               ],
             },
@@ -110,7 +114,7 @@ export default new Router({
               path: 'menu1-3',
               component: () => import(/* webpackChunkName: "menu1-3" */ '@/views/nested/menu1/menu1-3/index.vue'),
               name: 'Menu1-3',
-              meta: { title: 'menu1-3' },
+              meta: { title: 'Menu1-3' },
             },
           ],
         },
@@ -118,7 +122,7 @@ export default new Router({
           path: 'menu2',
           component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
           name: 'Menu2',
-          meta: { title: 'menu2' },
+          meta: { title: 'Menu2' },
         },
       ],
     },
@@ -128,7 +132,7 @@ export default new Router({
       children: [
         {
           path: 'https://github.com/Armour/vue-typescript-admin-template',
-          meta: { title: 'ExternalLink', icon: 'link' },
+          meta: { title: 'External Link', icon: 'link' },
         },
       ],
     },

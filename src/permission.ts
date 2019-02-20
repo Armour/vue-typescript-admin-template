@@ -6,6 +6,8 @@ import { getToken } from '@/utils/auth';
 import { Route } from 'vue-router';
 import { UserModule } from '@/store/modules/user';
 
+NProgress.configure({ showSpinner: false });
+
 const whiteList = ['/login'];
 
 router.beforeEach((to: Route, from: Route, next: any) => {
@@ -33,7 +35,6 @@ router.beforeEach((to: Route, from: Route, next: any) => {
       next();
     } else {
       next(`/login?redirect=${to.path}`); // Redirect to login page
-      NProgress.done();
     }
   }
 });

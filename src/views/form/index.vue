@@ -76,8 +76,8 @@ export default class Form extends Vue {
 }
 </script>
 
-<style scoped>
-.line{
+<style lang="scss" scoped>
+.line {
   text-align: center;
 }
 </style>

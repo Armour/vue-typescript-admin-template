@@ -27,10 +27,12 @@ class App extends VuexModule implements IAppState {
   public ToggleSideBar(withoutAnimation: boolean) {
     return withoutAnimation;
   }
+
   @Action({ commit: 'CLOSE_SIDEBAR' })
   public CloseSideBar(withoutAnimation: boolean) {
     return withoutAnimation;
   }
+
   @Action({ commit: 'TOGGLE_DEVICE' })
   public ToggleDevice(device: DeviceType) {
     return device;
@@ -46,12 +48,14 @@ class App extends VuexModule implements IAppState {
     this.sidebar.opened = !this.sidebar.opened;
     this.sidebar.withoutAnimation = withoutAnimation;
   }
+
   @Mutation
   private CLOSE_SIDEBAR(withoutAnimation: boolean) {
     Cookies.set('sidebarStatus', 'closed');
     this.sidebar.opened = false;
     this.sidebar.withoutAnimation = withoutAnimation;
   }
+
   @Mutation
   private TOGGLE_DEVICE(device: DeviceType) {
     this.device = device;

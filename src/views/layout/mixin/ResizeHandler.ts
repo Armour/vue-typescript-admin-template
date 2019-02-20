@@ -1,7 +1,6 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { DeviceType, AppModule } from '@/store/modules/app';
 
-const { body } = document;
 const WIDTH = 1024;
 const RATIO = 3;
 
@@ -35,7 +34,7 @@ export default class ResizeHandlerMixin extends Vue {
   }
 
   private isMobile() {
-    const rect = body.getBoundingClientRect();
+    const rect = document.body.getBoundingClientRect();
     return rect.width - RATIO < WIDTH;
   }
 

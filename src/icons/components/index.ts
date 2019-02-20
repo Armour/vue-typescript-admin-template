@@ -3,9 +3,10 @@
 // Command: vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6
 
 import './example';
-import './eye-open';
-import './eye';
+import './eye-off';
+import './eye-on';
 import './form';
+import './hamburger';
 import './link';
 import './nested';
 import './password';

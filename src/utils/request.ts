@@ -11,13 +11,13 @@ const service = axios.create({
 // Request interceptors
 service.interceptors.request.use(
   (config) => {
+    // Add X-Token header to every request, you can add other custom headers here
     if (UserModule.token) {
-      config.headers['X-Token'] = getToken(); // Add your custom headers here for request
+      config.headers['X-Token'] = getToken();
     }
     return config;
   },
   (error) => {
-    // Handle request error here
     Promise.reject(error);
   },
 );
@@ -25,8 +25,8 @@ service.interceptors.request.use(
 // Response interceptors
 service.interceptors.response.use(
   (response) => {
-    // Example here:
-    // code == 200000: valid
+    // Some example codes here:
+    // code == 20000: valid
     // code == 50008: invalid token
     // code == 50012: already login in other place
     // code == 50014: token expired
@@ -49,7 +49,7 @@ service.interceptors.response.use(
           },
         ).then(() => {
           UserModule.FedLogOut().then(() => {
-            location.reload();  // 为了重新实例化vue-router对象 避免bug
+            location.reload();  // To prevent bugs from vue-router
           });
         });
       }

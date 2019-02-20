@@ -20,7 +20,7 @@
           placeholder="password"
           @keyup.enter.native="handleLogin" />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="pwdType === 'password' ? 'eye' : 'eye-open'" />
+          <svg-icon :name="pwdType === 'password' ? 'eye-off' : 'eye-on'" />
         </span>
       </el-form-item>
       <el-form-item>
@@ -105,49 +105,36 @@ export default class Login extends Vue {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
-$light_gray:#eee;
+<style lang="scss">
+@import "src/styles/variables.scss";
 
-/* reset element-ui css */
 .login-container {
   .el-input {
-    display: inline-block;
-    height: 47px;
-    width: 85%;
     input {
       background: transparent;
       border: 0px;
       -webkit-appearance: none;
-      border-radius: 0px;
-      padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
+      color: $lightGray;
+
       &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
+        box-shadow: 0 0 0px 1000px $loginBg inset !important;
+        -webkit-box-shadow: 0 0 0px 1000px $loginBg inset !important;
         -webkit-text-fill-color: #fff !important;
       }
     }
   }
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    color: #454545;
-  }
 }
 </style>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+<style lang="scss" scoped>
+@import "src/styles/variables.scss";
+
 .login-container {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: $bg;
+  background-color: $loginBg;
+
   .login-form {
     position: absolute;
     left: 0;
@@ -157,6 +144,19 @@ $light_gray:#eee;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
   }
+
+  .el-input {
+    display: inline-block;
+    width: 85%;
+  }
+
+  .el-form-item {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: #454545;
+  }
+
   .tips {
     font-size: 14px;
     color: #fff;
@@ -167,27 +167,30 @@ $light_gray:#eee;
       }
     }
   }
+
   .svg-container {
     padding: 6px 5px 6px 15px;
-    color: $dark_gray;
+    color: $darkGray;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
   }
+
   .title {
     font-size: 26px;
     font-weight: 400;
-    color: $light_gray;
+    color: $lightGray;
     margin: 0px auto 40px auto;
     text-align: center;
     font-weight: bold;
   }
+
   .show-pwd {
     position: absolute;
     right: 10px;
     top: 7px;
     font-size: 16px;
-    color: $dark_gray;
+    color: $darkGray;
     cursor: pointer;
     user-select: none;
   }

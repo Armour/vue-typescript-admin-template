@@ -1,9 +1,8 @@
 import request from '@/utils/request';
 
-export function getList(params: any) {
-  return request({
+export const getList = (params: any) =>
+  request({
     url: '/table/list',
     method: 'get',
     params,
   });
-}
