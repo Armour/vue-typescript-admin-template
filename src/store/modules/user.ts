@@ -1,5 +1,5 @@
 import { VuexModule, Module, MutationAction, Mutation, Action, getModule } from 'vuex-module-decorators';
-import { login, logout, getInfo } from '@/api/login';
+import { login, logout, getUserInfo } from '@/api/login';
 import { getToken, setToken, removeToken } from '@/utils/auth';
 import store from '@/store';
 
@@ -35,9 +35,9 @@ class User extends VuexModule implements IUserState {
   public async GetInfo() {
     const token = getToken();
     if (token === undefined) {
-      throw Error('GetInfo: token is undefined!');
+      throw Error('getUserInfo: token is undefined!')
     }
-    const { data } = await getInfo(token);
+    const { data } = await getUserInfo(token);
     if (data.roles && data.roles.length > 0) {
       return {
         roles: data.roles,
@@ -45,7 +45,7 @@ class User extends VuexModule implements IUserState {
         avatar: data.avatar,
       };
     } else {
-      throw Error('GetInfo: roles must be a non-null array!');
+      throw Error('getUserInfo: roles must be a non-null array!')
     }
   }
 

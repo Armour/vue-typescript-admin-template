@@ -81,4 +81,3 @@ export default class Form extends Vue {
   text-align: center;
 }
 </style>
-

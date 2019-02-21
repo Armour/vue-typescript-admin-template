@@ -65,6 +65,18 @@ export default new Router({
           component: () => import(/* webpackChunkName: "tree" */ '@/views/tree/index.vue'),
           meta: { title: 'Tree', icon: 'tree' },
         },
+        {
+          path: 'complex',
+          name: 'Complex',
+          component: () => import(/* webpackChunkName: "complex" */ '@/views/table/complexTable.vue'),
+          meta: { title: 'complex', icon: 'complex' },
+        },
+        {
+          path: 'treetable',
+          name: 'treetable',
+          component: () => import(/* webpackChunkName: "tree" */ '@/views/table/treeTable/treeTable.vue'),
+          meta: { title: 'treetable', icon: 'treetable' },
+        },
       ],
     },
     {

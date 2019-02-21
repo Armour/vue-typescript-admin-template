@@ -103,4 +103,3 @@ export default class Navbar extends Vue {
   }
 }
 </style>
-

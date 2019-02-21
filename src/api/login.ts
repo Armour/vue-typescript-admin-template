@@ -10,7 +10,7 @@ export const login = (username: string, password: string) =>
     },
   });
 
-export const getInfo = (token: string) =>
+export const getUserInfo = (token: string) =>
   request({
     url: '/user/info',
     method: 'get',

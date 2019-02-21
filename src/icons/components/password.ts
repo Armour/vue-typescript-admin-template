@@ -2,6 +2,7 @@
 /* tslint:disable */
 // @ts-ignore
 import icon from 'vue-svgicon'
+
 icon.register({
   'password': {
     width: 128,

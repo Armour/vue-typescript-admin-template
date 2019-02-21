@@ -70,4 +70,3 @@ export default class Tree extends Vue {
   }
 }
 </script>
-

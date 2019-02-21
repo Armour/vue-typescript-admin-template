@@ -8,12 +8,15 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
       "node",
-      "jest",
-      "webpack-env"
+      "webpack-env",
+      "mocha",
+      "chai",
+      "echarts"
     ],
     "paths": {
       "@/*": [

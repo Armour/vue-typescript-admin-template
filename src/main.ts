@@ -1,11 +1,15 @@
 import Vue from 'vue';
 
+
 import 'normalize.css';
 import ElementUI from 'element-ui';
 import SvgIcon from 'vue-svgicon';
 import '@/styles/index.scss';
 import '@/icons/components';
 import '@/permission';
+
+import Cookies from 'js-cookie'
+import 'element-ui/lib/theme-chalk/index.css'
 
 /**
  * This project originally used easy-mock to simulate data requests,
@@ -20,8 +24,12 @@ import App from '@/App.vue';
 import store from '@/store';
 import router from '@/router';
 import '@/registerServiceWorker';
+import i18n from './lang'; // Internationalization
 
-Vue.use(ElementUI);
+Vue.use(ElementUI, {
+  size: Cookies.get('size') || 'medium', // set element-ui default size
+  i18n: (key: string, value: string) => i18n.t(key, value),
+});
 Vue.use(SvgIcon, {
   tagName: 'svg-icon',
   defaultWidth: '1em',
@@ -33,5 +41,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  i18n,
   render: (h) => h(App),
 }).$mount('#app');

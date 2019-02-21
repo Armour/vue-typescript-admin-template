@@ -1,6 +1,22 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
+  publicPath: '/hengwei/security/',
+
   pwa: {
     name: 'vue-typescript-admin-template'
+  },
+
+  configureWebpack: {
+    devtool: 'source-map'
+  },
+
+  lintOnSave: undefined,
+  outputDir: './dist/',
+  assetsDir: './public/',
+  runtimeCompiler: true,
+  productionSourceMap: true,
+  parallel: true,
+
+  css: {
+    sourceMap: true
   }
 }

@@ -1,42 +1,56 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">vue-typescript-admin-template</h3>
+      <div class="title-container">
+        <h3 class="title">{{ $t('login.title') }}</h3>
+        <lang-select class="set-language" />
+      </div>
+
       <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon name="user" />
         </span>
-        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
+        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="$t('login.username')" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon name="password" />
         </span>
         <el-input
-          :type="pwdType"
           v-model="loginForm.password"
+          :type="passwordType"
+          :placeholder="$t('login.password')"
           name="password"
           auto-complete="on"
-          placeholder="password"
           @keyup.enter.native="handleLogin" />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :name="pwdType === 'password' ? 'eye-off' : 'eye-on'" />
+          <svg-icon :name="passwordType === 'password' ? 'eye-off' : 'eye-on'" />
         </span>
       </el-form-item>
       <el-form-item>
+        
         <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          Sign in
+          {{ $t('login.logIn') }}
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
+      <div style="position:relative">
+        <div class="tips">
+          <span>{{ $t('login.username') }} : admin</span>
+          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
+        </div>
+        <div class="tips">
+          <span style="margin-right:18px;">
+            {{ $t('login.username') }} : editor
+          </span>
+          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
+        </div>
       </div>
     </el-form>
   </div>
 </template>
 
 <script lang="ts">
+import LangSelect from '@/components/LangSelect/index.vue';
 import { isValidUsername } from '@/utils/validate';
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { UserModule } from '@/store/modules/user';
@@ -50,7 +64,7 @@ const validateUsername = (rule: any, value: string, callback: any) => {
     callback();
   }
 };
-const validatePass = (rule: any, value: string, callback: any) => {
+const validatePassword = (rule: any, value: string, callback: any) => {
   if (value.length < 5) {
     callback(new Error('密码不能小于5位'));
   } else {
@@ -58,7 +72,9 @@ const validatePass = (rule: any, value: string, callback: any) => {
   }
 };
 
-@Component
+@Component({
+  components: { LangSelect },
+})
 export default class Login extends Vue {
   private loginForm = {
     username: 'admin',
@@ -66,28 +82,28 @@ export default class Login extends Vue {
   };
   private loginRules = {
     username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-    password: [{ required: true, trigger: 'blur', validator: validatePass }],
+    password: [{ required: true, trigger: 'blur', validator: validatePassword }],
   };
   private loading = false;
-  private pwdType = 'password';
+  private passwordType = 'password';
   private redirect: string | undefined = undefined;
 
   @Watch('$route', { immediate: true })
-  private OnRouteChange(route: Route) {
+  private OnRouteChange (route: Route) {
     // TODO: remove the "as string" hack after v4 release for vue-router
     // See https://github.com/vuejs/vue-router/pull/2050 for details
     this.redirect = route.query && route.query.redirect as string;
   }
 
-  private showPwd() {
-    if (this.pwdType === 'password') {
-      this.pwdType = '';
+  private showPwd () {
+    if (this.passwordType === 'password') {
+      this.passwordType = '';
     } else {
-      this.pwdType = 'password';
+      this.passwordType = 'password';
     }
   }
 
-  private handleLogin() {
+  private handleLogin () {
     (this.$refs.loginForm as ElForm).validate((valid: boolean) => {
       if (valid) {
         this.loading = true;
@@ -98,6 +114,7 @@ export default class Login extends Vue {
           this.loading = false;
         });
       } else {
+        console.log('error submit!!');
         return false;
       }
     });
