@@ -12,16 +12,18 @@
   },
   "dependencies": {
     "@types/js-cookie": "^2.2.1",
+    "@types/mockjs": "^1.0.2",
     "@types/nprogress": "^0.0.29",
     "@types/webpack-env": "^1.13.7",
     "axios": "^0.18.0",
     "element-ui": "^2.5.4",
     "js-cookie": "^2.2.0",
+    "mockjs": "^1.0.1-beta3",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^3.0.0",
     "register-service-worker": "^1.6.2",
-    "vue": "^2.6.6",
+    "vue": "^2.6.7",
     "vue-class-component": "^7.0.1",
     "vue-property-decorator": "^7.3.0",
     "vue-router": "^3.0.2",
@@ -44,11 +46,11 @@
     "eslint": "^5.14.1",
     "fibers": "^3.1.1",
     "jest": "^24.1.0",
-    "sass": "^1.17.0",
+    "sass": "^1.17.1",
     "sass-loader": "^7.1.0",
     "ts-jest": "^24.0.0",
-    "typescript": "3.3.3",
+    "typescript": "3.3.3333",
     "vue-cli-plugin-element": "^1.0.1",
-    "vue-template-compiler": "^2.6.6"
+    "vue-template-compiler": "^2.6.7"
   }
 }

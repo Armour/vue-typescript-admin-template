@@ -30,6 +30,7 @@ service.interceptors.response.use(
     // code == 50008: invalid token
     // code == 50012: already login in other place
     // code == 50014: token expired
+    // code == 60204: account or password is incorrect
     // You can change this part for your own usage.
     const res = response.data;
     if (res.code !== 20000) {
