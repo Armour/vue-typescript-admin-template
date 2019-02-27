@@ -34,7 +34,7 @@
     "webpack": "^4.29.5"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.6",
+    "@types/jest": "^24.0.9",
     "@vue/cli-plugin-babel": "^3.4.1",
     "@vue/cli-plugin-e2e-cypress": "^3.4.1",
     "@vue/cli-plugin-pwa": "^3.4.1",
@@ -46,7 +46,7 @@
     "eslint": "^5.14.1",
     "fibers": "^3.1.1",
     "jest": "^24.1.0",
-    "sass": "^1.17.1",
+    "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
     "ts-jest": "^24.0.0",
     "typescript": "3.3.3333",

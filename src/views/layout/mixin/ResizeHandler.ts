@@ -1,8 +1,7 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { DeviceType, AppModule } from '@/store/modules/app';
 
-const WIDTH = 1024;
-const RATIO = 3;
+const WIDTH = 992; // refer to Bootstrap's responsive design
 
 @Component
 export default class ResizeHandlerMixin extends Vue {
@@ -35,7 +34,7 @@ export default class ResizeHandlerMixin extends Vue {
 
   private isMobile() {
     const rect = document.body.getBoundingClientRect();
-    return rect.width - RATIO < WIDTH;
+    return rect.width - 1 < WIDTH;
   }
 
   private resizeHandler() {
