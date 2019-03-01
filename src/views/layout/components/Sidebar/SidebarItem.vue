@@ -1,10 +1,12 @@
 <template>
-  <div v-if="item.children && (!item.meta || !item.meta.hidden)" :class="['menu-wrapper', collapse ? 'simple-mode' : 'full-mode', {'first-level': !isNest}]">
-    <template v-if="hasOneShowingChild(item.children) && !onlyOneChild.children">
+  <div v-if="!item.meta || !item.meta.hidden" :class="['menu-wrapper', collapse ? 'simple-mode' : 'full-mode', {'first-level': !isNest}]">
+    <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.meta.noShowingChildren)">
       <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown': !isNest}">
           <svg-icon v-if="onlyOneChild.meta && onlyOneChild.meta.icon" :name="onlyOneChild.meta.icon" />
+          <svg-icon v-else-if="item.meta && item.meta.icon" :name="item.meta.icon" />
           <span v-if="onlyOneChild.meta && onlyOneChild.meta.title" slot="title">{{onlyOneChild.meta.title}}</span>
+          <span v-else-if="item.meta && item.meta.title" slot="title">{{item.meta.title}}</span>
         </el-menu-item>
       </app-link>
     </template>
@@ -13,22 +15,14 @@
         <svg-icon v-if="item.meta && item.meta.icon" :name="item.meta.icon" />
         <span v-if="item.meta && item.meta.title" slot="title">{{item.meta.title}}</span>
       </template>
-      <template v-for="child in childrenFilter(item.children)">
-        <sidebar-item
-          v-if="child.children && child.children.length > 0"
-          :is-nest="true"
-          :item="child"
-          :key="child.path"
-          :base-path="resolvePath(child.path)"
-          :collapse="collapse"
-          class="nest-menu"/>
-        <app-link v-else :to="resolvePath(child.path)" :key="child.name">
-          <el-menu-item :index="resolvePath(child.path)">
-            <svg-icon v-if="child.meta && child.meta.icon" :name="child.meta.icon" />
-            <span v-if="child.meta && child.meta.title" slot="title">{{child.meta.title}}</span>
-          </el-menu-item>
-        </app-link>
-      </template>
+      <sidebar-item
+        v-for="child in item.children"
+        :is-nest="true"
+        :item="child"
+        :key="child.path"
+        :base-path="resolvePath(child.path)"
+        :collapse="collapse"
+        class="nest-menu"/>
     </el-submenu>
   </div>
 </template>
@@ -56,32 +50,36 @@ export default class SidebarItem extends Vue {
 
   private onlyOneChild: Route | null = null;
 
-  private hasOneShowingChild(children: Route[]) {
-    if (!children) { return false; }
-    const showingChildren = children.filter((item: Route) => {
-      if (item.meta && item.meta.hidden) {
-        return false;
-      } else {
-        this.onlyOneChild = item; // This will only be used if hasOneShowingChild return true
-        return true;
-      }
-    });
-    return showingChildren.length === 1;
+  private hasOneShowingChild(children: Route[], parent: Route) {
+    let showingChildren: Route[] = [];
+
+    if (children) {
+      showingChildren = children.filter((item: Route) => {
+        if (item.meta && item.meta.hidden) {
+          return false;
+        } else {
+          this.onlyOneChild = item;
+          return true;
+        }
+      });
+    }
+
+    if (showingChildren.length === 1) {
+      return true;
+    } else if (showingChildren.length === 0) {
+      this.onlyOneChild = { ...parent, path: '', meta: { noShowingChildren: true } };
+      return true;
+    }
+
+    this.onlyOneChild = null;
+    return false;
   }
 
   private resolvePath(routePath: string) {
-    if (this.isExternalLink(routePath)) {
+    if (isExternal(routePath)) {
       return routePath;
     }
     return path.resolve(this.basePath, routePath);
-  }
-
-  private isExternalLink(routePath: string) {
-    return isExternal(routePath);
-  }
-
-  private childrenFilter(children: Route[]) {
-    return children.filter((child) => !child.meta || !child.meta.hidden);
   }
 }
 </script>

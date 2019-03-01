@@ -25,8 +25,16 @@ export default new Router({
   },
   base: process.env.BASE_URL,
   routes: [
-    { path: '/login', component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue') },
-    { path: '/404', component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue') },
+    {
+      path: '/login',
+      component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
+      meta: { hidden: true },
+    },
+    {
+      path: '/404',
+      component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue') ,
+      meta: { hidden: true },
+    },
     {
       path: '/',
       component: Layout,
@@ -136,6 +144,10 @@ export default new Router({
         },
       ],
     },
-    { path: '*', redirect: '/404' },
+    {
+      path: '*',
+      redirect: '/404',
+      meta: { hidden: true },
+    },
   ],
 });
