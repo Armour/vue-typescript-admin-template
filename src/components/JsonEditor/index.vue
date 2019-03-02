@@ -4,33 +4,32 @@
   </div>
 </template>
 
-<script>
-import CodeMirror from 'codemirror'
-import 'codemirror/addon/lint/lint.css'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/rubyblue.css'
-require('script-loader!jsonlint')
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/addon/lint/lint'
-import 'codemirror/addon/lint/json-lint'
+<script lang="ts">
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import CodeMirror from 'codemirror';
+import 'codemirror/addon/lint/lint.css';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/rubyblue.css';
+require('script-loader!jsonlint');
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/addon/lint/lint';
+import 'codemirror/addon/lint/json-lint';
 
-export default {
-  name: 'JsonEditor',
-  /* eslint-disable vue/require-prop-types */
-  props: ['value'],
-  data() {
-    return {
-      jsonEditor: false
+@Component
+export default class JsonEditor extends Vue {
+  @Prop() 
+  value: any;
+
+  private jsonEditor: any = false;
+
+  @Watch("value")
+  onValue(value: any) {
+    const editor_value = this.jsonEditor.getValue();
+    if (value !== editor_value) {
+      this.jsonEditor.setValue(JSON.stringify(this.value, null, 2));
     }
-  },
-  watch: {
-    value(value) {
-      const editor_value = this.jsonEditor.getValue()
-      if (value !== editor_value) {
-        this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
-      }
-    }
-  },
+  }
+
   mounted() {
     this.jsonEditor = CodeMirror.fromTextArea(this.$refs.textarea, {
       lineNumbers: true,
@@ -38,18 +37,17 @@ export default {
       gutters: ['CodeMirror-lint-markers'],
       theme: 'rubyblue',
       lint: true
-    })
+    });
 
-    this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
-    this.jsonEditor.on('change', cm => {
+    this.jsonEditor.setValue(JSON.stringify(this.value, null, 2));
+    this.jsonEditor.on('change', (cm: any) => {
       this.$emit('changed', cm.getValue())
       this.$emit('input', cm.getValue())
-    })
-  },
-  methods: {
-    getValue() {
-      return this.jsonEditor.getValue()
-    }
+    });
+  }
+
+  getValue() {
+    return this.jsonEditor.getValue();
   }
 }
 </script>

@@ -102,6 +102,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 
@@ -145,7 +146,7 @@ export default class MdInput extends Vue {
   private focus: boolean = false;
   private fillPlaceHolder: any = null;
 
-  mount() {
+  mounted() {
     this.currentValue = this.value;
   }
       

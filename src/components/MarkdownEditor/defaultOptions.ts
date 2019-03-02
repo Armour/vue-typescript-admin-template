@@ -27,5 +27,5 @@ export default {
     'divider',
     'code',
     'codeblock'
-  ]
-}
+  ],
+};
