@@ -31,11 +31,11 @@ class User extends VuexModule implements IUserState {
     return '';
   }
 
-  @MutationAction({ mutate: [ 'roles', 'name', 'avatar' ] })
+  @MutationAction({ mutate: ['roles', 'name', 'avatar'] })
   public async GetInfo() {
     const token = getToken();
     if (token === undefined) {
-      throw Error('getUserInfo: token is undefined!')
+      throw Error('getUserInfo: token is undefined!');
     }
     const { data } = await getUserInfo(token);
     if (data.roles && data.roles.length > 0) {
@@ -45,11 +45,11 @@ class User extends VuexModule implements IUserState {
         avatar: data.avatar,
       };
     } else {
-      throw Error('getUserInfo: roles must be a non-null array!')
+      throw Error('getUserInfo: roles must be a non-null array!');
     }
   }
 
-  @MutationAction({ mutate: [ 'token', 'roles' ] })
+  @MutationAction({ mutate: ['token', 'roles'] })
   public async LogOut() {
     if (getToken() === undefined) {
       throw Error('LogOut: token is undefined!');

@@ -21,39 +21,39 @@
   Auth: Lei.j1ang
   Created: 2018/1/19-14:54
 */
-import treeTable from '@/components/TreeTable/index.vue'
-import { Component, Vue } from 'vue-property-decorator'
+import treeTable from '@/components/TreeTable/index.vue';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-  components: { treeTable }
+  components: { treeTable },
 })
 export default class TreeTableDemo extends Vue {
   public columns = [
     {
       text: '事件',
       value: 'event',
-      width: 200
+      width: 200,
     },
     {
       text: 'ID',
-      value: 'id'
+      value: 'id',
     },
     {
       text: '时间线',
-      value: 'timeLine'
+      value: 'timeLine',
     },
     {
       text: '备注',
-      value: 'comment'
-    }
-  ]
+      value: 'comment',
+    },
+  ];
 
   public data = [
     {
       id: 0,
       event: '事件1',
       timeLine: 50,
-      comment: '无'
+      comment: '无',
     },
     {
       id: 1,
@@ -65,7 +65,7 @@ export default class TreeTableDemo extends Vue {
           id: 2,
           event: '事件2',
           timeLine: 10,
-          comment: '无'
+          comment: '无',
         },
         {
           id: 3,
@@ -77,13 +77,13 @@ export default class TreeTableDemo extends Vue {
               id: 4,
               event: '事件4',
               timeLine: 5,
-              comment: '无'
+              comment: '无',
             },
             {
               id: 5,
               event: '事件5',
               timeLine: 10,
-              comment: '无'
+              comment: '无',
             },
             {
               id: 6,
@@ -101,34 +101,34 @@ export default class TreeTableDemo extends Vue {
                       id: 71,
                       event: '事件71',
                       timeLine: 25,
-                      comment: 'xx'
+                      comment: 'xx',
                     },
                     {
                       id: 72,
                       event: '事件72',
                       timeLine: 5,
-                      comment: 'xx'
+                      comment: 'xx',
                     },
                     {
                       id: 73,
                       event: '事件73',
                       timeLine: 20,
-                      comment: 'xx'
-                    }
-                  ]
+                      comment: 'xx',
+                    },
+                  ],
                 },
                 {
                   id: 8,
                   event: '事件8',
                   timeLine: 25,
-                  comment: '无'
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+                  comment: '无',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ];
 }
 </script>

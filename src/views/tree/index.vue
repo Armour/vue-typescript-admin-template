@@ -16,10 +16,10 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { TreeData, ElTree } from 'element-ui/types/tree';
 
-@Component
+@Component({ components: { ElTree, TreeData } })
 export default class Tree extends Vue {
   private filterText = '';
-  private data2 = [{
+  private data2: TreeData[] = [{
     id: 1,
     label: 'Level one 1',
     children: [{

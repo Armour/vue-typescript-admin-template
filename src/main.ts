@@ -1,6 +1,5 @@
 import Vue from 'vue';
 
-
 import 'normalize.css';
 import ElementUI from 'element-ui';
 import SvgIcon from 'vue-svgicon';
@@ -8,8 +7,8 @@ import '@/styles/index.scss';
 import '@/icons/components';
 import '@/permission';
 
-import Cookies from 'js-cookie'
-import 'element-ui/lib/theme-chalk/index.css'
+import Cookies from 'js-cookie';
+import 'element-ui/lib/theme-chalk/index.css';
 
 /**
  * This project originally used easy-mock to simulate data requests,

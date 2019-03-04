@@ -1,5 +1,4 @@
-build/*.js
-config/*.js
+dist/*.js
 src/assets
 .eslintrc.js
 vue.config.js

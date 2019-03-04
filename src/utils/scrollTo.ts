@@ -1,7 +1,7 @@
 function easeInOutQuad(t: number, b: number, c: number, d: number): number {
   t /= d / 2;
   if (t < 1) {
-    return c / 2 * t * t + b
+    return c / 2 * t * t + b;
   }
   t--;
   return -c / 2 * (t * (t - 2) - 1) + b;
@@ -10,7 +10,7 @@ function easeInOutQuad(t: number, b: number, c: number, d: number): number {
 // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
 var requestAnimFrame = (function() {
   // || window.mozRequestAnimationFrame
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame  || function(callback) { window.setTimeout(callback, 1000 / 60) };
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60); };
 })();
 
 // because it's so fucking difficult to detect the scrolling element, just move them all
@@ -22,7 +22,7 @@ function move(amount: number) {
 
 function position(): number {
   // document.body.parentNode.scrollTop
-  return document.documentElement.scrollTop ||  document.body.scrollTop;
+  return document.documentElement.scrollTop || document.body.scrollTop;
 }
 
 export function scrollTo(to: number, duration: number, callback?: Function) {
@@ -33,17 +33,17 @@ export function scrollTo(to: number, duration: number, callback?: Function) {
   duration = (typeof (duration) === 'undefined') ? 500 : duration;
   var animateScroll = function() {
     // increment the time
-    currentTime += increment
+    currentTime += increment;
     // find the value with the quadratic in-out easing function
-    var val = easeInOutQuad(currentTime, start, change, duration)
+    var val = easeInOutQuad(currentTime, start, change, duration);
     // move the document.body
-    move(val)
+    move(val);
     // do the animation unless its over
     if (currentTime < duration) {
-      requestAnimFrame(animateScroll)
+      requestAnimFrame(animateScroll);
     } else if (callback) {
       // the animation is done so lets callback
-      callback()
+      callback();
     }
   };
   animateScroll();

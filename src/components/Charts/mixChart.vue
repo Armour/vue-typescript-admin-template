@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :id="id" :style="{height:height,width:width}"/>
+  <div :class="className" :id="id" :style="{height: height, width: width}"/>
 </template>
 
 <script lang="ts">
@@ -18,8 +18,6 @@ export default class mixChart extends mixins(Resize) {
   private width!: string;
   @Prop({default: '200px'})
   private height!: string;
-
-  private chart: any = null;
 
   mounted() {
     this.initChart();

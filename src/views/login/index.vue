@@ -28,7 +28,7 @@
         </span>
       </el-form-item>
       <el-form-item>
-        
+
         <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
           {{ $t('login.logIn') }}
         </el-button>
@@ -73,7 +73,7 @@ const validatePassword = (rule: any, value: string, callback: any) => {
 };
 
 @Component({
-  components: { LangSelect },
+  components: { LangSelect, ElForm },
 })
 export default class Login extends Vue {
   private loginForm = {
@@ -89,13 +89,13 @@ export default class Login extends Vue {
   private redirect: string | undefined = undefined;
 
   @Watch('$route', { immediate: true })
-  private OnRouteChange (route: Route) {
+  private OnRouteChange(route: Route) {
     // TODO: remove the "as string" hack after v4 release for vue-router
     // See https://github.com/vuejs/vue-router/pull/2050 for details
     this.redirect = route.query && route.query.redirect as string;
   }
 
-  private showPwd () {
+  private showPwd() {
     if (this.passwordType === 'password') {
       this.passwordType = '';
     } else {
@@ -103,7 +103,7 @@ export default class Login extends Vue {
     }
   }
 
-  private handleLogin () {
+  private handleLogin() {
     (this.$refs.loginForm as ElForm).validate((valid: boolean) => {
       if (valid) {
         this.loading = true;
@@ -114,7 +114,6 @@ export default class Login extends Vue {
           this.loading = false;
         });
       } else {
-        console.log('error submit!!');
         return false;
       }
     });

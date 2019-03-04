@@ -128,48 +128,48 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { ElForm } from 'element-ui/types/form'
-import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
-import waves from '@/directive/waves' // Waves directive
-import { parseTime } from '@/utils'
-import { calendarTypeOptions, calendarTypeKeyValue } from '@/utils/calendarType'
-import Pagination from '@/components/Pagination/index.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import { ElForm } from 'element-ui/types/form';
+import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article';
+import waves from '@/directive/waves'; // Waves directive
+import { parseTime } from '@/utils';
+import { calendarTypeOptions, calendarTypeKeyValue } from '@/utils/calendarType';
+import Pagination from '@/components/Pagination/index.vue';
 
-
+const statusFilter = (status: string): string => {
+  const statusMap: { [id: string]: string } = {
+    published: 'success',
+    draft: 'gray',
+    deleted: 'danger',
+  };
+  return statusMap[status];
+};
+const typeFilter = (type: string): string => {
+  return (calendarTypeKeyValue as any)[type];
+};
 
 @Component({
-  components: { Pagination },
+  components: { Pagination, ElForm },
   filters: {
     parseTime,
-    
-    statusFilter(status: string): string {
-      const statusMap: { [id: string]: string } = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    },
-    typeFilter(type: string): string {
-      return (<any>calendarTypeKeyValue)[type]
-    },
+    statusFilter,
+    typeFilter,
   },
   directives: { waves },
 })
 export default class ComplexTable extends Vue {
-  private list: any[] = []
+  private list: any[] = [];
   private tableKey: number = 0;
-  private total: number = 0
-  private listLoading: boolean = true
+  private total: number = 0;
+  private listLoading: boolean = true;
   private listQuery = {
     page: 1,
     limit: 20,
     importance: undefined,
     title: undefined,
     type: undefined,
-    sort: '+id'
-  }
+    sort: '+id',
+  };
   private importanceOptions: number[] = [1, 2, 3];
   private calendarTypeOptions = calendarTypeOptions;
 
@@ -184,64 +184,64 @@ export default class ComplexTable extends Vue {
     title: '',
     type: '',
     status: 'published',
-    author: ''
+    author: '',
   };
 
   private dialogFormVisible:boolean = false;
   private dialogStatus:string = '';
   private textMap = {
     update: 'Edit',
-    create: 'Create'
+    create: 'Create',
   };
   private dialogPvVisible:boolean = false;
   private pvData: any[] = [];
   private rules = {
     type: [{ required: true, message: 'type is required', trigger: 'change' }],
     timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
-    title: [{ required: true, message: 'title is required', trigger: 'blur' }]
+    title: [{ required: true, message: 'title is required', trigger: 'blur' }],
   };
   private downloadLoading:boolean = false;
 
   private created() {
-    this.getList()
+    this.getList();
   }
-  
+
   private getList() {
-    this.listLoading = true
+    this.listLoading = true;
     fetchList(this.listQuery).then((response: any) => {
-      this.list = response.data.items
-      this.total = response.data.total
+      this.list = response.data.items;
+      this.total = response.data.total;
 
       // Just to simulate the time of the request
       setTimeout(() => {
-        this.listLoading = false
-      }, 1.5 * 1000)
-    })
+        this.listLoading = false;
+      }, 1.5 * 1000);
+    });
   }
   private handleFilter() {
-    this.listQuery.page = 1
-    this.getList()
+    this.listQuery.page = 1;
+    this.getList();
   }
   private handleModifyStatus(row: any, status: any) {
     this.$message({
       message: '操作成功',
-      type: 'success'
-    })
-    row.status = status
+      type: 'success',
+    });
+    row.status = status;
   }
   private sortChange(data: any) {
-    const { prop, order } = data
+    const { prop, order } = data;
     if (prop === 'id') {
-      this.sortByID(order)
+      this.sortByID(order);
     }
   }
   private sortByID(order: string) {
     if (order === 'ascending') {
-      this.listQuery.sort = '+id'
+      this.listQuery.sort = '+id';
     } else {
-      this.listQuery.sort = '-id'
+      this.listQuery.sort = '-id';
     }
-    this.handleFilter()
+    this.handleFilter();
   }
   private resetTemp() {
     this.temp = {
@@ -251,86 +251,86 @@ export default class ComplexTable extends Vue {
       timestamp: new Date(),
       title: '',
       status: 'published',
-      type: ''
-    }
-}
+      type: '',
+    };
+  }
   private handleCreate() {
-    this.resetTemp()
-    this.dialogStatus = 'create'
-    this.dialogFormVisible = true
+    this.resetTemp();
+    this.dialogStatus = 'create';
+    this.dialogFormVisible = true;
     this.$nextTick(() => {
-      (this.$refs['dataForm'] as ElForm).clearValidate()
-    })
+      (this.$refs['dataForm'] as ElForm).clearValidate();
+    });
   }
   private createData() {
     (this.$refs['dataForm'] as ElForm).validate((valid: any) => {
       if (valid) {
-        this.temp.id = Math.random() * 100 + 1024 // mock a id
-        this.temp.author = 'vue-element-admin'
+        this.temp.id = Math.random() * 100 + 1024; // mock a id
+        this.temp.author = 'vue-element-admin';
         createArticle(this.temp).then(() => {
-          this.list.unshift(this.temp)
-          this.dialogFormVisible = false
+          this.list.unshift(this.temp);
+          this.dialogFormVisible = false;
           this.$notify({
             title: '成功',
             message: '创建成功',
             type: 'success',
-            duration: 2000
-          })
-        })
+            duration: 2000,
+          });
+        });
       }
-    })
+    });
   }
   private handleUpdate(row: object) {
-    this.temp = {...row} // copy obj
-    this.temp.timestamp = new Date(this.temp.timestamp)
-    this.dialogStatus = 'update'
-    this.dialogFormVisible = true
+    this.temp = { ...row }; // copy obj
+    this.temp.timestamp = new Date(this.temp.timestamp);
+    this.dialogStatus = 'update';
+    this.dialogFormVisible = true;
     this.$nextTick(() => {
-      (this.$refs['dataForm'] as ElForm).clearValidate()
-    })
+      (this.$refs['dataForm'] as ElForm).clearValidate();
+    });
   }
   private updateData() {
     (this.$refs['dataForm'] as ElForm).validate((valid: any) => {
       if (valid) {
-        const tempData = {... this.temp}
-        tempData.timestamp = new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
+        const tempData = { ...this.temp };
+        tempData.timestamp = new Date(tempData.timestamp); // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
         updateArticle(tempData).then(() => {
           for (const v of this.list) {
             if (v.id === this.temp.id) {
-              const index = this.list.indexOf(v)
-              this.list.splice(index, 1, this.temp)
-              break
+              const index = this.list.indexOf(v);
+              this.list.splice(index, 1, this.temp);
+              break;
             }
           }
-          this.dialogFormVisible = false
+          this.dialogFormVisible = false;
           this.$notify({
             title: '成功',
             message: '更新成功',
             type: 'success',
-            duration: 2000
-          })
-        })
+            duration: 2000,
+          });
+        });
       }
-    })
+    });
   }
   private handleDelete(row: any) {
     this.$notify({
       title: '成功',
       message: '删除成功',
       type: 'success',
-      duration: 2000
-    })
-    const index = this.list.indexOf(row)
-    this.list.splice(index, 1)
+      duration: 2000,
+    });
+    const index = this.list.indexOf(row);
+    this.list.splice(index, 1);
   }
   private handleFetchPv(pv: any) {
     fetchPv(pv).then((response: any) => {
-      this.pvData = response.data.pvData
-      this.dialogPvVisible = true
-    })
+      this.pvData = response.data.pvData;
+      this.dialogPvVisible = true;
+    });
   }
   private handleDownload() {
-    alert("downdoad is ok -- (not implemented)");
+    alert('downdoad is ok -- (not implemented)');
     // this.downloadLoading = true
     // import('@/vendor/Export2Excel').then(excel => {
     //   const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
@@ -347,11 +347,11 @@ export default class ComplexTable extends Vue {
   private formatJson(filterVal: any, jsonData: any[]): any[] {
     return jsonData.map((v: any) => filterVal.map((j: any): any => {
       if (j === 'timestamp') {
-        return parseTime(v[j])
+        return parseTime(v[j]);
       } else {
-        return v[j]
+        return v[j];
       }
-    }))
+    }));
   }
 }
 </script>

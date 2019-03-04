@@ -1,7 +1,7 @@
 import Mock from 'mockjs';
 import userAPI from './user';
 import tableAPI from './table';
-import articleAPI from './article'
+import articleAPI from './article';
 import remoteSearchAPI from './remoteSearch';
 import transactionAPI from './transaction';
 

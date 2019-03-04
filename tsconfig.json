@@ -14,8 +14,7 @@
     "types": [
       "node",
       "webpack-env",
-      "mocha",
-      "chai",
+      "jest",
       "echarts"
     ],
     "paths": {

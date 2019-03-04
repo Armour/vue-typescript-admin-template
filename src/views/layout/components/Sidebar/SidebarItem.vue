@@ -67,7 +67,11 @@ export default class SidebarItem extends Vue {
     if (showingChildren.length === 1) {
       return true;
     } else if (showingChildren.length === 0) {
-      this.onlyOneChild = { ...parent, path: '', meta: { noShowingChildren: true } };
+      this.onlyOneChild = {
+        ...parent,
+        path: '',
+        meta: { noShowingChildren: true },
+      };
       return true;
     }
 

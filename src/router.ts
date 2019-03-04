@@ -32,7 +32,7 @@ export default new Router({
     },
     {
       path: '/404',
-      component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue') ,
+      component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
       meta: { hidden: true },
     },
     {

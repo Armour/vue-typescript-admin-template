@@ -21,6 +21,7 @@ export default class DragSelect extends Vue {
   set selectVal(val) {
     this.$emit('input', [...val]);
   }
+
   mounted() {
     this.setSort();
   }

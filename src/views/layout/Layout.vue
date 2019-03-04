@@ -12,7 +12,7 @@
 <script lang="ts">
 import { Navbar, AppMain, Sidebar } from './components';
 import ResizeMixin from './mixin/ResizeHandler';
-import { Component, Vue } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import { DeviceType, AppModule } from '@/store/modules/app';
 

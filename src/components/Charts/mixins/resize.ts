@@ -4,6 +4,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 @Component
 export default class Resize extends Vue {
   private sidebarElm: any = null;
+  private chart: ECharts | null = null;
 
   mounted() {
     (this as any).__resizeHandler = debounce(() => {

@@ -9,16 +9,16 @@ declare module '*.svg' {
 }
 
 declare module 'element-ui/lib/locale/lang/en' {
-  const elementEnLocale: any
-  export default elementEnLocale
+  const elementEnLocale: any;
+  export default elementEnLocale;
 }
 
 declare module 'element-ui/lib/locale/lang/es' {
-  const elementEsLocale: any
-  export default elementEsLocale
+  const elementEsLocale: any;
+  export default elementEsLocale;
 }
 
 declare module 'element-ui/lib/locale/lang/zh-CN' {
-  const elementZhLocale: any
-  export default elementZhLocale
+  const elementZhLocale: any;
+  export default elementZhLocale;
 }

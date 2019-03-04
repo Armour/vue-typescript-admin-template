@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :id="id" :style="{height:height,width:width}"/>
+  <div :class="className" :id="id" :style="{height: height, width: width}"/>
 </template>
 
 <script lang="ts">
@@ -7,7 +7,6 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import echarts from 'echarts';
 import Resize from './mixins/resize';
-
 
 @Component
 export default class lineMarker extends mixins(Resize) {
@@ -19,8 +18,6 @@ export default class lineMarker extends mixins(Resize) {
   private width!: string;
   @Prop({default: '200px'})
   private height!: string;
-
-  private chart: any = null;
 
   mounted() {
     this.initChart();

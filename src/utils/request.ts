@@ -50,7 +50,7 @@ service.interceptors.response.use(
           },
         ).then(() => {
           UserModule.FedLogOut().then(() => {
-            location.reload();  // To prevent bugs from vue-router
+            location.reload(); // To prevent bugs from vue-router
           });
         });
       }
