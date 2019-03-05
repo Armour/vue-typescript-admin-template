@@ -3,5 +3,5 @@ export default {
   'png': 'image/png',
   'gif': 'image/gif',
   'svg': 'image/svg+xml',
-  'psd': 'image/photoshop'
-}
+  'psd': 'image/photoshop',
+};
