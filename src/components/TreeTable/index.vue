@@ -93,7 +93,7 @@ export default class TreeTable extends Vue {
   }
 </style>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" scoped>
   $color-blue: #2196F3;
   $space-width: 18px;
   .ms-tree-space {
