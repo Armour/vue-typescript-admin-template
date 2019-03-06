@@ -16,7 +16,7 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { TreeData, ElTree } from 'element-ui/types/tree';
 
-@Component({ components: { ElTree, TreeData } })
+@Component({ components: { ElTree } })
 export default class Tree extends Vue {
   private filterText = '';
   private data2: TreeData[] = [{

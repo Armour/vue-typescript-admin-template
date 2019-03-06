@@ -15,23 +15,23 @@ import XLSX from 'xlsx';
 @Component
 export default class UploadExcel extends Vue {
   @Prop()
-  beforeUpload: Function; // eslint-disable-line
+  beforeUpload!: Function; // eslint-disable-line
   @Prop()
-  onSuccess: Function; // eslint-disable-line
+  onSuccess!: Function; // eslint-disable-line
 
   private loading: boolean = false;
-  private excelData: { header: string, results: any[] } = {
+  private excelData: { header: string|null, results: any[]|null } = {
     header: null,
     results: null,
   };
 
-  generateData({ header, results }) {
-    this.excelData.header = header;
-    this.excelData.results = results;
+  generateData(data: { header: string, results: any[] }) {
+    this.excelData.header = data.header;
+    this.excelData.results = data.results;
     this.onSuccess && this.onSuccess(this.excelData);
   }
 
-  handleDrop(e: Event) {
+  handleDrop(e: DragEvent) {
     e.stopPropagation();
     e.preventDefault();
     if (this.loading) return;
@@ -58,18 +58,18 @@ export default class UploadExcel extends Vue {
   }
 
   handleUpload() {
-    this.$refs['excel-upload-input'].click();
+    (this.$refs['excel-upload-input'] as any).click();
   }
 
   handleClick(e: Event) {
-    const files = e.target.files;
+    const files = (e.target as any).files;
     const rawFile = files[0]; // only use files[0]
     if (!rawFile) return;
     this.upload(rawFile);
   }
 
-  upload(rawFile) {
-    this.$refs['excel-upload-input'].value = null; // fix can't select the same excel
+  upload(rawFile: Blob) {
+    (this.$refs['excel-upload-input'] as any).value = null; // fix can't select the same excel
 
     if (!this.beforeUpload) {
       this.readerData(rawFile);
@@ -80,12 +80,12 @@ export default class UploadExcel extends Vue {
       this.readerData(rawFile);
     }
   }
-  readerData(rawFile) {
+  readerData(rawFile: Blob) {
     this.loading = true;
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = e => {
-        const data = e.target.result;
+      reader.onload = (e: Event) => {
+        const data = (e.target as any).result;
         const workbook = XLSX.read(data, { type: 'array' });
         const firstSheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[firstSheetName];
@@ -98,7 +98,7 @@ export default class UploadExcel extends Vue {
       reader.readAsArrayBuffer(rawFile);
     });
   }
-  getHeaderRow(sheet) {
+  getHeaderRow(sheet: XLSX.Sheet): string[] {
     const headers = [];
     const range = XLSX.utils.decode_range(sheet['!ref']);
     let C;

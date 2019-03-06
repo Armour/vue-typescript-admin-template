@@ -2,14 +2,14 @@
 import store from '@/store';
 
 export default {
-  inserted(el, binding, vnode) {
+  inserted: (el: HTMLElement, binding: { value: any }, vnode: any) => {
     const { value } = binding;
     const roles = store.getters && store.getters.roles;
 
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value;
 
-      const hasPermission = roles.some(role => {
+      const hasPermission = roles.some((role: any): boolean => {
         return permissionRoles.includes(role);
       });
 

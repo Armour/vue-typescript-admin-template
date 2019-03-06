@@ -28,16 +28,16 @@ export function parseTime(time: any, cFormat?: string): string|null {
     s: date.getSeconds(),
     a: date.getDay(),
   };
-  const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (key: string) => {
+  const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (key: string): string => {
     let value = formatObj[key];
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') {
       return ['日', '一', '二', '三', '四', '五', '六'][ value ];
     }
     if (value < 10) {
-      value = '0' + value;
+      return '0' + value;
     }
-    return value || 0;
+    return value.toString() || '0';
   });
   return timeStr;
 }

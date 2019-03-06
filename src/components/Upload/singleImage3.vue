@@ -33,11 +33,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { getToken } from '@/api/qiniu';
+import { AxiosResponse } from 'axios';
 
 @Component
 export default class SingleImageUpload3 extends Vue {
   @Prop({ default: '' })
-  value: string;
+  value!: string;
 
   private tempUrl: string = '';
   private dataObj: { token: string, key: string } = { token: '', key: '' };
@@ -49,20 +50,20 @@ export default class SingleImageUpload3 extends Vue {
   rmImage() {
     this.emitInput('');
   }
-  emitInput(val) {
+  emitInput(val: string) {
     this.$emit('input', val);
   }
-  handleImageSuccess(file) {
+  handleImageSuccess(file: any) {
     this.emitInput(file.files.file);
   }
   beforeUpload() {
     const _self = this;
     return new Promise((resolve, reject) => {
-      getToken().then((response) => {
+      getToken().then((response: AxiosResponse) => {
         const key = response.data.qiniu_key;
         const token = response.data.qiniu_token;
-        _self._data.dataObj.token = token;
-        _self._data.dataObj.key = key;
+        _self.dataObj.token = token;
+        _self.dataObj.key = key;
         this.tempUrl = response.data.qiniu_url;
         resolve(true);
       }).catch((err: Error) => {

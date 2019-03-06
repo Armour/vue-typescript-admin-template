@@ -4,7 +4,7 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component
 export default class Resize extends Vue {
   private sidebarElm: any = null;
-  private chart: ECharts | null = null;
+  chart: ECharts | null = null;
 
   mounted() {
     (this as any).__resizeHandler = debounce(() => {

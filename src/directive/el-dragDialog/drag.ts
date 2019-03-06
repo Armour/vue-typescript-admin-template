@@ -1,20 +1,24 @@
 export default {
-  bind(el, binding, vnode) {
-    const dialogHeaderEl = el.querySelector('.el-dialog__header');
-    const dragDom = el.querySelector('.el-dialog');
+  bind(el: HTMLElement, binding: any, vnode: any) {
+    const dialogHeaderEl = el.querySelector('.el-dialog__header') as HTMLElement;
+    if(dialogHeaderEl == null) {
+      return;
+    }
+
+    const dragDom = el.querySelector('.el-dialog') as HTMLElement;
     dialogHeaderEl.style.cssText += ';cursor:move;';
     dragDom.style.cssText += ';top:0px;';
 
     // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
     const getStyle = (function() {
-      if (window.document.currentStyle) {
-        return (dom, attr) => dom.currentStyle[attr];
+      if ((window.document as any).currentStyle) {
+        return (dom: HTMLElement, attr: string) => (dom as any).currentStyle[attr];
       } else {
-        return (dom, attr) => getComputedStyle(dom, false)[attr];
+        return (dom: HTMLElement, attr: string) => (getComputedStyle(dom, null) as any)[attr];
       }
     })();
 
-    dialogHeaderEl.onmousedown = (e) => {
+    dialogHeaderEl.onmousedown = (e: MouseEvent) => {
       // 鼠标按下，计算当前元素距离可视区的距离
       const disX = e.clientX - dialogHeaderEl.offsetLeft;
       const disY = e.clientY - dialogHeaderEl.offsetTop;
@@ -43,7 +47,7 @@ export default {
         styT = +styT.replace(/\px/g, '');
       }
 
-      document.onmousemove = function(e) {
+      document.onmousemove = function(e: MouseEvent) {
         // 通过事件委托，计算移动的距离
         let left = e.clientX - disX;
         let top = e.clientY - disY;
@@ -65,10 +69,11 @@ export default {
         dragDom.style.cssText += `;left:${left + styL}px;top:${top + styT}px;`;
 
         // emit onDrag event
+        // vnode.child.$emit('dragDialog');
         vnode.child.$emit('dragDialog');
       };
 
-      document.onmouseup = function(e) {
+      document.onmouseup = function(e: MouseEvent) {
         document.onmousemove = null;
         document.onmouseup = null;
       };

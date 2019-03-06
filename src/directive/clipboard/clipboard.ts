@@ -5,7 +5,7 @@ if (!Clipboard) {
 }
 
 export default {
-  bind(el, binding) {
+  bind(el: any, binding: { arg: string, value: string }) {
     if (binding.arg === 'success') {
       el._v_clipboard_success = binding.value;
     } else if (binding.arg === 'error') {
@@ -26,7 +26,7 @@ export default {
       el._v_clipboard = clipboard;
     }
   },
-  update(el, binding) {
+  update(el: any, binding: { arg: string, value: string }) {
     if (binding.arg === 'success') {
       el._v_clipboard_success = binding.value;
     } else if (binding.arg === 'error') {
@@ -36,7 +36,7 @@ export default {
       el._v_clipboard.action = function() { return binding.arg === 'cut' ? 'cut' : 'copy'; };
     }
   },
-  unbind(el, binding) {
+  unbind(el: any, binding: { arg: string, value: string }) {
     if (binding.arg === 'success') {
       delete el._v_clipboard_success;
     } else if (binding.arg === 'error') {

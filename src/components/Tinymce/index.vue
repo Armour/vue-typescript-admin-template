@@ -23,9 +23,10 @@ import editorImage from './components/editorImage';
 import plugins from './plugins';
 import toolbar from './toolbar';
 
-@Component({ components: {
-  editorImage,
-},
+@Component({
+  components: {
+    editorImage,
+  },
 })
 export default class Tinymce extends Vue {
   @Prop({ default: () => 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '') })
@@ -158,7 +159,7 @@ export default class Tinymce extends Vue {
     });
   }
   destroyTinymce() {
-    const tinymce = window.tinymce.get(this.tinymceId);
+    const tinymce = (window as any).tinymce.get(this.tinymceId);
     if (this.fullscreen) {
       tinymce.execCommand('mceFullScreen');
     }
@@ -167,16 +168,16 @@ export default class Tinymce extends Vue {
       tinymce.destroy();
     }
   }
-  setContent(value) {
-    window.tinymce.get(this.tinymceId).setContent(value);
+  setContent(value: any) {
+    (window as any).tinymce.get(this.tinymceId).setContent(value);
   }
   getContent() {
-    window.tinymce.get(this.tinymceId).getContent();
+    (window as any).tinymce.get(this.tinymceId).getContent();
   }
   imageSuccessCBK(arr) {
     const _this = this;
-    arr.forEach(v => {
-      window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
+    arr.forEach((v) => {
+      (window as any).tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
     });
   }
 }
