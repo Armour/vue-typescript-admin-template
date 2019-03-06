@@ -22,53 +22,45 @@
   </div>
 </template>
 
-<script>
-import { getToken } from '@/api/qiniu'
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { getToken } from '@/api/qiniu';
 
-export default {
-  name: 'SingleImageUpload2',
-  props: {
-    value: {
-      type: String,
-      default: ''
-    }
+@Component
+export default class SingleImageUpload2 extends Vue {
+  @Prop({ default: '' })
+  value: string;
+
+  private tempUrl: string = '';
+  private dataObj: { token: string, key: string } = { token: '', key: '' };
+
+  get imageUrl(): string {
+    return this.value;
+  }
+
+  rmImage() {
+    this.emitInput('');
   },
-  data() {
-    return {
-      tempUrl: '',
-      dataObj: { token: '', key: '' }
-    }
+  emitInput(val) {
+    this.$emit('input', val);
   },
-  computed: {
-    imageUrl() {
-      return this.value
-    }
+  handleImageSuccess() {
+    this.emitInput(this.tempUrl);
   },
-  methods: {
-    rmImage() {
-      this.emitInput('')
-    },
-    emitInput(val) {
-      this.$emit('input', val)
-    },
-    handleImageSuccess() {
-      this.emitInput(this.tempUrl)
-    },
-    beforeUpload() {
-      const _self = this
-      return new Promise((resolve, reject) => {
-        getToken().then(response => {
-          const key = response.data.qiniu_key
-          const token = response.data.qiniu_token
-          _self._data.dataObj.token = token
-          _self._data.dataObj.key = key
-          this.tempUrl = response.data.qiniu_url
-          resolve(true)
-        }).catch(() => {
-          reject(false)
-        })
+  beforeUpload() {
+    const _self = this;
+    return new Promise((resolve, reject) => {
+      getToken().then((response) => {
+        const key = response.data.qiniu_key;
+        const token = response.data.qiniu_token;
+        _self._data.dataObj.token = token;
+        _self._data.dataObj.key = key;
+        this.tempUrl = response.data.qiniu_url;
+        resolve(true);
+      }).catch(() => {
+        reject(false);
       })
-    }
+    })
   }
 }
 </script>

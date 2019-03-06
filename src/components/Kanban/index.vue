@@ -13,34 +13,27 @@
     </draggable>
   </div>
 </template>
-<script>
-import draggable from 'vuedraggable'
 
-export default {
-  name: 'DragKanbanDemo',
-  components: {
-    draggable
-  },
-  props: {
-    headerText: {
-      type: String,
-      default: 'Header'
-    },
-    options: {
-      type: Object,
-      default() {
-        return {}
-      }
-    },
-    list: {
-      type: Array,
-      default() {
-        return []
-      }
-    }
-  }
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import draggable from 'vuedraggable';
+
+
+@Component({
+  components: { draggable },
+})
+export default class DragKanbanDemo extends Vue {
+  @Prop{{ default: 'Header' }}
+  headerText: string;
+
+  @Prop{{ default: () => {} }}
+  options: object;
+
+  @Prop{{ default: () => [] }}
+  list: Array<any>;
 }
 </script>
+
 <style lang="scss" scoped>
 .board-column {
   min-width: 300px;

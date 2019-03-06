@@ -196,7 +196,26 @@ module.exports = {
     'object-curly-spacing': [2, 'always', {
       objectsInObjects: false
     }],
-    'array-bracket-spacing': [2, 'never']
+    'array-bracket-spacing': [2, 'never'],
+    "vue/html-closing-bracket-spacing": [0, {
+      "startTag": "never",
+      "endTag": "never",
+      "selfClosingTag": "never"
+    }],
+    "vue/singleline-html-element-content-newline": [0, {
+      "ignoreWhenNoAttributes": true,
+      "ignoreWhenEmpty": true,
+      "ignores": ["pre", "textarea"]
+    }],    
+    "vue/html-closing-bracket-newline": [0, {
+      "singleline": "never",
+      "multiline": "always"
+    }],
+    "vue/multiline-html-element-content-newline": [0, {
+      "ignoreWhenEmpty": true,
+      "ignores": ["pre", "textarea"]
+    }],
+    "vue/mustache-interpolation-spacing": [0, "always" | "never"],
   },
 
   plugins: [
