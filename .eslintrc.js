@@ -19,6 +19,10 @@ module.exports = {
     '@vue/typescript'
   ],
 
+  plugins: [
+    'vue'
+  ],
+
   rules: {
     "vue/max-attributes-per-line": [2, {
       "singleline": 10,
@@ -216,15 +220,5 @@ module.exports = {
       "ignores": ["pre", "textarea"]
     }],
     "vue/mustache-interpolation-spacing": [0, "always" | "never"],
-  },
-
-  plugins: [
-    'vue'
-  ],
-  'extends': [
-    'eslint:recommended',
-    'plugin:vue/strongly-recommended',
-    '@vue/standard',
-    '@vue/typescript'
-  ]
+  }
 }

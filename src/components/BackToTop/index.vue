@@ -11,25 +11,24 @@
   </transition>
 </template>
 
-
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class BackToTop extends Vue {
-  @Prop({default: 400}) 
+  @Prop({ default: 400 })
   private visibilityHeight!: number;
-  @Prop({default: 0}) 
+  @Prop({ default: 0 })
   private backPosition!: number;
-  @Prop({default: () => ({
-        right: '50px',
-        bottom: '50px',
-        width: '40px',
-        height: '40px',
-        'border-radius': '4px',
-        'line-height': '45px',
-        background: '#e7eaf1',
-      })}) 
+  @Prop({ default: () => ({
+    right: '50px',
+    bottom: '50px',
+    width: '40px',
+    height: '40px',
+    'border-radius': '4px',
+    'line-height': '45px',
+    background: '#e7eaf1',
+  }) })
   private customStyle!: {
         [key: string]: any,
         right: string,
@@ -38,14 +37,13 @@ export default class BackToTop extends Vue {
         height: string,
         background: string
         };
-  @Prop({default: 'fade' })
+  @Prop({ default: 'fade' })
   private transitionName!: string;
-  
 
   private visible: boolean = false;
   private interval: any = null;
   private isMoving: boolean = false;
-      
+
   public mounted() {
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -56,7 +54,7 @@ export default class BackToTop extends Vue {
       clearInterval(this.interval);
     }
   }
-  
+
   private handleScroll() {
     this.visible = window.pageYOffset > this.visibilityHeight;
   }

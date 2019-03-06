@@ -1,5 +1,5 @@
 import { debounce } from '@/utils';
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Resize extends Vue {
@@ -23,7 +23,7 @@ export default class Resize extends Vue {
 
     this.sidebarElm && this.sidebarElm.removeEventListener('transitionend', this.sidebarResizeHandler);
   }
-  
+
   sidebarResizeHandler(e: TransitionEvent) {
     if (e.propertyName === 'width') {
       (this as any).__resizeHandler();

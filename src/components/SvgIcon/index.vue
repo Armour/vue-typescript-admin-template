@@ -9,9 +9,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class SvgIcon extends Vue {
-  @Prop({required: true})
+  @Prop({ required: true })
   iconClass!: string;
-  @Prop({required: true, default: ''})
+  @Prop({ required: true, default: '' })
   className!: string;
 
   get iconName(): string {

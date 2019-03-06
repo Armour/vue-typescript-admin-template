@@ -3,20 +3,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import echarts from 'echarts';
 import Resize from './mixins/resize';
 
 @Component
 export default class lineMarker extends mixins(Resize) {
-  @Prop({default: 'chart'})
+  @Prop({ default: 'chart' })
   private className!: string;
-  @Prop({default: 'chart'})
+  @Prop({ default: 'chart' })
   private id!: string;
-  @Prop({default: '200px'})
+  @Prop({ default: '200px' })
   private width!: string;
-  @Prop({default: '200px'})
+  @Prop({ default: '200px' })
   private height!: string;
 
   mounted() {
@@ -42,7 +42,7 @@ export default class lineMarker extends mixins(Resize) {
         textStyle: {
           fontWeight: 'normal',
           fontSize: 16,
-          color: '#F1F1F3'
+          color: '#F1F1F3',
         },
         left: '1%',
       },
@@ -117,7 +117,7 @@ export default class lineMarker extends mixins(Resize) {
         lineStyle: {
           normal: {
             width: 1,
-          }
+          },
         },
         areaStyle: {
           normal: {
@@ -163,16 +163,16 @@ export default class lineMarker extends mixins(Resize) {
             }], false),
             shadowColor: 'rgba(0, 0, 0, 0.1)',
             shadowBlur: 10,
-          }
+          },
         },
         itemStyle: {
           normal: {
             color: 'rgb(0,136,212)',
             borderColor: 'rgba(0,136,212,0.2)',
             borderWidth: 12,
-          }
+          },
         },
-        data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
+        data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150],
       }, {
         name: 'CUCC',
         type: 'line',

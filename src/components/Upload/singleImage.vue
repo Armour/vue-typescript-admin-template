@@ -32,7 +32,6 @@ export default class SingleImageUpload extends Vue {
   @Prop({ default: '' })
   value: string;
 
-
   private tempUrl: string = '';
   private dataObj: { token: string, key: string } = { token: '', key: '' };
 
@@ -59,7 +58,7 @@ export default class SingleImageUpload extends Vue {
         _self._data.dataObj.key = key;
         this.tempUrl = response.data.qiniu_url;
         resolve(true);
-      }).catch(err => {
+      }).catch((err: Error) => {
         console.log(err);
         reject(false);
       });

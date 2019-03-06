@@ -25,11 +25,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import draggable from 'vuedraggable';
 
 @Component({
-  components: {draggable},
+  components: { draggable },
 })
 export default class DndList extends Vue {
   @Prop({ default: () => [] })
@@ -44,7 +44,7 @@ export default class DndList extends Vue {
   private width1!: string;
   @Prop({ default: '48%' })
   private width2!: string;
-  
+
   isNotInList1(v: {id: string}): boolean {
     return this.list1.every((k) => v.id !== k.id);
   }
@@ -56,11 +56,11 @@ export default class DndList extends Vue {
       if (item.id === ele.id) {
         const index = this.list1.indexOf(item);
         this.list1.splice(index, 1);
-        break
+        break;
       }
     }
     if (this.isNotInList2(ele)) {
-      this.list2.unshift(ele)
+      this.list2.unshift(ele);
     }
   }
   pushEle(ele: {id: string}) {
@@ -68,7 +68,7 @@ export default class DndList extends Vue {
       if (item.id === ele.id) {
         const index = this.list2.indexOf(item);
         this.list2.splice(index, 1);
-        break
+        break;
       }
     }
     if (this.isNotInList1(ele)) {

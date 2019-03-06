@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import Fuse from 'fuse.js'
-import path from 'path'
-import i18n from '@/lang'
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import Fuse from 'fuse.js';
+import path from 'path';
+import i18n from '@/lang';
 
 @Component
 export default class HeaderSearch extends Vue {
@@ -29,59 +29,59 @@ export default class HeaderSearch extends Vue {
   private searchPool: any[] = [];
   private show: boolean = false;
   private fuse: any = undefined;
-      
+
   get routers() {
-    return this.$store.getters.permission_routers
+    return this.$store.getters.permission_routers;
   }
   get lang() {
-    return this.$store.getters.language
+    return this.$store.getters.language;
   }
 
   @Watch('lang')
   onLang() {
-    this.searchPool = this.generateRouters(this.routers)
+    this.searchPool = this.generateRouters(this.routers);
   }
-  
+
   @Watch('routers')
   onRouters() {
-    this.searchPool = this.generateRouters(this.routers)
+    this.searchPool = this.generateRouters(this.routers);
   }
-  
+
   @Watch('searchPool')
   onSearchPool(list: any) {
-    this.initFuse(list)
+    this.initFuse(list);
   }
   @Watch('show')
   OnShow(value: boolean) {
     if (value) {
-      document.body.addEventListener('click', this.close)
+      document.body.addEventListener('click', this.close);
     } else {
-      document.body.removeEventListener('click', this.close)
+      document.body.removeEventListener('click', this.close);
     }
   }
 
   mounted() {
-    this.searchPool = this.generateRouters(this.routers)
+    this.searchPool = this.generateRouters(this.routers);
   }
-  
+
   click() {
-    this.show = !this.show
+    this.show = !this.show;
     if (this.show) {
-      this.$refs.headerSearchSelect && (this.$refs.headerSearchSelect as any).focus()
+      this.$refs.headerSearchSelect && (this.$refs.headerSearchSelect as any).focus();
     }
   }
   close() {
-    this.$refs.headerSearchSelect && (this.$refs.headerSearchSelect as any).blur()
-    this.options = []
-    this.show = false
+    this.$refs.headerSearchSelect && (this.$refs.headerSearchSelect as any).blur();
+    this.options = [];
+    this.show = false;
   }
   change(val: {path: string}) {
-    this.$router.push(val.path)
-    this.search = ''
-    this.options = []
+    this.$router.push(val.path);
+    this.search = '';
+    this.options = [];
     this.$nextTick(() => {
-      this.show = false
-    })
+      this.show = false;
+    });
   }
   initFuse(list: any) {
     this.fuse = new Fuse(list, {
@@ -93,55 +93,55 @@ export default class HeaderSearch extends Vue {
       minMatchCharLength: 1,
       keys: [{
         name: 'title',
-        weight: 0.7
+        weight: 0.7,
       }, {
         name: 'path',
-        weight: 0.3
-      }]
-    })
+        weight: 0.3,
+      }],
+    });
   }
   // Filter out the routes that can be displayed in the sidebar
   // And generate the internationalized title
   generateRouters(routers: any, basePath = '/', prefixTitle = []): any[] {
-    let res = []
+    let res = [];
 
     for (const router of routers) {
       // skip hidden router
-      if (router.hidden) { continue }
+      if (router.hidden) { continue; }
 
       const data = {
         path: path.resolve(basePath, router.path),
-        title: [...prefixTitle]
-      }
+        title: [...prefixTitle],
+      };
 
       if (router.meta && router.meta.title) {
         // generate internationalized title
-        const i18ntitle = i18n.t(`route.${router.meta.title}`)
+        const i18ntitle = i18n.t(`route.${router.meta.title}`);
 
-        data.title = [...data.title, i18ntitle]
+        data.title = [...data.title, i18ntitle];
 
         if (router.redirect !== 'noredirect') {
           // only push the routes with title
           // special case: need to exclude parent router without redirect
-          res.push(data)
+          res.push(data);
         }
       }
 
       // recursive child routers
       if (router.children) {
-        const tempRouters = this.generateRouters(router.children, data.path, data.title)
+        const tempRouters = this.generateRouters(router.children, data.path, data.title);
         if (tempRouters.length >= 1) {
-          res = [...res, ...tempRouters]
+          res = [...res, ...tempRouters];
         }
       }
     }
-    return res
+    return res;
   }
   querySearch(query: string) {
     if (query !== '') {
-      this.options = this.fuse.search(query)
+      this.options = this.fuse.search(query);
     } else {
-      this.options = []
+      this.options = [];
     }
   }
 }

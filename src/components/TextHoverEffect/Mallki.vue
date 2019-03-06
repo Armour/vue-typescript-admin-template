@@ -7,13 +7,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Mallki extends Vue {
-  @Prop({default: ''})
+  @Prop({ default: '' })
   private className: string;
-  @Prop({default: 'vue-element-admin'})
+  @Prop({ default: 'vue-element-admin' })
   private text: string;
 }
 </script>

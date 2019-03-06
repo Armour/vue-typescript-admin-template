@@ -13,8 +13,6 @@ Mock.mock(/\/user\/logout/, 'post', userAPI.logout);
 // Table
 Mock.mock(/\/table\/list/, 'get', tableAPI.list);
 
-
-
 // 文章相关
 Mock.mock(/\/article\/list/, 'get', articleAPI.getList);
 Mock.mock(/\/article\/detail/, 'get', articleAPI.getArticle);

@@ -19,11 +19,11 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Pagination extends Vue {
-  @Prop() 
+  @Prop()
   private total!: number;
-  @Prop({ default: 1 }) 
+  @Prop({ default: 1 })
   private page!: number;
-  @Prop({ default: 20 }) 
+  @Prop({ default: 20 })
   private limit!: number;
   @Prop({ default: () => [10, 20, 30, 50] })
   private pageSizes!: number[];
@@ -37,21 +37,20 @@ export default class Pagination extends Vue {
   private hidden!: boolean;
 
   get currentPage(): number {
-      return this.page;
+    return this.page;
   }
-    
+
   set currentPage(val: number) {
-      this.$emit('update:page', val);
+    this.$emit('update:page', val);
   }
 
   get pageSize(): number {
-      return this.limit;
-  }
-    
-  set pageSize(val: number) {
-      this.$emit('update:limit', val);
+    return this.limit;
   }
 
+  set pageSize(val: number) {
+    this.$emit('update:limit', val);
+  }
 
   handleSizeChange(val: number) {
     this.$emit('pagination', { page: this.currentPage, limit: val });
@@ -59,7 +58,7 @@ export default class Pagination extends Vue {
       scrollTo(0, 800);
     }
   }
-  
+
   handleCurrentChange(val: number) {
     this.$emit('pagination', { page: val, limit: this.pageSize });
     if (this.autoScroll) {

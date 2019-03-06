@@ -5,13 +5,13 @@
     </div>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item v-for="item of sizeOptions" :key="item.value" :disabled="size===item.value" :command="item.value">{{
-      item.label }}</el-dropdown-item>
+        item.label }}</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class SizeSelect extends Vue {
@@ -44,7 +44,7 @@ export default class SizeSelect extends Vue {
 
     this.$nextTick(() => {
       this.$router.replace({
-        path: '/redirect' + fullPath;
+        path: '/redirect' + fullPath,
       });
     });
   }

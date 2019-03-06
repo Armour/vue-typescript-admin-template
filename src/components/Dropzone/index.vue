@@ -6,11 +6,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import Dropzone from 'dropzone';
+import DropzoneNoWrapper from 'dropzone';
 import 'dropzone/dist/dropzone.css';
 // import { getToken } from 'api/qiniu';
 
-Dropzone.autoDiscover = false
+DropzoneNoWrapper.autoDiscover = false;
 
 @Component
 export default class Dropzone extends Vue {
@@ -43,7 +43,7 @@ export default class Dropzone extends Vue {
   @Prop({ default: false })
   couldPaste!: boolean;
 
-  private dropzone: string = '';
+  private dropzone: DropzoneNoWrapper = null;
   private initOnce: boolean = true;
 
   @Watch('defaultImg')
@@ -56,7 +56,7 @@ export default class Dropzone extends Vue {
     this.initImages(val);
     this.initOnce = false;
   }
-    
+
   mounted() {
     const element = document.getElementById(this.id);
     const vm = this;
@@ -74,26 +74,26 @@ export default class Dropzone extends Vue {
       dictMaxFilesExceeded: '只能一个图',
       previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px" ><img style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px" data-dz-thumbnail /></div>  <div class="dz-details"><div class="dz-size"><span data-dz-size></span></div> <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark"> <i class="material-icons">done</i> </div>  <div class="dz-error-mark"><i class="material-icons">error</i></div></div>',
       init() {
-        const val = vm.defaultImg
-        if (!val) return
+        const val = vm.defaultImg;
+        if (!val) return;
         if (Array.isArray(val)) {
-          if (val.length === 0) return
+          if (val.length === 0) return;
           val.map((v, i) => {
-            const mockFile = { name: 'name' + i, size: 12345, url: v }
-            this.options.addedfile.call(this, mockFile)
-            this.options.thumbnail.call(this, mockFile, v)
-            mockFile.previewElement.classList.add('dz-success')
-            mockFile.previewElement.classList.add('dz-complete')
-            vm.initOnce = false
-            return true
-          })
+            const mockFile = { name: 'name' + i, size: 12345, url: v };
+            this.options.addedfile.call(this, mockFile);
+            this.options.thumbnail.call(this, mockFile, v);
+            mockFile.previewElement.classList.add('dz-success');
+            mockFile.previewElement.classList.add('dz-complete');
+            vm.initOnce = false;
+            return true;
+          });
         } else {
-          const mockFile = { name: 'name', size: 12345, url: val }
-          this.options.addedfile.call(this, mockFile)
-          this.options.thumbnail.call(this, mockFile, val)
-          mockFile.previewElement.classList.add('dz-success')
-          mockFile.previewElement.classList.add('dz-complete')
-          vm.initOnce = false
+          const mockFile = { name: 'name', size: 12345, url: val };
+          this.options.addedfile.call(this, mockFile);
+          this.options.thumbnail.call(this, mockFile, val);
+          mockFile.previewElement.classList.add('dz-success');
+          mockFile.previewElement.classList.add('dz-complete');
+          vm.initOnce = false;
         }
       },
       accept: (file, done) => {
@@ -105,13 +105,13 @@ export default class Dropzone extends Vue {
         //   file.url = response.data.qiniu_url;
         //   done();
         // })
-        done()
+        done();
       },
       sending: (file, xhr, formData) => {
         // formData.append('token', file.token);
         // formData.append('key', file.key);
         vm.initOnce = false;
-      }
+      },
     });
 
     if (this.couldPaste) {
@@ -119,16 +119,16 @@ export default class Dropzone extends Vue {
     }
 
     this.dropzone.on('success', file => {
-      vm.$emit('dropzone-success', file, vm.dropzone.element)
+      vm.$emit('dropzone-success', file, vm.dropzone.element);
     });
     this.dropzone.on('addedfile', file => {
-      vm.$emit('dropzone-fileAdded', file)
+      vm.$emit('dropzone-fileAdded', file);
     });
     this.dropzone.on('removedfile', file => {
-      vm.$emit('dropzone-removedFile', file)
+      vm.$emit('dropzone-removedFile', file);
     });
     this.dropzone.on('error', (file, error, xhr) => {
-      vm.$emit('dropzone-error', file, error, xhr)
+      vm.$emit('dropzone-error', file, error, xhr);
     });
     this.dropzone.on('successmultiple', (file, error, xhr) => {
       vm.$emit('dropzone-successmultiple', file, error, xhr);

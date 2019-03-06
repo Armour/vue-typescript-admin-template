@@ -3,20 +3,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import echarts from 'echarts';
 import Resize from './mixins/resize';
 
 @Component
 export default class mixChart extends mixins(Resize) {
-  @Prop({default: 'chart'})
+  @Prop({ default: 'chart' })
   private className!: string;
-  @Prop({default: 'chart'})
+  @Prop({ default: 'chart' })
   private id!: string;
-  @Prop({default: '200px'})
+  @Prop({ default: '200px' })
   private width!: string;
-  @Prop({default: '200px'})
+  @Prop({ default: '200px' })
   private height!: string;
 
   mounted() {
@@ -159,7 +159,7 @@ export default class mixChart extends mixins(Resize) {
             label: {
               show: true,
               textStyle: {
-                color: '#fff'
+                color: '#fff',
               },
               position: 'insideTop',
               formatter(p: {value: number}): string | number {

@@ -18,22 +18,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch, } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import editorImage from './components/editorImage';
 import plugins from './plugins';
 import toolbar from './toolbar';
 
 @Component({ components: {
   editorImage,
-  },
+},
 })
 export default class Tinymce extends Vue {
   @Prop({ default: () => 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '') })
   id!: string;
-  
+
   @Prop({ default: '' })
   value!: string;
-  
+
   @Prop({
     required: false,
     default: () => [],
@@ -43,8 +43,7 @@ export default class Tinymce extends Vue {
   @Prop({ default: 'file edit insert view format table' })
   menubar!: string;
 
-
-  @Prop({ required: false, default: 360, })
+  @Prop({ required: false, default: 360 })
   height!: number;
 
   private hasChange: boolean = false;
@@ -74,20 +73,20 @@ export default class Tinymce extends Vue {
     this.$nextTick(() => this.initTinymce());
   }
 
-  mounted () {
+  mounted() {
     this.initTinymce();
   }
-  activated () {
+  activated() {
     this.initTinymce();
   }
-  deactivated () {
+  deactivated() {
     this.destroyTinymce();
   }
-  destroyed () {
+  destroyed() {
     this.destroyTinymce();
   }
 
-  initTinymce () {
+  initTinymce() {
     const _this = this;
     window.tinymce.init({
       language: this.language,
@@ -104,7 +103,7 @@ export default class Tinymce extends Vue {
       code_dialog_width: 1000,
       advlist_bullet_styles: 'square',
       advlist_number_styles: 'default',
-      imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io', ],
+      imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
       default_link_target: '_blank',
       link_title: false,
       nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
@@ -118,7 +117,7 @@ export default class Tinymce extends Vue {
           this.$emit('input', editor.getContent());
         });
       },
-      setup (editor) {
+      setup(editor) {
         editor.on('FullscreenStateChanged', (e) => {
           _this.fullscreen = e.state;
         });
@@ -158,7 +157,7 @@ export default class Tinymce extends Vue {
       // },
     });
   }
-  destroyTinymce () {
+  destroyTinymce() {
     const tinymce = window.tinymce.get(this.tinymceId);
     if (this.fullscreen) {
       tinymce.execCommand('mceFullScreen');
@@ -168,19 +167,19 @@ export default class Tinymce extends Vue {
       tinymce.destroy();
     }
   }
-  setContent (value) {
+  setContent(value) {
     window.tinymce.get(this.tinymceId).setContent(value);
   }
-  getContent () {
+  getContent() {
     window.tinymce.get(this.tinymceId).getContent();
   }
-  imageSuccessCBK (arr) {
+  imageSuccessCBK(arr) {
     const _this = this;
     arr.forEach(v => {
       window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
     });
   }
-};
+}
 </script>
 
 <style scoped>

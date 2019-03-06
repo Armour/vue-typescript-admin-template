@@ -12,15 +12,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class LangSelect extends Vue {
-  get language (): string {
+  get language(): string {
     return this.$store.getters.language;
   }
 
-  public handleSetLanguage (lang: string) {
+  public handleSetLanguage(lang: string) {
     this.$i18n.locale = lang;
     this.$store.dispatch('setLanguage', lang);
     this.$message({

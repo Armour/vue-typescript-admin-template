@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import XLSX from 'xlsx'
+import XLSX from 'xlsx';
 
 @Component
 export default class UploadExcel extends Vue {
@@ -18,7 +18,6 @@ export default class UploadExcel extends Vue {
   beforeUpload: Function; // eslint-disable-line
   @Prop()
   onSuccess: Function; // eslint-disable-line
-  
 
   private loading: boolean = false;
   private excelData: { header: string, results: any[] } = {

@@ -57,7 +57,7 @@ export default class SingleImageUpload2 extends Vue {
         _self._data.dataObj.key = key;
         this.tempUrl = response.data.qiniu_url;
         resolve(true);
-      }).catch(() => {
+      }).catch((err: Error) => {
         reject(false);
       })
     })

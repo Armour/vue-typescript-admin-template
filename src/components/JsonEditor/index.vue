@@ -10,19 +10,19 @@ import CodeMirror from 'codemirror';
 import 'codemirror/addon/lint/lint.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/rubyblue.css';
-require('script-loader!jsonlint');
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/lint/lint';
 import 'codemirror/addon/lint/json-lint';
+require('script-loader!jsonlint');
 
 @Component
 export default class JsonEditor extends Vue {
-  @Prop() 
+  @Prop()
   value: any;
 
   private jsonEditor: any = false;
 
-  @Watch("value")
+  @Watch('value')
   onValue(value: any) {
     const editor_value = this.jsonEditor.getValue();
     if (value !== editor_value) {
@@ -36,13 +36,13 @@ export default class JsonEditor extends Vue {
       mode: 'application/json',
       gutters: ['CodeMirror-lint-markers'],
       theme: 'rubyblue',
-      lint: true
+      lint: true,
     });
 
     this.jsonEditor.setValue(JSON.stringify(this.value, null, 2));
     this.jsonEditor.on('change', (cm: any) => {
-      this.$emit('changed', cm.getValue())
-      this.$emit('input', cm.getValue())
+      this.$emit('changed', cm.getValue());
+      this.$emit('input', cm.getValue());
     });
   }
 

@@ -115,7 +115,7 @@ export default class MdInput extends Vue {
   @Prop()
   name!: string;
   @Prop({ default: 'text' })
-  type!:  string;
+  type!: string;
   @Prop()
   value!: string | number;
   @Prop()
@@ -140,8 +140,7 @@ export default class MdInput extends Vue {
   autoComplete!: string;
   @Prop({ default: true })
   validateEvent!: boolean;
-    
-    
+
   private currentValue?: string | number;
   private focus: boolean = false;
   private fillPlaceHolder: any = null;
@@ -149,7 +148,7 @@ export default class MdInput extends Vue {
   mounted() {
     this.currentValue = this.value;
   }
-      
+
   get computedClasses() {
     return {
       'material--active': this.focus,
@@ -158,35 +157,35 @@ export default class MdInput extends Vue {
     };
   }
 
-  @Watch("value")
+  @Watch('value')
   setValue(newValue: string | number) {
-      this.currentValue = newValue
+    this.currentValue = newValue;
   }
-  
+
   handleModelInput(event: Event) {
-    const value = (event.target as any).value
-    this.$emit('input', value)
+    const value = (event.target as any).value;
+    this.$emit('input', value);
     if ((this.$parent.$options as any).componentName === 'ElFormItem') {
       if (this.validateEvent) {
-        this.$parent.$emit('el.form.change', [value])
+        this.$parent.$emit('el.form.change', [value]);
       }
     }
-    this.$emit('change', value)
+    this.$emit('change', value);
   }
   handleMdFocus(event: Event) {
-    this.focus = true
-    this.$emit('focus', event)
+    this.focus = true;
+    this.$emit('focus', event);
     if (this.placeholder && this.placeholder !== '') {
-      this.fillPlaceHolder = this.placeholder
+      this.fillPlaceHolder = this.placeholder;
     }
   }
   handleMdBlur(event: Event) {
-    this.focus = false
-    this.$emit('blur', event)
-    this.fillPlaceHolder = null
+    this.focus = false;
+    this.$emit('blur', event);
+    this.fillPlaceHolder = null;
     if ((this.$parent.$options as any).componentName === 'ElFormItem') {
       if (this.validateEvent) {
-        this.$parent.$emit('el.form.blur', [this.currentValue])
+        this.$parent.$emit('el.form.blur', [this.currentValue]);
       }
     }
   }

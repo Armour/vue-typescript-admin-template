@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+import Mock from 'mockjs';
 
 const List: any[] = [];
 const count = 20;
@@ -9,8 +9,8 @@ for (let i = 0; i < count; i++) {
     timestamp: +Mock.Random.date('T'),
     username: '@name()',
     price: '@float(1000, 15000, 0, 2)',
-    'status|1': ['success', 'pending']
-  }))
+    'status|1': ['success', 'pending'],
+  }));
 }
 
 export default {
@@ -18,8 +18,8 @@ export default {
     return { code: 20000,
       data: {
         total: List.length,
-        items: List
+        items: List,
       },
     };
   },
-}
+};

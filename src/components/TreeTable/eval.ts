@@ -3,7 +3,6 @@
 * @Date:   2017-10-12 12:06:49
 */
 
-
 import Vue from 'vue';
 
 export default function treeToArray<T>(data: T[], expandAll: any, parent?: any, level?: number): T[] {

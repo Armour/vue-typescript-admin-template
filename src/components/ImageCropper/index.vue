@@ -114,165 +114,175 @@ import mimes from './utils/mimes.js';
 import data2blob from './utils/data2blob.js';
 import effectRipple from './utils/effectRipple.js';
 
+const allowImgFormat: string[] = [
+  'jpg',
+  'png',
+];
 
 @Component
 export default class ImageCropper extends Vue {
-  
-    // 域，上传文件name，触发事件会带上（如果一个页面多个图片上传控件，可以做区分
-    @Prop({ default: 'avatar' })
-    field!: string;
-    // 原名key，类似于id，触发事件会带上（如果一个页面多个图片上传控件，可以做区分
-    @Prop({ default: 0 })
-    ki!: any;
+  // 域，上传文件name，触发事件会带上（如果一个页面多个图片上传控件，可以做区分
+  @Prop({ default: 'avatar' })
+  field!: string;
+  // 原名key，类似于id，触发事件会带上（如果一个页面多个图片上传控件，可以做区分
+  @Prop({ default: 0 })
+  ki!: any;
 
-    // 显示该控件与否
-    @Prop({ default: true })
-    value!: boolean;
+  // 显示该控件与否
+  @Prop({ default: true })
+  value!: boolean;
 
-    // 上传地址
-    @Prop({ default: '' })
-    url!: string;
-    
-    // 其他要上传文件附带的数据，对象格式
-    @Prop({ default: null })
-    params!: object;
+  // 上传地址
+  @Prop({ default: '' })
+  url!: string;
 
-    // Add custom headers
-    @Prop({ default: null })
-    headers!: object;
+  // 其他要上传文件附带的数据，对象格式
+  @Prop({ default: null })
+  params!: object;
 
-    // 剪裁图片的宽
-    @Prop({ default: 200 })
-    width!: number;
+  // Add custom headers
+  @Prop({ default: null })
+  headers!: object;
 
-    // 剪裁图片的高
-    @Prop({ default: 200 })
-    height!: number;
+  // 剪裁图片的宽
+  @Prop({ default: 200 })
+  width!: number;
 
-    // 不显示旋转功能
-    @Prop({ default: true })
-    noRotate!: boolean;
+  // 剪裁图片的高
+  @Prop({ default: 200 })
+  height!: number;
 
-    // 不预览圆形图片
-    @Prop({ default: false })
-    noCircle!: boolean;
+  // 不显示旋转功能
+  @Prop({ default: true })
+  noRotate!: boolean;
 
-    // 不预览方形图片
-    @Prop({ default: false })
-    noSquare!: boolean;
+  // 不预览圆形图片
+  @Prop({ default: false })
+  noCircle!: boolean;
 
-    // 单文件大小限制
-    @Prop({ default: 10240 })
-    maxSize!: number;
+  // 不预览方形图片
+  @Prop({ default: false })
+  noSquare!: boolean;
 
-    // 语言类型
-    @Prop({ default: 'zh' })
-    langType!: string;
+  // 单文件大小限制
+  @Prop({ default: 10240 })
+  maxSize!: number;
 
-    // 语言包
-    @Prop({ default: null })
-    langExt!: object;
+  // 语言类型
+  @Prop({ default: 'zh' })
+  langType!: string;
 
-    // 图片上传格式
-    @Prop({ default: 'png' })
-    imgFormat!: string;
+  // 语言包
+  @Prop({ default: null })
+  langExt!: object;
 
-    // 是否支持跨域
-    @Prop({ default: false })
-    withCredentials!: boolean;
+  // 图片上传格式
+  @Prop({ default: 'png' })
+  imgFormat!: string;
 
-  data() {
-    const that = this
-    const {
-      imgFormat,
-      langType,
-      langExt,
-      width,
-      height
-    } = that;
-    let isSupported = true
-    const allowImgFormat = [
-      'jpg',
-      'png'
-    ]
-    const tempImgFormat = allowImgFormat.indexOf(imgFormat) === -1 ? 'jpg' : imgFormat
-    const lang = language[langType] ? language[langType] : language['en']
-    const mime = mimes[tempImgFormat]
-    // 规范图片格式
-    that.imgFormat = tempImgFormat
-    if (langExt) {
-      Object.assign(lang, langExt)
+  // 是否支持跨域
+  @Prop({ default: false })
+  withCredentials!: boolean;
+
+  // 图片的mime
+  private mime = () => {
+    return mimes[this.imageFormat];
+  };
+  // 语言包
+  private lang = (): object => {
+    const lang = language[this.langType] ? language[this.langType] : language['en'];
+    if (this.langExt) {
+      Object.assign(lang, this.langExt);
     }
+    return lang;
+  };
+  // 浏览器是否支持该控件
+  private isSupported = () => {
+    let isSupported = true;
     if (typeof FormData !== 'function') {
-      isSupported = false
+      isSupported = false;
     }
-    return {
-      // 图片的mime
-      mime,
-      // 语言包
-      lang,
-      // 浏览器是否支持该控件
-      isSupported,
-      // 浏览器是否支持触屏事件
-      isSupportTouch: document.hasOwnProperty('ontouchstart'),
-      // 步骤
-      step: 1, // 1选择文件 2剪裁 3上传
-      // 上传状态及进度
-      loading: 0, // 0未开始 1正在 2成功 3错误
-      progress: 0,
-      // 是否有错误及错误信息
-      hasError: false,
-      errorMsg: '',
-      // 需求图宽高比
-      ratio: width / height,
-      // 原图地址、生成图片地址
-      sourceImg: null,
-      sourceImgUrl: '',
-      createImgUrl: '',
-      // 原图片拖动事件初始值
-      sourceImgMouseDown: {
-        on: false,
-        mX: 0, // 鼠标按下的坐标
-        mY: 0,
-        x: 0, // scale原图坐标
-        y: 0
-      },
-      // 生成图片预览的容器大小
-      previewContainer: {
-        width: 100,
-        height: 100
-      },
-      // 原图容器宽高
-      sourceImgContainer: { // sic
-        width: 240,
-        height: 184 // 如果生成图比例与此一致会出现bug，先改成特殊的格式吧，哈哈哈
-      },
-      // 原图展示属性
-      scale: {
-        zoomAddOn: false, // 按钮缩放事件开启
-        zoomSubOn: false, // 按钮缩放事件开启
-        range: 1, // 最大100
-        rotateLeft: false, // 按钮向左旋转事件开启
-        rotateRight: false, // 按钮向右旋转事件开启
-        degree: 0, // 旋转度数
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
-        maxWidth: 0,
-        maxHeight: 0,
-        minWidth: 0, // 最宽
-        minHeight: 0,
-        naturalWidth: 0, // 原宽
-        naturalHeight: 0
-      }
-    }
+    return isSupported;
+  };
+  // 浏览器是否支持触屏事件
+  private isSupportTouch = (): boolean => document.hasOwnProperty('ontouchstart');
+  // 步骤, 1选择文件 2剪裁 3上传
+  private step: number = 1;
+  // 上传状态及进度, 0未开始 1正在 2成功 3错误
+  private loading: number = 0;
+  private progress: number = 0;
+  // 是否有错误及错误信息
+  private hasError: boolean = false;
+  private errorMsg: string = '';
+  // 需求图宽高比
+  private ratio = (): number => this.width / this.height;
+  // 原图地址、生成图片地址
+  private sourceImg = null;
+  private sourceImgUrl = '';
+  private createImgUrl = '';
+  // 原图片拖动事件初始值
+  private sourceImgMouseDown: { on: boolean, mX: number, mY: number, x: number, y: number } = {
+    on: false,
+    mX: 0, // 鼠标按下的坐标
+    mY: 0,
+    x: 0, // scale原图坐标
+    y: 0,
+  };
+  // 生成图片预览的容器大小
+  private previewContainer: { width: number, height: number } = {
+    width: 100,
+    height: 100,
+  };
+  // 原图容器宽高
+  private sourceImgContainer: { width: number, height: number } = { // sic
+    width: 240,
+    height: 184, // 如果生成图比例与此一致会出现bug，先改成特殊的格式吧，哈哈哈
+  };
+  // 原图展示属性
+  private scale: {
+    zoomAddOn: boolean, // 按钮缩放事件开启
+    zoomSubOn: boolean, // 按钮缩放事件开启
+    range: number, // 最大100
+    rotateLeft: boolean, // 按钮向左旋转事件开启
+    rotateRight: boolean, // 按钮向右旋转事件开启
+    degree: number, // 旋转度数
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    maxWidth: number,
+    maxHeight: number,
+    minWidth: number, // 最宽
+    minHeight: number,
+    naturalWidth: number, // 原宽
+    naturalHeight: number,
+  } = {
+    zoomAddOn: false, // 按钮缩放事件开启
+    zoomSubOn: false, // 按钮缩放事件开启
+    range: 1, // 最大100
+    rotateLeft: false, // 按钮向左旋转事件开启
+    rotateRight: false, // 按钮向右旋转事件开启
+    degree: 0, // 旋转度数
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+    maxWidth: 0,
+    maxHeight: 0,
+    minWidth: 0, // 最宽
+    minHeight: 0,
+    naturalWidth: 0, // 原宽
+    naturalHeight: 0,
+  };
+
+  get imageFormat(): string {
+    return allowImgFormat.indexOf(this.imgFormat) === -1 ? 'jpg' : this.imgFormat;
   }
 
   // 进度条样式
   get progressStyle() {
     const {
-      progress
+      progress,
     } = this;
     return {
       width: progress + '%',
@@ -283,7 +293,7 @@ export default class ImageCropper extends Vue {
   get sourceImgStyle() {
     const {
       scale,
-      sourceImgMasking
+      sourceImgMasking,
     } = this;
 
     const top = scale.y + sourceImgMasking.y + 'px';
@@ -339,12 +349,12 @@ export default class ImageCropper extends Vue {
   get sourceImgShadeStyle() {
     const {
       sourceImgMasking,
-      sourceImgContainer
+      sourceImgContainer,
     } = this;
     const sic = sourceImgContainer;
     const sim = sourceImgMasking;
-    const w = sim.width == sic.width ? sim.width : (sic.width - sim.width) / 2;
-    const h = sim.height == sic.height ? sim.height : (sic.height - sim.height) / 2;
+    const w = sim.width === sic.width ? sim.width : (sic.width - sim.width) / 2;
+    const h = sim.height === sic.height ? sim.height : (sic.height - sim.height) / 2;
     return {
       width: w + 'px',
       height: h + 'px',
@@ -353,10 +363,10 @@ export default class ImageCropper extends Vue {
 
   get previewStyle() {
     const {
-      width,
-      height,
+      // width,
+      // height,
       ratio,
-      previewContainer
+      previewContainer,
     } = this;
     const pc = previewContainer;
     let w = pc.width;
@@ -375,8 +385,8 @@ export default class ImageCropper extends Vue {
   }
 
   @Watch('value')
-  onValue(newValue) {
-    if (newValue && this.loading != 1) {
+  onValue(newValue: any) {
+    if (newValue && this.loading !== 1) {
       this.reset();
     }
   }
@@ -391,7 +401,7 @@ export default class ImageCropper extends Vue {
     setTimeout(() => {
       this.$emit('input', false);
       this.$emit('close');
-      if (this.step == 3 && this.loading == 2) {
+      if (this.step === 3 && this.loading === 2) {
         this.setStep(1);
       }
     }, 200);
@@ -433,11 +443,11 @@ export default class ImageCropper extends Vue {
   /* ---------------------------------------------------------------*/
   // 检测选择的文件是否合适
   checkFile(file: {type: string, size: number}) {
-    let that = this,
-      {
-        lang,
-        maxSize
-      } = that;
+    const that = this;
+    const {
+      lang,
+      maxSize,
+    } = that;
     // 仅限图片
     if (file.type.indexOf('image') === -1) {
       that.hasError = true;
@@ -462,37 +472,37 @@ export default class ImageCropper extends Vue {
   }
   // 设置图片源
   setSourceImg(file) {
-    let that = this,
-      fr = new FileReader();
+    const that = this;
+    const fr = new FileReader();
     fr.onload = function(e) {
       that.sourceImgUrl = fr.result;
       that.startCrop();
-    }
+    };
     fr.readAsDataURL(file);
   }
   // 剪裁前准备工作
   startCrop() {
-    let that = this,
-      {
-        width,
-        height,
-        ratio,
-        scale,
-        sourceImgUrl,
-        sourceImgMasking,
-        lang
-      } = that,
-      sim = sourceImgMasking,
-      img = new Image();
+    const that = this;
+    const {
+      width,
+      height,
+      ratio,
+      scale,
+      sourceImgUrl,
+      sourceImgMasking,
+      lang,
+    } = that;
+    const sim = sourceImgMasking;
+    const img = new Image();
     img.src = sourceImgUrl;
     img.onload = function() {
-      let nWidth = img.naturalWidth,
-        nHeight = img.naturalHeight,
-        nRatio = nWidth / nHeight,
-        w = sim.width,
-        h = sim.height,
-        x = 0,
-        y = 0;
+      const nWidth = img.naturalWidth;
+      const nHeight = img.naturalHeight;
+      const nRatio = nWidth / nHeight;
+      let w = sim.width;
+      let h = sim.height;
+      let x = 0;
+      let y = 0;
       // 图片像素不达标
       if (nWidth < width || nHeight < height) {
         that.hasError = true;
@@ -522,7 +532,7 @@ export default class ImageCropper extends Vue {
       that.sourceImg = img;
       that.createImg();
       that.setStep(2);
-    }
+    };
   }
   // 鼠标按下图片准备移动
   imgStartMove(e) {
@@ -531,12 +541,12 @@ export default class ImageCropper extends Vue {
     if (this.isSupportTouch && !e.targetTouches) {
       return false;
     }
-    let et = e.targetTouches ? e.targetTouches[0] : e,
-      {
-        sourceImgMouseDown,
-        scale,
-      } = this,
-      simd = sourceImgMouseDown;
+    const et = e.targetTouches ? e.targetTouches[0] : e;
+    const {
+      sourceImgMouseDown,
+      scale,
+    } = this;
+    const simd = sourceImgMouseDown;
     simd.mX = et.screenX;
     simd.mY = et.screenY;
     simd.x = scale.x;
@@ -550,25 +560,25 @@ export default class ImageCropper extends Vue {
     if (this.isSupportTouch && !e.targetTouches) {
       return false;
     }
-    let et = e.targetTouches ? e.targetTouches[0] : e,
-      {
-        sourceImgMouseDown: {
-          on,
-          mX,
-          mY,
-          x,
-          y,
-        },
-        scale,
-        sourceImgMasking,
-      } = this,
-      sim = sourceImgMasking,
-      nX = et.screenX,
-      nY = et.screenY,
-      dX = nX - mX,
-      dY = nY - mY,
-      rX = x + dX,
-      rY = y + dY;
+    const et = e.targetTouches ? e.targetTouches[0] : e;
+    const {
+      sourceImgMouseDown: {
+        on,
+        mX,
+        mY,
+        x,
+        y,
+      },
+      scale,
+      sourceImgMasking,
+    } = this;
+    const sim = sourceImgMasking;
+    const nX = et.screenX;
+    const nY = et.screenY;
+    const dX = nX - mX;
+    const dY = nY - mY;
+    let rX = x + dX;
+    let rY = y + dY;
     if (!on) return;
     if (rX > 0) {
       rX = 0;
@@ -585,12 +595,12 @@ export default class ImageCropper extends Vue {
     scale.x = rX;
     scale.y = rY;
   }
-   // 按钮按下开始向右旋转
+  // 按钮按下开始向右旋转
   startRotateRight(e) {
-    let that = this,
-      {
-        scale
-      } = that;
+    const that = this;
+    const {
+      scale,
+    } = that;
     scale.rotateRight = true;
     function rotate() {
       if (scale.rotateRight) {
@@ -606,10 +616,10 @@ export default class ImageCropper extends Vue {
 
   // 按钮按下开始向右旋转
   startRotateLeft(e) {
-    let that = this,
-      {
-        scale,
-      } = that;
+    const that = this;
+    const {
+      scale,
+    } = that;
     scale.rotateLeft = true;
     function rotate() {
       if (scale.rotateLeft) {
@@ -625,17 +635,17 @@ export default class ImageCropper extends Vue {
   // 停止旋转
   endRotate() {
     const {
-      scale
+      scale,
     } = this;
     scale.rotateLeft = false;
     scale.rotateRight = false;
-  },
+  }
   // 按钮按下开始放大
   startZoomAdd(e) {
-    let that = this,
-      {
-        scale
-      } = that;
+    const that = this;
+    const {
+      scale,
+    } = that;
     scale.zoomAddOn = true;
     function zoom() {
       if (scale.zoomAddOn) {
@@ -654,10 +664,10 @@ export default class ImageCropper extends Vue {
   }
   // 按钮按下开始缩小
   startZoomSub(e) {
-    let that = this,
-      {
-        scale
-      } = that;
+    const that = this;
+    const {
+      scale,
+    } = that;
     scale.zoomSubOn = true;
     function zoom() {
       if (scale.zoomSubOn) {
@@ -673,7 +683,7 @@ export default class ImageCropper extends Vue {
   // 按钮松开或移开取消缩小
   endZoomSub(e) {
     const {
-      scale
+      scale,
     } = this;
     scale.zoomSubOn = false;
   }
@@ -685,8 +695,8 @@ export default class ImageCropper extends Vue {
     const that = this;
     const {
       sourceImgMasking,
-      sourceImgMouseDown,
-      scale
+      // sourceImgMouseDown,
+      scale,
     } = this;
     const {
       maxWidth,
@@ -697,7 +707,7 @@ export default class ImageCropper extends Vue {
       height,
       x,
       y,
-      range
+      // range,
     } = scale;
     const sim = sourceImgMasking;
     // 蒙版宽高
@@ -729,30 +739,30 @@ export default class ImageCropper extends Vue {
     scale.height = nHeight;
     scale.range = newRange;
     setTimeout(function() {
-      if (scale.range == newRange) {
+      if (scale.range === newRange) {
         that.createImg();
       }
     }, 300);
   }
-   // 生成需求图片
+  // 生成需求图片
   createImg(e) {
-    let that = this,
-      {
-        mime,
-        sourceImg,
-        scale: {
-          x,
-          y,
-          width,
-          height,
-          degree
-        },
-        sourceImgMasking: {
-          scale
-        }
-      } = that,
-      canvas = that.$refs.canvas,
-      ctx = canvas.getContext('2d');
+    const that = this;
+    const {
+      mime,
+      sourceImg,
+      scale: {
+        x,
+        y,
+        width,
+        height,
+        degree,
+      },
+      sourceImgMasking: {
+        scale,
+      },
+    } = that;
+    const canvas = that.$refs.canvas;
+    const ctx = canvas.getContext('2d');
     if (e) {
       // 取消鼠标按下移动状态
       that.sourceImgMouseDown.on = false;
@@ -785,21 +795,20 @@ export default class ImageCropper extends Vue {
   }
   // 上传图片
   upload() {
-    let that = this,
-      {
-        lang,
-        imgFormat,
-        mime,
-        url,
-        params,
-        headers,
-        field,
-        ki,
-        createImgUrl,
-        withCredentials,
-      } = this,
-      fmData = new FormData();
-    fmData.append(field, data2blob(createImgUrl, mime), field + '.' + imgFormat);
+    const that = this;
+    const {
+      lang,
+      mime,
+      url,
+      params,
+      // headers,
+      field,
+      ki,
+      createImgUrl,
+      // withCredentials,
+    } = this;
+    const fmData = new FormData();
+    fmData.append(field, data2blob(createImgUrl, mime), field + '.' + this.imageFormat);
     // 添加其他参数
     if (typeof params === 'object' && params) {
       Object.keys(params).forEach((k) => {
@@ -807,11 +816,11 @@ export default class ImageCropper extends Vue {
       });
     }
     // 监听进度回调
-    const uploadProgress = function(event) {
-      if (event.lengthComputable) {
-        that.progress = 100 * Math.round(event.loaded) / event.total;
-      }
-    };
+    // const uploadProgress = function(event) {
+    //   if (event.lengthComputable) {
+    //     that.progress = 100 * Math.round(event.loaded) / event.total;
+    //   }
+    // };
     // 上传文件
     that.reset();
     that.loading = 1;
@@ -832,11 +841,11 @@ export default class ImageCropper extends Vue {
       }
     });
   }
-  
+
   created() {
     // 绑定按键esc隐藏此插件事件
     document.addEventListener('keyup', (e) => {
-      if (this.value && (e.key == 'Escape' || e.keyCode == 27)) {
+      if (this.value && (e.key === 'Escape' || e.keyCode === 27)) {
         this.off();
       }
     });

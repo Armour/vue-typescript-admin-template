@@ -13,19 +13,19 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class Sticky extends Vue {
-  @Prop({default: 0})
+  @Prop({ default: 0 })
   private stickyTop!: number;
-  @Prop({default: 1})
+  @Prop({ default: 1 })
   private zIndex!: number;
-  @Prop({default: ''})
+  @Prop({ default: '' })
   private className!: string;
 
-  private  active: boolean = false;
+  private active: boolean = false;
   private position: string = '';
   private width: string | number | undefined = undefined;
   private height: number | undefined = undefined;
   private isSticky: boolean = false;
-  
+
   mounted() {
     this.height = this.$el.getBoundingClientRect().height;
     window.addEventListener('scroll', this.handleScroll);
@@ -68,7 +68,7 @@ export default class Sticky extends Vue {
     const offsetTop = this.$el.getBoundingClientRect().top;
     if (offsetTop < this.stickyTop) {
       this.sticky();
-      return
+      return;
     }
     this.handleReset();
   }

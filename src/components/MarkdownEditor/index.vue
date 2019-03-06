@@ -15,20 +15,20 @@ import defaultOptions from './defaultOptions';
 @Component
 export default class MarddownEditor extends Vue {
   @Prop({ default: '' })
-  value!:  string;
+  value!: string;
   @Prop({ default: () => 'markdown-editor-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '') })
-  id!:  string;
+  id!: string;
   @Prop({ default: () => defaultOptions })
   options!: object;
   @Prop({ default: 'markdown' })
-  mode!:  string;
+  mode!: string;
   @Prop({ default: '300px' })
-  height!:  string;
+  height!: string;
   @Prop({ default: 'en_US' })
-  language!:  string;
-  
+  language!: string;
+
   private editor: any = null;
-  
+
   get editorOptions() {
     const options = Object.assign({}, defaultOptions, this.options) as any;
     options.initialEditType = this.mode;
@@ -36,30 +36,30 @@ export default class MarddownEditor extends Vue {
     options.language = this.language;
     return options;
   }
-    
+
   @Watch('value')
   onValue(newValue: string, preValue: string) {
     if (newValue !== preValue && newValue !== this.editor.getValue()) {
       this.editor.setValue(newValue);
     }
   }
-    
+
   @Watch('language')
   onLanguage(val: any) {
     this.destroyEditor();
     this.initEditor();
   }
-    
+
   @Watch('height')
   onHeight(newValue: string) {
     this.editor.height(newValue);
   }
-    
+
   @Watch('mode')
   onMode(newValue: string) {
     this.editor.changeMode(newValue);
   }
-    
+
   mounted() {
     this.initEditor();
   }
@@ -67,7 +67,7 @@ export default class MarddownEditor extends Vue {
   destroyed() {
     this.destroyEditor();
   }
-  
+
   initEditor() {
     this.editor = new Editor({
       el: document.getElementById(this.id),

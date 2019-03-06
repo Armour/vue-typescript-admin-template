@@ -6,12 +6,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-
+import { Component, Vue, Watch } from 'vue-property-decorator';
 
 const version = require('element-ui/package.json').version; // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF'; // default color
-
 
 @Component
 export default class ThemePicker extends Vue {
@@ -49,7 +47,7 @@ export default class ThemePicker extends Vue {
       chalkHandler();
     }
 
-    const styles = (<HTMLStyleElement[]>[]).slice.call(document.querySelectorAll('style'))
+    const styles = ([] as HTMLStyleElement[]).slice.call(document.querySelectorAll('style'))
       .filter((style: HTMLStyleElement) => {
         const text = style.innerText;
         return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text);
@@ -76,7 +74,7 @@ export default class ThemePicker extends Vue {
       while ((v = repl.exec(style))) {
         colorOverrides.push(v[2].replace(nestRepl, value) + value + v[3] + '}'); // '}' not captured in the regexp repl to reserve it as locator-boundary
       }
-    })
+    });
     return colorOverrides.join('');
   }
 
@@ -84,7 +82,7 @@ export default class ThemePicker extends Vue {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        (<any>this)[variable] = xhr.responseText.replace(/@font-face{[^}]+}/, '');
+        (this as any)[variable] = xhr.responseText.replace(/@font-face{[^}]+}/, '');
         callback();
       }
     };
@@ -111,7 +109,7 @@ export default class ThemePicker extends Vue {
 
         return `#${redStr}${greenStr}${blueStr}`;
       }
-    }
+    };
 
     const shadeColor = (color: string, shade: number): string => {
       let red = parseInt(color.slice(0, 2), 16);
@@ -127,7 +125,7 @@ export default class ThemePicker extends Vue {
       const blueStr = blue.toString(16);
 
       return `#${redStr}${greenStr}${blueStr}`;
-    }
+    };
 
     const clusters: string[] = [theme];
     for (let i = 0; i <= 9; i++) {

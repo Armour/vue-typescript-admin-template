@@ -16,4 +16,4 @@ export default function(data: string, mime): Blob {
   return new Blob([ia], {
     type: mime,
   });
-};
+}

@@ -4,16 +4,14 @@
   </el-scrollbar>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-
+import { Component, Vue } from 'vue-property-decorator';
 
 const tagAndTagSpacing = 4; // tagAndTagSpacing
-
 
 @Component
 export default class ScrollPane extends Vue {
   private left: number = 0;
-  
+
   public handleScroll(e: WheelEvent) {
     const eventDelta = (e as any).wheelDelta || -e.deltaY * 40;
     const $scrollWrapper = (this.$refs.scrollContainer as any).$refs.wrap;

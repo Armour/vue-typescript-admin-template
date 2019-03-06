@@ -3,22 +3,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import echarts from 'echarts';
 import Resize from './mixins/resize';
 
 @Component
 export default class keyboard extends mixins(Resize) {
-  @Prop({default: 'chart'})
+  @Prop({ default: 'chart' })
   private className!: string;
-  @Prop({default: 'chart'})
+  @Prop({ default: 'chart' })
   private id!: string;
-  @Prop({default: '200px'})
+  @Prop({ default: '200px' })
   private width!: string;
-  @Prop({default: '200px'})
+  @Prop({ default: '200px' })
   private height!: string;
-  
+
   mounted() {
     this.initChart();
   }
@@ -30,7 +30,7 @@ export default class keyboard extends mixins(Resize) {
     this.chart.dispose();
     this.chart = null;
   }
-  
+
   initChart() {
     this.chart = echarts.init(document.getElementById(this.id) as HTMLCanvasElement | HTMLDivElement);
 
@@ -72,7 +72,7 @@ export default class keyboard extends mixins(Resize) {
           axisLabel: {
             textStyle: {
               color: '#4a657a',
-            }
+            },
           },
           splitLine: {
             show: true,

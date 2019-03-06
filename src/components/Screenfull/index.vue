@@ -5,17 +5,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import screenfull from 'screenfull'
+import { Component, Vue } from 'vue-property-decorator';
+import screenfull from 'screenfull';
 
 @Component
 export default class Screenfull extends Vue {
-  private isFullscreen:boolean = false
-  
+  private isFullscreen: boolean = false
+
   mounted() {
     this.init();
   }
-  
+
   click() {
     if (!screenfull.enabled) {
       this.$message({

@@ -15,9 +15,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class DropdownMenu extends Vue {
-  @Prop({default: () => []})
+  @Prop({ default: () => [] })
   private items!: {href: string, title: string}[];
-  @Prop({default: 'vue'})
+  @Prop({ default: 'vue' })
   private title!: string;
 
   private isActive: boolean = false;

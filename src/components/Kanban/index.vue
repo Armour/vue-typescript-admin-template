@@ -18,18 +18,17 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import draggable from 'vuedraggable';
 
-
 @Component({
   components: { draggable },
 })
 export default class DragKanbanDemo extends Vue {
-  @Prop{{ default: 'Header' }}
+  @Prop({ default: 'Header' })
   headerText: string;
 
-  @Prop{{ default: () => {} }}
+  @Prop({ default: () => {} })
   options: object;
 
-  @Prop{{ default: () => [] }}
+  @Prop({ default: () => [] })
   list: Array<any>;
 }
 </script>

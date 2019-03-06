@@ -4,13 +4,15 @@
   </el-select>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import Sortable from 'sortablejs';
-import {Select as ElSelect} from 'element-ui';
+import { Select as ElSelect } from 'element-ui';
 
-@Component
+@Component({
+  components: { ElSelect },
+})
 export default class DragSelect extends Vue {
-  @Prop({required: true})
+  @Prop({ required: true })
   private value!: Array<any>;
 
   private sortable: any;
@@ -31,15 +33,15 @@ export default class DragSelect extends Vue {
     this.sortable = Sortable.create(el, {
       ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
       setData: function(dataTransfer: any) {
-        dataTransfer.setData('Text', '')
+        dataTransfer.setData('Text', '');
         // to avoid Firefox bug
         // Detail see : https://github.com/RubaXa/Sortable/issues/1012
       },
       onEnd: (evt:{oldIndex: number, newIndex: number}) => {
-        const targetRow = this.value.splice(evt.oldIndex, 1)[0]
-        this.value.splice(evt.newIndex, 0, targetRow)
-      }
-    })
+        const targetRow = this.value.splice(evt.oldIndex, 1)[0];
+        this.value.splice(evt.newIndex, 0, targetRow);
+      },
+    });
   }
 }
 </script>
