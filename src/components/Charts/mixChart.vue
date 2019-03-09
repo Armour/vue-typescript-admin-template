@@ -44,7 +44,6 @@ export default class mixChart extends mixins(Resize) {
       backgroundColor: '#344b58',
       title: {
         text: 'statistics',
-        x: '20',
         top: '20',
         textStyle: {
           color: '#fff',
@@ -104,7 +103,7 @@ export default class mixChart extends mixins(Resize) {
         data: xData,
       }],
       yAxis: [{
-        type: 'value',
+        type: 'value' as echarts.EChartOption.BasicComponents.CartesianAxis.Type,
         splitLine: {
           show: false,
         },
@@ -125,7 +124,7 @@ export default class mixChart extends mixins(Resize) {
       }],
       dataZoom: [{
         show: true,
-        height: 30,
+        // height: 30,
         xAxisIndex: [
           0,
         ],

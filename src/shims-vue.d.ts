@@ -22,3 +22,14 @@ declare module 'element-ui/lib/locale/lang/zh-CN' {
   const elementZhLocale: any;
   export default elementZhLocale;
 }
+
+declare module 'vuedraggable' {
+  const vuedraggable: any;
+  export default vuedraggable;
+}
+
+declare module 'sortablejs' {
+  const Sortable: any;
+  export default Sortable;
+}
+

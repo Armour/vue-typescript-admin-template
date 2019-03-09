@@ -37,7 +37,7 @@ export default class lineMarker extends mixins(Resize) {
     this.chart.setOption({
       backgroundColor: '#394056',
       title: {
-        top: 20,
+        top: '20',
         text: 'Requests',
         textStyle: {
           fontWeight: 'normal',
@@ -48,11 +48,11 @@ export default class lineMarker extends mixins(Resize) {
       },
       tooltip: {
         trigger: 'axis',
-        axisPointer: {
-          lineStyle: {
-            color: '#57617B',
-          },
-        },
+        // axisPointer: {
+        //   lineStyle: {
+        //     color: '#57617B',
+        //   },
+        // },
       },
       legend: {
         top: 20,
@@ -85,7 +85,7 @@ export default class lineMarker extends mixins(Resize) {
         data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35', '13:40', '13:45', '13:50', '13:55'],
       }],
       yAxis: [{
-        type: 'value',
+        type: 'value' as echarts.EChartOption.BasicComponents.CartesianAxis.Type,
         name: '(%)',
         axisTick: {
           show: false,
@@ -97,9 +97,7 @@ export default class lineMarker extends mixins(Resize) {
         },
         axisLabel: {
           margin: 10,
-          textStyle: {
-            fontSize: 14,
-          },
+          fontSize: 14,
         },
         splitLine: {
           lineStyle: {

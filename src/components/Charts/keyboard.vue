@@ -5,7 +5,6 @@
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import echarts from 'echarts';
 import Resize from './mixins/resize';
 
 @Component
@@ -34,16 +33,15 @@ export default class keyboard extends mixins(Resize) {
   initChart() {
     this.chart = echarts.init(document.getElementById(this.id) as HTMLCanvasElement | HTMLDivElement);
 
-    const xAxisData = [];
+    const xAxisData: string[] = [];
     const data = [];
     const data2 = [];
     for (let i = 0; i < 50; i++) {
-      xAxisData.push(i);
+      xAxisData.push(i.toString());
       data.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
       data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3);
     }
-    this.chart.setOption(
-      {
+    this.chart.setOption({
         backgroundColor: '#08263a',
         grid: {
           left: '5%',
@@ -56,7 +54,7 @@ export default class keyboard extends mixins(Resize) {
           show: false,
           data: xAxisData,
         }],
-        visualMap: {
+        visualMap: [{
           show: false,
           min: 0,
           max: 50,
@@ -64,15 +62,13 @@ export default class keyboard extends mixins(Resize) {
           inRange: {
             color: ['#4a657a', '#308e92', '#b1cfa5', '#f5d69f', '#f5898b', '#ef5055'],
           },
-        },
+        }],
         yAxis: {
           axisLine: {
             show: false,
           },
           axisLabel: {
-            textStyle: {
-              color: '#4a657a',
-            },
+            color: '#4a657a',
           },
           splitLine: {
             show: true,

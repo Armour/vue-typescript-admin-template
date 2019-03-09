@@ -39,13 +39,15 @@
     "vuex": "^3.1.0",
     "vuex-class": "^0.3.1",
     "vuex-module-decorators": "^0.9.8",
-    "xlsx": "^0.14.1"
+    "xlsx": "^0.14.1",
+    "dropzone": "^5.5.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.9",
     "@types/echarts": "^4.1.0",
     "@types/node": "^11.9.4",
     "@types/webpack-env": "^1.13.6",
+    "@types/dropzone": "^5.0.4",
     "@typescript-eslint/parser": "^1.4.0",
     "@vue/cli-plugin-babel": "^3.4.1",
     "@vue/cli-plugin-e2e-cypress": "^3.4.1",

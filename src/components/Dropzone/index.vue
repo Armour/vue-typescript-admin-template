@@ -43,7 +43,7 @@ export default class Dropzone extends Vue {
   @Prop({ default: false })
   couldPaste!: boolean;
 
-  private dropzone: DropzoneNoWrapper = null;
+  private dropzone: DropzoneNoWrapper | null = null;
   private initOnce: boolean = true;
 
   @Watch('defaultImg')
@@ -60,7 +60,7 @@ export default class Dropzone extends Vue {
   mounted() {
     const element = document.getElementById(this.id);
     const vm = this;
-    this.dropzone = new Dropzone(element, {
+    this.dropzone = new DropzoneNoWrapper(element, {
       clickable: this.clickable,
       thumbnailWidth: this.thumbnailWidth,
       thumbnailHeight: this.thumbnailHeight,
@@ -82,8 +82,8 @@ export default class Dropzone extends Vue {
             const mockFile = { name: 'name' + i, size: 12345, url: v };
             this.options.addedfile.call(this, mockFile);
             this.options.thumbnail.call(this, mockFile, v);
-            mockFile.previewElement.classList.add('dz-success');
-            mockFile.previewElement.classList.add('dz-complete');
+            (mockFile as any).previewElement.classList.add('dz-success');
+            (mockFile as any).previewElement.classList.add('dz-complete');
             vm.initOnce = false;
             return true;
           });
@@ -91,12 +91,12 @@ export default class Dropzone extends Vue {
           const mockFile = { name: 'name', size: 12345, url: val };
           this.options.addedfile.call(this, mockFile);
           this.options.thumbnail.call(this, mockFile, val);
-          mockFile.previewElement.classList.add('dz-success');
-          mockFile.previewElement.classList.add('dz-complete');
+          (mockFile as any).previewElement.classList.add('dz-success');
+          (mockFile as any).previewElement.classList.add('dz-complete');
           vm.initOnce = false;
         }
       },
-      accept: (file, done) => {
+      accept: (file: any, done: any) => {
         /* 七牛*/
         // const token = this.$store.getters.token;
         // getToken(token).then(response => {
@@ -107,7 +107,7 @@ export default class Dropzone extends Vue {
         // })
         done();
       },
-      sending: (file, xhr, formData) => {
+      sending: (file: any, xhr: XMLHttpRequest, formData: any) => {
         // formData.append('token', file.token);
         // formData.append('key', file.key);
         vm.initOnce = false;
@@ -118,20 +118,20 @@ export default class Dropzone extends Vue {
       document.addEventListener('paste', this.pasteImg);
     }
 
-    this.dropzone.on('success', file => {
+    this.dropzone.on('success', (file: Dropzone.DropzoneFile) => {
       vm.$emit('dropzone-success', file, vm.dropzone.element);
     });
-    this.dropzone.on('addedfile', file => {
+    this.dropzone.on('addedfile', (file: Dropzone.DropzoneFile) => {
       vm.$emit('dropzone-fileAdded', file);
     });
-    this.dropzone.on('removedfile', file => {
+    this.dropzone.on('removedfile', (file: Dropzone.DropzoneFile) => {
       vm.$emit('dropzone-removedFile', file);
     });
-    this.dropzone.on('error', (file, error, xhr) => {
-      vm.$emit('dropzone-error', file, error, xhr);
+    this.dropzone.on('error', (file: Dropzone.DropzoneFile, error: string | Error) => {
+      vm.$emit('dropzone-error', file, error);
     });
-    this.dropzone.on('successmultiple', (file, error, xhr) => {
-      vm.$emit('dropzone-successmultiple', file, error, xhr);
+    this.dropzone.on('successmultiple', (files: Dropzone.DropzoneFile[]) => {
+      vm.$emit('dropzone-successmultiple', files);
     });
   }
   destroyed() {
@@ -146,7 +146,7 @@ export default class Dropzone extends Vue {
     this.dropzone.processQueue();
   }
   pasteImg(event: ClipboardEvent) {
-    const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    const items = (event.clipboardData || (event as any).originalEvent.clipboardData).items;
     if (items[0].kind === 'file') {
       this.dropzone.addFile(items[0].getAsFile());
     }
@@ -158,16 +158,16 @@ export default class Dropzone extends Vue {
         const mockFile = { name: 'name' + i, size: 12345, url: v };
         this.dropzone.options.addedfile.call(this.dropzone, mockFile);
         this.dropzone.options.thumbnail.call(this.dropzone, mockFile, v);
-        mockFile.previewElement.classList.add('dz-success');
-        mockFile.previewElement.classList.add('dz-complete');
+        (mockFile as any).previewElement.classList.add('dz-success');
+        (mockFile as any).previewElement.classList.add('dz-complete');
         return true;
       });
     } else {
       const mockFile = { name: 'name', size: 12345, url: val };
       this.dropzone.options.addedfile.call(this.dropzone, mockFile);
       this.dropzone.options.thumbnail.call(this.dropzone, mockFile, val);
-      mockFile.previewElement.classList.add('dz-success');
-      mockFile.previewElement.classList.add('dz-complete');
+      (mockFile as any).previewElement.classList.add('dz-success');
+      (mockFile as any).previewElement.classList.add('dz-complete');
     }
   }
 }

@@ -1,5 +1,6 @@
 import { debounce } from '@/utils';
 import { Component, Vue } from 'vue-property-decorator';
+import { ECharts } from 'echarts';
 
 @Component
 export default class Resize extends Vue {
