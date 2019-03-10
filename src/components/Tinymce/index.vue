@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import editorImage from './components/editorImage';
+import editorImage from './components/editorImage.vue';
 import plugins from './plugins';
 import toolbar from './toolbar';
 
@@ -64,7 +64,7 @@ export default class Tinymce extends Vue {
   onValue(val: string) {
     if (!this.hasChange && this.hasInit) {
       this.$nextTick(() =>
-        window.tinymce.get(this.tinymceId).setContent(val || ''));
+        (window as any).tinymce.get(this.tinymceId).setContent(val || ''));
     }
   }
 
@@ -89,7 +89,7 @@ export default class Tinymce extends Vue {
 
   initTinymce() {
     const _this = this;
-    window.tinymce.init({
+    (window as any).tinymce.init({
       language: this.language,
       selector: `#${this.tinymceId}`,
       height: this.height,
@@ -108,7 +108,7 @@ export default class Tinymce extends Vue {
       default_link_target: '_blank',
       link_title: false,
       nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
-      init_instance_callback: editor => {
+      init_instance_callback: (editor: any) => {
         if (_this.value) {
           editor.setContent(_this.value);
         }
@@ -118,8 +118,8 @@ export default class Tinymce extends Vue {
           this.$emit('input', editor.getContent());
         });
       },
-      setup(editor) {
-        editor.on('FullscreenStateChanged', (e) => {
+      setup(editor: any) {
+        editor.on('FullscreenStateChanged', (e: any) => {
           _this.fullscreen = e.state;
         });
       },
@@ -174,9 +174,9 @@ export default class Tinymce extends Vue {
   getContent() {
     (window as any).tinymce.get(this.tinymceId).getContent();
   }
-  imageSuccessCBK(arr) {
+  imageSuccessCBK(arr: any[]) {
     const _this = this;
-    arr.forEach((v) => {
+    arr.forEach((v: any) => {
       (window as any).tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
     });
   }

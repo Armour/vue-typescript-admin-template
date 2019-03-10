@@ -40,7 +40,15 @@
     "vuex-class": "^0.3.1",
     "vuex-module-decorators": "^0.9.8",
     "xlsx": "^0.14.1",
-    "dropzone": "^5.5.1"
+    "dropzone": "^5.5.1",
+    "screenfull": "^4.0.1",
+    "tui-editor": "1.2.7",
+    "showdown": "1.8.6",
+    "jsonlint": "1.6.3",
+    "jszip": "3.1.5",
+    "clipboard": "1.7.1",
+    "codemirror": "5.39.2",
+    "driver.js": "0.8.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.9",
@@ -48,6 +56,8 @@
     "@types/node": "^11.9.4",
     "@types/webpack-env": "^1.13.6",
     "@types/dropzone": "^5.0.4",
+    "@types/screenfull": "^4.0.0",
+    "@types/codemirror": "^0.0.72",
     "@typescript-eslint/parser": "^1.4.0",
     "@vue/cli-plugin-babel": "^3.4.1",
     "@vue/cli-plugin-e2e-cypress": "^3.4.1",

@@ -20,12 +20,12 @@ export default class UploadExcel extends Vue {
   onSuccess!: Function; // eslint-disable-line
 
   private loading: boolean = false;
-  private excelData: { header: string|null, results: any[]|null } = {
+  private excelData: { header: string[]|null, results: any[]|null } = {
     header: null,
     results: null,
   };
 
-  generateData(data: { header: string, results: any[] }) {
+  generateData(data: { header: string[], results: any[] }) {
     this.excelData.header = data.header;
     this.excelData.results = data.results;
     this.onSuccess && this.onSuccess(this.excelData);
@@ -35,6 +35,8 @@ export default class UploadExcel extends Vue {
     e.stopPropagation();
     e.preventDefault();
     if (this.loading) return;
+    if (e.dataTransfer == null) return;
+
     const files = e.dataTransfer.files;
     if (files.length !== 1) {
       this.$message.error('Only support uploading one file!');
@@ -54,7 +56,9 @@ export default class UploadExcel extends Vue {
   handleDragover(e: DragEvent) {
     e.stopPropagation();
     e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
+    if (e.dataTransfer != null) {
+      e.dataTransfer.dropEffect = 'copy';
+    }
   }
 
   handleUpload() {
@@ -100,7 +104,7 @@ export default class UploadExcel extends Vue {
   }
   getHeaderRow(sheet: XLSX.Sheet): string[] {
     const headers = [];
-    const range = XLSX.utils.decode_range(sheet['!ref']);
+    const range = XLSX.utils.decode_range(sheet['!ref'] as string);
     let C;
     const R = range.s.r;
     /* start in the first row */

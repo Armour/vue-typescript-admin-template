@@ -85,7 +85,7 @@ export default class EditorSlideUpload extends Vue {
       const img = new Image();
       img.src = _URL.createObjectURL(file);
       img.onload = function() {
-        _self.listObj[fileName] = { hasSuccess: false, uid: file.uid, width: this.width, height: this.height };
+        _self.listObj[fileName] = { hasSuccess: false, uid: file.uid, width: img.width, height: img.height };
       };
       resolve(true);
     });

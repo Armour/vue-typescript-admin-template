@@ -1,8 +1,8 @@
 
 import store from '@/store';
 
-export default {
-  inserted: (el: HTMLElement, binding: { value: any }, vnode: any) => {
+const permissions: Vue.DirectiveOptions = {
+  inserted: (el: HTMLElement, binding: Vue.VNodeDirective, vnode: Vue.VNode, oldVnode: Vue.VNode) => {
     const { value } = binding;
     const roles = store.getters && store.getters.roles;
 
@@ -21,3 +21,4 @@ export default {
     }
   },
 };
+export default permissions;

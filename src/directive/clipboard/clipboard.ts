@@ -4,46 +4,49 @@ if (!Clipboard) {
   throw new Error('you should npm install `clipboard` --save at first ');
 }
 
-export default {
-  bind(el: any, binding: { arg: string, value: string }) {
+const ClipboardDirectiveOption: Vue.DirectiveOptions = {
+  bind: (el: HTMLElement, binding: Vue.VNodeDirective, vnode: Vue.VNode, oldVnode: Vue.VNode) => {
     if (binding.arg === 'success') {
-      el._v_clipboard_success = binding.value;
+      (el as any)._v_clipboard_success = binding.value;
     } else if (binding.arg === 'error') {
-      el._v_clipboard_error = binding.value;
+      (el as any)._v_clipboard_error = binding.value;
     } else {
       const clipboard = new Clipboard(el, {
         text() { return binding.value; },
         action() { return binding.arg === 'cut' ? 'cut' : 'copy'; },
       });
-      clipboard.on('success', e => {
-        const callback = el._v_clipboard_success;
+      clipboard.on('success', (e: Event) => {
+        const callback = (el as any)._v_clipboard_success;
         callback && callback(e); // eslint-disable-line
       });
-      clipboard.on('error', e => {
-        const callback = el._v_clipboard_error;
+      clipboard.on('error', (e: Event) => {
+        const callback = (el as any)._v_clipboard_error;
         callback && callback(e); // eslint-disable-line
       });
-      el._v_clipboard = clipboard;
+      (el as any)._v_clipboard = clipboard;
     }
   },
-  update(el: any, binding: { arg: string, value: string }) {
+  update: (el: HTMLElement, binding: Vue.VNodeDirective, vnode: Vue.VNode, oldVnode: Vue.VNode) => {
     if (binding.arg === 'success') {
-      el._v_clipboard_success = binding.value;
+      (el as any)._v_clipboard_success = binding.value;
     } else if (binding.arg === 'error') {
-      el._v_clipboard_error = binding.value;
+      (el as any)._v_clipboard_error = binding.value;
     } else {
-      el._v_clipboard.text = function() { return binding.value; };
-      el._v_clipboard.action = function() { return binding.arg === 'cut' ? 'cut' : 'copy'; };
+      (el as any)._v_clipboard.text = function() { return binding.value; };
+      (el as any)._v_clipboard.action = function() { return binding.arg === 'cut' ? 'cut' : 'copy'; };
     }
   },
-  unbind(el: any, binding: { arg: string, value: string }) {
+  
+  unbind: (el: HTMLElement, binding: Vue.VNodeDirective, vnode: Vue.VNode, oldVnode: Vue.VNode) => {
     if (binding.arg === 'success') {
-      delete el._v_clipboard_success;
+      delete (el as any)._v_clipboard_success;
     } else if (binding.arg === 'error') {
-      delete el._v_clipboard_error;
+      delete (el as any)._v_clipboard_error;
     } else {
-      el._v_clipboard.destroy();
-      delete el._v_clipboard;
+      (el as any)._v_clipboard.destroy();
+      delete (el as any)._v_clipboard;
     }
   },
 };
+
+export default ClipboardDirectiveOption;

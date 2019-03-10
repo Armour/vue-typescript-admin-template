@@ -1,12 +1,13 @@
 import Clipboard from './clipboard';
-import Vue from 'vue';
+import Vue, { VueConstructor } from 'vue';
 
-const install = (Vue: Vue) => Vue.directive('Clipboard', Clipboard);
+const install: Vue.PluginFunction<any> = (Vue: VueConstructor<Vue>, options?: any) => Vue.directive('Clipboard', Clipboard);
 
-if (window.Vue) {
-  window.clipboard = Clipboard;
+if ((window as any).Vue) {
+  (window as any).clipboard = Clipboard;
   Vue.use(install); // eslint-disable-line
 }
 
-Clipboard.install = install;
+(Clipboard as any).install = install;
 export default Clipboard;
+

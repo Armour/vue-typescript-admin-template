@@ -33,3 +33,8 @@ declare module 'sortablejs' {
   export default Sortable;
 }
 
+declare module 'tui-editor' {
+  const tuieditor: any;
+  export default tuieditor;
+}
+

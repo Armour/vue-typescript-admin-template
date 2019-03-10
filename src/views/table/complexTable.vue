@@ -162,7 +162,14 @@ export default class ComplexTable extends Vue {
   private tableKey: number = 0;
   private total: number = 0;
   private listLoading: boolean = true;
-  private listQuery = {
+  private listQuery: {
+    page: number,
+    limit: number,
+    importance: string|undefined,
+    title: string|undefined,
+    type: string|undefined,
+    sort: string,
+  } = {
     page: 1,
     limit: 20,
     importance: undefined,

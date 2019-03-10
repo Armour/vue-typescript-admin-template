@@ -12,9 +12,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component
 export default class Mallki extends Vue {
   @Prop({ default: '' })
-  private className: string;
+  private className!: string;
   @Prop({ default: 'vue-element-admin' })
-  private text: string;
+  private text!: string;
 }
 </script>
 

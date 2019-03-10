@@ -23,13 +23,13 @@ import draggable from 'vuedraggable';
 })
 export default class DragKanbanDemo extends Vue {
   @Prop({ default: 'Header' })
-  headerText: string;
+  headerText!: string;
 
   @Prop({ default: () => {} })
-  options: object;
+  options!: object;
 
   @Prop({ default: () => [] })
-  list: Array<any>;
+  list!: Array<any>;
 }
 </script>
 

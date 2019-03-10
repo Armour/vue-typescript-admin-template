@@ -1,5 +1,5 @@
-export default {
-  bind(el: HTMLElement, binding: any, vnode: any) {
+const drag: Vue.DirectiveOptions = {
+  bind: (el: HTMLElement, binding: Vue.VNodeDirective, vnode: Vue.VNode, oldVnode: Vue.VNode) => {
     const dialogHeaderEl = el.querySelector('.el-dialog__header') as HTMLElement;
     if(dialogHeaderEl == null) {
       return;
@@ -69,8 +69,7 @@ export default {
         dragDom.style.cssText += `;left:${left + styL}px;top:${top + styT}px;`;
 
         // emit onDrag event
-        // vnode.child.$emit('dragDialog');
-        vnode.child.$emit('dragDialog');
+        (vnode as any).child.$emit('dragDialog');
       };
 
       document.onmouseup = function(e: MouseEvent) {
@@ -80,3 +79,6 @@ export default {
     };
   },
 };
+
+
+export default drag;

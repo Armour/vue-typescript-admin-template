@@ -1,12 +1,13 @@
 import drag from './drag';
-import Vue from 'vue';
+import Vue, { VueConstructor } from 'vue';
 
-const install = (Vue: Vue) => Vue.directive('el-drag-dialog', drag);
 
-if (window.Vue) {
-  window['el-drag-dialog'] = drag;
+const install: Vue.PluginFunction<any> = (Vue: VueConstructor<Vue>, options?: any) =>  Vue.directive('el-drag-dialog', drag);
+
+if ((window as any).Vue) {
+  (window as any)['el-drag-dialog'] = drag;
   Vue.use(install); // eslint-disable-line
 }
 
-drag.install = install;
+(drag as any).install = install;
 export default drag;

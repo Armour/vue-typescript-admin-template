@@ -15,7 +15,7 @@ class User extends VuexModule implements IUserState {
   public token = '';
   public name = '';
   public avatar = '';
-  public roles = [];
+  public roles: string[] = [];
 
   @Action({ commit: 'SET_TOKEN' })
   public async Login(userInfo: { username: string, password: string}) {
@@ -50,7 +50,7 @@ class User extends VuexModule implements IUserState {
   }
 
   @MutationAction({ mutate: ['token', 'roles'] })
-  public async LogOut() {
+  public async LogOut(): Promise<{ token: string, roles: string[] }> {
     if (getToken() === undefined) {
       throw Error('LogOut: token is undefined!');
     }

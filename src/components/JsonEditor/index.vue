@@ -31,7 +31,7 @@ export default class JsonEditor extends Vue {
   }
 
   mounted() {
-    this.jsonEditor = CodeMirror.fromTextArea(this.$refs.textarea, {
+    this.jsonEditor = CodeMirror.fromTextArea(this.$refs.textarea as HTMLTextAreaElement, {
       lineNumbers: true,
       mode: 'application/json',
       gutters: ['CodeMirror-lint-markers'],

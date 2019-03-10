@@ -52,7 +52,7 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Form extends Vue {
-  private form = {
+  private form: object = {
     name: '',
     region: '',
     date1: '',
