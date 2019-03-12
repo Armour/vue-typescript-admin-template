@@ -5,18 +5,18 @@
  * @param  {[Object]} arg_opts [description]
  * @return {[bollean]}          [description]
  */
-export default function(e: Event, arg_opts: object): boolean {
+export default function(e: MouseEvent, arg_opts?: object): boolean {
   var opts = Object.assign({
     ele: e.target, // 波纹作用元素
     type: 'hit', // hit点击位置扩散center中心点扩展
     bgc: 'rgba(0, 0, 0, 0.15)', // 波纹颜色
   }, arg_opts);
-  var target = opts.ele;
+  var target = opts.ele as HTMLElement;
   if (target) {
     var rect = target.getBoundingClientRect();
-    var ripple = target.querySelector('.e-ripple');
+    var ripple = target.querySelector('.e-ripple') as HTMLElement;
     if (!ripple) {
-      ripple = document.createElement('span');
+      ripple = document.createElement('span') as HTMLElement;
       ripple.className = 'e-ripple';
       ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
       target.appendChild(ripple);
@@ -36,4 +36,5 @@ export default function(e: Event, arg_opts: object): boolean {
     ripple.className = 'e-ripple z-active';
     return false;
   }
+  return false;
 }

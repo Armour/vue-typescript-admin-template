@@ -42,13 +42,14 @@
     "xlsx": "^0.14.1",
     "dropzone": "^5.5.1",
     "screenfull": "^4.0.1",
-    "tui-editor": "1.2.7",
-    "showdown": "1.8.6",
-    "jsonlint": "1.6.3",
-    "jszip": "3.1.5",
-    "clipboard": "1.7.1",
-    "codemirror": "5.39.2",
-    "driver.js": "0.8.1"
+    "tui-editor": "^1.2.7",
+    "showdown": "^1.8.6",
+    "jsonlint": "^1.6.3",
+    "jszip": "^3.1.5",
+    "clipboard": "^1.7.1",
+    "codemirror": "^5.39.2",
+    "driver.js": "^0.8.1",
+    "fuse.js": "^3.4.4"
   },
   "devDependencies": {
     "@types/jest": "^24.0.9",

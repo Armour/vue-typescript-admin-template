@@ -109,10 +109,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import request from '@/utils/request';
-import language from './utils/language.js';
-import mimes from './utils/mimes.js';
-import data2blob from './utils/data2blob.js';
-import effectRipple from './utils/effectRipple.js';
+import language from './utils/language';
+import mimes from './utils/mimes';
+import data2blob from './utils/data2blob';
+import effectRipple from './utils/effectRipple';
 
 const allowImgFormat: string[] = [
   'jpg',
@@ -185,8 +185,8 @@ export default class ImageCropper extends Vue {
   withCredentials!: boolean;
 
   // 图片的mime
-  private mime = () => {
-    return mimes[this.imageFormat];
+  private mime = (): string => {
+    return mimes[this.imageFormat] as string;
   };
   // 语言包
   private lang = (): object => {
@@ -217,7 +217,7 @@ export default class ImageCropper extends Vue {
   // 需求图宽高比
   private ratio = (): number => this.width / this.height;
   // 原图地址、生成图片地址
-  private sourceImg = null;
+  private sourceImg: HTMLImageElement|null = null;
   private sourceImgUrl = '';
   private createImgUrl = '';
   // 原图片拖动事件初始值
@@ -313,10 +313,10 @@ export default class ImageCropper extends Vue {
 
   // 原图蒙版属性
   get sourceImgMasking() {
+    const ratio = this.ratio();
     const {
       width,
       height,
-      ratio,
       sourceImgContainer,
     } = this;
     const sic = sourceImgContainer;
@@ -362,10 +362,10 @@ export default class ImageCropper extends Vue {
   }
 
   get previewStyle() {
+    const ratio = this.ratio();
     const {
       // width,
       // height,
-      ratio,
       previewContainer,
     } = this;
     const pc = previewContainer;
@@ -392,7 +392,7 @@ export default class ImageCropper extends Vue {
   }
 
   // 点击波纹效果
-  ripple(e) {
+  ripple(e: MouseEvent) {
     effectRipple(e);
   }
 
@@ -408,7 +408,7 @@ export default class ImageCropper extends Vue {
   }
 
   // 设置步骤
-  setStep(no) {
+  setStep(no: number) {
     // 延时是为了显示动画效果呢，哈哈哈
     setTimeout(() => {
       this.step = no;
@@ -424,8 +424,8 @@ export default class ImageCropper extends Vue {
     if (this.loading !== 1) {
       if (e.target !== this.$refs.fileinput) {
         e.preventDefault();
-        if (document.activeElement !== this.$refs) {
-          this.$refs.fileinput.click();
+        if ((document as any).activeElement !== this.$refs) {
+          (this.$refs.fileinput as HTMLInputElement).click();
         }
       }
     }
@@ -433,7 +433,7 @@ export default class ImageCropper extends Vue {
   handleChange(e: Event) {
     e.preventDefault();
     if (this.loading !== 1) {
-      const files = e.target.files || e.dataTransfer.files;
+      const files = (e.target as any).files || ((e as any).dataTransfer as any).files;
       this.reset();
       if (this.checkFile(files[0])) {
         this.setSourceImg(files[0]);
@@ -444,8 +444,8 @@ export default class ImageCropper extends Vue {
   // 检测选择的文件是否合适
   checkFile(file: {type: string, size: number}) {
     const that = this;
+    const  lang = this.lang() as any;
     const {
-      lang,
       maxSize,
     } = that;
     // 仅限图片
@@ -471,26 +471,25 @@ export default class ImageCropper extends Vue {
     that.progress = 0;
   }
   // 设置图片源
-  setSourceImg(file) {
-    const that = this;
+  setSourceImg(file: Blob) {
     const fr = new FileReader();
-    fr.onload = function(e) {
-      that.sourceImgUrl = fr.result;
-      that.startCrop();
+    fr.onload = (e: Event) => {
+      this.sourceImgUrl = fr.result as string;
+      this.startCrop();
     };
     fr.readAsDataURL(file);
   }
   // 剪裁前准备工作
   startCrop() {
     const that = this;
+    const lang = this.lang() as any;
+    const ratio= this.ratio();
     const {
       width,
       height,
-      ratio,
       scale,
       sourceImgUrl,
       sourceImgMasking,
-      lang,
     } = that;
     const sim = sourceImgMasking;
     const img = new Image();
@@ -535,13 +534,13 @@ export default class ImageCropper extends Vue {
     };
   }
   // 鼠标按下图片准备移动
-  imgStartMove(e) {
+  imgStartMove(e: MouseEvent) {
     e.preventDefault();
     // 支持触摸事件，则鼠标事件无效
-    if (this.isSupportTouch && !e.targetTouches) {
+    if (this.isSupportTouch && !(e as any).targetTouches) {
       return false;
     }
-    const et = e.targetTouches ? e.targetTouches[0] : e;
+    const et = (e as any).targetTouches ? (e as any).targetTouches[0] : e;
     const {
       sourceImgMouseDown,
       scale,
@@ -554,13 +553,13 @@ export default class ImageCropper extends Vue {
     simd.on = true;
   }
   // 鼠标按下状态下移动，图片移动
-  imgMove(e) {
+  imgMove(e: MouseEvent) {
     e.preventDefault();
     // 支持触摸事件，则鼠标事件无效
-    if (this.isSupportTouch && !e.targetTouches) {
+    if (this.isSupportTouch && !(e as any).targetTouches) {
       return false;
     }
-    const et = e.targetTouches ? e.targetTouches[0] : e;
+    const et = (e as any).targetTouches ? (e as any).targetTouches[0] : e;
     const {
       sourceImgMouseDown: {
         on,
@@ -596,7 +595,7 @@ export default class ImageCropper extends Vue {
     scale.y = rY;
   }
   // 按钮按下开始向右旋转
-  startRotateRight(e) {
+  startRotateRight(e: Event) {
     const that = this;
     const {
       scale,
@@ -615,7 +614,7 @@ export default class ImageCropper extends Vue {
   }
 
   // 按钮按下开始向右旋转
-  startRotateLeft(e) {
+  startRotateLeft(e: Event) {
     const that = this;
     const {
       scale,
@@ -641,7 +640,7 @@ export default class ImageCropper extends Vue {
     scale.rotateRight = false;
   }
   // 按钮按下开始放大
-  startZoomAdd(e) {
+  startZoomAdd(e: Event) {
     const that = this;
     const {
       scale,
@@ -659,11 +658,11 @@ export default class ImageCropper extends Vue {
     zoom();
   }
   // 按钮松开或移开取消放大
-  endZoomAdd(e) {
+  endZoomAdd(e: Event) {
     this.scale.zoomAddOn = false;
   }
   // 按钮按下开始缩小
-  startZoomSub(e) {
+  startZoomSub(e: Event) {
     const that = this;
     const {
       scale,
@@ -681,17 +680,20 @@ export default class ImageCropper extends Vue {
     zoom();
   }
   // 按钮松开或移开取消缩小
-  endZoomSub(e) {
+  endZoomSub(e: MouseEvent) {
     const {
       scale,
     } = this;
     scale.zoomSubOn = false;
   }
-  zoomChange(e) {
-    this.zoomImg(e.target.value);
+  zoomChange(e: MouseEvent) {
+    if (e.target == null) {
+      return;
+    }
+    this.zoomImg((e.target as any).value);
   }
   // 缩放原图
-  zoomImg(newRange) {
+  zoomImg(newRange: any) {
     const that = this;
     const {
       sourceImgMasking,
@@ -745,10 +747,10 @@ export default class ImageCropper extends Vue {
     }, 300);
   }
   // 生成需求图片
-  createImg(e) {
+  createImg(e?: Event|number) {
     const that = this;
+    const mime = this.mime();
     const {
-      mime,
       sourceImg,
       scale: {
         x,
@@ -761,8 +763,14 @@ export default class ImageCropper extends Vue {
         scale,
       },
     } = that;
-    const canvas = that.$refs.canvas;
+    if (sourceImg == null) {
+      return;
+    }
+    const canvas = that.$refs.canvas as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
+    if (ctx == null) {
+      return;
+    }
     if (e) {
       // 取消鼠标按下移动状态
       that.sourceImgMouseDown.on = false;
@@ -796,9 +804,9 @@ export default class ImageCropper extends Vue {
   // 上传图片
   upload() {
     const that = this;
+    const mime = this.mime();
+    const lang = this.lang() as any;
     const {
-      lang,
-      mime,
       url,
       params,
       // headers,
@@ -812,7 +820,7 @@ export default class ImageCropper extends Vue {
     // 添加其他参数
     if (typeof params === 'object' && params) {
       Object.keys(params).forEach((k) => {
-        fmData.append(k, params[k]);
+        fmData.append(k, (params as any)[k]);
       });
     }
     // 监听进度回调

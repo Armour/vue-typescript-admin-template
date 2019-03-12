@@ -142,7 +142,7 @@ export default class mixChart extends mixins(Resize) {
       }, {
         type: 'inside',
         show: true,
-        height: 15,
+        // height: 15,
         start: 1,
         end: 35,
       }],

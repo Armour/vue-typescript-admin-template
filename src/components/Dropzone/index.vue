@@ -59,6 +59,10 @@ export default class Dropzone extends Vue {
 
   mounted() {
     const element = document.getElementById(this.id);
+    if (element == null) {
+      return;
+    }
+
     const vm = this;
     this.dropzone = new DropzoneNoWrapper(element, {
       clickable: this.clickable,
@@ -80,8 +84,8 @@ export default class Dropzone extends Vue {
           if (val.length === 0) return;
           val.map((v, i) => {
             const mockFile = { name: 'name' + i, size: 12345, url: v };
-            this.options.addedfile.call(this, mockFile);
-            this.options.thumbnail.call(this, mockFile, v);
+            DropzoneNoWrapper.options.addedfile.call(this, mockFile);
+            DropzoneNoWrapper.options.thumbnail.call(this, mockFile, v);
             (mockFile as any).previewElement.classList.add('dz-success');
             (mockFile as any).previewElement.classList.add('dz-complete');
             vm.initOnce = false;
@@ -89,8 +93,8 @@ export default class Dropzone extends Vue {
           });
         } else {
           const mockFile = { name: 'name', size: 12345, url: val };
-          this.options.addedfile.call(this, mockFile);
-          this.options.thumbnail.call(this, mockFile, val);
+          DropzoneNoWrapper.options.addedfile.call(this, mockFile);
+          DropzoneNoWrapper.options.thumbnail.call(this, mockFile, val);
           (mockFile as any).previewElement.classList.add('dz-success');
           (mockFile as any).previewElement.classList.add('dz-complete');
           vm.initOnce = false;
@@ -118,8 +122,14 @@ export default class Dropzone extends Vue {
       document.addEventListener('paste', this.pasteImg);
     }
 
+    if (this.dropzone == null) {
+      return;
+    }
     this.dropzone.on('success', (file: Dropzone.DropzoneFile) => {
-      vm.$emit('dropzone-success', file, vm.dropzone.element);
+      if (vm.dropzone == null) {
+        return;
+      }
+      vm.$emit('dropzone-success', file, (vm.dropzone as any).element);
     });
     this.dropzone.on('addedfile', (file: Dropzone.DropzoneFile) => {
       vm.$emit('dropzone-fileAdded', file);
@@ -136,36 +146,46 @@ export default class Dropzone extends Vue {
   }
   destroyed() {
     document.removeEventListener('paste', this.pasteImg);
+    if (this.dropzone == null) return;
     this.dropzone.destroy();
   }
 
   removeAllFiles() {
+    if (this.dropzone == null) return;
     this.dropzone.removeAllFiles(true);
   }
   processQueue() {
+    if (this.dropzone == null) return;
     this.dropzone.processQueue();
   }
-  pasteImg(event: ClipboardEvent) {
+  pasteImg(e: Event) {
+    const event = e as ClipboardEvent;
     const items = (event.clipboardData || (event as any).originalEvent.clipboardData).items;
     if (items[0].kind === 'file') {
-      this.dropzone.addFile(items[0].getAsFile());
+      if (this.dropzone == null) return;
+      const file = items[0].getAsFile();
+      if (file) {
+        this.dropzone.addFile(file as DropzoneNoWrapper.DropzoneFile);
+      }
     }
   }
   initImages(val: any[] | string) {
     if (!val) return;
     if (Array.isArray(val)) {
       val.map((v, i) => {
+        if (this.dropzone == null) return;
         const mockFile = { name: 'name' + i, size: 12345, url: v };
-        this.dropzone.options.addedfile.call(this.dropzone, mockFile);
-        this.dropzone.options.thumbnail.call(this.dropzone, mockFile, v);
+        DropzoneNoWrapper.options.addedfile.call(this.dropzone, mockFile);
+        DropzoneNoWrapper.options.thumbnail.call(this.dropzone, mockFile, v);
         (mockFile as any).previewElement.classList.add('dz-success');
         (mockFile as any).previewElement.classList.add('dz-complete');
         return true;
       });
     } else {
+      if (this.dropzone == null) return;
       const mockFile = { name: 'name', size: 12345, url: val };
-      this.dropzone.options.addedfile.call(this.dropzone, mockFile);
-      this.dropzone.options.thumbnail.call(this.dropzone, mockFile, val);
+      DropzoneNoWrapper.options.addedfile.call(this.dropzone, mockFile);
+      DropzoneNoWrapper.options.thumbnail.call(this.dropzone, mockFile, val);
       (mockFile as any).previewElement.classList.add('dz-success');
       (mockFile as any).previewElement.classList.add('dz-complete');
     }

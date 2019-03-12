@@ -102,14 +102,14 @@ export default class HeaderSearch extends Vue {
   }
   // Filter out the routes that can be displayed in the sidebar
   // And generate the internationalized title
-  generateRouters(routers: any, basePath = '/', prefixTitle = []): any[] {
+  generateRouters(routers: any, basePath = '/', prefixTitle: string[] = []): any[] {
     let res = [];
 
     for (const router of routers) {
       // skip hidden router
       if (router.hidden) { continue; }
 
-      const data = {
+      const data: { path: string, title: string[] } = {
         path: path.resolve(basePath, router.path),
         title: [...prefixTitle],
       };
@@ -118,7 +118,7 @@ export default class HeaderSearch extends Vue {
         // generate internationalized title
         const i18ntitle = i18n.t(`route.${router.meta.title}`);
 
-        data.title = [...data.title, i18ntitle];
+        data.title = [...data.title, i18ntitle as string];
 
         if (router.redirect !== 'noredirect') {
           // only push the routes with title

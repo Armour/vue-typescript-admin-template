@@ -5,7 +5,7 @@
  * @param  {[String]} mime [description]
  * @return {[blob]}      [description]
  */
-export default function(data: string, mime): Blob {
+export default function(data: string, mime: string): Blob {
   data = data.split(',')[1];
   data = window.atob(data);
   var ia = new Uint8Array(data.length);
