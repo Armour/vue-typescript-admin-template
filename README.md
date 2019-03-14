@@ -65,6 +65,10 @@ yarn test:e2e
 yarn test
 ```
 
+### Customize Vue configuration
+
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
 ## Browsers support
 
 Modern browsers and Internet Explorer 10+.

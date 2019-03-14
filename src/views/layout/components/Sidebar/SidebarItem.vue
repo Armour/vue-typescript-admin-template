@@ -10,7 +10,7 @@
         </el-menu-item>
       </app-link>
     </template>
-    <el-submenu v-else :index="resolvePath(item.path)">
+    <el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
         <svg-icon v-if="item.meta && item.meta.icon" :name="item.meta.icon" />
         <span v-if="item.meta && item.meta.title" slot="title">{{item.meta.title}}</span>

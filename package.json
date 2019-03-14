@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+<<<<<<< HEAD
     "test": "npm run test:unit && npm run test:e2e",
+=======
+>>>>>>> armour/develop
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
@@ -15,7 +18,8 @@
     "@types/mockjs": "^1.0.2",
     "@types/nprogress": "^0.0.29",
     "@types/tinymce": "^4.5.18",
-    "@types/webpack-env": "^1.13.7",
+    "@types/webpack-env": "^1.13.9",
+    "axios": "^0.18.0",
     "axios": "^0.18.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.6.1",
@@ -27,11 +31,11 @@
     "register-service-worker": "^1.6.2",
     "sortablejs": "^1.8.3",
     "tinymce": "^5.0.1",
-    "vue": "^2.6.7",
+    "vue": "^2.6.8",
     "vue-class-component": "^7.0.1",
     "vue-count-to": "^1.0.13",
     "vue-i18n": "^8.8.2",
-    "vue-property-decorator": "^7.3.0",
+    "vue-property-decorator": "^8.0.0",
     "vue-router": "^3.0.2",
     "vue-splitpane": "^1.0.2",
     "vue-svgicon": "^3.2.2",
@@ -52,7 +56,7 @@
     "fuse.js": "^3.4.4"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.9",
+    "@types/jest": "^24.0.11",
     "@types/echarts": "^4.1.0",
     "@types/node": "^11.9.4",
     "@types/webpack-env": "^1.13.6",
@@ -60,19 +64,19 @@
     "@types/screenfull": "^4.0.0",
     "@types/codemirror": "^0.0.72",
     "@typescript-eslint/parser": "^1.4.0",
-    "@vue/cli-plugin-babel": "^3.4.1",
-    "@vue/cli-plugin-e2e-cypress": "^3.4.1",
-    "@vue/cli-plugin-eslint": "^3.4.1",
-    "@vue/cli-plugin-pwa": "^3.4.1",
-    "@vue/cli-plugin-typescript": "^3.4.1",
-    "@vue/cli-plugin-unit-jest": "^3.4.1",
-    "@vue/cli-service": "^3.4.1",
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-plugin-pwa": "^3.5.0",
+    "@vue/cli-plugin-typescript": "^3.5.0",
+    "@vue/cli-plugin-unit-jest": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "jest": "^24.1.0",
+    "jest": "^24.3.1",
     "ts-jest": "^24.0.0",
     "eslint": "^5.14.1",
     "eslint-plugin-vue": "^5.0.0",
@@ -81,7 +85,7 @@
     "sass-loader": "^7.1.0",
     "typescript": "^3.3.3333",
     "vue-cli-plugin-element": "^1.0.1",
-    "vue-template-compiler": "^2.6.7",
+    "vue-template-compiler": "^2.6.8",
     "webpack": "^4.29.6"
   }
 }
