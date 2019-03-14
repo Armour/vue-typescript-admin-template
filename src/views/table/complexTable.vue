@@ -129,7 +129,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { ElForm } from 'element-ui/types/form';
+import { Form as ElForm } from 'element-ui';
 import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article';
 import waves from '@/directive/waves'; // Waves directive
 import { parseTime } from '@/utils';

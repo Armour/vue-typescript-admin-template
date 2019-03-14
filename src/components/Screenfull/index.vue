@@ -17,21 +17,27 @@ export default class Screenfull extends Vue {
   }
 
   click() {
-    if (!screenfull.enabled) {
-      this.$message({
-        message: 'you browser can not work',
-        type: 'warning',
-      });
-      return false;
+    if (screenfull) {
+      if (!screenfull.enabled) {
+        this.$message({
+          message: 'you browser can not work',
+          type: 'warning',
+        });
+        return false;
+      }
+      screenfull.toggle();
     }
-    screenfull.toggle();
   }
 
   init() {
-    if (screenfull.enabled) {
-      screenfull.on('change', () => {
-        this.isFullscreen = screenfull.isFullscreen;
-      });
+    if (screenfull) {
+      if (screenfull.enabled) {
+        screenfull.on('change', () => {
+          if (screenfull) {
+            this.isFullscreen = screenfull.isFullscreen;
+          }
+        });
+      }
     }
   }
 }

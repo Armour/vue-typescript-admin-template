@@ -18,7 +18,7 @@
     "@types/webpack-env": "^1.13.7",
     "axios": "^0.18.0",
     "echarts": "^4.1.0",
-    "element-ui": "^2.5.4",
+    "element-ui": "^2.6.1",
     "js-cookie": "^2.2.0",
     "mockjs": "^1.0.1-beta3",
     "normalize.css": "^8.0.1",

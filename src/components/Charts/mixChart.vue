@@ -55,12 +55,12 @@ export default class mixChart extends mixins(Resize) {
         },
       },
       tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          textStyle: {
-            color: '#fff',
-          },
-        },
+        trigger: 'axis' as 'item' | 'axis' | 'none',
+        // axisPointer: {
+        //   textStyle: {
+        //     color: '#fff',
+        //   },
+        // },
       },
       grid: {
         left: '5%',
@@ -80,7 +80,7 @@ export default class mixChart extends mixins(Resize) {
         },
         data: ['female', 'male', 'average'],
       },
-      calculable: true,
+      // calculable: true,
       xAxis: [{
         type: 'category',
         axisLine: {
