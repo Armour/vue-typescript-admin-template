@@ -15,7 +15,7 @@ Vue.use(Router);
 */
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',  // Disabled due to Github Pages doesn't support this, enable this if you need.
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
       return savedPosition;
