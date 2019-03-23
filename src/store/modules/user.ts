@@ -1,5 +1,5 @@
 import { VuexModule, Module, MutationAction, Mutation, Action, getModule } from 'vuex-module-decorators';
-import { login, logout, getInfo } from '@/api/login';
+import { login, logout, getUserInfo } from '@/api/login';
 import { getToken, setToken, removeToken } from '@/utils/auth';
 import store from '@/store';
 
@@ -31,13 +31,13 @@ class User extends VuexModule implements IUserState {
     return '';
   }
 
-  @MutationAction({ mutate: [ 'roles', 'name', 'avatar' ] })
-  public async GetInfo() {
+  @MutationAction({ mutate: ['roles', 'name', 'avatar'] })
+  public async GetUserInfo() {
     const token = getToken();
     if (token === undefined) {
-      throw Error('GetInfo: token is undefined!');
+      throw Error('GetUserInfo: token is undefined!');
     }
-    const { data } = await getInfo(token);
+    const { data } = await getUserInfo(token);
     if (data.roles && data.roles.length > 0) {
       return {
         roles: data.roles,
@@ -45,11 +45,11 @@ class User extends VuexModule implements IUserState {
         avatar: data.avatar,
       };
     } else {
-      throw Error('GetInfo: roles must be a non-null array!');
+      throw Error('GetUserInfo: roles must be a non-null array!');
     }
   }
 
-  @MutationAction({ mutate: [ 'token', 'roles' ] })
+  @MutationAction({ mutate: ['token', 'roles'] })
   public async LogOut() {
     if (getToken() === undefined) {
       throw Error('LogOut: token is undefined!');

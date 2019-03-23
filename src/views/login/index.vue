@@ -41,7 +41,7 @@ import { isValidUsername } from '@/utils/validate';
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { UserModule } from '@/store/modules/user';
 import { Route } from 'vue-router';
-import { ElForm } from 'element-ui/types/form';
+import { Form as ElForm } from 'element-ui';
 
 const validateUsername = (rule: any, value: string, callback: any) => {
   if (!isValidUsername(value)) {

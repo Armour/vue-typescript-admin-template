@@ -42,7 +42,7 @@ export default {
     };
   },
 
-  getInfo: (res: any) => {
+  getUserInfo: (res: any) => {
     const { token } = param2Obj(res.url);
     const info = users[token];
 

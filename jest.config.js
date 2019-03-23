@@ -21,6 +21,18 @@ module.exports = {
   testMatch: [
     '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
   ],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/utils/**/*.{ts,vue}',
+    '!src/utils/auth.ts',
+    '!src/utils/request.ts',
+    'src/components/**/*.{ts,vue}'
+  ],
+  coverageDirectory: '<rootDir>/tests/unit/coverage',
+  coverageReporters: [
+    'lcov',
+    'text-summary'
+  ],
   testURL: 'http://localhost/',
   globals: {
     'ts-jest': {

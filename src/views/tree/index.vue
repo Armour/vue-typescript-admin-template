@@ -14,7 +14,8 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { TreeData, ElTree } from 'element-ui/types/tree';
+import { Tree as ElTree } from 'element-ui';
+import { TreeData } from 'element-ui/types/tree';
 
 @Component
 export default class Tree extends Vue {

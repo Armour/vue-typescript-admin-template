@@ -54,7 +54,7 @@ service.interceptors.response.use(
           });
         });
       }
-      return Promise.reject('error with code: ' + res.code);
+      return Promise.reject(new Error('error with code: ' + res.code));
     } else {
       return response.data;
     }
