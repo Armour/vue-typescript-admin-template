@@ -1,27 +1,37 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
-    <div v-if="classObj.mobile && sidebar.opened" class="drawer-bg" @click="handleClickOutside"/>
-    <sidebar class="sidebar-container" :collapse="classObj.hideSidebar"/>
+  <div
+    :class="classObj"
+    class="app-wrapper"
+  >
+    <div
+      v-if="classObj.mobile && sidebar.opened"
+      class="drawer-bg"
+      @click="handleClickOutside"
+    />
+    <sidebar
+      class="sidebar-container"
+      :collapse="classObj.hideSidebar"
+    />
     <div class="main-container">
-      <navbar/>
-      <app-main/>
+      <navbar />
+      <app-main />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Navbar, AppMain, Sidebar } from './components';
-import ResizeMixin from './mixin/ResizeHandler';
-import { Component } from 'vue-property-decorator';
-import { mixins } from 'vue-class-component';
-import { DeviceType, AppModule } from '@/store/modules/app';
+import { Navbar, AppMain, Sidebar } from './components'
+import ResizeMixin from './mixin/ResizeHandler'
+import { Component } from 'vue-property-decorator'
+import { mixins } from 'vue-class-component'
+import { DeviceType, AppModule } from '@/store/modules/app'
 
 @Component({
   components: {
     Navbar,
     Sidebar,
-    AppMain,
-  },
+    AppMain
+  }
 })
 export default class Layout extends mixins(ResizeMixin) {
   get classObj() {
@@ -29,12 +39,12 @@ export default class Layout extends mixins(ResizeMixin) {
       hideSidebar: !this.sidebar.opened,
       openSidebar: this.sidebar.opened,
       withoutAnimation: this.sidebar.withoutAnimation,
-      mobile: this.device === DeviceType.Mobile,
-    };
+      mobile: this.device === DeviceType.Mobile
+    }
   }
 
   private handleClickOutside() {
-    AppModule.CloseSideBar(false);
+    AppModule.CloseSideBar(false)
   }
 }
 </script>

@@ -2,31 +2,61 @@
   <div class="wscn-http404-container">
     <div class="wscn-http404">
       <div class="pic-404">
-        <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
-        <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
+        <img
+          class="pic-404__parent"
+          src="@/assets/404_images/404.png"
+          alt="404"
+        >
+        <img
+          class="pic-404__child left"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        >
+        <img
+          class="pic-404__child mid"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        >
+        <img
+          class="pic-404__child right"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        >
       </div>
       <div class="text-404">
-        <div class="text-404__oops">OOPS!</div>
-        <div class="text-404__info">版权所有
-          <a class="link-type" href="https://wallstreetcn.com" target="_blank">华尔街见闻</a>
+        <div class="text-404__oops">
+          OOPS!
         </div>
-        <div class="text-404__headline">{{ message }}</div>
-        <div class="text-404__info">请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告</div>
-        <a href="/" class="text-404__return-home">返回首页</a>
+        <div class="text-404__info">
+          版权所有
+          <a
+            class="link-type"
+            href="https://wallstreetcn.com"
+            target="_blank"
+          >华尔街见闻</a>
+        </div>
+        <div class="text-404__headline">
+          {{ message }}
+        </div>
+        <div class="text-404__info">
+          请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告
+        </div>
+        <a
+          href="/"
+          class="text-404__return-home"
+        >返回首页</a>
       </div>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class NotFound extends Vue {
   get message() {
-    return '404 此页面不存在';
+    return '404 此页面不存在'
   }
 }
 </script>

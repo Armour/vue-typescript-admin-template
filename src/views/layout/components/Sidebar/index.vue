@@ -9,34 +9,40 @@
       active-text-color="#409EFF"
       mode="vertical"
     >
-      <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" :collapse="collapse"/>
+      <sidebar-item
+        v-for="route in routes"
+        :key="route.path"
+        :item="route"
+        :base-path="route.path"
+        :collapse="collapse"
+      />
     </el-menu>
   </el-scrollbar>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import { AppModule } from '@/store/modules/app';
-import SidebarItem from './SidebarItem.vue';
+import { Component, Vue, Prop } from 'vue-property-decorator'
+import { AppModule } from '@/store/modules/app'
+import SidebarItem from './SidebarItem.vue'
 
 @Component({
   components: {
-    SidebarItem,
-  },
+    SidebarItem
+  }
 })
 export default class SideBar extends Vue {
   @Prop({ default: false }) private collapse!: boolean;
 
   get sidebar() {
-    return AppModule.sidebar;
+    return AppModule.sidebar
   }
 
   get routes() {
-    return (this.$router as any).options.routes;
+    return (this.$router as any).options.routes
   }
 
   get isCollapse() {
-    return !this.sidebar.opened;
+    return !this.sidebar.opened
   }
 }
 </script>

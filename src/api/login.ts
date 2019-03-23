@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 export const login = (username: string, password: string) =>
   request({
@@ -6,19 +6,19 @@ export const login = (username: string, password: string) =>
     method: 'post',
     data: {
       username,
-      password,
-    },
-  });
+      password
+    }
+  })
 
 export const getUserInfo = (token: string) =>
   request({
     url: '/user/info',
     method: 'get',
-    params: { token },
-  });
+    params: { token }
+  })
 
 export const logout = () =>
   request({
     url: '/user/logout',
-    method: 'post',
-  });
+    method: 'post'
+  })

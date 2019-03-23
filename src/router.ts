@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Layout from '@/views/layout/Layout.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Layout from '@/views/layout/Layout.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
 /*
   redirect:                      if `redirect: noredirect`, it won't redirect if click on the breadcrumb
@@ -18,9 +18,9 @@ export default new Router({
   // mode: 'history',  // Disabled due to Github Pages doesn't support this, enable this if you need.
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
-      return savedPosition;
+      return savedPosition
     } else {
-      return { x: 0, y: 0 };
+      return { x: 0, y: 0 }
     }
   },
   base: process.env.BASE_URL,
@@ -28,12 +28,12 @@ export default new Router({
     {
       path: '/login',
       component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
-      meta: { hidden: true },
+      meta: { hidden: true }
     },
     {
       path: '/404',
       component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
-      meta: { hidden: true },
+      meta: { hidden: true }
     },
     {
       path: '/',
@@ -43,8 +43,8 @@ export default new Router({
       meta: { hidden: true },
       children: [{
         path: 'dashboard',
-        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
-      }],
+        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue')
+      }]
     },
     {
       path: '/example',
@@ -57,15 +57,15 @@ export default new Router({
           path: 'table',
           name: 'Table',
           component: () => import(/* webpackChunkName: "table" */ '@/views/table/index.vue'),
-          meta: { title: 'Table', icon: 'table' },
+          meta: { title: 'Table', icon: 'table' }
         },
         {
           path: 'tree',
           name: 'Tree',
           component: () => import(/* webpackChunkName: "tree" */ '@/views/tree/index.vue'),
-          meta: { title: 'Tree', icon: 'tree' },
-        },
-      ],
+          meta: { title: 'Tree', icon: 'tree' }
+        }
+      ]
     },
     {
       path: '/form',
@@ -75,9 +75,9 @@ export default new Router({
           path: 'index',
           name: 'Form',
           component: () => import(/* webpackChunkName: "form" */ '@/views/form/index.vue'),
-          meta: { title: 'Form', icon: 'form' },
-        },
-      ],
+          meta: { title: 'Form', icon: 'form' }
+        }
+      ]
     },
     {
       path: '/nested',
@@ -96,7 +96,7 @@ export default new Router({
               path: 'menu1-1',
               component: () => import(/* webpackChunkName: "menu1-1" */ '@/views/nested/menu1/menu1-1/index.vue'),
               name: 'Menu1-1',
-              meta: { title: 'Menu1-1' },
+              meta: { title: 'Menu1-1' }
             },
             {
               path: 'menu1-2',
@@ -108,31 +108,31 @@ export default new Router({
                   path: 'menu1-2-1',
                   component: () => import(/* webpackChunkName: "menu1-2-1" */ '@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
                   name: 'Menu1-2-1',
-                  meta: { title: 'Menu1-2-1' },
+                  meta: { title: 'Menu1-2-1' }
                 },
                 {
                   path: 'menu1-2-2',
                   component: () => import(/* webpackChunkName: "menu1-2-2" */ '@/views/nested/menu1/menu1-2/menu1-2-2/index.vue'),
                   name: 'Menu1-2-2',
-                  meta: { title: 'Menu1-2-2' },
-                },
-              ],
+                  meta: { title: 'Menu1-2-2' }
+                }
+              ]
             },
             {
               path: 'menu1-3',
               component: () => import(/* webpackChunkName: "menu1-3" */ '@/views/nested/menu1/menu1-3/index.vue'),
               name: 'Menu1-3',
-              meta: { title: 'Menu1-3' },
-            },
-          ],
+              meta: { title: 'Menu1-3' }
+            }
+          ]
         },
         {
           path: 'menu2',
           component: () => import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
           name: 'Menu2',
-          meta: { title: 'Menu2' },
-        },
-      ],
+          meta: { title: 'Menu2' }
+        }
+      ]
     },
     {
       path: 'external-link',
@@ -140,14 +140,14 @@ export default new Router({
       children: [
         {
           path: 'https://github.com/Armour/vue-typescript-admin-template',
-          meta: { title: 'External Link', icon: 'link' },
-        },
-      ],
+          meta: { title: 'External Link', icon: 'link' }
+        }
+      ]
     },
     {
       path: '*',
       redirect: '/404',
-      meta: { hidden: true },
-    },
-  ],
-});
+      meta: { hidden: true }
+    }
+  ]
+})

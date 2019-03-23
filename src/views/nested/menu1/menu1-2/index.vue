@@ -1,7 +1,14 @@
 <template>
   <div style="padding:30px;">
-    <el-alert :closable="false" title="menu 1-2" type="success">
-      <transition name="fade-transform" mode="out-in">
+    <el-alert
+      :closable="false"
+      title="menu 1-2"
+      type="success"
+    >
+      <transition
+        name="fade-transform"
+        mode="out-in"
+      >
         <router-view />
       </transition>
     </el-alert>
@@ -9,5 +16,5 @@
 </template>
 
 <script lang="ts">
-export default {};
+export default {}
 </script>

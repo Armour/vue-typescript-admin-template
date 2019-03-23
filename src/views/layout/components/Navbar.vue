@@ -1,20 +1,39 @@
 <template>
   <div class="navbar">
-    <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
+    <hamburger
+      :toggle-click="toggleSideBar"
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+    />
     <breadcrumb />
-    <el-dropdown class="avatar-container" trigger="click">
+    <el-dropdown
+      class="avatar-container"
+      trigger="click"
+    >
       <div class="avatar-wrapper">
-        <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar">
-        <i class="el-icon-caret-bottom"/>
+        <img
+          :src="avatar + '?imageView2/1/w/80/h/80'"
+          class="user-avatar"
+        >
+        <i class="el-icon-caret-bottom" />
       </div>
-      <el-dropdown-menu slot="dropdown" class="user-dropdown">
-        <router-link class="inlineBlock" to="/">
+      <el-dropdown-menu
+        slot="dropdown"
+        class="user-dropdown"
+      >
+        <router-link
+          class="inlineBlock"
+          to="/"
+        >
           <el-dropdown-item>
             Home
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span style="display:block;" @click="logout">LogOut</span>
+          <span
+            style="display:block;"
+            @click="logout"
+          >LogOut</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -22,35 +41,35 @@
 </template>
 
 <script lang="ts">
-import Breadcrumb from '@/components/Breadcrumb/index.vue';
-import Hamburger from '@/components/Hamburger/index.vue';
-import { Component, Vue } from 'vue-property-decorator';
-import { AppModule } from '@/store/modules/app';
-import { UserModule } from '@/store/modules/user';
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import Hamburger from '@/components/Hamburger/index.vue'
+import { Component, Vue } from 'vue-property-decorator'
+import { AppModule } from '@/store/modules/app'
+import { UserModule } from '@/store/modules/user'
 
 @Component({
   components: {
     Breadcrumb,
-    Hamburger,
-  },
+    Hamburger
+  }
 })
 export default class Navbar extends Vue {
   get sidebar() {
-    return AppModule.sidebar;
+    return AppModule.sidebar
   }
 
   get avatar() {
-    return UserModule.avatar;
+    return UserModule.avatar
   }
 
   private toggleSideBar() {
-    AppModule.ToggleSideBar(false);
+    AppModule.ToggleSideBar(false)
   }
 
   private logout() {
     UserModule.LogOut().then(() => {
-      location.reload();  // 为了重新实例化vue-router对象 避免bug
-    });
+      location.reload() // 为了重新实例化vue-router对象 避免bug
+    })
   }
 }
 </script>
@@ -103,4 +122,3 @@ export default class Navbar extends Vue {
   }
 }
 </style>
-

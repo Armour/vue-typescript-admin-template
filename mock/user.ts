@@ -1,68 +1,68 @@
-import { param2Obj } from './utils';
+import { param2Obj } from './utils'
 
 const tokens: { [index: string]: any } = {
   admin: {
-    token: 'admin-token',
+    token: 'admin-token'
   },
   editor: {
-    token: 'editor-token',
-  },
-};
+    token: 'editor-token'
+  }
+}
 
 const users: { [index: string]: any } = {
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a super administrator',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Super Admin',
+    name: 'Super Admin'
   },
   'editor-token': {
     roles: ['editor'],
     introduction: 'I am an editor',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Normal Editor',
-  },
-};
+    name: 'Normal Editor'
+  }
+}
 
 export default {
   login: (res: any) => {
-    const { username } = JSON.parse(res.body);
-    const data = tokens[username];
+    const { username } = JSON.parse(res.body)
+    const data = tokens[username]
 
     if (data) {
       return {
         code: 20000,
-        data,
-      };
+        data
+      }
     }
 
     return {
       code: 60204,
-      message: 'Account or password is incorrect.',
-    };
+      message: 'Account or password is incorrect.'
+    }
   },
 
   getUserInfo: (res: any) => {
-    const { token } = param2Obj(res.url);
-    const info = users[token];
+    const { token } = param2Obj(res.url)
+    const info = users[token]
 
     if (info) {
       return {
         code: 20000,
-        data: info,
-      };
+        data: info
+      }
     }
 
     return {
       code: 50008,
-      message: 'Login failed, unable to get user details.',
-    };
+      message: 'Login failed, unable to get user details.'
+    }
   },
 
   logout: () => {
     return {
       code: 20000,
-      data: 'success',
-    };
-  },
-};
+      data: 'success'
+    }
+  }
+}

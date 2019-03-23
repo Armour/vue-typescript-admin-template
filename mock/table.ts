@@ -1,4 +1,4 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
 
 export default {
   list: () => {
@@ -9,13 +9,13 @@ export default {
         'status|1': ['published', 'draft', 'deleted'],
         'author': 'name',
         'display_time': '@datetime',
-        'pageviews': '@integer(300, 5000)',
-      }],
-    });
+        'pageviews': '@integer(300, 5000)'
+      }]
+    })
 
     return {
       code: 20000,
-      data: items,
-    };
-  },
-};
+      data: items
+    }
+  }
+}
