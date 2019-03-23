@@ -17,6 +17,8 @@ module.exports = {
   ],
 
   rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'space-before-function-paren': [2, 'never'],
     'vue/array-bracket-spacing': 'error',
     'vue/arrow-spacing': 'error',
