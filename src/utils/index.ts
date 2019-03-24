@@ -29,7 +29,7 @@ export function parseTime(time: any, cFormat?: string): string|null {
     a: date.getDay(),
   };
   const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (key: string): string => {
-    let value = formatObj[key];
+    const value = formatObj[key];
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') {
       return ['日', '一', '二', '三', '四', '五', '六'][ value ];
@@ -37,7 +37,10 @@ export function parseTime(time: any, cFormat?: string): string|null {
     if (value < 10) {
       return '0' + value;
     }
-    return value.toString() || '0';
+    if (!value) {
+      return '0';
+    }
+    return value.toString();
   });
   return timeStr;
 }
