@@ -13,6 +13,8 @@ export interface IAppState {
     opened: boolean;
     withoutAnimation: boolean;
   };
+  language: string,
+  size: string
 }
 
 @Module({ dynamic: true, store, name: 'app' })
@@ -22,6 +24,8 @@ class App extends VuexModule implements IAppState {
     withoutAnimation: false
   };
   public device = DeviceType.Desktop;
+  public language = Cookies.get('language') || 'en';
+  public size = Cookies.get('size') || 'medium';
 
   @Action({ commit: 'TOGGLE_SIDEBAR' })
   public ToggleSideBar(withoutAnimation: boolean) {
@@ -36,6 +40,16 @@ class App extends VuexModule implements IAppState {
   @Action({ commit: 'TOGGLE_DEVICE' })
   public ToggleDevice(device: DeviceType) {
     return device
+  }
+
+  @Action({ commit: 'SET_LANGUAGE' })
+  public SetLanguage(language: string) {
+    return language
+  }
+
+  @Action({ commit: 'SET_SIZE' })
+  public SetSize(size: string) {
+    return size
   }
 
   @Mutation
@@ -59,6 +73,18 @@ class App extends VuexModule implements IAppState {
   @Mutation
   private TOGGLE_DEVICE(device: DeviceType) {
     this.device = device
+  }
+
+  @Mutation
+  private SET_LANGUAGE(language: string) {
+    Cookies.set('language', language)
+    this.language = language
+  }
+
+  @Mutation
+  private SET_SIZE(size: string) {
+    Cookies.set('size', size)
+    this.size = size
   }
 }
 
