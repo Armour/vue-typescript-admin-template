@@ -64,7 +64,7 @@ export default class Navbar extends Vue {
   get sidebar() {
     return AppModule.sidebar
   }
-  
+
   get device() {
     return AppModule.device
   }

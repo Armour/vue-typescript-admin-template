@@ -1,18 +1,20 @@
 <template>
   <div>
-    <svg-icon :name="isFullscreen?'exit-fullscreen':'fullscreen'" @click="click" />
+    <svg-icon
+      :name="isFullscreen?'exit-fullscreen':'fullscreen'"
+      @click="click"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import screenfull from 'screenfull'
-const sf: any = screenfull
+import * as screenfull from 'screenfull'
+const sf: screenfull.Screenfull = screenfull.default
 
 @Component
 export default class Screenfull extends Vue {
   private isFullscreen: boolean = false
-  
   private mounted() {
     if (sf.enabled) {
       sf.on('change', () => {
