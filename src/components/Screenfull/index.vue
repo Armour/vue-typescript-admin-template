@@ -10,13 +10,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import * as screenfull from 'screenfull'
-const sf: screenfull.Screenfull = screenfull.default
+const sf = screenfull.default
 
 @Component
 export default class Screenfull extends Vue {
   private isFullscreen: boolean = false
   private mounted() {
-    if (sf.enabled) {
+    if (sf && sf.enabled) {
       sf.on('change', () => {
         this.isFullscreen = sf.isFullscreen
       })
@@ -24,14 +24,16 @@ export default class Screenfull extends Vue {
   }
 
   private click() {
-    if (!sf.enabled) {
-      this.$message({
-        message: 'you browser can not work',
-        type: 'warning'
-      })
-      return false
+    if (sf) {
+      if (!sf.enabled) {
+        this.$message({
+          message: 'you browser can not work',
+          type: 'warning'
+        })
+        return false
+      }
+      sf.toggle()
     }
-    sf.toggle()
   }
 }
 </script>
