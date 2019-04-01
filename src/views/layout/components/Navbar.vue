@@ -6,43 +6,49 @@
       class="hamburger-container"
     />
     <breadcrumb />
-    <el-dropdown
-      class="avatar-container"
-      trigger="click"
-    >
-      <div class="avatar-wrapper">
-        <img
-          :src="avatar + '?imageView2/1/w/80/h/80'"
-          class="user-avatar"
-        >
-        <i class="el-icon-caret-bottom" />
-      </div>
-      <el-dropdown-menu
-        slot="dropdown"
-        class="user-dropdown"
+    <div class="right-menu">
+      <template v-if="device">
+        <screenfull class="right-menu-item hover-effect" />
+      </template>
+      <el-dropdown
+        class="avatar-container right-menu-item hover-effect"
+        trigger="click"
       >
-        <router-link
-          class="inlineBlock"
-          to="/"
+        <div class="avatar-wrapper">
+          <img
+            :src="avatar + '?imageView2/1/w/80/h/80'"
+            class="user-avatar"
+          >
+          <i class="el-icon-caret-bottom" />
+        </div>
+        <el-dropdown-menu
+          slot="dropdown"
+          class="user-dropdown"
         >
-          <el-dropdown-item>
-            Home
+          <router-link
+            class="inlineBlock"
+            to="/"
+          >
+            <el-dropdown-item>
+              Home
+            </el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided>
+            <span
+              style="display:block;"
+              @click="logout"
+            >LogOut</span>
           </el-dropdown-item>
-        </router-link>
-        <el-dropdown-item divided>
-          <span
-            style="display:block;"
-            @click="logout"
-          >LogOut</span>
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
+import Screenfull from '@/components/Screenfull/index.vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/user'
@@ -50,12 +56,17 @@ import { UserModule } from '@/store/modules/user'
 @Component({
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    Screenfull
   }
 })
 export default class Navbar extends Vue {
   get sidebar() {
     return AppModule.sidebar
+  }
+
+  get device() {
+    return AppModule.device
   }
 
   get avatar() {
@@ -87,36 +98,54 @@ export default class Navbar extends Vue {
     padding: 0 10px;
   }
 
-  .screenfull {
-    position: absolute;
-    right: 90px;
-    top: 16px;
-    color: red;
-  }
+  .right-menu {
+    float: right;
+    height: 100%;
+    line-height: 50px;
 
-  .avatar-container {
-    height: 50px;
-    display: inline-block;
-    position: absolute;
-    right: 35px;
+    &:focus {
+      outline: none;
+    }
 
-    .avatar-wrapper {
-      cursor: pointer;
-      margin-top: 5px;
-      position: relative;
-      line-height: initial;
+    .right-menu-item {
+      display: inline-block;
+      padding: 0 8px;
+      height: 100%;
+      font-size: 18px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
 
-      .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
+      &.hover-effect {
+        cursor: pointer;
+        transition: background .3s;
+
+        &:hover {
+          background: rgba(0, 0, 0, .025)
+        }
       }
+    }
 
-      .el-icon-caret-bottom {
-        position: absolute;
-        right: -20px;
-        top: 25px;
-        font-size: 12px;
+    .avatar-container {
+      margin-right: 30px;
+
+      .avatar-wrapper {
+        margin-top: 5px;
+        position: relative;
+
+        .user-avatar {
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+        }
+
+        .el-icon-caret-bottom {
+          cursor: pointer;
+          position: absolute;
+          right: -20px;
+          top: 25px;
+          font-size: 12px;
+        }
       }
     }
   }

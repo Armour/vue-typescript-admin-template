@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -18,6 +19,7 @@
     "nprogress": "^0.2.0",
     "path-to-regexp": "^3.0.0",
     "register-service-worker": "^1.6.2",
+    "screenfull": "^4.1.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-i18n": "^8.10.0",

@@ -61,6 +61,13 @@ yarn test:unit
 yarn test:e2e
 ```
 
+### Generate all svg components
+
+```bash
+yarn svg
+# Note: need to run "yarn global add vue-svgicon" first
+```
+
 ### Customize Vue configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
