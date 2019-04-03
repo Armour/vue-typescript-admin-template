@@ -50,7 +50,7 @@ import { Vue, Component } from 'vue-property-decorator'
     clipboard
   }
 })
-export default class ClipboardDemo extends Vue {
+export default class Clipboard extends Vue {
   private activeName = 'directly'
   private inputData = 'https://github.com/Armour/vue-typescript-admin-template'
 

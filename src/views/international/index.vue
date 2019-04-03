@@ -8,7 +8,7 @@
         slot="header"
         class="clearfix"
       >
-        <svg-icon icon-class="international" />
+        <svg-icon name="international" />
         <span style="margin-left:10px;">{{ $t('i18nView.title') }}</span>
       </div>
       <div>
