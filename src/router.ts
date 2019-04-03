@@ -80,6 +80,18 @@ export default new Router({
       ]
     },
     {
+      path: '/icon',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          component: () => import(/* webpackChunkName: "icons" */ '@/views/svg-icons/index.vue'),
+          name: 'Icons',
+          meta: { title: 'Icons', icon: 'icon', noCache: true }
+        }
+      ]
+    },
+    {
       path: '/nested',
       component: Layout,
       redirect: '/nested/menu1',
@@ -140,7 +152,7 @@ export default new Router({
       children: [
         {
           path: 'index',
-          component: () => import(/* webpackChunkName: "i18n" */ '@/views/i18n-demo/index.vue'),
+          component: () => import(/* webpackChunkName: "i18n" */ '@/views/international/index.vue'),
           name: 'I18n',
           meta: { title: 'I18n', icon: 'international' }
         }
@@ -153,8 +165,8 @@ export default new Router({
       children: [
         {
           path: 'index',
-          component: () => import(/* webpackChunkName: "clipboardDemo" */ '@/views/clipboard/index.vue'),
-          name: 'ClipboardDemo',
+          component: () => import(/* webpackChunkName: "clipboard" */ '@/views/clipboard/index.vue'),
+          name: 'Clipboard',
           meta: { title: 'Clipboard', icon: 'clipboard' }
         }
       ]
