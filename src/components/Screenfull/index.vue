@@ -1,7 +1,7 @@
 <template>
   <div>
     <svg-icon
-      :name="isFullscreen?'exit-fullscreen':'fullscreen'"
+      :name="isFullscreen? 'exit-fullscreen': 'fullscreen'"
       @click="click"
     />
   </div>
@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import * as screenfull from 'screenfull'
-const sf = screenfull.default
+const sf = screenfull
 
 @Component
 export default class Screenfull extends Vue {
