@@ -142,7 +142,20 @@ export default new Router({
           path: 'index',
           component: () => import(/* webpackChunkName: "i18n" */ '@/views/i18n-demo/index.vue'),
           name: 'I18n',
-          meta: { title: 'i18n', icon: 'international' }
+          meta: { title: 'I18n', icon: 'international' }
+        }
+      ]
+    },
+    {
+      path: '/clipboard',
+      component: Layout,
+      redirect: 'noredirect',
+      children: [
+        {
+          path: 'index',
+          component: () => import(/* webpackChunkName: "clipboardDemo" */ '@/views/clipboard/index.vue'),
+          name: 'ClipboardDemo',
+          meta: { title: 'Clipboard', icon: 'clipboard' }
         }
       ]
     },
