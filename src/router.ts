@@ -26,6 +26,17 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/redirect',
+      component: Layout,
+      meta: { hidden: true },
+      children: [
+        {
+          path: '/redirect/:path*',
+          component: () => import(/* webpackChunkName: "redirect" */ '@/views/redirect/index.vue')
+        }
+      ]
+    },
+    {
       path: '/login',
       component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
       meta: { hidden: true }
