@@ -1,12 +1,6 @@
-import {
-  VuexModule,
-  Module,
-  Mutation,
-  Action,
-  getModule
-} from 'vuex-module-decorators'
+import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
+import { Route } from 'vue-router'
 import store from '@/store'
-import { RouterOptions, Route } from 'vue-router'
 
 export interface ITagView extends Route {
   title?: String;
@@ -24,113 +18,45 @@ class TagsView extends VuexModule implements ITagsViewState {
 
   @Action
   public addView(view: ITagView) {
-    this.context.dispatch('addVisitedView', view)
-    this.context.dispatch('addCachedView', view)
-  }
-
-  @Action({ commit: 'ADD_VISITED_VIEW' })
-  public addVisitedView(view: ITagView) {
-    return view
-  }
-
-  @Action({ commit: 'ADD_CACHED_VIEW' })
-  public addCachedView(view: ITagView) {
-    return view
+    this.ADD_VISITED_VIEW(view)
+    this.ADD_CACHED_VIEW(view)
   }
 
   @Action
-  public delView(view: ITagView) {
-    return new Promise(resolve => {
-      this.context.dispatch('delVisitedView', view)
-      this.context.dispatch('delCachedView', view)
-      resolve({
-        visitedViews: [...this.visitedViews],
-        cachedViews: [...this.cachedViews]
-      })
-    })
+  public async delView(view: ITagView): Promise<ITagsViewState> {
+    await this.DEL_VISITED_VIEW(view)
+    await this.DEL_CACHED_VIEW(view)
+    return {
+      visitedViews: this.visitedViews,
+      cachedViews: this.cachedViews
+    }
   }
 
   @Action
-  public delVisitedView(view: ITagView) {
-    return new Promise(resolve => {
-      this.context.commit('DEL_VISITED_VIEW', view)
-      resolve([...this.visitedViews])
-    })
+  public async delCachedView(view: ITagView) {
+    await this.DEL_CACHED_VIEW(view)
   }
 
   @Action
-  public delCachedView(view: ITagView) {
-    return new Promise(resolve => {
-      this.context.commit('DEL_CACHED_VIEW', view)
-      resolve([...this.cachedViews])
-    })
+  public async delOthersViews(view: ITagView) {
+    await this.DEL_OTHERS_VISITED_VIEWS(view)
+    await this.DEL_OTHERS_CACHED_VIEWS(view)
   }
 
   @Action
-  public delOthersViews(view: ITagView) {
-    return new Promise(resolve => {
-      this.context.dispatch('delOthersVisitedViews', view)
-      this.context.dispatch('delOthersCachedViews', view)
-      resolve({
-        visitedViews: [...this.visitedViews],
-        cachedViews: [...this.cachedViews]
-      })
-    })
+  public async delAllViews() {
+    await this.DEL_ALL_VISITED_VIEWS()
+    await this.DEL_ALL_CACHED_VIEWS()
   }
 
   @Action
-  public delOthersVisitedViews(view: ITagView) {
-    return new Promise(resolve => {
-      this.context.commit('DEL_OTHERS_VISITED_VIEWS', view)
-      resolve([...this.visitedViews])
-    })
-  }
-
-  @Action
-  public delOthersCachedViews(view: ITagView) {
-    return new Promise(resolve => {
-      this.context.commit('DEL_OTHERS_CACHED_VIEWS', view)
-      resolve([...this.cachedViews])
-    })
-  }
-
-  @Action
-  public delAllViews() {
-    return new Promise(resolve => {
-      this.context.dispatch('delAllVisitedViews')
-      this.context.dispatch('delAllCachedViews')
-      resolve({
-        visitedViews: [...this.visitedViews],
-        cachedViews: [...this.cachedViews]
-      })
-    })
-  }
-
-  @Action
-  public delAllVisitedViews() {
-    return new Promise(resolve => {
-      this.context.commit('DEL_ALL_VISITED_VIEWS')
-      resolve([...this.visitedViews])
-    })
-  }
-
-  @Action
-  public delAllCachedViews() {
-    return new Promise(resolve => {
-      this.context.commit('DEL_ALL_CACHED_VIEWS')
-      resolve([...this.cachedViews])
-    })
-  }
-
-  @Action({ commit: 'UPDATE_VISITED_VIEW' })
   public updateVisitedView(view: ITagView) {
-    return view
+    this.UPDATE_VISITED_VIEW(view)
   }
 
   @Mutation
   private ADD_VISITED_VIEW(view: ITagView) {
     if (this.visitedViews.some(v => (v as ITagView).path === view.path)) return
-
     this.visitedViews.push(
       Object.assign({}, view, {
         title: view.meta.title || 'no-name'
@@ -158,10 +84,9 @@ class TagsView extends VuexModule implements ITagsViewState {
 
   @Mutation
   private DEL_CACHED_VIEW(view: ITagView) {
-    for (const i of this.cachedViews) {
-      if (i === view.name) {
-        const index = this.cachedViews.indexOf(i)
-        this.cachedViews.splice(index, 1)
+    for (const [i, v] of this.cachedViews.entries()) {
+      if (v === view.name) {
+        this.cachedViews.splice(i, 1)
         break
       }
     }
@@ -179,10 +104,9 @@ class TagsView extends VuexModule implements ITagsViewState {
 
   @Mutation
   private DEL_OTHERS_CACHED_VIEWS(view: ITagView) {
-    for (const i of this.cachedViews) {
-      if (i === view.name) {
-        const index = this.cachedViews.indexOf(i)
-        this.cachedViews = this.cachedViews.slice(index, index + 1)
+    for (const [i, v] of this.cachedViews.entries()) {
+      if (v === view.name) {
+        this.cachedViews = this.cachedViews.slice(i, i + 1)
         break
       }
     }

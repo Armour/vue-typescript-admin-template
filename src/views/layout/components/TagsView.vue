@@ -11,7 +11,7 @@
         :class="{'active': currentTag.path === tag.path}"
         :to="tag"
         class="tags-view-item"
-        @contextmenu.prevent.native="openMenu(tag,$event)"
+        @contextmenu.prevent.native="openMenu(tag, $event)"
       >
         {{ tag.title }}
         <span
@@ -22,7 +22,7 @@
     </scroll-pane>
     <ul
       v-show="visible"
-      :style="{left: left+'px',top: top+'px'}"
+      :style="{left: left+'px', top: top+'px'}"
       class="contextmenu"
     >
       <li @click="refreshSelectedTag(selectedTag)">
@@ -40,12 +40,13 @@
     </ul>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import ScrollPane from '@/components/ScrollPane/index.vue'
 import VueRouter, { Route } from 'vue-router'
 import { ElBreadcrumbItem } from 'element-ui/types/breadcrumb-item'
-import { TagsViewModule, ITagsViewState, ITagView } from '@/store/modules/tagsView'
+import { TagsViewModule, ITagView } from '@/store/modules/tagsView'
+import ScrollPane from '@/components/ScrollPane/index.vue'
 
 @Component({
   components: {
@@ -104,10 +105,9 @@ export default class TagsView extends Vue {
 
   private addViewTags() {
     const route: ITagView | null = this.generateRoute()
-    if (!route) {
-      return false
+    if (route) {
+      TagsViewModule.addView(route)
     }
-    TagsViewModule.addView(route)
   }
 
   private isActive(route: ITagView): boolean {
@@ -116,7 +116,7 @@ export default class TagsView extends Vue {
 
   private closeSelectedTag(view: ITagView) {
     TagsViewModule.delView(view)
-      .then((value: any) => {
+      .then((value) => {
         if (this.isActive(view)) {
           let views: ITagView[] = value.visitedViews
           let latestView: ITagView = views.slice(-1)[0]
@@ -130,17 +130,14 @@ export default class TagsView extends Vue {
   }
 
   private moveToCurrentTag() {
-    const tags: ElBreadcrumbItem[] = this.$refs.tag as ElBreadcrumbItem[]
-
     this.$nextTick(() => {
+      const tags: ElBreadcrumbItem[] = this.$refs.tag as ElBreadcrumbItem[]
       for (const tag of tags) {
         if ((tag.to as ITagView).path === this.$route.path) {
           (this.$refs.scrollPane as ScrollPane).moveToTarget(tag.$el as HTMLElement)
-
           if ((tag.to as ITagView).fullPath !== this.$route.fullPath) {
             TagsViewModule.updateVisitedView(this.$route)
           }
-
           break
         }
       }
@@ -157,7 +154,9 @@ export default class TagsView extends Vue {
 
   private closeAllTags() {
     TagsViewModule.delAllViews()
-    this.$router.push('/')
+      .then(() => {
+        this.$router.push('/')
+      })
   }
 
   private openMenu(tag: ITagView, e: MouseEvent) {
@@ -174,13 +173,14 @@ export default class TagsView extends Vue {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style lang="scss" scoped>
 .tags-view-container {
   height: 34px;
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #d8dce5;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+
   .tags-view-wrapper {
     .tags-view-item {
       display: inline-block;
@@ -194,16 +194,20 @@ export default class TagsView extends Vue {
       font-size: 12px;
       margin-left: 5px;
       margin-top: 4px;
+
       &:first-of-type {
         margin-left: 15px;
       }
+
       &:last-of-type {
         margin-right: 15px;
       }
+
       &.active {
         background-color: #42b983;
         color: #fff;
         border-color: #42b983;
+
         &::before {
           content: '';
           background: #fff;
@@ -217,6 +221,7 @@ export default class TagsView extends Vue {
       }
     }
   }
+
   .contextmenu {
     margin: 0;
     background: #fff;
@@ -229,10 +234,12 @@ export default class TagsView extends Vue {
     font-weight: 400;
     color: #333;
     box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+
     li {
       margin: 0;
       padding: 7px 16px;
       cursor: pointer;
+
       &:hover {
         background: #eee;
       }
@@ -241,8 +248,8 @@ export default class TagsView extends Vue {
 }
 </style>
 
-<style rel="stylesheet/scss" lang="scss">
-//reset element css of el-icon-close
+<style lang="scss">
+// Reset element css of el-icon-close
 .tags-view-wrapper {
   .tags-view-item {
     .el-icon-close {
@@ -253,11 +260,13 @@ export default class TagsView extends Vue {
       text-align: center;
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       transform-origin: 100% 50%;
+
       &:before {
         transform: scale(0.6);
         display: inline-block;
         vertical-align: -3px;
       }
+
       &:hover {
         background-color: #b4bccc;
         color: #fff;

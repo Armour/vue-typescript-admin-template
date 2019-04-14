@@ -149,7 +149,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import local from './local'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'

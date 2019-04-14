@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 // import openWindow from '@/utils/openWindow'
 import { Component, Vue } from 'vue-property-decorator'
 
