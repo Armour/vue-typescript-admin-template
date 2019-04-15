@@ -183,6 +183,19 @@ export default new Router({
       ]
     },
     {
+      path: '/tab',
+      component: Layout,
+      redirect: 'noredirect',
+      children: [
+        {
+          path: 'index',
+          component: () => import(/* webpackChunkName: "clipboard" */ '@/views/tab/index.vue'),
+          name: 'Tab',
+          meta: { title: 'Tab', icon: 'tab' }
+        }
+      ]
+    },
+    {
       path: 'external-link',
       component: Layout,
       children: [
