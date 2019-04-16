@@ -189,7 +189,7 @@ export default new Router({
       children: [
         {
           path: 'index',
-          component: () => import(/* webpackChunkName: "clipboard" */ '@/views/tab/index.vue'),
+          component: () => import(/* webpackChunkName: "tab" */ '@/views/tab/index.vue'),
           name: 'Tab',
           meta: { title: 'Tab', icon: 'tab' }
         }
