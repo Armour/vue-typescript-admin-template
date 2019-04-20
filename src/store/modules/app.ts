@@ -27,31 +27,6 @@ class App extends VuexModule implements IAppState {
   public language = Cookies.get('language') || 'en';
   public size = Cookies.get('size') || 'medium';
 
-  @Action({ commit: 'TOGGLE_SIDEBAR' })
-  public ToggleSideBar(withoutAnimation: boolean) {
-    return withoutAnimation
-  }
-
-  @Action({ commit: 'CLOSE_SIDEBAR' })
-  public CloseSideBar(withoutAnimation: boolean) {
-    return withoutAnimation
-  }
-
-  @Action({ commit: 'TOGGLE_DEVICE' })
-  public ToggleDevice(device: DeviceType) {
-    return device
-  }
-
-  @Action({ commit: 'SET_LANGUAGE' })
-  public SetLanguage(language: string) {
-    return language
-  }
-
-  @Action({ commit: 'SET_SIZE' })
-  public SetSize(size: string) {
-    return size
-  }
-
   @Mutation
   private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
     if (this.sidebar.opened) {
@@ -85,6 +60,31 @@ class App extends VuexModule implements IAppState {
   private SET_SIZE(size: string) {
     Cookies.set('size', size)
     this.size = size
+  }
+
+  @Action
+  public ToggleSideBar(withoutAnimation: boolean) {
+    this.TOGGLE_SIDEBAR(withoutAnimation)
+  }
+
+  @Action
+  public CloseSideBar(withoutAnimation: boolean) {
+    this.CLOSE_SIDEBAR(withoutAnimation)
+  }
+
+  @Action
+  public ToggleDevice(device: DeviceType) {
+    this.TOGGLE_DEVICE(device)
+  }
+
+  @Action
+  public SetLanguage(language: string) {
+    this.SET_LANGUAGE(language)
+  }
+
+  @Action
+  public SetSize(size: string) {
+    this.SET_SIZE(size)
   }
 }
 

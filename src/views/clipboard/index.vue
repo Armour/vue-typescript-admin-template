@@ -13,7 +13,7 @@
         <el-button
           type="primary"
           icon="document"
-          @click="handleCopy(inputData, $event)"
+          @click="handleClipboard(inputData, $event)"
         >
           copy
         </el-button>
@@ -29,7 +29,7 @@
         />
         <el-button
           v-clipboard:copy="inputData"
-          v-clipboard:success="handleSuccess"
+          v-clipboard:success="clipboardSuccess"
           type="primary"
           icon="document"
         >
@@ -41,25 +41,21 @@
 </template>
 
 <script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
 import { clipboard } from '@/directives/clipboard' // use clipboard by v-directive
 import { handleClipboard, clipboardSuccess } from '@/utils/clipboard' // use clipboard directly
-import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
   directives: {
     clipboard
+  },
+  methods: {
+    handleClipboard,
+    clipboardSuccess
   }
 })
 export default class Clipboard extends Vue {
   private activeName = 'directly'
   private inputData = 'https://github.com/Armour/vue-typescript-admin-template'
-
-  private handleCopy(text: string, event: Event) {
-    handleClipboard(text, event)
-  }
-
-  private handleSuccess() {
-    clipboardSuccess()
-  }
 }
 </script>

@@ -24,13 +24,13 @@ export default class ScrollPane extends Vue {
     scrollWrapper.scrollLeft = scrollWrapper.scrollLeft + eventDelta / 4
   }
 
-  public moveToTarget($target: HTMLElement) {
+  public moveToTarget(target: HTMLElement) {
     const scrollContainer: Vue = this.$refs.scrollContainer as Vue
     const container: HTMLElement = scrollContainer.$el as HTMLElement
     const containerWidth: number = container.offsetWidth
     const scrollWrapper: HTMLElement = scrollContainer.$refs.wrap as HTMLElement
-    const targetLeft: number = $target.offsetLeft
-    const targetWidth: number = $target.offsetWidth
+    const targetLeft: number = target.offsetLeft
+    const targetWidth: number = target.offsetWidth
     if (targetLeft > containerWidth) {
       // tag in the right
       scrollWrapper.scrollLeft = targetLeft - containerWidth + targetWidth + padding
