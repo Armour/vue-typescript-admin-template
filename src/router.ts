@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/views/layout/Layout.vue'
 
+/* Router Modules */
+import chartsRouter from '@/router/modules/charts'
+
 Vue.use(Router)
 
 /*
@@ -57,6 +60,10 @@ export default new Router({
         component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue')
       }]
     },
+
+    /** when your routing map is too long, you can split it into small modules **/
+    chartsRouter,
+
     {
       path: '/example',
       component: Layout,
