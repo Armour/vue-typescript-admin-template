@@ -8,5 +8,8 @@
 </template>
 
 <script lang="ts">
-export default {}
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
+export default class Menu2 extends Vue {}
 </script>

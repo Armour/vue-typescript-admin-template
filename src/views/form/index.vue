@@ -111,7 +111,7 @@ export default class Form extends Vue {
     type: [],
     resource: '',
     desc: ''
-  };
+  }
 
   private onSubmit() {
     this.$message('submit!')

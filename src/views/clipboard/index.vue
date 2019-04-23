@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { clipboard } from '@/directives/clipboard' // use clipboard by v-directive
 import { handleClipboard, clipboardSuccess } from '@/utils/clipboard' // use clipboard directly
 

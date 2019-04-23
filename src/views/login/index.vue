@@ -96,11 +96,11 @@
 </template>
 
 <script lang="ts">
-import { isValidUsername } from '@/utils/validate'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { UserModule } from '@/store/modules/user'
 import { Route } from 'vue-router'
 import { Form as ElForm, Input } from 'element-ui'
+import { UserModule } from '@/store/modules/user'
+import { isValidUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect/index.vue'
 import SocialSign from './socialSignin.vue'
 
@@ -129,15 +129,15 @@ export default class Login extends Vue {
   private loginForm = {
     username: 'admin',
     password: '111111'
-  };
+  }
   private loginRules = {
     username: [{ required: true, trigger: 'blur', validator: validateUsername }],
     password: [{ required: true, trigger: 'blur', validator: validatePassword }]
-  };
-  private passwordType = 'password';
-  private loading = false;
-  private showDialog = false;
-  private redirect: string | undefined = undefined;
+  }
+  private passwordType = 'password'
+  private loading = false
+  private showDialog = false
+  private redirect: string | undefined = undefined
 
   @Watch('$route', { immediate: true })
   private OnRouteChange(route: Route) {

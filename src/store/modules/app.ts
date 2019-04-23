@@ -1,5 +1,6 @@
-import Cookies from 'js-cookie'
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
+import { getSidebarStatus, getSize, setSidebarStatus, setLanguage, setSize } from '@/utils/cookies'
+import { getLocale } from '@/lang'
 import store from '@/store'
 
 export enum DeviceType {
@@ -8,41 +9,41 @@ export enum DeviceType {
 }
 
 export interface IAppState {
-  device: DeviceType;
+  device: DeviceType
   sidebar: {
-    opened: boolean;
-    withoutAnimation: boolean;
-  };
-  language: string,
+    opened: boolean
+    withoutAnimation: boolean
+  }
+  language: string
   size: string
 }
 
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
   public sidebar = {
-    opened: Cookies.get('sidebarStatus') !== 'closed',
+    opened: getSidebarStatus() !== 'closed',
     withoutAnimation: false
-  };
-  public device = DeviceType.Desktop;
-  public language = Cookies.get('language') || 'en';
-  public size = Cookies.get('size') || 'medium';
+  }
+  public device = DeviceType.Desktop
+  public language = getLocale()
+  public size = getSize() || 'medium'
 
   @Mutation
   private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
-    if (this.sidebar.opened) {
-      Cookies.set('sidebarStatus', 'closed')
-    } else {
-      Cookies.set('sidebarStatus', 'opened')
-    }
     this.sidebar.opened = !this.sidebar.opened
     this.sidebar.withoutAnimation = withoutAnimation
+    if (this.sidebar.opened) {
+      setSidebarStatus('opened')
+    } else {
+      setSidebarStatus('closed')
+    }
   }
 
   @Mutation
   private CLOSE_SIDEBAR(withoutAnimation: boolean) {
-    Cookies.set('sidebarStatus', 'closed')
     this.sidebar.opened = false
     this.sidebar.withoutAnimation = withoutAnimation
+    setSidebarStatus('closed')
   }
 
   @Mutation
@@ -52,14 +53,14 @@ class App extends VuexModule implements IAppState {
 
   @Mutation
   private SET_LANGUAGE(language: string) {
-    Cookies.set('language', language)
     this.language = language
+    setLanguage(this.language)
   }
 
   @Mutation
   private SET_SIZE(size: string) {
-    Cookies.set('size', size)
     this.size = size
+    setSize(this.size)
   }
 
   @Action

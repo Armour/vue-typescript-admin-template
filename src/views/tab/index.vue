@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import TabPane from './components/TabPane.vue'
-import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
   components: {
@@ -45,9 +45,9 @@ export default class Tab extends Vue {
     { label: 'USA', key: 'US' },
     { label: 'Japan', key: 'JP' },
     { label: 'Eurozone', key: 'EU' }
-  ];
-  private activeName = 'CN';
-  private createdTimes = 0;
+  ]
+  private activeName = 'CN'
+  private createdTimes = 0
 
   private showCreatedTimes() {
     this.createdTimes = this.createdTimes + 1

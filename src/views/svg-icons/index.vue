@@ -31,9 +31,9 @@
 </template>
 
 <script lang="ts">
-import icons from './requireIcons'
+import { Component, Vue } from 'vue-property-decorator'
 import { handleClipboard } from '@/utils/clipboard'
-import { Vue, Component } from 'vue-property-decorator'
+import icons from './requireIcons'
 
 @Component({
   methods: {

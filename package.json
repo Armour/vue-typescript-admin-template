@@ -58,7 +58,7 @@
     "sass": "^1.19.0",
     "sass-loader": "^7.1.0",
     "ts-jest": "^24.0.2",
-    "typescript": "3.4.4",
+    "typescript": "3.4.5",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.30.0"

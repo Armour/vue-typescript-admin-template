@@ -1,7 +1,6 @@
 export default {
   route: {
     dashboard: 'Panel de control',
-    introduction: 'Introducción',
     documentation: 'Documentación',
     guide: 'Guía',
     permission: 'Permisos',
@@ -10,7 +9,6 @@ export default {
     directivePermission: 'Permisos de la directiva',
     icons: 'Iconos',
     components: 'Componentes',
-    componentIndex: 'Introducción',
     tinymce: 'Tinymce',
     markdown: 'Markdown',
     jsonEditor: 'Editor JSON',
@@ -43,8 +41,6 @@ export default {
     dragTable: 'Arrastrar tabla',
     inlineEditTable: 'Editor',
     complexTable: 'Complex Table',
-    treeTable: 'Tree Table',
-    customTreeTable: 'Custom TreeTable',
     tab: 'Pestaña',
     form: 'Formulario',
     createArticle: 'Crear artículo',
@@ -63,7 +59,7 @@ export default {
     pdf: 'PDF',
     exportZip: 'Exportar a Zip',
     theme: 'Tema',
-    clipboardDemo: 'Clipboard',
+    clipboard: 'Clipboard',
     i18n: 'I18n',
     externalLink: 'Enlace externo'
   },
@@ -135,6 +131,9 @@ export default {
     delete: 'Eliminar',
     cancel: 'Cancelar',
     confirm: 'Confirmar'
+  },
+  example: {
+    warning: 'Creating and editing pages cannot be cached by keep-alive because keep-alive include does not currently support caching based on routes, so it is currently cached based on component name. If you want to achieve a similar caching effect, you can use a browser caching scheme such as localStorage. Or do not use keep-alive include to cache all pages directly. See details'
   },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',

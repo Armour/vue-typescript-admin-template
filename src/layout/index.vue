@@ -8,24 +8,29 @@
       class="drawer-bg"
       @click="handleClickOutside"
     />
-    <sidebar
-      class="sidebar-container"
-      :collapse="classObj.hideSidebar"
-    />
-    <div class="main-container">
-      <navbar />
-      <tags-view />
+    <sidebar class="sidebar-container" />
+    <div
+      :class="{hasTagsView: needTagsView}"
+      class="main-container"
+    >
+      <div :class="{'fixed-header': fixedHeader}">
+        <navbar />
+        <tags-view v-if="needTagsView" />
+      </div>
       <app-main />
+      <!-- <right-panel v-if="showSettings">
+        <settings />
+      </right-panel> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Navbar, AppMain, Sidebar, TagsView } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
 import { Component } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { DeviceType, AppModule } from '@/store/modules/app'
+import { Navbar, AppMain, Sidebar, TagsView } from './components'
+import ResizeMixin from './mixin/ResizeHandler'
 
 @Component({
   components: {
@@ -43,6 +48,16 @@ export default class Layout extends mixins(ResizeMixin) {
       withoutAnimation: this.sidebar.withoutAnimation,
       mobile: this.device === DeviceType.Mobile
     }
+  }
+
+  get needTagsView() {
+    // TODO: add setting and remove this
+    return true
+  }
+
+  get fixedHeader() {
+    // TODO: add setting and remove this
+    return false
   }
 
   private handleClickOutside() {
@@ -102,6 +117,19 @@ export default class Layout extends mixins(ResizeMixin) {
     }
   }
 
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    width: calc(100% - #{$sideBarWidth});
+    transition: width 0.28s;
+
+    &.hideSidebar {
+      width: calc(100% - 54px)
+    }
+  }
+
   /* for mobile response 适配移动端 */
   .mobile {
     .main-container {
@@ -123,6 +151,10 @@ export default class Layout extends mixins(ResizeMixin) {
         transition-duration: 0.3s;
         transform: translate3d(-$sideBarWidth, 0, 0);
       }
+    }
+
+    &.fixed-header {
+      width: 100%;
     }
   }
 

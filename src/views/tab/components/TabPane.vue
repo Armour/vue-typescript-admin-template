@@ -87,9 +87,9 @@
 </template>
 
 <script lang="ts">
-import * as filters from '@/filters'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import * as filters from '@/filters'
 
 @Component({
   filters: {
@@ -105,14 +105,14 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
   }
 })
 export default class TabPane extends Vue {
-  @Prop({ default: 'CN' }) private type!: string;
-  private list = null;
+  @Prop({ default: 'CN' }) private type!: string
+  private list = null
   private listQuery = {
     page: 1,
     limit: 5,
     type: this.type,
     sort: 'id'
-  };
+  }
   private loading = false
 
   private created() {

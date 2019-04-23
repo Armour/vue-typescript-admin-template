@@ -1,14 +1,18 @@
 <template>
   <div class="navbar">
     <hamburger
-      :toggle-click="toggleSideBar"
       :is-active="sidebar.opened"
       class="hamburger-container"
+      @toggleClick="toggleSideBar"
     />
-    <breadcrumb />
+    <breadcrumb
+      id="breadcrumb-container"
+      class="breadcrumb-container"
+    />
     <div class="right-menu">
-      <template v-if="device">
+      <template v-if="device!=='mobile'">
         <screenfull class="right-menu-item hover-effect" />
+        <lang-select class="right-menu-item hover-effect" />
       </template>
       <el-dropdown
         class="avatar-container right-menu-item hover-effect"
@@ -16,28 +20,36 @@
       >
         <div class="avatar-wrapper">
           <img
-            :src="avatar + '?imageView2/1/w/80/h/80'"
+            :src="avatar+'?imageView2/1/w/80/h/80'"
             class="user-avatar"
           >
           <i class="el-icon-caret-bottom" />
         </div>
-        <el-dropdown-menu
-          slot="dropdown"
-          class="user-dropdown"
-        >
-          <router-link
-            class="inlineBlock"
-            to="/"
-          >
+        <el-dropdown-menu slot="dropdown">
+          <router-link to="/">
             <el-dropdown-item>
-              Home
+              {{ $t('navbar.dashboard') }}
             </el-dropdown-item>
           </router-link>
+          <a
+            target="_blank"
+            href="https://github.com/armour/vue-typescript-admin-template/"
+          >
+            <el-dropdown-item>
+              {{ $t('navbar.github') }}
+            </el-dropdown-item>
+          </a>
+          <a
+            target="_blank"
+            href="https://panjiachen.github.io/vue-element-admin-site/#/"
+          >
+            <el-dropdown-item>Docs</el-dropdown-item>
+          </a>
           <el-dropdown-item divided>
             <span
               style="display:block;"
               @click="logout"
-            >LogOut</span>
+            >{{ $t('navbar.logOut') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -46,17 +58,19 @@
 </template>
 
 <script lang="ts">
-import Breadcrumb from '@/components/Breadcrumb/index.vue'
-import Hamburger from '@/components/Hamburger/index.vue'
-import Screenfull from '@/components/Screenfull/index.vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/user'
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import Hamburger from '@/components/Hamburger/index.vue'
+import LangSelect from '@/components/LangSelect/index.vue'
+import Screenfull from '@/components/Screenfull/index.vue'
 
 @Component({
   components: {
     Breadcrumb,
     Hamburger,
+    LangSelect,
     Screenfull
   }
 })
@@ -79,7 +93,7 @@ export default class Navbar extends Vue {
 
   private logout() {
     UserModule.LogOut().then(() => {
-      location.reload() // 为了重新实例化vue-router对象 避免bug
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     })
   }
 }
@@ -88,14 +102,27 @@ export default class Navbar extends Vue {
 <style lang="scss" scoped>
 .navbar {
   height: 50px;
-  line-height: 50px;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.12), 0 0 3px 0 rgba(0,0,0,.04);
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,21,41,.08);
 
   .hamburger-container {
-    line-height: 58px;
-    height: 50px;
+    line-height: 46px;
+    height: 100%;
     float: left;
-    padding: 0 10px;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: background .3s;
+    -webkit-tap-highlight-color:transparent;
+
+    &:hover {
+      background: rgba(0, 0, 0, .025)
+    }
+  }
+
+  .breadcrumb-container {
+    float: left;
   }
 
   .right-menu {

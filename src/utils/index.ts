@@ -1,15 +1,5 @@
-/**
- * Parse the time to string
- *
- * @export
- * @param {(object | string | number)} time
- * @param {string} cFormat
- * @returns {string | null}
- */
-export function parseTime(time?: object | string | number, cFormat?: string) {
-  if (arguments.length === 0) {
-    return null
-  }
+// Parse the time to string
+export const parseTime = (time?: object | string | number, cFormat?: string): string | null => {
   if (time === undefined) {
     return null
   }
@@ -47,4 +37,21 @@ export function parseTime(time?: object | string | number, cFormat?: string) {
     return String(value) || '0'
   })
   return timeStr
+}
+
+// Parse url string to object
+export const param2Obj = (url: string) => {
+  const search = url.split('?')[1]
+  if (!search) {
+    return {}
+  }
+  return JSON.parse(
+    '{"' +
+    decodeURIComponent(search)
+      .replace(/"/g, '\\"')
+      .replace(/&/g, '","')
+      .replace(/=/g, '":"')
+      .replace(/\+/g, ' ') +
+    '"}'
+  )
 }

@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
-import { getToken } from '@/utils/auth'
 import { UserModule } from '@/store/modules/user'
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_MOCK_API,
+  baseURL: process.env.VUE_APP_MOCK_API, // url = base url + request url
+  withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000
 })
 
@@ -13,7 +13,7 @@ service.interceptors.request.use(
   (config) => {
     // Add X-Token header to every request, you can add other custom headers here
     if (UserModule.token) {
-      config.headers['X-Token'] = getToken()
+      config.headers['X-Token'] = UserModule.token
     }
     return config
   },
@@ -49,9 +49,8 @@ service.interceptors.response.use(
             type: 'warning'
           }
         ).then(() => {
-          UserModule.FedLogOut().then(() => {
-            location.reload() // To prevent bugs from vue-router
-          })
+          UserModule.ResetToken()
+          location.reload() // To prevent bugs from vue-router
         })
       }
       return Promise.reject(new Error('error with code: ' + res.code))

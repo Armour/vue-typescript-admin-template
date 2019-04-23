@@ -1,12 +1,13 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
-      :show-timeout="200"
-      :default-active="$route.path"
+      :default-active="activeMenu"
       :collapse="isCollapse"
       background-color="#304156"
       text-color="#bfcbd9"
       active-text-color="#409EFF"
+      :unique-opened="false"
+      :collapse-transition="false"
       mode="vertical"
     >
       <sidebar-item
@@ -14,15 +15,16 @@
         :key="route.path"
         :item="route"
         :base-path="route.path"
-        :collapse="collapse"
+        :is-collapse="isCollapse"
       />
     </el-menu>
   </el-scrollbar>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
+import { PermissionModule } from '@/store/modules/permission'
 import SidebarItem from './SidebarItem.vue'
 
 @Component({
@@ -31,14 +33,22 @@ import SidebarItem from './SidebarItem.vue'
   }
 })
 export default class SideBar extends Vue {
-  @Prop({ default: false }) private collapse!: boolean;
-
   get sidebar() {
     return AppModule.sidebar
   }
 
   get routes() {
-    return (this.$router as any).options.routes
+    return PermissionModule.routes
+  }
+
+  get activeMenu() {
+    const route = this.$route
+    const { meta, path } = route
+    // if set path, the sidebar will highlight the path you set
+    if (meta.activeMenu) {
+      return meta.activeMenu
+    }
+    return path
   }
 
   get isCollapse() {
@@ -72,8 +82,6 @@ export default class SideBar extends Vue {
 </style>
 
 <style lang="scss" scoped>
-@import "src/styles/variables.scss";
-
 .el-menu {
   border: none;
   height: 100%;

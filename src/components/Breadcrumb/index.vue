@@ -11,24 +11,24 @@
         <span
           v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1"
           class="no-redirect"
-        >{{ item.meta.title }}</span>
+        >{{ $t('route.' + item.meta.title) }}</span>
         <a
           v-else
           @click.prevent="handleLink(item)"
-        >{{ item.meta.title }}</a>
+        >{{ $t('route.' + item.meta.title) }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
 </template>
 
 <script lang="ts">
+import pathToRegexp from 'path-to-regexp'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteRecord } from 'vue-router'
-import pathToRegexp from 'path-to-regexp'
 
 @Component
 export default class Breadcrumb extends Vue {
-  private breadcrumbs: RouteRecord[] = [];
+  private breadcrumbs: RouteRecord[] = []
 
   private created() {
     this.getBreadcrumb()
@@ -40,14 +40,22 @@ export default class Breadcrumb extends Vue {
   }
 
   private getBreadcrumb() {
-    let matched = this.$route.matched.filter((item) => item.name)
+    let matched = this.$route.matched.filter((item) => item.meta && item.meta.title)
     const first = matched[0]
-    if (first && first.name !== 'dashboard') {
-      matched = [{ path: '/dashboard', meta: { title: 'Dashboard' } } as RouteRecord].concat(matched)
+    if (!this.isDashboard(first)) {
+      matched = [{ path: '/dashboard', meta: { title: 'dashboard' } } as RouteRecord].concat(matched)
     }
     this.breadcrumbs = matched.filter((item) => {
       return item.meta && item.meta.title && item.meta.breadcrumb !== false
     })
+  }
+
+  private isDashboard(route: RouteRecord) {
+    const name = route && route.name
+    if (!name) {
+      return false
+    }
+    return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
   }
 
   private pathCompile(path: string) {
@@ -69,15 +77,15 @@ export default class Breadcrumb extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .app-breadcrumb.el-breadcrumb {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 50px;
-    margin-left: 10px;
+.app-breadcrumb.el-breadcrumb {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 50px;
+  margin-left: 8px;
 
-    .no-redirect {
-      color: #97a8be;
-      cursor: text;
-    }
+  .no-redirect {
+    color: #97a8be;
+    cursor: text;
   }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[{'is-active': isActive}, 'hamburger-container']"
+    :class="[{'is-active': isActive}]"
     @click="toggleClick"
   >
     <svg-icon
@@ -12,21 +12,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class Hamburger extends Vue {
-  @Prop({ default: false }) private isActive!: boolean;
-  @Prop({ default: null }) private toggleClick!: () => void;
+  @Prop({ default: false }) private isActive!: boolean
+
+  private toggleClick() {
+    this.$emit('toggleClick')
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.hamburger-container {
-  cursor: pointer;
+.svg-icon {
+  vertical-align: middle;
 }
 
-.hamburger-container.is-active {
+.is-active {
   transform: rotate(180deg);
 }
 </style>

@@ -1,13 +1,10 @@
 import request from '@/utils/request'
 
-export const login = (username: string, password: string) =>
+export const login = (data: any) =>
   request({
     url: '/user/login',
     method: 'post',
-    data: {
-      username,
-      password
-    }
+    data
   })
 
 export const getUserInfo = (token: string) =>

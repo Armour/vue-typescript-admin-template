@@ -8,18 +8,30 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
 import * as screenfull from 'screenfull'
+import { Component, Vue } from 'vue-property-decorator'
+
 const sf = screenfull
 
 @Component
 export default class Screenfull extends Vue {
-  private isFullscreen: boolean = false
+  private isFullscreen = false
+
   private mounted() {
     if (sf && sf.enabled) {
-      sf.on('change', () => {
-        this.isFullscreen = sf.isFullscreen
-      })
+      sf.on('change', this.change)
+    }
+  }
+
+  private beforeDestory() {
+    if (sf && sf.enabled) {
+      sf.off('change', this.change)
+    }
+  }
+
+  private change() {
+    if (sf && sf.enabled) {
+      this.isFullscreen = sf.isFullscreen
     }
   }
 
@@ -37,14 +49,3 @@ export default class Screenfull extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.screenfull-svg {
-  display: inline-block;
-  cursor: pointer;
-  fill: #5a5e66;;
-  width: 20px;
-  height: 20px;
-  vertical-align: 10px;
-}
-</style>

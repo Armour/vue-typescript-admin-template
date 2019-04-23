@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import { isExternal } from '@/utils/validate'
 
 @Component({
@@ -25,6 +25,6 @@ import { isExternal } from '@/utils/validate'
   }
 })
 export default class Link extends Vue {
-  @Prop({ required: true }) private to!: string;
+  @Prop({ required: true }) private to!: string
 }
 </script>
