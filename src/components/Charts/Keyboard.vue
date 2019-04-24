@@ -43,7 +43,7 @@ export default class Keyboard extends Vue {
     for (let i = 0; i < 50; i++) {
       xAxisData.push(i)
       data.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5)
-      data2.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 3)
+      data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3)
     }
     this.chart.setOption({
       backgroundColor: '#08263a',
