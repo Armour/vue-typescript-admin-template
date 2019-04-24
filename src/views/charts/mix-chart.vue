@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import Chart from '@/components/Charts/MixChart.vue'
-import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
   components: {

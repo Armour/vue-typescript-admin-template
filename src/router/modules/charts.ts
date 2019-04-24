@@ -1,34 +1,34 @@
 /** When your routing table is too long, you can split it into small modules**/
+import { RouteConfig } from 'vue-router'
+import Layout from '@/layout/index.vue'
 
-import Layout from '@/views/layout/Layout.vue'
-
-const chartsRouter = {
+const chartsRouter: RouteConfig = {
   path: '/charts',
   component: Layout,
   redirect: 'noredirect',
   name: 'Charts',
   meta: {
-    title: 'Charts',
+    title: 'charts',
     icon: 'chart'
   },
   children: [
     {
       path: 'keyboard',
-      component: () => import('@/views/charts/keyboard.vue'),
+      component: () => import(/* webpackChunkName: "keyboard" */ '@/views/charts/keyboard.vue'),
       name: 'KeyboardChart',
-      meta: { title: 'KeyboardChart', noCache: true }
+      meta: { title: 'keyboardChart', noCache: true }
     },
     {
       path: 'line',
-      component: () => import('@/views/charts/line.vue'),
+      component: () => import(/* webpackChunkName: "line" */ '@/views/charts/line.vue'),
       name: 'LineChart',
-      meta: { title: 'LineChart', noCache: true }
+      meta: { title: 'lineChart', noCache: true }
     },
     {
       path: 'mix-chart',
-      component: () => import('@/views/charts/mix-chart.vue'),
+      component: () => import(/* webpackChunkName: "mix-chart" */ '@/views/charts/mix-chart.vue'),
       name: 'MixChart',
-      meta: { title: 'MixChart', noCache: true }
+      meta: { title: 'mixChart', noCache: true }
     }
   ]
 }

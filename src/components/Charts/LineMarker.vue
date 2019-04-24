@@ -7,20 +7,20 @@
 </template>
 
 <script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import echarts, { ECharts, EChartOption } from 'echarts'
 import { ResizeMixin } from './mixins/resize'
-import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({
   mixins: [ResizeMixin]
 })
 export default class LineMarker extends Vue {
-  @Prop({ default: 'chart' }) private className!: string;
-  @Prop({ default: 'chart' }) private id!: string;
-  @Prop({ default: '200px' }) private width!: string;
-  @Prop({ default: '200px' }) private height!: string;
+  @Prop({ default: 'chart' }) private className!: string
+  @Prop({ default: 'chart' }) private id!: string
+  @Prop({ default: '200px' }) private width!: string
+  @Prop({ default: '200px' }) private height!: string
 
-  private chart!: ECharts | null;
+  private chart!: ECharts | null
 
   private mounted() {
     this.initChart()
