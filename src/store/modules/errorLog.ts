@@ -1,21 +1,28 @@
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
 import store from '@/store'
 
+interface IErrorLog {
+  err: Error
+  vm: any
+  info: string
+  url: string
+}
+
 export interface IErrorLogState {
-  logs: string[]
+  logs: IErrorLog[]
 }
 
 @Module({ dynamic: true, store, name: 'errorLog' })
 class ErrorLog extends VuexModule implements IErrorLogState {
-  public logs: string[] = []
+  public logs: IErrorLog[] = []
 
   @Mutation
-  private ADD_ERROR_LOG(log: string) {
+  private ADD_ERROR_LOG(log: IErrorLog) {
     this.logs.push(log)
   }
 
   @Action
-  public AddErrorLog(log: string) {
+  public AddErrorLog(log: IErrorLog) {
     this.ADD_ERROR_LOG(log)
   }
 }

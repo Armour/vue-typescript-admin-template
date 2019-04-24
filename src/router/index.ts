@@ -56,21 +56,21 @@ export const constantRoutes: RouteConfig[] = [
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
     meta: { hidden: true }
   },
-  // {
-  //   path: '/auth-redirect',
-  //   component: () => import(/* webpackChunkName: "authredirect" */ '@/views/authredirect.vue'),
-  //   meta: { hidden: true }
-  // },
   {
-    path: '/404',
-    component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
+    path: '/auth-redirect',
+    component: () => import(/* webpackChunkName: "authRedirect" */ '@/views/login/auth-redirect.vue'),
     meta: { hidden: true }
   },
-  // {
-  //   path: '/401',
-  //   component: () => import(/* webpackChunkName: "401" */ '@/views/401.vue'),
-  //   meta: { hidden: true }
-  // },
+  {
+    path: '/404',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/404.vue'),
+    meta: { hidden: true }
+  },
+  {
+    path: '/401',
+    component: () => import(/* webpackChunkName: "401" */ '@/views/error-page/401.vue'),
+    meta: { hidden: true }
+  },
   {
     path: '/',
     component: Layout,
@@ -185,40 +185,40 @@ export const asyncRoutes: RouteConfig[] = [
       }
     ]
   },
-  // {
-  //   path: '/error',
-  //   component: Layout,
-  //   redirect: 'noredirect',
-  //   name: 'ErrorPages',
-  //   meta: { title: 'errorPages', icon: '404' },
-  //   children: [
-  //     {
-  //       path: '401',
-  //       component: () => import(/* webpackChunkName: "page401" */ '@/views/errorPage/401.vue'),
-  //       name: 'Page401',
-  //       meta: { title: 'page401', noCache: true }
-  //     },
-  //     {
-  //       path: '404',
-  //       component: () => import(/* webpackChunkName: "page404" */ '@/views/errorPage/404.vue'),
-  //       name: 'Page404',
-  //       meta: { title: 'page404', noCache: true }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/error-log',
-  //   component: Layout,
-  //   redirect: 'noredirect',
-  //   children: [
-  //     {
-  //       path: 'log',
-  //       component: () => import(/* webpackChunkName: "errorLog" */ '@/views/errorLog/index.vue'),
-  //       name: 'ErrorLog',
-  //       meta: { title: 'errorLog', icon: 'bug' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/error',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'ErrorPages',
+    meta: { title: 'errorPages', icon: '404' },
+    children: [
+      {
+        path: '401',
+        component: () => import(/* webpackChunkName: "page401" */ '@/views/error-page/401.vue'),
+        name: 'Page401',
+        meta: { title: 'page401', noCache: true }
+      },
+      {
+        path: '404',
+        component: () => import(/* webpackChunkName: "page404" */ '@/views/error-page/404.vue'),
+        name: 'Page404',
+        meta: { title: 'page404', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/error-log',
+    component: Layout,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'log',
+        component: () => import(/* webpackChunkName: "errorLog" */ '@/views/error-log/index.vue'),
+        name: 'ErrorLog',
+        meta: { title: 'errorLog', icon: 'bug' }
+      }
+    ]
+  },
   // {
   //   path: '/excel',
   //   component: Layout,

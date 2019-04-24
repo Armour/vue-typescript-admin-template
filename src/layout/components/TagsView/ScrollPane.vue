@@ -70,13 +70,13 @@ export default class ScrollPane extends Vue {
   position: relative;
   overflow: hidden;
   width: 100%;
+}
 
-  >>> .el-scrollbar__bar {
-    bottom: 0px;
-  }
+.el-scrollbar__bar {
+  bottom: 0px;
+}
 
-  >>> .el-scrollbar__wrap {
-    height: 49px;
-  }
+.el-scrollbar__wrap {
+  height: 49px;
 }
 </style>

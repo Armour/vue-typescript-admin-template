@@ -11,6 +11,7 @@
     />
     <div class="right-menu">
       <template v-if="device!=='mobile'">
+        <error-log class="errLog-container right-menu-item hover-effect" />
         <screenfull class="right-menu-item hover-effect" />
         <lang-select class="right-menu-item hover-effect" />
       </template>
@@ -62,6 +63,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/user'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import ErrorLog from '@/components/ErrorLog/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
@@ -69,6 +71,7 @@ import Screenfull from '@/components/Screenfull/index.vue'
 @Component({
   components: {
     Breadcrumb,
+    ErrorLog,
     Hamburger,
     LangSelect,
     Screenfull
@@ -123,6 +126,11 @@ export default class Navbar extends Vue {
 
   .breadcrumb-container {
     float: left;
+  }
+
+  .errLog-container {
+    display: inline-block;
+    vertical-align: top;
   }
 
   .right-menu {

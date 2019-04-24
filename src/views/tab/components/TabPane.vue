@@ -56,7 +56,6 @@
         <svg-icon
           v-for="n in +scope.row.importance"
           :key="n"
-          icon-class="star"
           name="star"
         />
       </template>

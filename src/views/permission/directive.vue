@@ -74,10 +74,10 @@
       :key="'checkPermission'+key"
       style="margin-top:60px;"
     >
-      <code>
+      <aside>
         {{ $t('permission.tips') }}
         <br> e.g.
-      </code>
+      </aside>
 
       <el-tabs
         type="border-card"
@@ -153,23 +153,21 @@ export default class DirectivePermission extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.app-container {
-  >>> .permission-alert {
-    width: 320px;
-    margin-top: 15px;
-    background-color: #f0f9eb;
-    color: #67c23a;
-    padding: 8px 16px;
-    border-radius: 4px;
-    display: inline-block;
-  }
+.permission-alert {
+  width: 320px;
+  margin-top: 15px;
+  background-color: #f0f9eb;
+  color: #67c23a;
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: inline-block;
+}
 
-  >>> .permission-sourceCode {
-    margin-left: 15px;
-  }
+.permission-sourceCode {
+  margin-left: 15px;
+}
 
-  >>> .permission-tag {
-    background-color: #ecf5ff;
-  }
+.permission-tag {
+  background-color: #ecf5ff;
 }
 </style>
