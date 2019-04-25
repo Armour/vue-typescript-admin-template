@@ -10,7 +10,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import echarts, { EChartOption } from 'echarts'
-import { ResizeMixin } from './mixins/resize'
+import ResizeMixin from './mixins/resize'
 
 @Component
 export default class LineMarker extends mixins(ResizeMixin) {

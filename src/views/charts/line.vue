@@ -16,7 +16,7 @@ import Chart from '@/components/Charts/LineMarker.vue'
     Chart
   }
 })
-export default class LineChart extends Vue { }
+export default class LineChart extends Vue {}
 </script>
 
 <style lang="scss" scoped>

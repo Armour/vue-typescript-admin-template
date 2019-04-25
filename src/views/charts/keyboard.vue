@@ -16,8 +16,7 @@ import Chart from '@/components/Charts/Keyboard.vue'
     Chart
   }
 })
-export default class KeyboardChart extends Vue {
-}
+export default class KeyboardChart extends Vue {}
 </script>
 
 <style lang="scss" scoped>

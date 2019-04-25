@@ -30,7 +30,7 @@ import { Component } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import { DeviceType, AppModule } from '@/store/modules/app'
 import { Navbar, AppMain, Sidebar, TagsView } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
+import ResizeMixin from './mixin/resize'
 
 @Component({
   components: {

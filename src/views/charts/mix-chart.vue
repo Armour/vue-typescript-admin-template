@@ -16,8 +16,7 @@ import Chart from '@/components/Charts/MixChart.vue'
     Chart
   }
 })
-export default class MixChart extends Vue {
-}
+export default class MixChart extends Vue {}
 </script>
 
 <style lang="scss" scoped>

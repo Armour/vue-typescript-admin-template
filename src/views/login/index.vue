@@ -146,7 +146,7 @@ export default class Login extends Vue {
     this.redirect = route.query && route.query.redirect as string
   }
 
-  private mounted() {
+  mounted() {
     if (this.loginForm.username === '') {
       (this.$refs.username as Input).focus()
     } else if (this.loginForm.password === '') {

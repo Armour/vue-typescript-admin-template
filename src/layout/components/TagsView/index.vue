@@ -78,13 +78,13 @@ export default class TagsView extends Vue {
   }
 
   @Watch('$route')
-  onRouteChange(route: ITagView) {
+  private onRouteChange(route: ITagView) {
     this.addTags()
     this.moveToCurrentTag()
   }
 
   @Watch('visible')
-  onVisibleChange(value: boolean) {
+  private onVisibleChange(value: boolean) {
     if (value) {
       document.body.addEventListener('click', this.closeMenu)
     } else {
@@ -92,7 +92,7 @@ export default class TagsView extends Vue {
     }
   }
 
-  private mounted() {
+  mounted() {
     this.initTags()
     this.addTags()
   }
