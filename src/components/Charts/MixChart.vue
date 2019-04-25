@@ -8,25 +8,22 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import echarts, { ECharts, EChartOption } from 'echarts'
+import { mixins } from 'vue-class-component'
+import echarts, { EChartOption } from 'echarts'
 import { ResizeMixin } from './mixins/resize'
 
-@Component({
-  mixins: [ResizeMixin]
-})
-export default class Keyboard extends Vue {
+@Component
+export default class Keyboard extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: 'chart' }) private id!: string
   @Prop({ default: '200px' }) private width!: string
   @Prop({ default: '200px' }) private height!: string
 
-  private chart!: ECharts | null
-
-  private mounted() {
+  mounted() {
     this.initChart()
   }
 
-  private beforeDestroy() {
+  beforeDestroy() {
     if (!this.chart) {
       return
     }

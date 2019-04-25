@@ -58,9 +58,6 @@ export const param2Obj = (url: string) => {
       '"}'
   )
 }
-interface IDebounce {
-  [key: string]: Function | number | boolean
-}
 
 /**
  * @export
@@ -69,7 +66,7 @@ interface IDebounce {
  * @param {boolean} immediate
  * @returns
  */
-export function debounce(func: Function, wait: number, immediate?: boolean) {
+export const debounce = (func: Function, wait: number, immediate?: boolean) => {
   let timeout: NodeJS.Timeout | null,
     localArgs: any,
     context: Function | null,
@@ -95,7 +92,7 @@ export function debounce(func: Function, wait: number, immediate?: boolean) {
     }
   }
 
-  return function(...args: any[]) {
+  return function(this: any, ...args: any[]) {
     context = this
     timestamp = +new Date()
     const callNow = immediate && !timeout

@@ -1,12 +1,13 @@
 import { debounce } from '@/utils'
 import { Component, Vue } from 'vue-property-decorator'
+import { ECharts } from 'echarts'
 
 @Component
 export class ResizeMixin extends Vue {
   // eslint-disable-next-line camelcase
   private $_sidebarElm: Element | undefined
   private __resizeHandler: any
-  private chart: any
+  public chart!: ECharts | null
 
   mounted() {
     this.__resizeHandler = debounce(() => {
