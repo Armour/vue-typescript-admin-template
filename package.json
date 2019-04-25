@@ -14,6 +14,7 @@
     "@types/clipboard": "^2.0.1",
     "axios": "^0.18.0",
     "clipboard": "^2.0.4",
+    "echarts": "^4.2.1",
     "element-ui": "^2.7.2",
     "js-cookie": "^2.2.0",
     "mockjs": "^1.0.1-beta3",
@@ -33,6 +34,7 @@
     "vuex-module-decorators": "^0.9.8"
   },
   "devDependencies": {
+    "@types/echarts": "^4.1.8",
     "@types/jest": "^24.0.11",
     "@types/js-cookie": "^2.2.2",
     "@types/mockjs": "^1.0.2",

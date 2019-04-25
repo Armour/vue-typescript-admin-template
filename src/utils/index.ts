@@ -1,5 +1,8 @@
 // Parse the time to string
-export const parseTime = (time?: object | string | number, cFormat?: string): string | null => {
+export const parseTime = (
+  time?: object | string | number,
+  cFormat?: string
+): string | null => {
   if (time === undefined) {
     return null
   }
@@ -47,11 +50,61 @@ export const param2Obj = (url: string) => {
   }
   return JSON.parse(
     '{"' +
-    decodeURIComponent(search)
-      .replace(/"/g, '\\"')
-      .replace(/&/g, '","')
-      .replace(/=/g, '":"')
-      .replace(/\+/g, ' ') +
-    '"}'
+      decodeURIComponent(search)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"')
+        .replace(/\+/g, ' ') +
+      '"}'
   )
+}
+
+/**
+ * @export
+ * @param {Function} func
+ * @param {number} wait
+ * @param {boolean} immediate
+ * @returns
+ */
+export const debounce = (func: Function, wait: number, immediate?: boolean) => {
+  let timeout: NodeJS.Timeout | null,
+    localArgs: any,
+    context: Function | null,
+    timestamp: number,
+    result: any
+
+  const later = function() {
+    // 据上一次触发时间间隔
+    const last = +new Date() - timestamp
+
+    // 上次被包装函数被调用时间间隔 last 小于设定时间间隔 wait
+    if (last < wait && last > 0) {
+      timeout = setTimeout(later, wait - last)
+    } else {
+      timeout = null
+      // 如果设定为 immediate === true，因为开始边界已经调用过了此处无需调用
+      if (!immediate) {
+        result = func.apply(context, localArgs)
+        if (!timeout) {
+          context = localArgs = null
+        }
+      }
+    }
+  }
+
+  return function(this: any, ...args: any[]) {
+    context = this
+    timestamp = +new Date()
+    const callNow = immediate && !timeout
+    // 如果延时不存在，重新设定延时
+    if (!timeout) {
+      timeout = setTimeout(later, wait)
+    }
+    if (callNow) {
+      result = func.apply(context, args)
+      context = localArgs = null
+    }
+
+    return result
+  }
 }

@@ -2,10 +2,13 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import i18n from '@/lang/index' // Internationalization
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
-localVue.use(ElementUI)
+localVue.use(ElementUI, {
+  i18n: (key: string, value: string) => i18n.t(key, value)
+})
 
 const routes = [
   {
@@ -53,7 +56,10 @@ const router = new VueRouter({
 describe('Breadcrumb.vue', () => {
   const wrapper = mount(Breadcrumb, {
     localVue,
-    router
+    router,
+    mocks: {
+      $t: (msg: string) => msg
+    }
   })
 
   it('dashboard', () => {
@@ -85,7 +91,7 @@ describe('Breadcrumb.vue', () => {
     const breadcrumbArray = wrapper.findAll('.el-breadcrumb__inner')
     const second = breadcrumbArray.at(1)
     const href = second.find('a').text()
-    expect(href).toBe('menu1')
+    expect(href).toBe('route.menu1')
   })
 
   it('noredirect', () => {
