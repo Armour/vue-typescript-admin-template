@@ -1,5 +1,8 @@
 // Parse the time to string
-export const parseTime = (time?: object | string | number, cFormat?: string): string | null => {
+export const parseTime = (
+  time?: object | string | number,
+  cFormat?: string
+): string | null => {
   if (time === undefined) {
     return null
   }
@@ -47,11 +50,29 @@ export const param2Obj = (url: string) => {
   }
   return JSON.parse(
     '{"' +
-    decodeURIComponent(search)
-      .replace(/"/g, '\\"')
-      .replace(/&/g, '","')
-      .replace(/=/g, '":"')
-      .replace(/\+/g, ' ') +
-    '"}'
+      decodeURIComponent(search)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"')
+        .replace(/\+/g, ' ') +
+      '"}'
   )
+}
+
+// Check if an element has a class
+export const hasClass = (ele: HTMLElement, cls: string) => {
+  return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+}
+
+// Add class to element
+export const addClass = (ele: HTMLElement, cls: string) => {
+  if (!hasClass(ele, cls)) ele.className += ' ' + cls
+}
+
+// Remove class from element
+export const removeClass = (ele: HTMLElement, cls: string) => {
+  if (hasClass(ele, cls)) {
+    const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+    ele.className = ele.className.replace(reg, ' ')
+  }
 }

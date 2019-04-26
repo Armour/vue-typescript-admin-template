@@ -190,7 +190,7 @@ export default class I18n extends Vue {
     this.setOptions()
   }
 
-  private created() {
+  created() {
     const viewName = 'i18nView'
     if (!this.$i18n.getLocaleMessage('en')[viewName]) {
       this.$i18n.mergeLocaleMessage('en', local.en)

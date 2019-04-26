@@ -3,7 +3,7 @@
     v-if="!item.meta || !item.meta.hidden"
     :class="['menu-wrapper', isCollapse ? 'simple-mode' : 'full-mode', {'first-level': isFirstLevel}]"
   >
-    <template v-if="!alwaysShowRootMenu && showingChildNumber <= 1 && !theOnlyOneChild.children">
+    <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
       <app-link
         v-if="theOnlyOneChild.meta"
         :to="resolvePath(theOnlyOneChild.path)"
@@ -131,6 +131,7 @@ export default class SidebarItem extends Vue {
 .full-mode {
   .nest-menu .el-submenu>.el-submenu__title,
   .el-submenu .el-menu-item {
+    min-width: $sideBarWidth !important;
     background-color: $subMenuBg !important;
 
     &:hover {
@@ -142,11 +143,11 @@ export default class SidebarItem extends Vue {
 .simple-mode {
   &.first-level {
     .submenu-title-noDropdown {
-      padding-left: 10px !important;
+      padding: 0 !important;
       position: relative;
 
       .el-tooltip {
-        padding: 0 10px !important;
+        padding: 0 !important;
       }
     }
 
@@ -154,10 +155,14 @@ export default class SidebarItem extends Vue {
       overflow: hidden;
 
       &>.el-submenu__title {
-        padding-left: 10px !important;
+        padding: 0px !important;
 
         .el-submenu__icon-arrow {
           display: none;
+        }
+
+        &>span {
+          visibility: hidden;
         }
       }
     }
@@ -168,5 +173,11 @@ export default class SidebarItem extends Vue {
 <style lang="scss" scoped>
 .svg-icon {
   margin-right: 16px;
+}
+
+.simple-mode {
+  .svg-icon {
+    margin-left: 20px;
+  }
 }
 </style>
