@@ -30,12 +30,12 @@ import { RouteRecord } from 'vue-router'
 export default class Breadcrumb extends Vue {
   private breadcrumbs: RouteRecord[] = []
 
-  private created() {
+  @Watch('$route')
+  private onRouteChange() {
     this.getBreadcrumb()
   }
 
-  @Watch('$route')
-  private onRouteChange() {
+  created() {
     this.getBreadcrumb()
   }
 

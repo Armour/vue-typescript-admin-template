@@ -1,5 +1,8 @@
 // Parse the time to string
-export const parseTime = (time?: object | string | number, cFormat?: string): string | null => {
+export const parseTime = (
+  time?: object | string | number,
+  cFormat?: string
+): string | null => {
   if (time === undefined) {
     return null
   }
@@ -47,12 +50,12 @@ export const param2Obj = (url: string) => {
   }
   return JSON.parse(
     '{"' +
-    decodeURIComponent(search)
-      .replace(/"/g, '\\"')
-      .replace(/&/g, '","')
-      .replace(/=/g, '":"')
-      .replace(/\+/g, ' ') +
-    '"}'
+      decodeURIComponent(search)
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"')
+        .replace(/\+/g, ' ') +
+      '"}'
   )
 }
 

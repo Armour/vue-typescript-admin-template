@@ -32,7 +32,7 @@ import { DeviceType, AppModule } from '@/store/modules/app'
 import { SettingsModule } from '@/store/modules/settings'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
 import RightPanel from '@/components/RightPanel/index.vue'
-import ResizeMixin from './mixin/ResizeHandler'
+import ResizeMixin from './mixin/resize'
 
 @Component({
   components: {

@@ -4,7 +4,7 @@ import { AppModule, DeviceType } from '@/store/modules/app'
 const WIDTH = 992 // refer to Bootstrap's responsive design
 
 @Component
-export default class ResizeHandlerMixin extends Vue {
+export default class ResizeMixin extends Vue {
   get device() {
     return AppModule.device
   }
@@ -20,20 +20,20 @@ export default class ResizeHandlerMixin extends Vue {
     }
   }
 
-  private beforeMount() {
+  beforeMount() {
     window.addEventListener('resize', this.$_resizeHandler)
   }
 
-  private beforeDestroy() {
-    window.removeEventListener('resize', this.$_resizeHandler)
-  }
-
-  private mounted() {
+  mounted() {
     const isMobile = this.$_isMobile()
     if (isMobile) {
       AppModule.ToggleDevice(DeviceType.Mobile)
       AppModule.CloseSideBar(true)
     }
+  }
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.$_resizeHandler)
   }
 
   // use $_ for mixins properties
