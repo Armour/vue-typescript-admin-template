@@ -65,8 +65,8 @@ export default class Tree extends Vue {
   }
 
   @Watch('filterText')
-  private onFilterTextChange(val: string) {
-    (this.$refs.tree2 as ElTree).filter(val)
+  private onFilterTextChange(value: string) {
+    (this.$refs.tree2 as ElTree).filter(value)
   }
 
   private filterNode(value: string, data: TreeData) {

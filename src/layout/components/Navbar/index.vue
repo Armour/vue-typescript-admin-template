@@ -83,7 +83,7 @@ export default class Navbar extends Vue {
   }
 
   get device() {
-    return AppModule.device
+    return AppModule.device.toString()
   }
 
   get avatar() {
