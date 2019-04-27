@@ -137,7 +137,7 @@ export default class Login extends Vue {
   private passwordType = 'password'
   private loading = false
   private showDialog = false
-  private redirect: string | undefined = undefined
+  private redirect?: string = undefined
 
   @Watch('$route', { immediate: true })
   private OnRouteChange(route: Route) {

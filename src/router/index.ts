@@ -83,7 +83,7 @@ export const constantRoutes: RouteConfig[] = [
         meta: { title: 'dashboard', icon: 'dashboard', noCache: true, affix: true }
       }
     ]
-  }
+  },
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -96,19 +96,19 @@ export const constantRoutes: RouteConfig[] = [
   //     }
   //   ]
   // },
-  // {
-  //   path: '/guide',
-  //   component: Layout,
-  //   redirect: '/guide/index',
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import(/* webpackChunkName: "guide" */ '@/views/guide/index.vue'),
-  //       name: 'Guide',
-  //       meta: { title: 'guide', icon: 'guide', noCache: true }
-  //     }
-  //   ]
-  // }
+  {
+    path: '/guide',
+    component: Layout,
+    redirect: '/guide/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import(/* webpackChunkName: "guide" */ '@/views/guide/index.vue'),
+        name: 'Guide',
+        meta: { title: 'guide', icon: 'guide', noCache: true }
+      }
+    ]
+  }
 ]
 
 /**
