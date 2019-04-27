@@ -9,7 +9,7 @@ import App from '@/App.vue'
 import store from '@/store'
 import { AppModule } from '@/store/modules/app'
 import router from '@/router'
-import i18n from './lang' // Internationalization
+import i18n from '@/lang' // Internationalization
 import '@/icons/components'
 import '@/permission'
 import '@/utils/error-log' // Error log

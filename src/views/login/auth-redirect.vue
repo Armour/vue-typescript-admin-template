@@ -10,5 +10,9 @@ export default class AuthRedirect extends Vue {
       window.close()
     }
   }
+
+  render() {
+    // Avoid warning for missing template
+  }
 }
 </script>

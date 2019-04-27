@@ -23,15 +23,15 @@
         class="progress-item"
       >
         <span>Vue</span>
-        <el-progress :percentage="68" />
+        <el-progress :percentage="51" />
       </div>
       <div class="progress-item">
         <span>Typescript</span>
-        <el-progress :percentage="20" />
+        <el-progress :percentage="45" />
       </div>
       <div class="progress-item">
         <span>Css</span>
-        <el-progress :percentage="12" />
+        <el-progress :percentage="4" />
       </div>
       <div class="progress-item">
         <span>ESLint</span>

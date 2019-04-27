@@ -8,5 +8,9 @@ export default class Redirect extends Vue {
     const { path } = params
     this.$router.replace({ path: '/' + path, query })
   }
+
+  render() {
+    // Avoid warning for missing template
+  }
 }
 </script>

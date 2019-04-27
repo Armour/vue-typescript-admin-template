@@ -1,5 +1,5 @@
-import { Component, Vue } from 'vue-property-decorator'
 import { ECharts } from 'echarts'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class ResizeMixin extends Vue {
