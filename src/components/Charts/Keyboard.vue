@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import echarts, { EChartOption } from 'echarts'
+import echarts from 'echarts'
 import ResizeMixin from './mixins/resize'
 
 @Component
@@ -34,11 +34,11 @@ export default class Keyboard extends mixins(ResizeMixin) {
   private initChart() {
     this.chart = echarts.init(document.getElementById(this.id) as HTMLDivElement)
 
-    const xAxisData: number[] = []
+    const xAxisData: string[] = []
     const data: number[] = []
     const data2: number[] = []
     for (let i = 0; i < 50; i++) {
-      xAxisData.push(i)
+      xAxisData.push(i.toString())
       data.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5)
       data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3)
     }
@@ -64,14 +64,12 @@ export default class Keyboard extends mixins(ResizeMixin) {
           color: ['#4a657a', '#308e92', '#b1cfa5', '#f5d69f', '#f5898b', '#ef5055']
         }
       }],
-      yAxis: {
+      yAxis: [{
         axisLine: {
           show: false
         },
         axisLabel: {
-          textStyle: {
-            color: '#43657a'
-          }
+          color: '#43657a'
         },
         splitLine: {
           show: true,
@@ -82,7 +80,7 @@ export default class Keyboard extends mixins(ResizeMixin) {
         axisTick: {
           show: false
         }
-      },
+      }],
       series: [{
         name: 'back',
         type: 'bar',
@@ -137,7 +135,7 @@ export default class Keyboard extends mixins(ResizeMixin) {
       animationDelayUpdate(idx: number) {
         return idx * 20
       }
-    } as EChartOption)
+    })
   }
 }
 </script>

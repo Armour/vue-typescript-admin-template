@@ -7,13 +7,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import echarts, { EChartOption } from 'echarts'
+import echarts from 'echarts'
 import ResizeMixin from './mixins/resize'
 
 @Component
-export default class Keyboard extends mixins(ResizeMixin) {
+export default class MixChart extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: 'chart' }) private id!: string
   @Prop({ default: '200px' }) private width!: string
@@ -45,7 +45,6 @@ export default class Keyboard extends mixins(ResizeMixin) {
       backgroundColor: '#344b58',
       title: {
         text: 'statistics',
-        x: '20',
         top: '20',
         textStyle: {
           color: '#fff',
@@ -57,12 +56,7 @@ export default class Keyboard extends mixins(ResizeMixin) {
         }
       },
       tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          textStyle: {
-            color: '#fff'
-          }
-        }
+        trigger: 'axis' as 'axis'
       },
       grid: {
         left: '5%',
@@ -82,7 +76,6 @@ export default class Keyboard extends mixins(ResizeMixin) {
         },
         data: ['female', 'male', 'average']
       },
-      calculable: true,
       xAxis: [{
         type: 'category',
         axisLine: {
@@ -127,7 +120,6 @@ export default class Keyboard extends mixins(ResizeMixin) {
       }],
       dataZoom: [{
         show: true,
-        height: 30,
         xAxisIndex: [
           0
         ],
@@ -147,10 +139,9 @@ export default class Keyboard extends mixins(ResizeMixin) {
       }, {
         type: 'inside',
         show: true,
-        height: 15,
         start: 1,
         end: 35
-      } as EChartOption.DataZoom],
+      }],
       series: [{
         name: 'female',
         type: 'bar',
@@ -254,7 +245,7 @@ export default class Keyboard extends mixins(ResizeMixin) {
         ]
       }
       ]
-    } as EChartOption)
+    })
   }
 }
 </script>

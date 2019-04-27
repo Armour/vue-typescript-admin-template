@@ -10,3 +10,8 @@ declare module 'element-ui/lib/locale/lang/*' {
 declare module '*.gif' {
   export const gif: any
 }
+
+// TODO: remove this part after vue-count-to has its typescript file
+declare module 'vue-count-to' {
+  // Placeholder
+}
