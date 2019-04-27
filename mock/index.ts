@@ -4,11 +4,13 @@ import { param2Obj } from '@/utils'
 import user from './user'
 import role from './role'
 import article from './article'
+import remoteSearch from './remote-serach'
 
 const mocks = [
   ...user,
   ...role,
-  ...article
+  ...article,
+  ...remoteSearch
 ]
 
 // For frontend mock

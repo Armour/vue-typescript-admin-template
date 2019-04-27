@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
-import echarts, { EChartOption } from 'echarts'
+import echarts from 'echarts'
 import ResizeMixin from './mixins/resize'
 
 @Component
@@ -47,12 +47,7 @@ export default class LineMarker extends mixins(ResizeMixin) {
         left: '1%'
       },
       tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          lineStyle: {
-            color: '#57617B'
-          }
-        }
+        trigger: 'axis' as 'axis'
       },
       legend: {
         top: 20,
@@ -85,7 +80,7 @@ export default class LineMarker extends mixins(ResizeMixin) {
         data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35', '13:40', '13:45', '13:50', '13:55']
       }],
       yAxis: [{
-        type: 'value',
+        type: 'value' as 'value',
         name: '(%)',
         axisTick: {
           show: false
@@ -97,9 +92,7 @@ export default class LineMarker extends mixins(ResizeMixin) {
         },
         axisLabel: {
           margin: 10,
-          textStyle: {
-            fontSize: 14
-          }
+          fontSize: 14
         },
         splitLine: {
           lineStyle: {
@@ -209,7 +202,7 @@ export default class LineMarker extends mixins(ResizeMixin) {
         },
         data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122]
       }]
-    } as EChartOption)
+    })
   }
 }
 
