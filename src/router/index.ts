@@ -288,19 +288,19 @@ export const asyncRoutes: RouteConfig[] = [
   //   component: () => import(/* webpackChunkName: "downloadPdf" */ '@/views/pdf/download.vue'),
   //   meta: { hidden: true }
   // },
-  // {
-  //   path: '/theme',
-  //   component: Layout,
-  //   redirect: 'noredirect',
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import(/* webpackChunkName: "theme" */ '@/views/theme/index.vue'),
-  //       name: 'Theme',
-  //       meta: { title: 'theme', icon: 'theme' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/theme',
+    component: Layout,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'index',
+        component: () => import(/* webpackChunkName: "theme" */ '@/views/theme/index.vue'),
+        name: 'Theme',
+        meta: { title: 'theme', icon: 'theme' }
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
