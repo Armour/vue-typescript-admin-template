@@ -1,57 +1,53 @@
 // Inspired by https://github.com/Inndy/vue-clipboard2
 import Clipboard from 'clipboard'
 import { DirectiveOptions } from 'vue'
+import { DirectiveBinding } from 'vue/types/options'
 
 if (!Clipboard) {
   throw new Error('you should npm install `clipboard` --save at first ')
 }
 
+let successCallback: Function
+let errorCallback: Function
+let clipboardInstance: Clipboard
+
+const updateClipboard = (el: HTMLElement, binding: DirectiveBinding) => {
+  if (binding.arg === 'success') {
+    successCallback = binding.value
+  } else if (binding.arg === 'error') {
+    errorCallback = binding.value
+  } else {
+    clipboardInstance = new Clipboard(el, {
+      text() { return binding.value },
+      action() { return binding.arg === 'cut' ? 'cut' : 'copy' }
+    })
+    clipboardInstance.on('success', e => {
+      const callback = successCallback
+      callback && callback(e)
+    })
+    clipboardInstance.on('error', e => {
+      const callback = errorCallback
+      callback && callback(e)
+    })
+  }
+}
+
 export const clipboard: DirectiveOptions = {
-  bind(el: any, binding) {
-    if (binding.arg === 'success') {
-      el._v_clipboard_success = binding.value
-    } else if (binding.arg === 'error') {
-      el._v_clipboard_error = binding.value
-    } else {
-      const clipboard = new Clipboard(el, {
-        text() { return binding.value },
-        action() { return binding.arg === 'cut' ? 'cut' : 'copy' }
-      })
-      clipboard.on('success', e => {
-        const callback = el._v_clipboard_success
-        callback && callback(e)
-      })
-      clipboard.on('error', e => {
-        const callback = el._v_clipboard_error
-        callback && callback(e)
-      })
-      el._v_clipboard = clipboard
-    }
+  bind(el, binding) {
+    updateClipboard(el, binding)
   },
 
-  update(el: any, binding) {
-    if (binding.arg === 'success') {
-      el._v_clipboard_success = binding.value
-    } else if (binding.arg === 'error') {
-      el._v_clipboard_error = binding.value
-    } else {
-      el._v_clipboard.text = function() {
-        return binding.value
-      }
-      el._v_clipboard.action = function() {
-        return binding.arg === 'cut' ? 'cut' : 'copy'
-      }
-    }
+  update(el, binding) {
+    updateClipboard(el, binding)
   },
 
-  unbind(el: any, binding) {
+  unbind(el, binding) {
     if (binding.arg === 'success') {
-      delete el._v_clipboard_success
+      // ...
     } else if (binding.arg === 'error') {
-      delete el._v_clipboard_error
+      // ...
     } else {
-      el._v_clipboard.destroy()
-      delete el._v_clipboard
+      clipboardInstance.destroy()
     }
   }
 }

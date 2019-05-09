@@ -7,7 +7,7 @@ import Layout from '@/layout/index.vue'
 /* Router modules */
 // import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
-// import tableRouter from './modules/table'
+import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
 
 Vue.use(Router)
@@ -172,7 +172,7 @@ export const asyncRoutes: RouteConfig[] = [
   // componentsRouter,
   chartsRouter,
   nestedRouter,
-  // tableRouter,
+  tableRouter,
   {
     path: '/tab',
     component: Layout,
