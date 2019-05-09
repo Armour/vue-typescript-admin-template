@@ -15,3 +15,7 @@ declare module '*.gif' {
 declare module 'vue-count-to' {
   // Placeholder
 }
+
+declare module '@/vendor/*' {
+  export const vendor: any
+}

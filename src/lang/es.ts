@@ -36,7 +36,7 @@ export default {
     'menu1-2-2': 'Menu 1-2-2',
     'menu1-3': 'Menu 1-3',
     menu2: 'Menu 2',
-    Table: 'Tabla',
+    table: 'Tabla',
     dynamicTable: 'Tabla dinámica',
     dragTable: 'Arrastrar tabla',
     inlineEditTable: 'Editor',

@@ -74,5 +74,61 @@ export default [
         }
       }
     }
+  },
+
+  {
+    url: '/article/detail',
+    type: 'get',
+    response: (config: any) => {
+      const { id } = config.query
+      for (const article of List) {
+        if (article.id === +id) {
+          return {
+            code: 20000,
+            data: article
+          }
+        }
+      }
+    }
+  },
+
+  {
+    url: '/article/pv',
+    type: 'get',
+    response: (_: any) => {
+      return {
+        code: 20000,
+        data: {
+          pvData: [
+            { key: 'PC', pv: 1024 },
+            { key: 'mobile', pv: 1024 },
+            { key: 'ios', pv: 1024 },
+            { key: 'android', pv: 1024 }
+          ]
+        }
+      }
+    }
+  },
+
+  {
+    url: '/article/create',
+    type: 'post',
+    response: (_: any) => {
+      return {
+        code: 20000,
+        data: 'success'
+      }
+    }
+  },
+
+  {
+    url: '/article/update',
+    type: 'post',
+    response: (_: any) => {
+      return {
+        code: 20000,
+        data: 'success'
+      }
+    }
   }
 ]

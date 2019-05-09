@@ -3,8 +3,6 @@ import { ErrorLogModule } from '@/store/modules/errorLog'
 import { isArray } from '@/utils/validate'
 import settings from '@/settings'
 
-// You can set in settings.ts
-// errorLog: ['production'] | ['production', 'development']
 const { errorLog: needErrorLog } = settings
 
 const checkNeed = () => {
