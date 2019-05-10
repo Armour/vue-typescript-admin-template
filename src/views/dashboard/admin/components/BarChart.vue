@@ -20,7 +20,9 @@ export default class BarChart extends mixins(ResizeMixin) {
   @Prop({ default: '300px' }) private height!: string
 
   mounted() {
-    this.initChart()
+    this.$nextTick(() => {
+      this.initChart()
+    })
   }
 
   beforeDestroy() {

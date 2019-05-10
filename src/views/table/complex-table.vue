@@ -365,6 +365,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { Form } from 'element-ui'
 import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
 import { waves } from '@/directives/waves'
+import { exportJson2Excel } from '@/utils/excel'
 import * as filters from '@/filters'
 import Pagination from '@/components/Pagination/index.vue'
 
@@ -591,17 +592,11 @@ export default class ComplexTable extends Vue {
 
   private handleDownload() {
     this.downloadLoading = true
-    import('@/vendor/Export2Excel').then(excel => {
-      const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-      const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
-      const data = this.formatJson(filterVal, this.list);
-      (excel as any).export_json_to_excel({
-        header: tHeader,
-        data,
-        filename: 'table-list'
-      })
-      this.downloadLoading = false
-    })
+    const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
+    const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
+    const data = this.formatJson(filterVal, this.list)
+    exportJson2Excel(tHeader, data, 'table-list')
+    this.downloadLoading = false
   }
 
   private formatJson(filterVal: any, jsonData: any) {

@@ -38,6 +38,8 @@ export default class AppMain extends Vue {
 
 .fixed-header+.app-main {
   padding-top: 50px;
+  height: 100vh;
+  overflow: auto;
 }
 
 .hasTagsView {
