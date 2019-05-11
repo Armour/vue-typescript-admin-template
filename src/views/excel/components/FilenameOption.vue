@@ -6,7 +6,7 @@
     >Filename: </label>
     <el-input
       v-model="filename"
-      placeholder="Please enter the file name (default excel-list)"
+      :placeholder="$t('excel.placeholder')"
       style="width:345px;"
       prefix-icon="el-icon-document"
     />

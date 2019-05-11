@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-editor-container">
-    <div class=" clearfix">
+    <div class="clearfix">
       <pan-thumb
         :image="avatar"
         style="float: left"

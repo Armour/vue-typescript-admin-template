@@ -13,7 +13,7 @@
       icon="document"
       @click="handleDownload"
     >
-      Export Selected Items
+      {{ $t('excel.selectedExport') }}
     </el-button>
     <a
       href="https://panjiachen.github.io/vue-element-admin-site/feature/component/excel.html"

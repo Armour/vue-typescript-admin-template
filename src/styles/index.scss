@@ -42,11 +42,7 @@ div:focus {
 }
 
 .clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  @include clearfix;
 }
 
 .app-container {
