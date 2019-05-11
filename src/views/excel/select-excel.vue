@@ -85,13 +85,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
-import { exportJson2Excel } from '@/utils/excel'
 import { formatJson } from '@/utils'
+import { exportJson2Excel } from '@/utils/excel'
 import { Table } from 'element-ui'
 
 @Component
 export default class SelectExcel extends Vue {
-  private list: any = null
+  private list: any[] = []
   private listLoading = true
   private multipleSelection = []
   private downloadLoading = false
@@ -101,12 +101,11 @@ export default class SelectExcel extends Vue {
     this.fetchData()
   }
 
-  private fetchData() {
+  private async fetchData() {
     this.listLoading = true
-    fetchList({ /* Your params here */ }).then(response => {
-      this.list = response.data.items
-      this.listLoading = false
-    })
+    const { data } = await fetchList({ /* Your params here */ })
+    this.list = data.items
+    this.listLoading = false
   }
 
   private handleSelectionChange(value: any) {
@@ -120,7 +119,7 @@ export default class SelectExcel extends Vue {
       const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
       const list = this.multipleSelection
       const data = formatJson(filterVal, list)
-      exportJson2Excel(tHeader, data, this.filename);
+      exportJson2Excel(tHeader, data, this.filename !== '' ? this.filename : undefined);
       (this.$refs.multipleTable as Table).clearSelection()
       this.downloadLoading = false
     } else {

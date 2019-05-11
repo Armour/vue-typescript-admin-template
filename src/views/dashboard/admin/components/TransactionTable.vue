@@ -61,10 +61,9 @@ export default class TransactionTable extends Vue {
     this.fetchData()
   }
 
-  private fetchData() {
-    transactionList({}).then(response => {
-      this.list = response.data.items.slice(0, 8)
-    })
+  private async fetchData() {
+    const { data } = await transactionList({ /* Your params here */ })
+    this.list = data.items.slice(0, 8)
   }
 }
 </script>

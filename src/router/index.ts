@@ -252,24 +252,24 @@ export const asyncRoutes: RouteConfig[] = [
       }
     ]
   },
-  // {
-  //   path: '/zip',
-  //   component: Layout,
-  //   redirect: '/zip/download',
-  //   meta: {
-  //     title: 'zip',
-  //     icon: 'zip',
-  //     alwaysShow: true // will always show the root menu
-  //   },
-  //   children: [
-  //     {
-  //       path: 'download',
-  //       component: () => import(/* webpackChunkName: "zip" */ '@/views/zip/index.vue'),
-  //       name: 'ExportZip',
-  //       meta: { title: 'exportZip' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/zip',
+    component: Layout,
+    redirect: '/zip/download',
+    meta: {
+      title: 'zip',
+      icon: 'zip',
+      alwaysShow: true // will always show the root menu
+    },
+    children: [
+      {
+        path: 'download',
+        component: () => import(/* webpackChunkName: "zip" */ '@/views/zip/index.vue'),
+        name: 'ExportZip',
+        meta: { title: 'exportZip' }
+      }
+    ]
+  },
   // {
   //   path: '/pdf',
   //   component: Layout,

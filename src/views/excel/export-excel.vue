@@ -79,10 +79,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
-import { exportJson2Excel } from '@/utils/excel'
 import { formatJson } from '@/utils'
+import { exportJson2Excel } from '@/utils/excel'
 import * as filters from '@/filters'
-// options components
 import FilenameOption from './components/FilenameOption.vue'
 import AutoWidthOption from './components/AutoWidthOption.vue'
 import BookTypeOption from './components/BookTypeOption.vue'
@@ -98,7 +97,7 @@ import BookTypeOption from './components/BookTypeOption.vue'
   }
 })
 export default class ExportExcel extends Vue {
-  private list: any = null
+  private list: any[] = []
   private listLoading = true
   private downloadLoading = false
   private filename = ''
@@ -109,12 +108,11 @@ export default class ExportExcel extends Vue {
     this.fetchData()
   }
 
-  private fetchData() {
+  private async fetchData() {
     this.listLoading = true
-    fetchList({ /* Your params here */ }).then(response => {
-      this.list = response.data.items
-      this.listLoading = false
-    })
+    const { data } = await fetchList({ /* Your params here */ })
+    this.list = data.items
+    this.listLoading = false
   }
 
   private handleDownload() {
@@ -123,7 +121,7 @@ export default class ExportExcel extends Vue {
     const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
     const list = this.list
     const data = formatJson(filterVal, list)
-    exportJson2Excel(tHeader, data, this.filename, undefined, undefined, this.autoWidth, this.bookType)
+    exportJson2Excel(tHeader, data, this.filename !== '' ? this.filename : undefined, undefined, undefined, this.autoWidth, this.bookType)
     this.downloadLoading = false
   }
 }
