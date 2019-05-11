@@ -1,60 +1,59 @@
 <template>
   <div class="app-container">
+    <el-input
+      v-model="filename"
+      placeholder="Please enter the file name (default file)"
+      style="width:300px;"
+      prefix-icon="el-icon-document"
+    />
     <el-button
       :loading="downloadLoading"
-      style="margin-bottom:20px"
+      style="margin-bottom:20px;"
       type="primary"
       icon="document"
       @click="handleDownload"
     >
-      Export
+      Export Zip
     </el-button>
-
     <el-table
-      ref="multipleTable"
       v-loading="listLoading"
       :data="list"
-      element-loading-text="Loading"
+      element-loading-text="拼命加载中"
       border
       fit
       highlight-current-row
     >
       <el-table-column
         align="center"
-        label="Id"
+        label="ID"
         width="95"
       >
         <template slot-scope="scope">
           {{ scope.$index }}
         </template>
       </el-table-column>
+      <el-table-column label="Title">
+        <template slot-scope="scope">
+          {{ scope.row.title }}
+        </template>
+      </el-table-column>
       <el-table-column
-        label="Main Information"
+        label="Author"
+        width="95"
         align="center"
       >
-        <el-table-column label="Title">
-          <template slot-scope="scope">
-            {{ scope.row.title }}
-          </template>
-        </el-table-column>
-        <el-table-column
-          label="Author"
-          width="110"
-          align="center"
-        >
-          <template slot-scope="scope">
-            <el-tag>{{ scope.row.author }}</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column
-          label="Readings"
-          width="115"
-          align="center"
-        >
-          <template slot-scope="scope">
-            {{ scope.row.pageviews }}
-          </template>
-        </el-table-column>
+        <template slot-scope="scope">
+          <el-tag>{{ scope.row.author }}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="Readings"
+        width="115"
+        align="center"
+      >
+        <template slot-scope="scope">
+          {{ scope.row.pageviews }}
+        </template>
       </el-table-column>
       <el-table-column
         align="center"
@@ -63,7 +62,7 @@
       >
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.display_time }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -74,18 +73,14 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
 import { formatJson } from '@/utils'
-import { exportJson2Excel } from '@/utils/excel'
-import * as filters from '@/filters'
+import { exportTxt2Zip } from '@/utils/zip'
 
-@Component({
-  filters: {
-    parseTime: filters.parseTime
-  }
-})
-export default class MergeHeader extends Vue {
+@Component
+export default class ExportZip extends Vue {
   private list: any[] = []
   private listLoading = true
   private downloadLoading = false
+  private filename = ''
 
   created() {
     this.fetchData()
@@ -100,13 +95,15 @@ export default class MergeHeader extends Vue {
 
   private handleDownload() {
     this.downloadLoading = true
-    const multiHeader = [['Id', 'Main Information', '', '', 'Date']]
-    const header = ['', 'Title', 'Author', 'Readings', '']
+    const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
     const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
     const list = this.list
     const data = formatJson(filterVal, list)
-    const merges = ['A1:A2', 'B1:D1', 'E1:E2']
-    exportJson2Excel(header, data, 'merge-header', multiHeader, merges)
+    if (this.filename !== '') {
+      exportTxt2Zip(tHeader, data, this.filename, this.filename)
+    } else {
+      exportTxt2Zip(tHeader, data)
+    }
     this.downloadLoading = false
   }
 }
