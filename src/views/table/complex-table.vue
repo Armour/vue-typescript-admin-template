@@ -366,6 +366,7 @@ import { Form } from 'element-ui'
 import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
 import { waves } from '@/directives/waves'
 import { exportJson2Excel } from '@/utils/excel'
+import { formatJson } from '@/utils'
 import * as filters from '@/filters'
 import Pagination from '@/components/Pagination/index.vue'
 
@@ -594,19 +595,9 @@ export default class ComplexTable extends Vue {
     this.downloadLoading = true
     const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
     const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
-    const data = this.formatJson(filterVal, this.list)
+    const data = formatJson(filterVal, this.list)
     exportJson2Excel(tHeader, data, 'table-list')
     this.downloadLoading = false
-  }
-
-  private formatJson(filterVal: any, jsonData: any) {
-    return jsonData.map((data: any) => filterVal.map((key: string) => {
-      if (key === 'timestamp') {
-        return filters.parseTime(data[key])
-      } else {
-        return data[key]
-      }
-    }))
   }
 }
 </script>

@@ -26,8 +26,6 @@
     "url": "https://github.com/armour/vue-typescript-admin-template/issues"
   },
   "dependencies": {
-    "@types/file-saver": "^2.0.0",
-    "@types/xlsx": "^0.0.36",
     "axios": "^0.18.0",
     "clipboard": "^2.0.4",
     "driver.js": "^0.9.6",
@@ -58,12 +56,14 @@
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
     "@types/echarts": "^4.1.9",
+    "@types/file-saver": "^2.0.0",
     "@types/jest": "^24.0.12",
     "@types/js-cookie": "^2.2.2",
     "@types/mockjs": "^1.0.2",
     "@types/nprogress": "^0.0.29",
     "@types/sortablejs": "^1.7.2",
     "@types/webpack-env": "^1.13.9",
+    "@types/xlsx": "^0.0.36",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-e2e-cypress": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",

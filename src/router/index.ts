@@ -219,39 +219,39 @@ export const asyncRoutes: RouteConfig[] = [
       }
     ]
   },
-  // {
-  //   path: '/excel',
-  //   component: Layout,
-  //   redirect: '/excel/export-excel',
-  //   name: 'Excel',
-  //   meta: { title: 'excel', icon: 'excel' },
-  //   children: [
-  //     {
-  //       path: 'export-excel',
-  //       component: () => import(/* webpackChunkName: "exportExcel" */ '@/views/excel/exportExcel.vue'),
-  //       name: 'ExportExcel',
-  //       meta: { title: 'exportExcel' }
-  //     },
-  //     {
-  //       path: 'export-selected-excel',
-  //       component: () => import(/* webpackChunkName: "selectExcel" */ '@/views/excel/selectExcel.vue'),
-  //       name: 'SelectExcel',
-  //       meta: { title: 'selectExcel' }
-  //     },
-  //     {
-  //       path: 'export-merge-header',
-  //       component: () => import(/* webpackChunkName: "mergeHeader" */ '@/views/excel/mergeHeader.vue'),
-  //       name: 'MergeHeader',
-  //       meta: { title: 'mergeHeader' }
-  //     },
-  //     {
-  //       path: 'upload-excel',
-  //       component: () => import(/* webpackChunkName: "uploadExcel" */ '@/views/excel/uploadExcel.vue'),
-  //       name: 'UploadExcel',
-  //       meta: { title: 'uploadExcel' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/excel',
+    component: Layout,
+    redirect: '/excel/export-excel',
+    name: 'Excel',
+    meta: { title: 'excel', icon: 'excel' },
+    children: [
+      {
+        path: 'export-excel',
+        component: () => import(/* webpackChunkName: "exportExcel" */ '@/views/excel/export-excel.vue'),
+        name: 'ExportExcel',
+        meta: { title: 'exportExcel' }
+      },
+      {
+        path: 'export-selected-excel',
+        component: () => import(/* webpackChunkName: "selectExcel" */ '@/views/excel/select-excel.vue'),
+        name: 'SelectExcel',
+        meta: { title: 'selectExcel' }
+      },
+      {
+        path: 'export-merge-header',
+        component: () => import(/* webpackChunkName: "mergeHeader" */ '@/views/excel/merge-header.vue'),
+        name: 'MergeHeader',
+        meta: { title: 'mergeHeader' }
+      },
+      {
+        path: 'upload-excel',
+        component: () => import(/* webpackChunkName: "uploadExcel" */ '@/views/excel/upload-excel.vue'),
+        name: 'UploadExcel',
+        meta: { title: 'uploadExcel' }
+      }
+    ]
+  },
   // {
   //   path: '/zip',
   //   component: Layout,

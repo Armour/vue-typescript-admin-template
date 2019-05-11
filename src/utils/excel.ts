@@ -158,7 +158,7 @@ export const exportTable2Excel = (id: string) => {
   }
 }
 
-export const exportJson2Excel = (header: string[], data: any, filename: string = 'excel-list', multiHeader: string[] = [], merges:any[] = [], autoWidth: boolean = true, bookType: string = 'xlsx') => {
+export const exportJson2Excel = (header: string[], data: any, filename: string = 'excel-list', multiHeader: string[][] = [], merges:any[] = [], autoWidth: boolean = true, bookType: string = 'xlsx') => {
   data = [...data]
   data.unshift(header)
   for (let i = multiHeader.length - 1; i > -1; i--) {
