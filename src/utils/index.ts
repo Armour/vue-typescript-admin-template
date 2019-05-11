@@ -59,6 +59,16 @@ export const param2Obj = (url: string) => {
   )
 }
 
+// Format and filter json data using filterKeys array
+export const formatJson = (filterKeys: any, jsonData: any) =>
+  jsonData.map((data: any) => filterKeys.map((key: string) => {
+    if (key === 'timestamp') {
+      return parseTime(data[key])
+    } else {
+      return data[key]
+    }
+  }))
+
 // Check if an element has a class
 export const hasClass = (ele: HTMLElement, className: string) => {
   return !!ele.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))

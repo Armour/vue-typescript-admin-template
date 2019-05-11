@@ -29,6 +29,12 @@
       >
         Español
       </el-dropdown-item>
+      <el-dropdown-item
+        :disabled="language==='ja'"
+        command="ja"
+      >
+        日本語
+      </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>

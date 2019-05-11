@@ -1,6 +1,9 @@
 const path = require('path')
 
-const port = 9527 // dev port
+// If your port is set to 80,
+// use administrator privileges to execute the command line.
+// For example, on Mac: sudo npm run / sudo yarn
+const port = 9527
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',

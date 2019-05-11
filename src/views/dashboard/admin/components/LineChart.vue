@@ -24,7 +24,9 @@ export default class LineChart extends mixins(ResizeMixin) {
   }
 
   mounted() {
-    this.initChart()
+    this.$nextTick(() => {
+      this.initChart()
+    })
   }
 
   beforeDestroy() {

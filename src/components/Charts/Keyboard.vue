@@ -20,7 +20,9 @@ export default class Keyboard extends mixins(ResizeMixin) {
   @Prop({ default: '200px' }) private height!: string
 
   mounted() {
-    this.initChart()
+    this.$nextTick(() => {
+      this.initChart()
+    })
   }
 
   beforeDestroy() {
