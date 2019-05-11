@@ -150,7 +150,7 @@ export default {
     placeholder: '请输入文件名(默认file)'
   },
   pdf: {
-    tips: '这里使用   window.print() 来实现下载pdf的功能'
+    tips: '这里使用 window.print() 来实现下载pdf的功能'
   },
   theme: {
     change: '换肤',

@@ -67,10 +67,10 @@ import AppLink from './Link.vue'
   }
 })
 export default class SidebarItem extends Vue {
-  @Prop({ required: true }) private item!: RouteConfig;
-  @Prop({ default: false }) private isCollapse!: boolean;
-  @Prop({ default: true }) private isFirstLevel!: boolean;
-  @Prop({ default: '' }) private basePath!: string;
+  @Prop({ required: true }) private item!: RouteConfig
+  @Prop({ default: false }) private isCollapse!: boolean
+  @Prop({ default: true }) private isFirstLevel!: boolean
+  @Prop({ default: '' }) private basePath!: string
 
   get alwaysShowRootMenu() {
     if (this.item.meta && this.item.meta.alwaysShow) {

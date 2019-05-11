@@ -270,24 +270,24 @@ export const asyncRoutes: RouteConfig[] = [
       }
     ]
   },
-  // {
-  //   path: '/pdf',
-  //   component: Layout,
-  //   redirect: '/pdf/index',
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import(/* webpackChunkName: "pdf" */ '@/views/pdf/index.vue'),
-  //       name: 'PDF',
-  //       meta: { title: 'pdf', icon: 'pdf' }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/pdf/download',
-  //   component: () => import(/* webpackChunkName: "downloadPdf" */ '@/views/pdf/download.vue'),
-  //   meta: { hidden: true }
-  // },
+  {
+    path: '/pdf',
+    component: Layout,
+    redirect: '/pdf/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import(/* webpackChunkName: "pdf" */ '@/views/pdf/index.vue'),
+        name: 'PDF',
+        meta: { title: 'pdf', icon: 'pdf' }
+      }
+    ]
+  },
+  {
+    path: '/pdf/download',
+    component: () => import(/* webpackChunkName: "pdfDownload" */ '@/views/pdf/download.vue'),
+    meta: { hidden: true }
+  },
   {
     path: '/theme',
     component: Layout,
