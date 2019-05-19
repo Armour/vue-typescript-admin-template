@@ -23,6 +23,7 @@ export default class FilenameOption extends Vue {
   get filename() {
     return this.value
   }
+
   set filename(value) {
     this.$emit('input', value)
   }

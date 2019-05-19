@@ -28,6 +28,7 @@ export default class AutoWidthOption extends Vue {
   get autoWidth() {
     return this.value
   }
+
   set autoWidth(value) {
     this.$emit('input', value)
   }

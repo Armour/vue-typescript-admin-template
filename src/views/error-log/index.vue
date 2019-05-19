@@ -1,7 +1,7 @@
 <template>
   <div class="errPage-container">
-    <ErrorA />
-    <ErrorB />
+    <error-a />
+    <error-b />
     <h3>{{ $t('errorLog.tips') }}</h3>
     <aside>
       {{ $t('errorLog.description') }}

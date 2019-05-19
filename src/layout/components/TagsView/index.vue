@@ -81,7 +81,7 @@ export default class TagsView extends Vue {
   }
 
   @Watch('$route')
-  private onRouteChange(route: ITagView) {
+  private onRouteChange() {
     this.addTags()
     this.moveToCurrentTag()
   }
