@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div>
-      <FilenameOption v-model="filename" />
-      <AutoWidthOption v-model="autoWidth" />
-      <BookTypeOption v-model="bookType" />
+      <filename-option v-model="filename" />
+      <auto-width-option v-model="autoWidth" />
+      <book-type-option v-model="bookType" />
       <el-button
         :loading="downloadLoading"
         style="margin:0 0 20px 20px;"

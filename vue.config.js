@@ -4,6 +4,7 @@ const path = require('path')
 // use administrator privileges to execute the command line.
 // For example, on Mac: sudo npm run / sudo yarn
 const port = 9527
+const name = 'Vue Element Admin' // TODO: get this variable from setting.ts
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
@@ -29,9 +30,13 @@ module.exports = {
     }
   },
   pwa: {
-    name: 'vue-typescript-admin-template'
+    name: name
   },
   chainWebpack(config) {
+    // provide the app's title in webpack's name field, so that
+    // it can be accessed in index.html to inject the correct title.
+    config.set('name', name)
+
     // https://webpack.js.org/configuration/devtool/#development
     config
       .when(process.env.NODE_ENV === 'development',

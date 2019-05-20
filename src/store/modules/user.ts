@@ -3,6 +3,7 @@ import { login, logout, getUserInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import router, { resetRouter } from '@/router'
 import { PermissionModule } from './permission'
+import { TagsViewModule } from './tagsView'
 import store from '@/store'
 
 export interface IUserState {
@@ -94,6 +95,8 @@ class User extends VuexModule implements IUserState {
     PermissionModule.GenerateRoutes(this.roles)
     // Add generated routes
     router.addRoutes(PermissionModule.dynamicRoutes)
+    // Reset visited views and cached views
+    TagsViewModule.delAllViews()
   }
 
   @Action

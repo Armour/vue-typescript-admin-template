@@ -27,6 +27,7 @@ export default class BookTypeOption extends Vue {
   get bookType() {
     return this.value
   }
+
   set bookType(value) {
     this.$emit('input', value)
   }

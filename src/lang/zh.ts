@@ -57,7 +57,7 @@ export default {
     uploadExcel: '上传 Excel',
     zip: 'Zip',
     pdf: 'PDF',
-    exportZip: 'Export Zip',
+    exportZip: '导出 Zip',
     theme: '换肤',
     clipboard: '粘贴板',
     i18n: '国际化',

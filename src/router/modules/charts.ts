@@ -6,10 +6,7 @@ const chartsRouter: RouteConfig = {
   component: Layout,
   redirect: 'noredirect',
   name: 'Charts',
-  meta: {
-    title: 'charts',
-    icon: 'chart'
-  },
+  meta: { title: 'charts', icon: 'chart' },
   children: [
     {
       path: 'keyboard',

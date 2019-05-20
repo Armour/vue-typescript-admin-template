@@ -16,10 +16,20 @@
 
     <el-dialog
       :visible.sync="dialogTableVisible"
-      title="Error Log"
       width="80%"
       append-to-body
     >
+      <div slot="title">
+        <span style="padding-right: 10px;">Error Log</span>
+        <el-button
+          size="mini"
+          type="primary"
+          icon="el-icon-delete"
+          @click="clearAll"
+        >
+          Clear All
+        </el-button>
+      </div>
       <el-table
         :data="errorLogs"
         border
@@ -74,6 +84,11 @@ export default class ErrorLog extends Vue {
 
   get errorLogs() {
     return ErrorLogModule.logs
+  }
+
+  private clearAll() {
+    this.dialogTableVisible = false
+    ErrorLogModule.ClearErrorLog()
   }
 }
 </script>

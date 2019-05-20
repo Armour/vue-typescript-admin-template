@@ -62,14 +62,12 @@
 
       <div style="position:relative">
         <div class="tips">
-          <span>{{ $t('login.username') }} : admin</span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
+          <span>{{ $t('login.username') }} : admin </span>
+          <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
         </div>
         <div class="tips">
-          <span style="margin-right:18px;">
-            {{ $t('login.username') }} : editor
-          </span>
-          <span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>
+          <span>{{ $t('login.username') }} : editor </span>
+          <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
         </div>
 
         <el-button
@@ -122,7 +120,8 @@ const validatePassword = (rule: any, value: string, callback: any) => {
 
 @Component({
   components: {
-    LangSelect, SocialSign
+    LangSelect,
+    SocialSign
   }
 })
 export default class Login extends Vue {
@@ -137,7 +136,7 @@ export default class Login extends Vue {
   private passwordType = 'password'
   private loading = false
   private showDialog = false
-  private redirect?: string = undefined
+  private redirect?: string
 
   @Watch('$route', { immediate: true })
   private OnRouteChange(route: Route) {

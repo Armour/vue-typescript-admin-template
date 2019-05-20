@@ -45,7 +45,7 @@ export default class HeaderSearch extends Vue {
   private show = false
   private options: RouteConfig[] = []
   private searchPool: RouteConfig[] = []
-  private fuse?: Fuse<RouteConfig> = undefined
+  private fuse?: Fuse<RouteConfig>
 
   get routes() {
     return PermissionModule.routes
