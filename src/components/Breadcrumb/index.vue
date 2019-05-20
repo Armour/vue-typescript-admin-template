@@ -24,14 +24,18 @@
 <script lang="ts">
 import pathToRegexp from 'path-to-regexp'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { RouteRecord } from 'vue-router'
+import { RouteRecord, Route } from 'vue-router'
 
 @Component
 export default class Breadcrumb extends Vue {
   private breadcrumbs: RouteRecord[] = []
 
   @Watch('$route')
-  private onRouteChange() {
+  private onRouteChange(route: Route) {
+    // if you go to the redirect page, do not update the breadcrumbs
+    if (route.path.startsWith('/redirect/')) {
+      return
+    }
     this.getBreadcrumb()
   }
 

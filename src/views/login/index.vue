@@ -96,6 +96,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
+import { Dictionary } from 'vuex'
 import { Form as ElForm, Input } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
 import { isValidUsername } from '@/utils/validate'
@@ -137,12 +138,17 @@ export default class Login extends Vue {
   private loading = false
   private showDialog = false
   private redirect?: string
+  private otherQuery: Dictionary<string> = {}
 
   @Watch('$route', { immediate: true })
   private OnRouteChange(route: Route) {
-    // TODO: remove the "as string" hack after v4 release for vue-router
+    // TODO: remove the "as Dictionary<string>" hack after v4 release for vue-router
     // See https://github.com/vuejs/vue-router/pull/2050 for details
-    this.redirect = route.query && route.query.redirect as string
+    const query = route.query as Dictionary<string>
+    if (query) {
+      this.redirect = query.redirect
+      this.otherQuery = this.getOtherQuery(query)
+    }
   }
 
   mounted() {
@@ -170,7 +176,10 @@ export default class Login extends Vue {
         this.loading = true
         UserModule.Login(this.loginForm).then(() => {
           this.loading = false
-          this.$router.push({ path: this.redirect || '/' })
+          this.$router.push({
+            path: this.redirect || '/',
+            query: this.otherQuery
+          })
         }).catch(() => {
           this.loading = false
         })
@@ -178,6 +187,15 @@ export default class Login extends Vue {
         return false
       }
     })
+  }
+
+  private getOtherQuery(query: Dictionary<string>) {
+    return Object.keys(query).reduce((acc, cur) => {
+      if (cur !== 'redirect') {
+        acc[cur] = query[cur]
+      }
+      return acc
+    }, {} as Dictionary<string>)
   }
 }
 </script>
