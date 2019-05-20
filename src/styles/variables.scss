@@ -1,19 +1,3 @@
-/* Override Element UI theme colors */
-$--color-primary: #1890ff;
-$--color-success: #13ce66;
-$--color-warning: #FFBA00;
-$--color-danger: #ff4949;
-$--color-info: #5d5d5d;
-$--button-font-weight: 400;
-$--color-text-regular: #1f2d3d;
-$--border-color-light: #dfe4ed;
-$--border-color-lighter: #e6ebf5;
-$--table-border:1px solid#dfe6ec;
-/* icon font path, required */
-$--font-path: '~element-ui/lib/theme-chalk/fonts';
-// Apply overrided variables in Element UI
-@import "~element-ui/packages/theme-chalk/src/index";
-
 /* Sidebar */
 $sideBarWidth: 210px;
 $subMenuBg:#1f2d3d;
@@ -26,13 +10,12 @@ $menuActiveText:#409EFF;
 /* Login page */
 $lightGray: #eee;
 $darkGray:#889aa4;
-$loginBg: #283443;
+$loginBg: #2d3a4b;
 $loginCursorColor: #fff;
 
 // The :export directive is the magic sauce for webpack
 // https://mattferderer.com/use-sass-variables-in-typescript-and-javascript
 :export {
-  theme: $--color-primary;
   subMenuBg: $subMenuBg;
   subMenuHover: $subMenuHover;
   subMenuActiveText: $subMenuActiveText;

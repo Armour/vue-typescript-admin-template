@@ -1,5 +1,4 @@
 export interface IScssVariables {
-  theme: string
   subMenuBg: string
   subMenuHover: string
   subMenuActiveText: string
