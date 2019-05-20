@@ -51,7 +51,7 @@
       </el-table-column>
 
       <el-table-column
-        width="100px"
+        width="105px"
         label="Importance"
       >
         <template slot-scope="scope">

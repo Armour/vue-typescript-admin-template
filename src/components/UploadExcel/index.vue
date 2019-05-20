@@ -90,7 +90,7 @@ export default class UploadExcel extends Vue {
   }
 
   private upload(rawFile: File) {
-    (this.$refs['excel-upload-input'] as HTMLInputElement).value = '' // fix can't select the same excel
+    (this.$refs['excel-upload-input'] as HTMLInputElement).value = '' // Fixes can't select the same excel
     if (!this.beforeUpload) {
       this.readerData(rawFile)
       return

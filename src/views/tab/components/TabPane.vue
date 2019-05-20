@@ -72,7 +72,7 @@
     </el-table-column>
 
     <el-table-column
-      class="status-col"
+      class-name="status-col"
       label="Status"
       width="110"
     >

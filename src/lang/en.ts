@@ -112,7 +112,7 @@ export default {
     dragTips1: 'The default order',
     dragTips2: 'The after dragging order',
     title: 'Title',
-    importance: 'Imp',
+    importance: 'Importance',
     type: 'Type',
     remark: 'Remark',
     search: 'Search',

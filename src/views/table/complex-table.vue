@@ -190,7 +190,7 @@
         :label="$t('table.actions')"
         align="center"
         width="230"
-        class-name="small-padding fixed-width"
+        class-name="fixed-width"
       >
         <template slot-scope="{row}">
           <el-button

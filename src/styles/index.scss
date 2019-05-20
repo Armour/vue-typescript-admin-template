@@ -1,8 +1,3 @@
-/* icon font path, required */
-$--font-path: '~element-ui/lib/theme-chalk/fonts';
-
-@import "~element-ui/packages/theme-chalk/src/index";
-
 @import './variables.scss';
 @import './mixin.scss';
 @import './transition.scss';
@@ -49,6 +44,11 @@ div:focus {
   padding: 20px;
 }
 
+.components-container {
+  margin: 30px 50px;
+  position: relative;
+}
+
 aside {
   background: #eef1f6;
   color: #2c3e50;
@@ -58,7 +58,6 @@ aside {
   display: block;
   line-height: 32px;
   font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -76,5 +75,32 @@ aside {
   .el-button--mini {
     padding: 7px 10px;
     width: 60px;
+  }
+}
+
+.filter-container {
+  padding-bottom: 10px;
+
+  .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
+  }
+}
+
+.link-type,
+.link-type:focus {
+  color: #337ab7;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(32, 160, 255);
+  }
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
   }
 }
