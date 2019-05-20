@@ -162,7 +162,7 @@ export const asyncRoutes: RouteConfig[] = [
     children: [
       {
         path: 'index',
-        component: () => import(/* webpackChunkName: "icons" */ '@/views/svg-icons/index.vue'),
+        component: () => import(/* webpackChunkName: "icons" */ '@/views/icons/index.vue'),
         name: 'Icons',
         meta: { title: 'icons', icon: 'icon', noCache: true }
       }
