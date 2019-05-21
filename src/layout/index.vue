@@ -160,7 +160,7 @@ export default class Layout extends mixins(ResizeMixin) {
     }
   }
 
-  &.fixed-header {
+  .fixed-header {
     width: 100%;
   }
 }

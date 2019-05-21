@@ -81,6 +81,11 @@ export default class Breadcrumb extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
 .app-breadcrumb.el-breadcrumb {
   display: inline-block;
   font-size: 14px;

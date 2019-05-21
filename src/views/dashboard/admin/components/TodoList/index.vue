@@ -522,10 +522,6 @@ export default class TodoList extends Vue {
     .footer {
       height: 50px;
     }
-
-    .filters {
-      bottom: 10px;
-    }
   }
 }
 </style>
