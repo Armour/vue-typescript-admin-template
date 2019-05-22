@@ -22,7 +22,8 @@
 <script lang="ts">
 // Docs: https://panjiachen.github.io/vue-element-admin-site/feature/component/rich-editor.html#tinymce
 import 'tinymce/tinymce'
-import 'tinymce/themes/silver' // Theme
+import 'tinymce/themes/silver' // Import themes
+import 'tinymce/themes/mobile'
 import 'tinymce/plugins/advlist' // Any plugins you want to use has to be imported
 import 'tinymce/plugins/anchor'
 import 'tinymce/plugins/autolink'
