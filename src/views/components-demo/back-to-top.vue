@@ -116,7 +116,7 @@
     <!-- you can add element-ui's tooltip -->
     <el-tooltip
       placement="top"
-      content="tooltip"
+      content="Customize your tooltip content here"
     >
       <back-to-top
         :custom-style="myBackToTopStyle"
@@ -144,8 +144,8 @@ export default class BackToTopDemo extends Vue {
     width: '40px',
     height: '40px',
     'border-radius': '4px',
-    'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
-    background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
+    'line-height': '45px', // Please keep consistent with height to make it center vertically
+    background: '#e7eaf1'
   }
 }
 </script>
