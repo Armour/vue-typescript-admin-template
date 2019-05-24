@@ -6,7 +6,7 @@
       class="back-to-ceiling"
       @click="backToTop"
     >
-      <img src="@/assets/icon/icon_back_top.svg">
+      <svg-icon name="backtop" />
     </div>
   </transition>
 </template>
@@ -85,6 +85,7 @@ export default class BackToTop extends Vue {
     background: #d5dbe7;
   }
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
