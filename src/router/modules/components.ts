@@ -25,6 +25,12 @@ const componentsRouter: RouteConfig = {
       component: () => import(/* webpackChunkName: "jsonEditor" */ '@/views/components-demo/json-editor.vue'),
       name: 'JsonEditorDemo',
       meta: { title: 'jsonEditor' }
+    },
+    {
+      path: 'back-to-top',
+      component: () => import(/* webpackChunkName: "BackToTopDemo" */ '@/views/components-demo/back-to-top.vue'),
+      name: 'BackToTopDemo',
+      meta: { title: 'backToTop' }
     }
     // {
     //   path: 'split-pane',
