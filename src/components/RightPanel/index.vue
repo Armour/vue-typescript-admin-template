@@ -62,7 +62,7 @@ export default class RightPanel extends Vue {
   }
 
   private closeSidebar(ev: MouseEvent) {
-    const parent = (ev.target as Element).closest('.rightPanel')
+    const parent = (ev.target as HTMLElement).closest('.rightPanel')
     if (!parent) {
       this.show = false
       window.removeEventListener('click', this.closeSidebar)

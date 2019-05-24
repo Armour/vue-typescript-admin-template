@@ -22,7 +22,7 @@ export default class ResizeMixin extends Vue {
     }
     this.$_sidebarElm = document.getElementsByClassName('sidebar-container')[0]
     if (this.$_sidebarElm) {
-      this.$_sidebarElm.addEventListener('transitionend', this.$_sidebarResizeHandler)
+      this.$_sidebarElm.addEventListener('transitionend', this.$_sidebarResizeHandler as EventListener)
     }
   }
 
@@ -31,13 +31,13 @@ export default class ResizeMixin extends Vue {
       window.removeEventListener('resize', this.$_chartResizeHandler)
     }
     if (this.$_sidebarElm) {
-      this.$_sidebarElm.removeEventListener('transitionend', this.$_sidebarResizeHandler)
+      this.$_sidebarElm.removeEventListener('transitionend', this.$_sidebarResizeHandler as EventListener)
     }
   }
 
   // eslint-disable-next-line camelcase
-  private $_sidebarResizeHandler(e: Event) {
-    if ((e as TransitionEvent).propertyName === 'width') {
+  private $_sidebarResizeHandler(e: TransitionEvent) {
+    if (e.propertyName === 'width') {
       this.$_chartResizeHandler()
     }
   }

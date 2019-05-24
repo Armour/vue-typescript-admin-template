@@ -6,7 +6,10 @@ const componentsRouter: RouteConfig = {
   component: Layout,
   redirect: 'noRedirect',
   name: 'ComponentDemo',
-  meta: { title: 'components', icon: 'component' },
+  meta: {
+    title: 'components',
+    icon: 'component'
+  },
   children: [
     {
       path: 'tinymce',

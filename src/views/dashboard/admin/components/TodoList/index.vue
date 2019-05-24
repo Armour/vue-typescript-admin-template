@@ -115,7 +115,7 @@ export default class TodoList extends Vue {
   }
 
   private addTodo(e: KeyboardEvent) {
-    const text = (e as any).target.value
+    const text = (e.target as HTMLInputElement).value
     if (text.trim()) {
       this.todos.push({
         text,

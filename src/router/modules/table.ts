@@ -6,7 +6,10 @@ const tableRoutes: RouteConfig = {
   component: Layout,
   redirect: '/table/complex-table',
   name: 'Table',
-  meta: { title: 'table', icon: 'table' },
+  meta: {
+    title: 'table',
+    icon: 'table'
+  },
   children: [
     {
       path: 'dynamic-table',

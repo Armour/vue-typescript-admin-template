@@ -14,7 +14,7 @@ export const clipboardError = () =>
     type: 'error'
   })
 
-export const handleClipboard = (text: string, event: Event) => {
+export const handleClipboard = (text: string, event: MouseEvent) => {
   const clipboard = new Clipboard(event.target as Element, {
     text: () => text
   })

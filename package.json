@@ -29,7 +29,7 @@
     "@tinymce/tinymce-vue": "^2.0.0",
     "axios": "^0.18.0",
     "clipboard": "^2.0.4",
-    "codemirror": "^5.46.0",
+    "codemirror": "^5.47.0",
     "driver.js": "^0.9.6",
     "echarts": "^4.2.1",
     "element-ui": "^2.8.2",
@@ -46,7 +46,7 @@
     "screenfull": "^4.2.0",
     "script-loader": "^0.7.2",
     "sortablejs": "^1.9.0",
-    "tinymce": "^5.0.5",
+    "tinymce": "^5.0.6",
     "tui-editor": "^1.4.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.1.0",
@@ -64,10 +64,10 @@
     "@types/clipboard": "^2.0.1",
     "@types/codemirror": "^0.0.74",
     "@types/echarts": "^4.1.9",
-    "@types/file-saver": "^2.0.0",
+    "@types/file-saver": "^2.0.1",
     "@types/jest": "^24.0.13",
     "@types/js-cookie": "^2.2.2",
-    "@types/jszip": "^3.1.5",
+    "@types/jszip": "^3.1.6",
     "@types/mockjs": "^1.0.2",
     "@types/nprogress": "^0.0.29",
     "@types/sortablejs": "^1.7.2",
@@ -97,7 +97,7 @@
     "typescript": "3.4.5",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.31.0"
+    "webpack": "^4.32.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
