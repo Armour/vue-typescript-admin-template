@@ -197,6 +197,12 @@ export const asyncRoutes = [
         meta: { title: 'backToTop' }
       },
       {
+        path: 'count-to',
+        component: 'views/components-demo/count-to',
+        name: 'CountToDemo',
+        meta: { title: 'countTo' }
+      },
+      {
         path: 'drag-dialog',
         component: 'views/components-demo/dragDialog',
         name: 'DragDialogDemo',

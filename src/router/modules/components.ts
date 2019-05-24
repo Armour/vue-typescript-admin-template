@@ -31,6 +31,12 @@ const componentsRouter: RouteConfig = {
       component: () => import(/* webpackChunkName: "backToTop" */ '@/views/components-demo/back-to-top.vue'),
       name: 'BackToTopDemo',
       meta: { title: 'backToTop' }
+    },
+    {
+      path: 'count-to',
+      component: () => import(/* webpackChunkName: "countTo" */ '@/views/components-demo/count-to.vue'),
+      name: 'CountToDemo',
+      meta: { title: 'countTo' }
     }
     // {
     //   path: 'split-pane',
