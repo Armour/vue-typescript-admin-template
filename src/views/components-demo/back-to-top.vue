@@ -136,6 +136,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import BackToTop from '@/components/BackToTop/index.vue'
+
 @Component({
   components: {
     BackToTop

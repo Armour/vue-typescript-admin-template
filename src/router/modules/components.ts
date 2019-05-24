@@ -28,7 +28,7 @@ const componentsRouter: RouteConfig = {
     },
     {
       path: 'back-to-top',
-      component: () => import(/* webpackChunkName: "BackToTopDemo" */ '@/views/components-demo/back-to-top.vue'),
+      component: () => import(/* webpackChunkName: "backToTop" */ '@/views/components-demo/back-to-top.vue'),
       name: 'BackToTopDemo',
       meta: { title: 'backToTop' }
     }
