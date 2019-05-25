@@ -53,12 +53,12 @@ const componentsRouter: RouteConfig = {
     //   name: 'StickyDemo',
     //   meta: { title: 'Sticky' }
     // },
-    // {
-    //   path: 'count-to',
-    //   component: () => import('@/views/components-demo/count-to'),
-    //   name: 'CountToDemo',
-    //   meta: { title: 'Count To' }
-    // },
+    {
+      path: 'count-to',
+      component: () => import(/* webpackChunkName: "countTo" */ '@/views/components-demo/count-to.vue'),
+      name: 'CountToDemo',
+      meta: { title: 'countTo' }
+    },
     // {
     //   path: 'mixin',
     //   component: () => import('@/views/components-demo/mixin'),
