@@ -8,13 +8,13 @@
     </aside>
     <count-to
       ref="count"
-      :start-val="_startVal"
-      :end-val="_endVal"
-      :duration="_duration"
-      :decimals="_decimals"
-      :separator="_separator"
-      :prefix="_prefix"
-      :suffix="_suffix"
+      :start-val="startVal"
+      :end-val="endVal"
+      :duration="duration"
+      :decimals="decimals"
+      :separator="separator"
+      :prefix="prefix"
+      :suffix="suffix"
       :autoplay="false"
       class="count"
     />
@@ -133,28 +133,28 @@ export default class CountToDemo extends Vue {
   private setSuffix = ' rmb'
   private setPrefix = '¥ '
 
-  get _startVal() {
+  get startVal() {
     if (this.setStartVal) {
       return this.setStartVal
     } else {
       return 0
     }
   }
-  get _endVal() {
+  get endVal() {
     if (this.setEndVal) {
       return this.setEndVal
     } else {
       return 0
     }
   }
-  get _duration() {
+  get duration() {
     if (this.setDuration) {
       return this.setDuration
     } else {
       return 100
     }
   }
-  get _decimals() {
+  get decimals() {
     if (this.setDecimals) {
       if (this.setDecimals < 0 || this.setDecimals > 20) {
         alert('digits argument must be between 0 and 20')
@@ -165,13 +165,13 @@ export default class CountToDemo extends Vue {
       return 0
     }
   }
-  get _separator() {
+  get separator() {
     return this.setSeparator
   }
-  get _suffix() {
+  get suffix() {
     return this.setSuffix
   }
-  get _prefix() {
+  get prefix() {
     return this.setPrefix
   }
   private start() {
