@@ -1,5 +1,6 @@
 /* tslint:disable */
 import './404'
+import './back-top'
 import './bug'
 import './chart'
 import './clipboard'
@@ -45,4 +46,3 @@ import './tree'
 import './user'
 import './wechat'
 import './zip'
-import './backtop'

@@ -26,18 +26,6 @@ const componentsRouter: RouteConfig = {
       name: 'JsonEditorDemo',
       meta: { title: 'jsonEditor' }
     },
-    {
-      path: 'back-to-top',
-      component: () => import(/* webpackChunkName: "backToTop" */ '@/views/components-demo/back-to-top.vue'),
-      name: 'BackToTopDemo',
-      meta: { title: 'backToTop' }
-    },
-    {
-      path: 'count-to',
-      component: () => import(/* webpackChunkName: "countTo" */ '@/views/components-demo/count-to.vue'),
-      name: 'CountToDemo',
-      meta: { title: 'countTo' }
-    }
     // {
     //   path: 'split-pane',
     //   component: () => import('@/views/components-demo/split-pane'),
@@ -74,12 +62,12 @@ const componentsRouter: RouteConfig = {
     //   name: 'ComponentMixinDemo',
     //   meta: { title: 'Component Mixin' }
     // },
-    // {
-    //   path: 'back-to-top',
-    //   component: () => import('@/views/components-demo/back-to-top'),
-    //   name: 'BackToTopDemo',
-    //   meta: { title: 'Back To Top' }
-    // },
+    {
+      path: 'back-to-top',
+      component: () => import(/* webpackChunkName: "backToTop" */ '@/views/components-demo/back-to-top.vue'),
+      name: 'BackToTopDemo',
+      meta: { title: 'backToTop' }
+    }
     // {
     //   path: 'drag-dialog',
     //   component: () => import('@/views/components-demo/drag-dialog'),

@@ -6,7 +6,10 @@
       class="back-to-ceiling"
       @click="backToTop"
     >
-      <svg-icon name="backtop" />
+      <svg-icon
+        name="back-top"
+        class="backTopIcon"
+      />
     </div>
   </transition>
 </template>
@@ -35,12 +38,13 @@ export default class BackToTop extends Vue {
   private customStyle!: Object
 
   private visible = false
-  private interval?: number
   private isMoving = false
+  private interval?: number
 
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   }
+
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
     if (this.interval) {
@@ -51,6 +55,7 @@ export default class BackToTop extends Vue {
   private handleScroll() {
     this.visible = window.pageYOffset > this.visibilityHeight
   }
+
   private backToTop() {
     if (this.isMoving) return
     const start = window.pageYOffset
@@ -68,6 +73,7 @@ export default class BackToTop extends Vue {
       i++
     }, 16.7)
   }
+
   private easeInOutQuad(t: number, b: number, c: number, d: number) {
     if ((t /= d / 2) < 1) return (c / 2) * t * t + b
     return (-c / 2) * (--t * (t - 2) - 1) + b
@@ -81,6 +87,7 @@ export default class BackToTop extends Vue {
   display: inline-block;
   text-align: center;
   cursor: pointer;
+
   :hover {
     background: #d5dbe7;
   }
@@ -96,7 +103,7 @@ export default class BackToTop extends Vue {
   opacity: 0;
 }
 
-.back-to-ceiling .Icon {
+.back-to-ceiling .backTopIcon {
   fill: #9aaabf;
   background: none;
 }
