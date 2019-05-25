@@ -140,6 +140,7 @@ export default class CountToDemo extends Vue {
       return 0
     }
   }
+
   get endVal() {
     if (this.setEndVal) {
       return this.setEndVal
@@ -147,6 +148,7 @@ export default class CountToDemo extends Vue {
       return 0
     }
   }
+
   get duration() {
     if (this.setDuration) {
       return this.setDuration
@@ -154,6 +156,7 @@ export default class CountToDemo extends Vue {
       return 100
     }
   }
+
   get decimals() {
     if (this.setDecimals) {
       if (this.setDecimals < 0 || this.setDecimals > 20) {
@@ -165,18 +168,23 @@ export default class CountToDemo extends Vue {
       return 0
     }
   }
+
   get separator() {
     return this.setSeparator
   }
+
   get suffix() {
     return this.setSuffix
   }
+
   get prefix() {
     return this.setPrefix
   }
+
   private start() {
     this.$refs.count && (this.$refs.count as any).start()
   }
+
   private pauseResume() {
     this.$refs.count && (this.$refs.count as any).pauseResume()
   }
@@ -219,6 +227,7 @@ export default class CountToDemo extends Vue {
   color: rgba(0, 0, 0, 0.65);
   background-color: #fff;
   border-color: #d9d9d9;
+
   &:hover {
     color: #4ab7bd;
     background-color: #fff;
@@ -256,6 +265,7 @@ input {
   font-size: 20px;
   color: #30b08f;
   background-color: #fff;
+
   &:hover {
     background-color: #30b08f;
     color: #fff;
@@ -267,6 +277,7 @@ input {
   font-size: 20px;
   color: #e65d6e;
   background-color: #fff;
+
   &:hover {
     background-color: #e65d6e;
     color: #fff;

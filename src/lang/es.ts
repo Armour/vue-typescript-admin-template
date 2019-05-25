@@ -17,7 +17,7 @@ export default {
     avatarUpload: 'Subir avatar',
     dropzone: 'Subir ficheros',
     sticky: 'Sticky',
-    countTo: 'CountTo',
+    countTo: 'Count To',
     componentMixin: 'Mixin',
     backToTop: 'Ir arriba',
     dragDialog: 'Drag Dialog',

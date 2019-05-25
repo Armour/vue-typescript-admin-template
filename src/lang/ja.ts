@@ -19,7 +19,7 @@ export default {
     sticky: 'Sticky',
     countTo: 'Count To',
     componentMixin: 'コンポーネントMixin',
-    backToTop: 'BackToTop',
+    backToTop: 'Back To Top',
     dragDialog: 'Drag Dialog',
     dragSelect: 'Drag Select',
     dragKanban: 'Drag 看板',
