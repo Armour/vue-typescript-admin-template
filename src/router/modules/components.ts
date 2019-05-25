@@ -52,7 +52,7 @@ const componentsRouter: RouteConfig = {
     // },
     {
       path: 'count-to',
-      component: () => import(/* webpackChunkName: "CountTo" */ '@/views/components-demo/count-to.vue'),
+      component: () => import(/* webpackChunkName: "countTo" */ '@/views/components-demo/count-to.vue'),
       name: 'CountToDemo',
       meta: { title: 'countTo' }
     },
