@@ -18,7 +18,7 @@
       :autoplay="false"
       class="count"
     />
-    <div style="margin-left: 25%;margin-top: 40px;">
+    <div style="margin-left: 25%; margin-top: 40px;">
       <label
         class="label"
         for="startValInput"
