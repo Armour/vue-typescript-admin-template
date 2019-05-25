@@ -14,7 +14,7 @@ $--table-border:1px solid#dfe6ec;
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 // Apply overrided variables in Element UI
-@import "~element-ui/packages/theme-chalk/src/index";
+@import '~element-ui/packages/theme-chalk/src/index';
 
 // The :export directive is the magic sauce for webpack
 // https://mattferderer.com/use-sass-variables-in-typescript-and-javascript

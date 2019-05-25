@@ -52,8 +52,6 @@ export default class PDFDownload extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "src/styles/mixin.scss";
-
 .main-article {
   padding: 20px;
   margin: 0 auto;

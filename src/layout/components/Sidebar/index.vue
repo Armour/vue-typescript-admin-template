@@ -34,7 +34,7 @@ import { PermissionModule } from '@/store/modules/permission'
 import { SettingsModule } from '@/store/modules/settings'
 import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
-import variables from '@/styles/variables.scss'
+import variables from '@/styles/_variables.scss'
 
 @Component({
   components: {

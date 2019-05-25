@@ -1,6 +1,6 @@
 @import './element-variables.scss';
 @import './variables.scss';
-@import './mixin.scss';
+@import './mixins.scss';
 @import './transition.scss';
 @import './svgicon.scss';
 
@@ -116,4 +116,8 @@ aside {
     padding: 0 10px;
     text-align: center;
   }
+}
+
+.text-center {
+  text-align: center
 }

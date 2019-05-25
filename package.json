@@ -7,23 +7,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit",
-    "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6"
-  },
-  "keywords": [
-    "vue",
-    "typescript",
-    "admin",
-    "dashboard",
-    "element-ui"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/armour/vue-typescript-admin-template.git"
-  },
-  "bugs": {
-    "url": "https://github.com/armour/vue-typescript-admin-template/issues"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^2.0.0",
@@ -74,13 +60,13 @@
     "@types/tinymce": "^4.5.22",
     "@types/webpack-env": "^1.13.9",
     "@types/xlsx": "^0.0.36",
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.7.0",
-    "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-plugin-pwa": "^3.7.0",
-    "@vue/cli-plugin-typescript": "^3.7.0",
-    "@vue/cli-plugin-unit-jest": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-plugin-pwa": "^3.8.0",
+    "@vue/cli-plugin-typescript": "^3.8.1",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
@@ -93,19 +79,35 @@
     "lint-staged": "^8.1.7",
     "sass": "^1.20.1",
     "sass-loader": "^7.1.0",
+    "style-resources-loader": "^1.2.1",
     "ts-jest": "^24.0.2",
     "typescript": "3.4.5",
     "vue-cli-plugin-element": "^1.0.1",
+    "vue-cli-plugin-style-resources-loader": "^0.1.3",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.32.2"
+  },
+  "bugs": {
+    "url": "https://github.com/armour/vue-typescript-admin-template/issues"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "keywords": [
+    "vue",
+    "typescript",
+    "admin",
+    "template",
+    "element-ui"
+  ],
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armour/vue-typescript-admin-template.git"
   }
 }

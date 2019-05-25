@@ -373,8 +373,6 @@ export default class ArticleDetail extends Vue {
 </style>
 
 <style lang="scss" scoped>
-@import "src/styles/mixin.scss";
-
 .createPost-container {
   position: relative;
 

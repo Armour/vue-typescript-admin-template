@@ -73,9 +73,6 @@ export default class Layout extends mixins(ResizeMixin) {
 </script>
 
 <style lang="scss" scoped>
-@import "src/styles/mixin.scss";
-@import "src/styles/variables.scss";
-
 .app-wrapper {
   @include clearfix;
   position: relative;

@@ -199,8 +199,6 @@ export default class Login extends Vue {
 </script>
 
 <style lang="scss">
-@import "src/styles/variables.scss";
-
 // References: https://www.zhangxinxu.com/wordpress/2018/01/css-caret-color-first-line/
 @supports (-webkit-mask: none) and (not (cater-color: $loginCursorColor)) {
   .login-container .el-input {
@@ -242,8 +240,6 @@ export default class Login extends Vue {
 </style>
 
 <style lang="scss" scoped>
-@import "src/styles/variables.scss";
-
 .login-container {
   height: 100%;
   width: 100%;
