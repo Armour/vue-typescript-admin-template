@@ -5,10 +5,21 @@ import { Message } from 'element-ui'
 import { Route } from 'vue-router'
 import { UserModule } from '@/store/modules/user'
 import { PermissionModule } from '@/store/modules/permission'
+import i18n from '@/lang' // Internationalization
+import settings from './settings'
 
 NProgress.configure({ showSpinner: false })
 
 const whiteList = ['/login', '/auth-redirect']
+
+const getPageTitle = (key: string) => {
+  const hasKey = i18n.te(`route.${key}`)
+  if (hasKey) {
+    const pageName = i18n.t(`route.${key}`)
+    return `${pageName} - ${settings.title}`
+  }
+  return `${settings.title}`
+}
 
 router.beforeEach(async(to: Route, _: Route, next: any) => {
   // Start progress bar
@@ -58,7 +69,10 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
   }
 })
 
-router.afterEach(() => {
+router.afterEach((to: Route) => {
   // Finish progress bar
   NProgress.done()
+
+  // set page title
+  document.title = getPageTitle(to.meta.title)
 })
