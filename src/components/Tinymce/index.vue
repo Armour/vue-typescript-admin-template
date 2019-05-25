@@ -75,7 +75,7 @@ export default class Tinymce extends Vue {
   @Prop({ default: defaultId }) private id!: string
   @Prop({ default: () => [] }) private toolbar!: string[]
   @Prop({ default: 'file edit insert view format table' }) private menubar!: string
-  @Prop({ default: 360 }) private height!: string | number
+  @Prop({ default: '360px' }) private height!: string | number
   @Prop({ default: 'auto' }) private width!: string | number
 
   private hasChange = false

@@ -102,7 +102,7 @@ export default class MergeHeader extends Vue {
     this.downloadLoading = true
     const multiHeader = [['Id', 'Main Information', '', '', 'Date']]
     const header = ['', 'Title', 'Author', 'Readings', '']
-    const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
+    const filterVal = ['id', 'title', 'author', 'pageviews', 'timestamp']
     const list = this.list
     const data = formatJson(filterVal, list)
     const merges = ['A1:A2', 'B1:D1', 'E1:E2']

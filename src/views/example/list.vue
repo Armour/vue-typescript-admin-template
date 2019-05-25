@@ -69,23 +69,12 @@
         label="Title"
       >
         <template slot-scope="{row}">
-          <template v-if="row.edit">
-            <el-input
-              v-model="row.title"
-              class="edit-input"
-              size="small"
-            />
-            <el-button
-              class="cancel-btn"
-              size="small"
-              icon="el-icon-refresh"
-              type="warning"
-              @click="cancelEdit(row)"
-            >
-              cancel
-            </el-button>
-          </template>
-          <span v-else>{{ row.title }}</span>
+          <router-link
+            :to="'/example/edit/'+row.id"
+            class="link-type"
+          >
+            <span>{{ row.title }}</span>
+          </router-link>
         </template>
       </el-table-column>
 
@@ -94,37 +83,40 @@
         label="Actions"
         width="120"
       >
-        <template slot-scope="{row}">
-          <el-button
-            v-if="row.edit"
-            type="success"
-            size="small"
-            icon="el-icon-circle-check-outline"
-            @click="confirmEdit(row)"
-          >
-            Ok
-          </el-button>
-          <el-button
-            v-else
-            type="primary"
-            size="small"
-            icon="el-icon-edit"
-            @click="row.edit=!row.edit"
-          >
-            Edit
-          </el-button>
+        <template slot-scope="scope">
+          <router-link :to="'/example/edit/'+scope.row.id">
+            <el-button
+              type="primary"
+              size="small"
+              icon="el-icon-edit"
+            >
+              Edit
+            </el-button>
+          </router-link>
         </template>
       </el-table-column>
     </el-table>
+
+    <pagination
+      v-show="total>0"
+      :total="total"
+      :page.sync="listQuery.page"
+      :limit.sync="listQuery.limit"
+      @pagination="getList"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList, IExampleArticleData } from '@/api/article'
+import { fetchList } from '@/api/article'
+import Pagination from '@/components/Pagination/index.vue'
 import * as filters from '@/filters'
 
 @Component({
+  components: {
+    Pagination
+  },
   filters: {
     statusFilter: (status: string) => {
       const statusMap: { [id: string]: string } = {
@@ -137,45 +129,25 @@ import * as filters from '@/filters'
     parseTime: filters.parseTime
   }
 })
-export default class InlineEditTable extends Vue {
-  private list: IExampleArticleData[] = []
+export default class ArticleList extends Vue {
+  private total = 0
+  private list: any[] = []
   private listLoading = true
   private listQuery = {
     page: 1,
-    limit: 10
+    limit: 20
   }
 
   created() {
     this.getList()
   }
 
-  private async getList() {
+  private getList() {
     this.listLoading = true
-    const { data } = await fetchList(this.listQuery)
-    const items = data.items
-    this.list = items.map((v: any) => {
-      this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html
-      v.originalTitle = v.title // will be used when user click the cancel botton
-      return v
-    })
-    this.listLoading = false
-  }
-
-  private cancelEdit(row: any) {
-    row.title = row.originalTitle
-    row.edit = false
-    this.$message({
-      message: 'The title has been restored to the original value',
-      type: 'warning'
-    })
-  }
-
-  private confirmEdit(row: any) {
-    row.edit = false
-    row.originalTitle = row.title
-    this.$message({
-      message: 'The title has been edited',
-      type: 'success'
+    fetchList(this.listQuery).then(response => {
+      this.list = response.data.items
+      this.total = response.data.total
+      this.listLoading = false
     })
   }
 }

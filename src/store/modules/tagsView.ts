@@ -2,7 +2,9 @@ import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-dec
 import { Route } from 'vue-router'
 import store from '@/store'
 
-export interface ITagView extends Partial<Route> {}
+export interface ITagView extends Partial<Route> {
+  title?: string
+}
 
 export interface ITagsViewState {
   visitedViews: ITagView[]

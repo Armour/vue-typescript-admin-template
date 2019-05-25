@@ -62,7 +62,7 @@
       >
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.timestamp }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -96,7 +96,7 @@ export default class ExportZip extends Vue {
   private handleDownload() {
     this.downloadLoading = true
     const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-    const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
+    const filterVal = ['id', 'title', 'author', 'pageviews', 'timestamp']
     const list = this.list
     const data = formatJson(filterVal, list)
     if (this.filename !== '') {

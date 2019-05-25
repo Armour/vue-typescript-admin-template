@@ -114,7 +114,7 @@
 <script lang="ts">
 import Sortable from 'sortablejs'
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList } from '@/api/article'
+import { fetchList, IExampleArticleData } from '@/api/article'
 import * as filters from '@/filters'
 
 @Component({
@@ -131,11 +131,11 @@ import * as filters from '@/filters'
   }
 })
 export default class DragTable extends Vue {
-  private list: any[] = []
+  private list: IExampleArticleData[] = []
   private listLoading = true
   private total = []
-  private oldList: any[] = []
-  private newList: any[] = []
+  private oldList: string[] = []
+  private newList: string[] = []
   private listQuery = {
     page: 1,
     limit: 10
@@ -152,7 +152,7 @@ export default class DragTable extends Vue {
     this.list = data.items
     this.listLoading = false
     this.total = data.total
-    this.oldList = this.list.map((v: any) => v.id)
+    this.oldList = this.list.map((v) => v.id)
     this.newList = this.oldList.slice()
     this.$nextTick(() => {
       this.setSort()

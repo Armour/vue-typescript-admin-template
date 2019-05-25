@@ -75,7 +75,7 @@
       >
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.timestamp }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -116,7 +116,7 @@ export default class SelectExcel extends Vue {
     if (this.multipleSelection.length) {
       this.downloadLoading = true
       const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-      const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
+      const filterVal = ['id', 'title', 'author', 'pageviews', 'timestamp']
       const list = this.multipleSelection
       const data = formatJson(filterVal, list)
       exportJson2Excel(tHeader, data, this.filename !== '' ? this.filename : undefined);

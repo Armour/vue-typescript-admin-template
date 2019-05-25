@@ -118,7 +118,7 @@ export default class ExportExcel extends Vue {
   private handleDownload() {
     this.downloadLoading = true
     const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-    const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
+    const filterVal = ['id', 'title', 'author', 'pageviews', 'timestamp']
     const list = this.list
     const data = formatJson(filterVal, list)
     exportJson2Excel(tHeader, data, this.filename !== '' ? this.filename : undefined, undefined, undefined, this.autoWidth, this.bookType)
