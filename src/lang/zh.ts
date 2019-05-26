@@ -20,7 +20,7 @@ export default {
     countTo: 'Count To',
     componentMixin: '小组件',
     backToTop: '返回顶部',
-    dragDialog: '拖拽 Dialog',
+    draggableDialog: '可拖拽 Dialog',
     dragSelect: '拖拽 Select',
     dragKanban: '可拖拽看板',
     charts: '图表',

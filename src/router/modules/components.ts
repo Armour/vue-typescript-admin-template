@@ -70,13 +70,13 @@ const componentsRouter: RouteConfig = {
       component: () => import(/* webpackChunkName: "backToTop" */ '@/views/components-demo/back-to-top.vue'),
       name: 'BackToTopDemo',
       meta: { title: 'backToTop' }
+    },
+    {
+      path: 'draggable-dialog',
+      component: () => import(/* webpackChunkName: "draggableDialog" */ '@/views/components-demo/draggable-dialog.vue'),
+      name: 'DraggableDialogDemo',
+      meta: { title: 'draggableDialog' }
     }
-    // {
-    //   path: 'drag-dialog',
-    //   component: () => import('@/views/components-demo/drag-dialog'),
-    //   name: 'DragDialogDemo',
-    //   meta: { title: 'Drag Dialog' }
-    // },
     // {
     //   path: 'drag-select',
     //   component: () => import('@/views/components-demo/drag-select'),

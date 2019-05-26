@@ -20,7 +20,7 @@ export default {
     countTo: 'Count To',
     componentMixin: 'Mixin',
     backToTop: 'Ir arriba',
-    dragDialog: 'Drag Dialog',
+    draggableDialog: 'Draggable Dialog',
     dragSelect: 'Drag Select',
     dragKanban: 'Drag Kanban',
     charts: 'Gráficos',
