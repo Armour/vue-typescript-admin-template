@@ -59,7 +59,7 @@ export const constantRoutes: RouteConfig[] = [
   },
   {
     path: '/auth-redirect',
-    component: () => import(/* webpackChunkName: "authRedirect" */ '@/views/login/auth-redirect.vue'),
+    component: () => import(/* webpackChunkName: "auth-redirect" */ '@/views/login/auth-redirect.vue'),
     meta: { hidden: true }
   },
   {
@@ -138,7 +138,7 @@ export const asyncRoutes: RouteConfig[] = [
     children: [
       {
         path: 'page',
-        component: () => import(/* webpackChunkName: "pagePermission" */ '@/views/permission/page.vue'),
+        component: () => import(/* webpackChunkName: "permission-page" */ '@/views/permission/page.vue'),
         name: 'PagePermission',
         meta: {
           title: 'pagePermission',
@@ -147,7 +147,7 @@ export const asyncRoutes: RouteConfig[] = [
       },
       {
         path: 'directive',
-        component: () => import(/* webpackChunkName: "directivePermission" */ '@/views/permission/directive.vue'),
+        component: () => import(/* webpackChunkName: "permission-directive" */ '@/views/permission/directive.vue'),
         name: 'DirectivePermission',
         meta: {
           title: 'directivePermission'
@@ -156,7 +156,7 @@ export const asyncRoutes: RouteConfig[] = [
       },
       {
         path: 'role',
-        component: () => import(/* webpackChunkName: "rolePermission" */ '@/views/permission/role.vue'),
+        component: () => import(/* webpackChunkName: "permission-role" */ '@/views/permission/role.vue'),
         name: 'RolePermission',
         meta: {
           title: 'rolePermission',
@@ -198,7 +198,7 @@ export const asyncRoutes: RouteConfig[] = [
     children: [
       {
         path: 'create',
-        component: () => import(/* webpackChunkName: "createArticle" */ '@/views/example/create.vue'),
+        component: () => import(/* webpackChunkName: "example-create" */ '@/views/example/create.vue'),
         name: 'CreateArticle',
         meta: {
           title: 'createArticle',
@@ -207,7 +207,7 @@ export const asyncRoutes: RouteConfig[] = [
       },
       {
         path: 'edit/:id(\\d+)',
-        component: () => import(/* webpackChunkName: "editArticle" */ '@/views/example/edit.vue'),
+        component: () => import(/* webpackChunkName: "example-edit" */ '@/views/example/edit.vue'),
         name: 'EditArticle',
         meta: {
           title: 'editArticle',
@@ -218,7 +218,7 @@ export const asyncRoutes: RouteConfig[] = [
       },
       {
         path: 'list',
-        component: () => import(/* webpackChunkName: "articleList" */ '@/views/example/list.vue'),
+        component: () => import(/* webpackChunkName: "example-list" */ '@/views/example/list.vue'),
         name: 'ArticleList',
         meta: {
           title: 'articleList',
@@ -247,11 +247,14 @@ export const asyncRoutes: RouteConfig[] = [
     component: Layout,
     redirect: 'noredirect',
     name: 'ErrorPages',
-    meta: { title: 'errorPages', icon: '404' },
+    meta: {
+      title: 'errorPages',
+      icon: '404'
+    },
     children: [
       {
         path: '401',
-        component: () => import(/* webpackChunkName: "page401" */ '@/views/error-page/401.vue'),
+        component: () => import(/* webpackChunkName: "error-page-401" */ '@/views/error-page/401.vue'),
         name: 'Page401',
         meta: {
           title: 'page401',
@@ -260,7 +263,7 @@ export const asyncRoutes: RouteConfig[] = [
       },
       {
         path: '404',
-        component: () => import(/* webpackChunkName: "page404" */ '@/views/error-page/404.vue'),
+        component: () => import(/* webpackChunkName: "error-page-404" */ '@/views/error-page/404.vue'),
         name: 'Page404',
         meta: {
           title: 'page404',
@@ -276,7 +279,7 @@ export const asyncRoutes: RouteConfig[] = [
     children: [
       {
         path: 'log',
-        component: () => import(/* webpackChunkName: "errorLog" */ '@/views/error-log/index.vue'),
+        component: () => import(/* webpackChunkName: "error-log" */ '@/views/error-log/index.vue'),
         name: 'ErrorLog',
         meta: {
           title: 'errorLog',
@@ -297,25 +300,25 @@ export const asyncRoutes: RouteConfig[] = [
     children: [
       {
         path: 'export-excel',
-        component: () => import(/* webpackChunkName: "exportExcel" */ '@/views/excel/export-excel.vue'),
+        component: () => import(/* webpackChunkName: "export-excel" */ '@/views/excel/export-excel.vue'),
         name: 'ExportExcel',
         meta: { title: 'exportExcel' }
       },
       {
         path: 'export-selected-excel',
-        component: () => import(/* webpackChunkName: "selectExcel" */ '@/views/excel/select-excel.vue'),
+        component: () => import(/* webpackChunkName: "select-excel" */ '@/views/excel/select-excel.vue'),
         name: 'SelectExcel',
         meta: { title: 'selectExcel' }
       },
       {
         path: 'export-merge-header',
-        component: () => import(/* webpackChunkName: "mergeHeader" */ '@/views/excel/merge-header.vue'),
+        component: () => import(/* webpackChunkName: "merge-header" */ '@/views/excel/merge-header.vue'),
         name: 'MergeHeader',
         meta: { title: 'mergeHeader' }
       },
       {
         path: 'upload-excel',
-        component: () => import(/* webpackChunkName: "uploadExcel" */ '@/views/excel/upload-excel.vue'),
+        component: () => import(/* webpackChunkName: "upload-excel" */ '@/views/excel/upload-excel.vue'),
         name: 'UploadExcel',
         meta: { title: 'uploadExcel' }
       }
@@ -357,7 +360,7 @@ export const asyncRoutes: RouteConfig[] = [
   },
   {
     path: '/pdf/download',
-    component: () => import(/* webpackChunkName: "pdfDownload" */ '@/views/pdf/download.vue'),
+    component: () => import(/* webpackChunkName: "pdf-download" */ '@/views/pdf/download.vue'),
     meta: { hidden: true }
   },
   {
@@ -398,7 +401,7 @@ export const asyncRoutes: RouteConfig[] = [
     children: [
       {
         path: 'index',
-        component: () => import(/* webpackChunkName: "i18n" */ '@/views/i18n-demo/index.vue'),
+        component: () => import(/* webpackChunkName: "i18n-demo" */ '@/views/i18n-demo/index.vue'),
         name: 'I18n',
         meta: {
           title: 'i18n',

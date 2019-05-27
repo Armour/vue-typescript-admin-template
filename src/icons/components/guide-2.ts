@@ -3,7 +3,7 @@
 // @ts-ignore
 import icon from 'vue-svgicon'
 icon.register({
-  'guide 2': {
+  'guide-2': {
     width: 1000,
     height: 1000,
     viewBox: '0 0 1000 1000',

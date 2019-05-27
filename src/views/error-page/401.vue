@@ -60,7 +60,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import errGif from '@/assets/401_images/401.gif'
+import errGif from '@/assets/401-images/401.gif'
 
 @Component
 export default class Page401 extends Vue {

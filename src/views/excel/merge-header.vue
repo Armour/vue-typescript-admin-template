@@ -75,13 +75,8 @@ import { Component, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
 import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
-import * as filters from '@/filters'
 
-@Component({
-  filters: {
-    parseTime: filters.parseTime
-  }
-})
+@Component
 export default class MergeHeader extends Vue {
   private list: any[] = []
   private listLoading = true

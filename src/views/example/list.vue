@@ -58,7 +58,7 @@
         width="110"
       >
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
+          <el-tag :type="row.status | articleStatusFilter">
             {{ row.status }}
           </el-tag>
         </template>
@@ -111,22 +111,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
 import Pagination from '@/components/Pagination/index.vue'
-import * as filters from '@/filters'
 
 @Component({
   components: {
     Pagination
-  },
-  filters: {
-    statusFilter: (status: string) => {
-      const statusMap: { [id: string]: string } = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    },
-    parseTime: filters.parseTime
   }
 })
 export default class ArticleList extends Vue {

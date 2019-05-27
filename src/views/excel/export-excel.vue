@@ -81,7 +81,6 @@ import { Component, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
 import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
-import * as filters from '@/filters'
 import FilenameOption from './components/FilenameOption.vue'
 import AutoWidthOption from './components/AutoWidthOption.vue'
 import BookTypeOption from './components/BookTypeOption.vue'
@@ -91,9 +90,6 @@ import BookTypeOption from './components/BookTypeOption.vue'
     AutoWidthOption,
     BookTypeOption,
     FilenameOption
-  },
-  filters: {
-    parseTime: filters.parseTime
   }
 })
 export default class ExportExcel extends Vue {

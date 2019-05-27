@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <chart
+    <bar-chart
       height="100%"
       width="100%"
     />
@@ -9,14 +9,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Chart from '@/components/Charts/MixChart.vue'
+import BarChart from '@/components/Charts/BarChart.vue'
 
 @Component({
   components: {
-    Chart
+    BarChart
   }
 })
-export default class MixChart extends Vue {}
+export default class BarChartDemo extends Vue {}
 </script>
 
 <style lang="scss" scoped>

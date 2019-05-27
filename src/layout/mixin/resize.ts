@@ -41,7 +41,6 @@ export default class ResizeMixin extends Vue {
     return rect.width - 1 < WIDTH
   }
 
-  // eslint-disable-next-line camelcase
   private resizeHandler() {
     if (!document.hidden) {
       const isMobile = this.isMobile()

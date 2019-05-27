@@ -12,17 +12,17 @@ const chartsRouter: RouteConfig = {
   },
   children: [
     {
-      path: 'keyboard',
-      component: () => import(/* webpackChunkName: "keyboard" */ '@/views/charts/keyboard.vue'),
-      name: 'KeyboardChart',
+      path: 'bar-chart',
+      component: () => import(/* webpackChunkName: "bar-chart" */ '@/views/charts/bar-chart.vue'),
+      name: 'BarChart',
       meta: {
-        title: 'keyboardChart',
+        title: 'barChart',
         noCache: true
       }
     },
     {
-      path: 'line',
-      component: () => import(/* webpackChunkName: "line" */ '@/views/charts/line.vue'),
+      path: 'line-chart',
+      component: () => import(/* webpackChunkName: "line-chart" */ '@/views/charts/line-chart.vue'),
       name: 'LineChart',
       meta: {
         title: 'lineChart',
@@ -30,11 +30,11 @@ const chartsRouter: RouteConfig = {
       }
     },
     {
-      path: 'mix-chart',
-      component: () => import(/* webpackChunkName: "mix-chart" */ '@/views/charts/mix-chart.vue'),
-      name: 'MixChart',
+      path: 'mixed-chart',
+      component: () => import(/* webpackChunkName: "mixed-chart" */ '@/views/charts/mixed-chart.vue'),
+      name: 'MixedChart',
       meta: {
-        title: 'mixChart',
+        title: 'mixedChart',
         noCache: true
       }
     }

@@ -46,7 +46,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 const defaultFormThead = ['apple', 'banana']
 
 @Component
-export default class FixedThead extends Vue {
+export default class FixedHeaderTable extends Vue {
   private tableData = [
     {
       name: 'fruit-1',

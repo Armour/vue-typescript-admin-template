@@ -43,7 +43,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class UnfixedThead extends Vue {
+export default class UnfixedHeaderTable extends Vue {
   private tableData = [
     {
       name: 'fruit-1',

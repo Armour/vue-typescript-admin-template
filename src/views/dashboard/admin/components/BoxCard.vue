@@ -54,23 +54,9 @@ import Mallki from '@/components/TextHoverEffect/Mallki.vue'
   components: {
     PanThumb,
     Mallki
-  },
-  filters: {
-    statusFilter: (status: string) => {
-      const statusMap: { [key: string]: string } = {
-        success: 'success',
-        pending: 'danger'
-      }
-      return statusMap[status]
-    }
   }
 })
 export default class BoxCard extends Vue {
-  private statisticsData = {
-    article_count: 1024,
-    pageviews_count: 1024
-  }
-
   get name() {
     return UserModule.name
   }

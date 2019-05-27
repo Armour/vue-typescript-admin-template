@@ -181,7 +181,7 @@
         width="100"
       >
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
+          <el-tag :type="row.status | articleStatusFilter">
             {{ row.status }}
           </el-tag>
         </template>
@@ -367,7 +367,6 @@ import { fetchList, fetchPv, createArticle, updateArticle, IExampleArticleData, 
 import { waves } from '@/directives/waves'
 import { exportJson2Excel } from '@/utils/excel'
 import { formatJson } from '@/utils'
-import * as filters from '@/filters'
 import Pagination from '@/components/Pagination/index.vue'
 
 const calendarTypeOptions = [
@@ -391,18 +390,9 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc: { [key: string]: s
     waves
   },
   filters: {
-    statusFilter: (status: string) => {
-      const statusMap: { [id: string]: string } = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    },
     typeFilter: (type: string) => {
       return calendarTypeKeyValue[type]
-    },
-    parseTime: filters.parseTime
+    }
   }
 })
 export default class ComplexTable extends Vue {

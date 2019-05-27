@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <chart
+    <line-chart
       height="100%"
       width="100%"
     />
@@ -9,14 +9,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Chart from '@/components/Charts/LineMarker.vue'
+import LineChart from '@/components/Charts/LineChart.vue'
 
 @Component({
   components: {
-    Chart
+    LineChart
   }
 })
-export default class LineChart extends Vue {}
+export default class LineChartDemo extends Vue {}
 </script>
 
 <style lang="scss" scoped>

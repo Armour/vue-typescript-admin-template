@@ -1,6 +1,6 @@
 <template>
   <div :class="{'has-logo': showLogo}">
-    <logo
+    <sidebar-logo
       v-if="showLogo"
       :collapse="isCollapse"
     />
@@ -32,14 +32,14 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 import { PermissionModule } from '@/store/modules/permission'
 import { SettingsModule } from '@/store/modules/settings'
-import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
+import SidebarLogo from './SidebarLogo.vue'
 import variables from '@/styles/_variables.scss'
 
 @Component({
   components: {
-    Logo,
-    SidebarItem
+    SidebarItem,
+    SidebarLogo
   }
 })
 export default class SideBar extends Vue {

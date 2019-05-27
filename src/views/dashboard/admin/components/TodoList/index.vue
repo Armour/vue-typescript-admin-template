@@ -86,7 +86,7 @@ const defalutList = [
     Todo
   },
   filters: {
-    pluralize: (n: number, w: string) => n === 1 ? w : w + 's',
+    pluralize: (n: number, s: string) => n === 1 ? s : s + 's',
     capitalize: (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
   }
 })

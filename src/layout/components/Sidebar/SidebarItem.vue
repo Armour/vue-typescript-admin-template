@@ -4,7 +4,7 @@
     :class="['menu-wrapper', isCollapse ? 'simple-mode' : 'full-mode', {'first-level': isFirstLevel}]"
   >
     <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
-      <app-link
+      <sidebar-item-link
         v-if="theOnlyOneChild.meta"
         :to="resolvePath(theOnlyOneChild.path)"
       >
@@ -21,7 +21,7 @@
             slot="title"
           >{{ $t('route.' + theOnlyOneChild.meta.title) }}</span>
         </el-menu-item>
-      </app-link>
+      </sidebar-item-link>
     </template>
     <el-submenu
       v-else
@@ -56,14 +56,14 @@ import path from 'path'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Route, RouteConfig } from 'vue-router'
 import { isExternal } from '@/utils/validate'
-import AppLink from './Link.vue'
+import SidebarItemLink from './SidebarItemLink.vue'
 
 @Component({
   // Set 'name' here to prevent uglifyjs from causing recursive component not work
   // See https://medium.com/haiiro-io/element-component-name-with-vue-class-component-f3b435656561 for detail
   name: 'SidebarItem',
   components: {
-    AppLink
+    SidebarItemLink
   }
 })
 export default class SidebarItem extends Vue {

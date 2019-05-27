@@ -2,7 +2,7 @@
   <div class="app-container">
     <!-- Note that row-key is necessary to get a correct row order. -->
     <el-table
-      ref="dragTable"
+      ref="draggableTable"
       v-loading="listLoading"
       :data="list"
       row-key="id"
@@ -80,7 +80,7 @@
         width="110"
       >
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
+          <el-tag :type="row.status | articleStatusFilter">
             {{ row.status }}
           </el-tag>
         </template>
@@ -115,22 +115,9 @@
 import Sortable from 'sortablejs'
 import { Component, Vue } from 'vue-property-decorator'
 import { fetchList, IExampleArticleData } from '@/api/article'
-import * as filters from '@/filters'
 
-@Component({
-  filters: {
-    statusFilter: (status: string) => {
-      const statusMap: { [id: string]: string } = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    },
-    parseTime: filters.parseTime
-  }
-})
-export default class DragTable extends Vue {
+@Component
+export default class DraggableTable extends Vue {
   private list: IExampleArticleData[] = []
   private listLoading = true
   private total = []
@@ -160,7 +147,7 @@ export default class DragTable extends Vue {
   }
 
   private setSort() {
-    const el = (this.$refs.dragTable as Vue).$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0] as HTMLElement
+    const el = (this.$refs.draggableTable as Vue).$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0] as HTMLElement
     this.sortable = Sortable.create(el, {
       ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
       setData: (dataTransfer) => {

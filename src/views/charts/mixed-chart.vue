@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <chart
+    <mixed-chart
       height="100%"
       width="100%"
     />
@@ -9,14 +9,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Chart from '@/components/Charts/Keyboard.vue'
+import MixedChart from '@/components/Charts/MixedChart.vue'
 
 @Component({
   components: {
-    Chart
+    MixedChart
   }
 })
-export default class KeyboardChart extends Vue {}
+export default class MixedChartDemo extends Vue {}
 </script>
 
 <style lang="scss" scoped>

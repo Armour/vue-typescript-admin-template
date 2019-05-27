@@ -58,7 +58,7 @@
         width="110"
       >
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
+          <el-tag :type="row.status | articleStatusFilter">
             {{ row.status }}
           </el-tag>
         </template>
@@ -122,21 +122,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { fetchList, IExampleArticleData } from '@/api/article'
-import * as filters from '@/filters'
 
-@Component({
-  filters: {
-    statusFilter: (status: string) => {
-      const statusMap: { [id: string]: string } = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    },
-    parseTime: filters.parseTime
-  }
-})
+@Component
 export default class InlineEditTable extends Vue {
   private list: IExampleArticleData[] = []
   private listLoading = true

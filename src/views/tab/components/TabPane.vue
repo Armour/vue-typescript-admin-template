@@ -77,7 +77,7 @@
       width="110"
     >
       <template slot-scope="{row}">
-        <el-tag :type="row.status | statusFilter">
+        <el-tag :type="row.status | articleStatusFilter">
           {{ row.status }}
         </el-tag>
       </template>
@@ -88,21 +88,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { fetchList } from '@/api/article'
-import * as filters from '@/filters'
 
-@Component({
-  filters: {
-    statusFilter(status: string) {
-      const statusMap: { [id: string]: string } = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    },
-    parseTime: filters.parseTime
-  }
-})
+@Component
 export default class TabPane extends Vue {
   @Prop({ default: 'CN' }) private type!: string
 
