@@ -88,6 +88,12 @@ const componentsRouter: RouteConfig = {
       component: () => import(/* webpackChunkName: "draggable-list" */ '@/views/components-demo/draggable-list.vue'),
       name: 'DraggableListDemo',
       meta: { title: 'draggableList' }
+    },
+    {
+      path: 'draggable-select',
+      component: () => import(/* webpackChunkName: "draggable-select" */ '@/views/components-demo/draggable-select.vue'),
+      name: 'DraggableSelectDemo',
+      meta: { title: 'draggableSelect' }
     }
   ]
 }

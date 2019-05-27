@@ -149,12 +149,7 @@ export default class DraggableTable extends Vue {
   private setSort() {
     const el = (this.$refs.draggableTable as Vue).$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0] as HTMLElement
     this.sortable = Sortable.create(el, {
-      ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
-      setData: (dataTransfer) => {
-        // to avoid Firefox bug
-        // Detail see : https://github.com/RubaXa/Sortable/issues/1012
-        dataTransfer.setData('Text', '')
-      },
+      ghostClass: 'sortable-ghost', // Class name for the drop placeholder
       onEnd: evt => {
         if (typeof (evt.oldIndex) !== 'undefined' && typeof (evt.newIndex) !== 'undefined') {
           const targetRow = this.list.splice(evt.oldIndex, 1)[0]
