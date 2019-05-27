@@ -22,7 +22,7 @@ export default class AppMain extends Vue {
   }
 
   get key() {
-    return this.$route.fullPath
+    return this.$route.path
   }
 }
 </script>
