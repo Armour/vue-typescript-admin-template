@@ -78,6 +78,12 @@ const componentsRouter: RouteConfig = {
       meta: { title: 'draggableDialog' }
     },
     {
+      path: 'draggable-kanban',
+      component: () => import(/* webpackChunkName: "draggable-kanban" */ '@/views/components-demo/draggable-kanban.vue'),
+      name: 'DraggableKanbanDemo',
+      meta: { title: 'draggableKanban' }
+    },
+    {
       path: 'draggable-list',
       component: () => import(/* webpackChunkName: "draggable-list" */ '@/views/components-demo/draggable-list.vue'),
       name: 'DraggableListDemo',
