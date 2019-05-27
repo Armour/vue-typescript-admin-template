@@ -109,7 +109,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList } from '@/api/article'
+import { fetchArticleList } from '@/api/article'
 import Pagination from '@/components/Pagination/index.vue'
 
 @Component({
@@ -132,7 +132,7 @@ export default class ArticleList extends Vue {
 
   private getList() {
     this.listLoading = true
-    fetchList(this.listQuery).then(response => {
+    fetchArticleList(this.listQuery).then(response => {
       this.list = response.data.items
       this.total = response.data.total
       this.listLoading = false

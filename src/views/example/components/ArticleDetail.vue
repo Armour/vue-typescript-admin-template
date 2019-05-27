@@ -155,7 +155,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { isValidURL } from '@/utils/validate'
-import { fetchArticle, IExampleArticleData, defaultExampleArticleData } from '@/api/article'
+import { fetchArticleDetail, IExampleArticleData, defaultExampleArticleData } from '@/api/article'
 import { searchUser } from '@/api/remote-search'
 import { AppModule } from '@/store/modules/app'
 import { TagsViewModule, ITagView } from '@/store/modules/tags-view'
@@ -259,24 +259,21 @@ export default class ArticleDetail extends Vue {
     this.tempTagView = Object.assign({}, this.$route)
   }
 
-  private fetchData(id: string) {
-    fetchArticle(id).then(response => {
-      this.postForm = response.data
-
+  private async fetchData(id: string) {
+    try {
+      const { data } = await fetchArticleDetail(id)
+      this.postForm = data
       // Just for test
       this.postForm.title += `   Article Id:${this.postForm.id}`
       this.postForm.abstractContent += `   Article Id:${this.postForm.id}`
-
       const title = this.lang === 'zh' ? '编辑文章' : 'Edit Article'
-
       // Set tagsview title
       this.setTagsViewTitle(title)
-
       // Set page title
       this.setPageTitle(title)
-    }).catch(err => {
+    } catch (err) {
       console.error(err)
-    })
+    }
   }
 
   private setTagsViewTitle(title: string) {

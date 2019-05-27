@@ -114,7 +114,7 @@
 <script lang="ts">
 import Sortable from 'sortablejs'
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList, IExampleArticleData } from '@/api/article'
+import { fetchArticleList, IExampleArticleData } from '@/api/article'
 
 @Component
 export default class DraggableTable extends Vue {
@@ -135,7 +135,7 @@ export default class DraggableTable extends Vue {
 
   private async getList() {
     this.listLoading = true
-    const { data } = await fetchList(this.listQuery)
+    const { data } = await fetchArticleList(this.listQuery)
     this.list = data.items
     this.listLoading = false
     this.total = data.total

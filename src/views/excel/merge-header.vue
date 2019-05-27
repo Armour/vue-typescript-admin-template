@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList } from '@/api/article'
+import { fetchArticleList } from '@/api/article'
 import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
 
@@ -88,7 +88,7 @@ export default class MergeHeader extends Vue {
 
   private async fetchData() {
     this.listLoading = true
-    const { data } = await fetchList({ /* Your params here */ })
+    const { data } = await fetchArticleList({ /* Your params here */ })
     this.list = data.items
     this.listLoading = false
   }

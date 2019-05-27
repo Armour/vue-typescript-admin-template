@@ -87,7 +87,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { fetchList } from '@/api/article'
+import { fetchArticleList } from '@/api/article'
 
 @Component
 export default class TabPane extends Vue {
@@ -109,7 +109,7 @@ export default class TabPane extends Vue {
   private getList() {
     this.loading = true
     this.$emit('create') // for test
-    fetchList(this.listQuery).then(response => {
+    fetchArticleList(this.listQuery).then(response => {
       this.list = response.data.items
       this.loading = false
     })

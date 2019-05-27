@@ -121,7 +121,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList, IExampleArticleData } from '@/api/article'
+import { fetchArticleList, IExampleArticleData } from '@/api/article'
 
 @Component
 export default class InlineEditTable extends Vue {
@@ -138,7 +138,7 @@ export default class InlineEditTable extends Vue {
 
   private async getList() {
     this.listLoading = true
-    const { data } = await fetchList(this.listQuery)
+    const { data } = await fetchArticleList(this.listQuery)
     const items = data.items
     this.list = items.map((v: any) => {
       this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html

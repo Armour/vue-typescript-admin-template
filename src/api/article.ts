@@ -36,21 +36,21 @@ export const defaultExampleArticleData: IExampleArticleData = {
   pageviews: 0
 }
 
-export const fetchList = (params: any) =>
+export const fetchArticleList = (params: any) =>
   request({
     url: '/article/list',
     method: 'get',
     params
   })
 
-export const fetchArticle = (id: string) =>
+export const fetchArticleDetail = (id: string) =>
   request({
     url: '/article/detail',
     method: 'get',
     params: { id }
   })
 
-export const fetchPv = (pv: string) =>
+export const fetchPageviews = (pv: string) =>
   request({
     url: '/article/pv',
     method: 'get',

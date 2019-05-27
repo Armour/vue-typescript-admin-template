@@ -170,7 +170,7 @@
           <span
             v-if="row.pageviews"
             class="link-type"
-            @click="handleFetchPv(row.pageviews)"
+            @click="handlefetchPageviews(row.pageviews)"
           >{{ row.pageviews }}</span>
           <span v-else>0</span>
         </template>
@@ -363,7 +363,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Form } from 'element-ui'
-import { fetchList, fetchPv, createArticle, updateArticle, IExampleArticleData, defaultExampleArticleData } from '@/api/article'
+import { fetchArticleList, fetchPageviews, createArticle, updateArticle, IExampleArticleData, defaultExampleArticleData } from '@/api/article'
 import { waves } from '@/directives/waves'
 import { exportJson2Excel } from '@/utils/excel'
 import { formatJson } from '@/utils'
@@ -438,7 +438,7 @@ export default class ComplexTable extends Vue {
 
   private getList() {
     this.listLoading = true
-    fetchList(this.listQuery).then(response => {
+    fetchArticleList(this.listQuery).then(response => {
       this.list = response.data.items
       this.total = response.data.total
 
@@ -556,8 +556,8 @@ export default class ComplexTable extends Vue {
     this.list.splice(index, 1)
   }
 
-  private handleFetchPv(pv: string) {
-    fetchPv(pv).then(response => {
+  private handlefetchPageviews(pv: string) {
+    fetchPageviews(pv).then(response => {
       this.pvData = response.data.pvData
       this.dialogPvVisible = true
     })
