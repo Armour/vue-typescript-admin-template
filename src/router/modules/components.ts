@@ -38,12 +38,12 @@ const componentsRouter: RouteConfig = {
     //   name: 'AvatarUploadDemo',
     //   meta: { title: 'Upload' }
     // },
-    // {
-    //   path: 'dropzone',
-    //   component: () => import('@/views/components-demo/dropzone'),
-    //   name: 'DropzoneDemo',
-    //   meta: { title: 'Dropzone' }
-    // },
+    {
+      path: 'dropzone',
+      component: () => import(/* webpackChunkName: "Dropzone" */ '@/views/components-demo/dropzone.vue'),
+      name: 'DropzoneDemo',
+      meta: { title: 'dropzone' }
+    },
     // {
     //   path: 'sticky',
     //   component: () => import('@/views/components-demo/sticky'),
