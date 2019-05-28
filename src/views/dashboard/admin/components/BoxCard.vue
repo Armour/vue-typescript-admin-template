@@ -77,6 +77,23 @@ export default class BoxCard extends Vue {
     padding: 0px!important;
   }
 }
+
+.panThumb {
+  z-index: 100;
+  height: 70px!important;
+  width: 70px!important;
+  position: absolute!important;
+  top: -45px;
+  left: 0px;
+  border: 5px solid #ffffff;
+  background-color: #fff;
+  margin: auto;
+  box-shadow: none!important;
+
+  .pan-info {
+    box-shadow: none!important;
+  }
+}
 </style>
 
 <style lang="scss" scoped>
@@ -103,23 +120,6 @@ export default class BoxCard extends Vue {
     right: 0px;
     font-size: 20px;
     font-weight: bold;
-  }
-
-  .panThumb {
-    z-index: 100;
-    height: 70px!important;
-    width: 70px!important;
-    position: absolute!important;
-    top: -45px;
-    left: 0px;
-    border: 5px solid #ffffff;
-    background-color: #fff;
-    margin: auto;
-    box-shadow: none!important;
-
-    .pan-info {
-      box-shadow: none!important;
-    }
   }
 
   .progress-item {

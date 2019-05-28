@@ -93,8 +93,10 @@
       >
         <template slot-scope="{}">
           <svg-icon
-            class="drag-handler"
+            class="draggable-handler"
             name="drag"
+            width="20"
+            height="20"
           />
         </template>
       </el-table-column>
@@ -174,12 +176,10 @@ export default class DraggableTable extends Vue {
 
 <style lang="scss" scoped>
 .icon-star {
-  margin-right:2px;
+  margin-right: 2px;
 }
 
-.drag-handler {
-  width: 20px;
-  height: 20px;
+.draggable-handler {
   cursor: pointer;
 }
 

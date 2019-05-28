@@ -118,7 +118,7 @@ export default {
     search: 'Buscar',
     add: 'Añadir',
     export: 'Exportar',
-    reviewer: 'reviewer',
+    reviewer: 'Reviewer',
     id: 'ID',
     date: 'Fecha',
     author: 'Autor',
@@ -168,6 +168,7 @@ export default {
     theme: 'Theme Color',
     showTagsView: 'Show Tags-View',
     showSidebarLogo: 'Show Sidebar Logo',
-    fixedHeader: 'Fixed Header'
+    fixedHeader: 'Fixed Header',
+    siderbarTextTheme: 'Change Siderbar Text Theme'
   }
 }

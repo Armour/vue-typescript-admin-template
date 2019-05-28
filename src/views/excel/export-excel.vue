@@ -11,7 +11,7 @@
         icon="document"
         @click="handleDownload"
       >
-        {{ $t('excel.export') }}
+        {{ $t('excel.export') }} Excel
       </el-button>
       <a
         href="https://panjiachen.github.io/vue-element-admin-site/feature/component/excel.html"

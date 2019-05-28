@@ -11,7 +11,7 @@
     />
     <div class="editor-custom-btn-container">
       <editor-image-upload
-        color="#1890ff"
+        :color="uploadButtonColor"
         class="editor-upload-btn"
         @successCBK="imageSuccessCBK"
       />
@@ -59,6 +59,7 @@ import 'tinymce/plugins/wordcount'
 import TinymceEditor from '@tinymce/tinymce-vue' // TinyMCE vue wrapper
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
+import { SettingsModule } from '@/store/modules/settings'
 import EditorImageUpload, { IUploadObject } from './components/EditorImage.vue'
 import { plugins, toolbar } from './config'
 
@@ -92,6 +93,10 @@ export default class Tinymce extends Vue {
 
   get language() {
     return this.languageTypeList[AppModule.language]
+  }
+
+  get uploadButtonColor() {
+    return SettingsModule.theme
   }
 
   get tinymceContent() {

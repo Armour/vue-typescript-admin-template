@@ -15,7 +15,7 @@
       <el-select
         ref="select"
         v-model="value"
-        placeholder="请选择"
+        placeholder="Please select"
       >
         <el-option
           v-for="item in options"

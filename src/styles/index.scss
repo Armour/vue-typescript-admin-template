@@ -41,6 +41,10 @@ div:focus {
   @include clearfix;
 }
 
+label {
+  font-weight: 700;
+}
+
 .app-container {
   padding: 20px;
 }

@@ -10,7 +10,7 @@
         :collapse="isCollapse"
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
-        :active-text-color="variables.menuActiveText"
+        :active-text-color="menuActiveTextColor"
         :unique-opened="false"
         :collapse-transition="false"
         mode="vertical"
@@ -53,6 +53,14 @@ export default class SideBar extends Vue {
 
   get showLogo() {
     return SettingsModule.showSidebarLogo
+  }
+
+  get menuActiveTextColor() {
+    if (SettingsModule.siderbarTextTheme) {
+      return SettingsModule.theme
+    } else {
+      return variables.menuActiveText
+    }
   }
 
   get variables() {

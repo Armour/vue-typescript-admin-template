@@ -190,7 +190,6 @@ export const asyncRoutes: RouteConfig[] = [
     path: '/example',
     component: Layout,
     redirect: '/example/list',
-    name: 'Example',
     meta: {
       title: 'example',
       icon: 'example'
@@ -246,7 +245,6 @@ export const asyncRoutes: RouteConfig[] = [
     path: '/error',
     component: Layout,
     redirect: 'noredirect',
-    name: 'ErrorPages',
     meta: {
       title: 'errorPages',
       icon: '404'
@@ -255,7 +253,7 @@ export const asyncRoutes: RouteConfig[] = [
       {
         path: '401',
         component: () => import(/* webpackChunkName: "error-page-401" */ '@/views/error-page/401.vue'),
-        name: 'Page401',
+        name: 'ErrorPage401',
         meta: {
           title: 'page401',
           noCache: true
@@ -264,7 +262,7 @@ export const asyncRoutes: RouteConfig[] = [
       {
         path: '404',
         component: () => import(/* webpackChunkName: "error-page-404" */ '@/views/error-page/404.vue'),
-        name: 'Page404',
+        name: 'ErrorPage404',
         meta: {
           title: 'page404',
           noCache: true
@@ -292,7 +290,6 @@ export const asyncRoutes: RouteConfig[] = [
     path: '/excel',
     component: Layout,
     redirect: '/excel/export-excel',
-    name: 'Excel',
     meta: {
       title: 'excel',
       icon: 'excel'
@@ -359,8 +356,8 @@ export const asyncRoutes: RouteConfig[] = [
     ]
   },
   {
-    path: '/pdf/download',
-    component: () => import(/* webpackChunkName: "pdf-download" */ '@/views/pdf/download.vue'),
+    path: '/pdf-download-example',
+    component: () => import(/* webpackChunkName: "pdf-download-example" */ '@/views/pdf/download.vue'),
     meta: { hidden: true }
   },
   {

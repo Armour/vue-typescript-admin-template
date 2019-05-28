@@ -544,7 +544,7 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/pdf/download',
+    path: '/pdf-download-example',
     component: 'views/pdf/download',
     meta: { hidden: true }
   },

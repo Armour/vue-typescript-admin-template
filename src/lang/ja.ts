@@ -170,6 +170,7 @@ export default {
     theme: 'テーマ色',
     showTagsView: 'Tags-View 開く',
     showSidebarLogo: 'Show Sidebar Logo',
-    fixedHeader: 'Fixed Header'
+    fixedHeader: 'Fixed Header',
+    siderbarTextTheme: 'Change Siderbar Text Theme'
   }
 }

@@ -12,7 +12,7 @@
         v-model="listQuery.importance"
         :placeholder="$t('table.importance')"
         clearable
-        style="width: 90px"
+        style="width: 120px"
         class="filter-item"
       >
         <el-option
@@ -244,7 +244,7 @@
         :rules="rules"
         :model="tempArticleData"
         label-position="left"
-        label-width="70px"
+        label-width="100px"
         style="width: 400px; margin-left:50px;"
       >
         <el-form-item
