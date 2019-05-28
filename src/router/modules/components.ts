@@ -40,7 +40,7 @@ const componentsRouter: RouteConfig = {
     // },
     {
       path: 'dropzone',
-      component: () => import(/* webpackChunkName: "Dropzone" */ '@/views/components-demo/dropzone.vue'),
+      component: () => import(/* webpackChunkName: "dropzone" */ '@/views/components-demo/dropzone.vue'),
       name: 'DropzoneDemo',
       meta: { title: 'dropzone' }
     },
