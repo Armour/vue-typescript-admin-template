@@ -200,7 +200,7 @@ export default class RolePermission extends Vue {
     const res: RouteConfig[] = []
     for (let route of routes) {
       // Skip hidden routes
-      if (!route.meta || route.meta.hidden) {
+      if (route.meta && route.meta.hidden) {
         continue
       }
       const onlyOneShowingChild = this.onlyOneShowingChild(route.children, route)

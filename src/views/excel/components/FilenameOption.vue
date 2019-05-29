@@ -18,7 +18,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class FilenameOption extends Vue {
-  @Prop({ default: '' }) value!: string
+  @Prop({ default: '' }) private value!: string
 
   get filename() {
     return this.value

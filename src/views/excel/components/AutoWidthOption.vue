@@ -23,7 +23,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class AutoWidthOption extends Vue {
-  @Prop({ default: true }) value!: boolean
+  @Prop({ default: true }) private value!: boolean
 
   get autoWidth() {
     return this.value

@@ -6,7 +6,10 @@ const componentsRouter: RouteConfig = {
   component: Layout,
   redirect: 'noRedirect',
   name: 'ComponentDemo',
-  meta: { title: 'components', icon: 'component' },
+  meta: {
+    title: 'components',
+    icon: 'component'
+  },
   children: [
     {
       path: 'tinymce',
@@ -22,21 +25,21 @@ const componentsRouter: RouteConfig = {
     },
     {
       path: 'json-editor',
-      component: () => import(/* webpackChunkName: "jsonEditor" */ '@/views/components-demo/json-editor.vue'),
+      component: () => import(/* webpackChunkName: "json-editor" */ '@/views/components-demo/json-editor.vue'),
       name: 'JsonEditorDemo',
       meta: { title: 'jsonEditor' }
     },
     // {
     //   path: 'split-pane',
-    //   component: () => import('@/views/components-demo/split-pane'),
+    //   component: () => import(/* webpackChunkName: "split-pane" */ '@/views/components-demo/split-pane.vue'),
     //   name: 'SplitpaneDemo',
-    //   meta: { title: 'SplitPane' }
+    //   meta: { title: 'splitPane' }
     // },
     // {
     //   path: 'avatar-upload',
-    //   component: () => import('@/views/components-demo/avatar-upload'),
+    //   component: () => import(/* webpackChunkName: "avatar-upload" */ '@/views/components-demo/avatar-upload.vue'),
     //   name: 'AvatarUploadDemo',
-    //   meta: { title: 'Upload' }
+    //   meta: { title: 'avatarUpload' }
     // },
     {
       path: 'dropzone',
@@ -46,52 +49,52 @@ const componentsRouter: RouteConfig = {
     },
     // {
     //   path: 'sticky',
-    //   component: () => import('@/views/components-demo/sticky'),
+    //   component: () => import(/* webpackChunkName: "sticky" */ '@/views/components-demo/sticky.vue'),
     //   name: 'StickyDemo',
-    //   meta: { title: 'Sticky' }
+    //   meta: { title: 'sticky' }
     // },
     {
       path: 'count-to',
-      component: () => import(/* webpackChunkName: "CountTo" */ '@/views/components-demo/count-to.vue'),
+      component: () => import(/* webpackChunkName: "count-to" */ '@/views/components-demo/count-to.vue'),
       name: 'CountToDemo',
       meta: { title: 'countTo' }
     },
-    // {
-    //   path: 'mixin',
-    //   component: () => import('@/views/components-demo/mixin'),
-    //   name: 'ComponentMixinDemo',
-    //   meta: { title: 'Component Mixin' }
-    // },
+    {
+      path: 'mixin',
+      component: () => import(/* webpackChunkName: "component-mixin" */ '@/views/components-demo/mixin.vue'),
+      name: 'ComponentMixinDemo',
+      meta: { title: 'componentMixin' }
+    },
     {
       path: 'back-to-top',
-      component: () => import(/* webpackChunkName: "backToTop" */ '@/views/components-demo/back-to-top.vue'),
+      component: () => import(/* webpackChunkName: "back-to-top" */ '@/views/components-demo/back-to-top.vue'),
       name: 'BackToTopDemo',
       meta: { title: 'backToTop' }
+    },
+    {
+      path: 'draggable-dialog',
+      component: () => import(/* webpackChunkName: "draggable-dialog" */ '@/views/components-demo/draggable-dialog.vue'),
+      name: 'DraggableDialogDemo',
+      meta: { title: 'draggableDialog' }
+    },
+    {
+      path: 'draggable-kanban',
+      component: () => import(/* webpackChunkName: "draggable-kanban" */ '@/views/components-demo/draggable-kanban.vue'),
+      name: 'DraggableKanbanDemo',
+      meta: { title: 'draggableKanban' }
+    },
+    {
+      path: 'draggable-list',
+      component: () => import(/* webpackChunkName: "draggable-list" */ '@/views/components-demo/draggable-list.vue'),
+      name: 'DraggableListDemo',
+      meta: { title: 'draggableList' }
+    },
+    {
+      path: 'draggable-select',
+      component: () => import(/* webpackChunkName: "draggable-select" */ '@/views/components-demo/draggable-select.vue'),
+      name: 'DraggableSelectDemo',
+      meta: { title: 'draggableSelect' }
     }
-    // {
-    //   path: 'drag-dialog',
-    //   component: () => import('@/views/components-demo/drag-dialog'),
-    //   name: 'DragDialogDemo',
-    //   meta: { title: 'Drag Dialog' }
-    // },
-    // {
-    //   path: 'drag-select',
-    //   component: () => import('@/views/components-demo/drag-select'),
-    //   name: 'DragSelectDemo',
-    //   meta: { title: 'Drag Select' }
-    // },
-    // {
-    //   path: 'dnd-list',
-    //   component: () => import('@/views/components-demo/dnd-list'),
-    //   name: 'DndListDemo',
-    //   meta: { title: 'Dnd List' }
-    // },
-    // {
-    //   path: 'drag-kanban',
-    //   component: () => import('@/views/components-demo/drag-kanban'),
-    //   name: 'DragKanbanDemo',
-    //   meta: { title: 'Drag Kanban' }
-    // }
   ]
 }
 

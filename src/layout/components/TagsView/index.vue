@@ -57,7 +57,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import VueRouter, { Route, RouteRecord, RouteConfig } from 'vue-router'
 import { ElBreadcrumbItem } from 'element-ui/types/breadcrumb-item'
 import { PermissionModule } from '@/store/modules/permission'
-import { TagsViewModule, ITagView } from '@/store/modules/tagsView'
+import { TagsViewModule, ITagView } from '@/store/modules/tags-view'
 import ScrollPane from './ScrollPane.vue'
 
 @Component({

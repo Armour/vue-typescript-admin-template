@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import TabPane from './components/TabPane.vue'
 
 @Component({
@@ -48,6 +48,19 @@ export default class Tab extends Vue {
   ]
   private activeName = 'CN'
   private createdTimes = 0
+
+  @Watch('activeName')
+  private onActiveNameChange(value: string) {
+    this.$router.push(`${this.$route.path}?tab=${value}`)
+  }
+
+  created() {
+    // Init the default selected tab
+    const tab = this.$route.query.tab as string
+    if (tab) {
+      this.activeName = tab
+    }
+  }
 
   private showCreatedTimes() {
     this.createdTimes = this.createdTimes + 1

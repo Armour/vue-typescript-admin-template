@@ -28,4 +28,4 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: yarn lint && yarn build
+      - run: yarn lint && yarn build:prod

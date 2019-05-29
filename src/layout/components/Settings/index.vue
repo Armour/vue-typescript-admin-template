@@ -36,6 +36,14 @@
           class="drawer-switch"
         />
       </div>
+
+      <div class="drawer-item">
+        <span>{{ $t('settings.siderbarTextTheme') }}</span>
+        <el-switch
+          v-model="siderbarTextTheme"
+          class="drawer-switch"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -73,6 +81,14 @@ export default class Settings extends Vue {
 
   set showSidebarLogo(value) {
     SettingsModule.ChangeSetting({ key: 'showSidebarLogo', value })
+  }
+
+  get siderbarTextTheme() {
+    return SettingsModule.siderbarTextTheme
+  }
+
+  set siderbarTextTheme(value) {
+    SettingsModule.ChangeSetting({ key: 'siderbarTextTheme', value })
   }
 
   private themeChange(value: string) {

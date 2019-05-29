@@ -26,7 +26,7 @@
       align="center"
     >
       <template slot-scope="{row}">
-        <el-tag :type="row.status | statusFilter">
+        <el-tag :type="row.status | transactionStatusFilter">
           {{ row.status }}
         </el-tag>
       </template>
@@ -40,7 +40,7 @@ import { transactionList } from '@/api/remote-search'
 
 @Component({
   filters: {
-    statusFilter: (status: string) => {
+    transactionStatusFilter: (status: string) => {
       const statusMap: { [key: string]: string } = {
         success: 'success',
         pending: 'danger'

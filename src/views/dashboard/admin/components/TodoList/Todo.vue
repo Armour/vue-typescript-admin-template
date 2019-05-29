@@ -53,7 +53,7 @@ export interface ITodo {
   }
 })
 export default class Todo extends Vue {
-  @Prop({ default: { text: '', done: false } }) todo!: ITodo
+  @Prop({ default: { text: '', done: false } }) private todo!: ITodo
 
   private editing = false
 
@@ -70,7 +70,7 @@ export default class Todo extends Vue {
   }
 
   private doneEdit(e: KeyboardEvent) {
-    const value = (e as any).target.value.trim()
+    const value = (e.target as HTMLInputElement).value.trim()
     const { todo } = this
     if (!value) {
       this.deleteTodo(todo)
@@ -84,7 +84,7 @@ export default class Todo extends Vue {
   }
 
   private cancelEdit(e: KeyboardEvent) {
-    (e as any).target.value = this.todo.text
+    (e.target as HTMLInputElement).value = this.todo.text
     this.editing = false
   }
 }

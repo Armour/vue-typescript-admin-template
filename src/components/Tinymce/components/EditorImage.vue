@@ -1,7 +1,7 @@
 <template>
   <div class="upload-container">
     <el-button
-      :style="{background: color,borderColor: color}"
+      :style="{background: color, borderColor: color}"
       icon="el-icon-upload"
       size="mini"
       type="primary"
@@ -55,7 +55,7 @@ export interface IUploadObject {
 
 @Component
 export default class EditorImageUpload extends Vue {
-  @Prop({ default: '#1890ff' }) private color!: string
+  @Prop({ required: true }) private color!: string
 
   private dialogVisible = false
   private listObj: { [key: string]: IUploadObject } = {}

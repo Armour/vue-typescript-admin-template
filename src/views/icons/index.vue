@@ -52,8 +52,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { handleClipboard } from '@/utils/clipboard'
-import elementIcons from './elementIcons'
-import svgIcons from './svgIcons'
+import elementIcons from './element-icons'
+import svgIcons from './svg-icons'
 
 @Component({
   methods: {
