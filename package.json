@@ -42,6 +42,7 @@
     "vue-property-decorator": "^8.1.1",
     "vue-router": "^3.0.6",
     "vue-svgicon": "^3.2.6",
+    "vue2-dropzone": "^3.5.9",
     "vuedraggable": "^2.21.0",
     "vuex": "^3.1.1",
     "vuex-class": "^0.3.2",
@@ -51,7 +52,6 @@
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
     "@types/codemirror": "^0.0.74",
-    "@types/dropzone": "^5.0.6",
     "@types/echarts": "^4.1.9",
     "@types/file-saver": "^2.0.1",
     "@types/jest": "^24.0.13",
@@ -75,7 +75,6 @@
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "dropzone": "^5.5.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.2",
     "fibers": "^4.0.1",

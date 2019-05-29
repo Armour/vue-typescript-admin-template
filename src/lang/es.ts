@@ -100,7 +100,6 @@ export default {
   components: {
     documentation: 'Documentación',
     tinymceTips: 'Rich text editor is a core part of management system, but at the same time is a place with lots of problems. In the process of selecting rich texts, I also walked a lot of detours. The common rich text editors in the market are basically used, and the finally chose Tinymce. See documentation for more detailed rich text editor comparisons and introductions.',
-    dropzoneTips: 'Because my business has special needs, and has to upload images to qiniu, so instead of a third party, I chose encapsulate it by myself. It is very simple, you can see the detail code in @/components/Dropzone.',
     stickyTips: 'when the page is scrolled to the preset position will be sticky on the top.',
     backToTopTips1: 'When the page is scrolled to the specified position, the Back to Top button appears in the lower right corner',
     backToTopTips2: 'You can customize the style of the button, show / hide, height of appearance, height of the return. If you need a text prompt, you can use element-ui el-tooltip elements externally',
@@ -169,6 +168,6 @@ export default {
     showTagsView: 'Show Tags-View',
     showSidebarLogo: 'Show Sidebar Logo',
     fixedHeader: 'Fixed Header',
-    siderbarTextTheme: 'Change Siderbar Text Theme'
+    sidebarTextTheme: 'Sidebar Text Theme'
   }
 }
