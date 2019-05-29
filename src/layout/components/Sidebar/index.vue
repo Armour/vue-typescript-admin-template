@@ -56,7 +56,7 @@ export default class SideBar extends Vue {
   }
 
   get menuActiveTextColor() {
-    if (SettingsModule.siderbarTextTheme) {
+    if (SettingsModule.sidebarTextTheme) {
       return SettingsModule.theme
     } else {
       return variables.menuActiveText

@@ -5,7 +5,7 @@ interface ISettings {
   showSidebarLogo: boolean // Controls siderbar logo display
   fixedHeader: boolean // If true, will fix the header component
   errorLog: string[] // The env to enable the errorlog component, default 'production' only
-  siderbarTextTheme: boolean // If true, will change active text color for sidebar based on theme
+  sidebarTextTheme: boolean // If true, will change active text color for sidebar based on theme
 }
 
 // You can customize below settings :)
@@ -16,7 +16,7 @@ const settings: ISettings = {
   fixedHeader: false,
   showSidebarLogo: false,
   errorLog: ['production'],
-  siderbarTextTheme: true
+  sidebarTextTheme: true
 }
 
 export default settings
