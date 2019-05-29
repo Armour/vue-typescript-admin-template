@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^2.0.0",
-    "@types/dropzone": "^5.0.6",
     "axios": "^0.18.0",
     "clipboard": "^2.0.4",
     "codemirror": "^5.46.0",
@@ -64,6 +63,7 @@
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
     "@types/codemirror": "^0.0.74",
+    "@types/dropzone": "^5.0.6",
     "@types/echarts": "^4.1.9",
     "@types/file-saver": "^2.0.0",
     "@types/jest": "^24.0.13",
