@@ -19,7 +19,7 @@
           type="success"
           @click="submitForm"
         >
-          Publush
+          Publish
         </el-button>
         <el-button
           v-loading="loading"
@@ -78,7 +78,7 @@
                 <el-col :span="10">
                   <el-form-item
                     label-width="120px"
-                    label="Publush Time:"
+                    label="Publish Time:"
                     class="postInfo-container-item"
                   >
                     <el-date-picker
