@@ -19,7 +19,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 Dropzone.autoDiscover = false
 
 @Component
-export default class vmDropzoneDemo extends Vue {
+export default class DropzoneDemo extends Vue {
   @Prop({ required: true }) private id!: string
   @Prop({ required: true }) private url!: string
   @Prop({ default: '' }) private clickable!: boolean | string | HTMLElement | (string | HTMLElement)[]
