@@ -41,12 +41,12 @@ const componentsRouter: RouteConfig = {
     //   name: 'AvatarUploadDemo',
     //   meta: { title: 'avatarUpload' }
     // },
-    // {
-    //   path: 'dropzone',
-    //   component: () => import(/* webpackChunkName: "dropzone" */ '@/views/components-demo/dropzone.vue'),
-    //   name: 'DropzoneDemo',
-    //   meta: { title: 'dropzone' }
-    // },
+    {
+      path: 'dropzone',
+      component: () => import(/* webpackChunkName: "dropzone" */ '@/views/components-demo/dropzone.vue'),
+      name: 'DropzoneDemo',
+      meta: { title: 'dropzone' }
+    },
     // {
     //   path: 'sticky',
     //   component: () => import(/* webpackChunkName: "sticky" */ '@/views/components-demo/sticky.vue'),

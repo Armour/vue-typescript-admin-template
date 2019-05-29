@@ -962,6 +962,13 @@
   dependencies:
     "@types/tern" "*"
 
+"@types/dropzone@^5.0.6":
+  version "5.0.6"
+  resolved "http://r.cnpmjs.org/@types/dropzone/download/@types/dropzone-5.0.6.tgz#766fc512c2816403c7a97dd6d41bd9187355ff6c"
+  integrity sha1-dm/FEsKBZAPHqX3W1BvZGHNV/2w=
+  dependencies:
+    "@types/jquery" "*"
+
 "@types/echarts@^4.1.9":
   version "4.1.9"
   resolved "https://registry.yarnpkg.com/@types/echarts/-/echarts-4.1.9.tgz#86fdf7ca829879535cf3b1b1490e2f46a0ea0933"
@@ -4187,6 +4194,11 @@ driver.js@^0.9.6:
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/driver.js/-/driver.js-0.9.6.tgz#1a94d8c16104e05e62d3e467cae3570f999887f1"
   integrity sha512-pJfX2aKQrhOFxHycXePXFPcZeL8jYwTWfboMq84R10xDS9vo/0s3CHEDyGn8xPRkcepzssrx4dKbuxAON1hm8Q==
+
+dropzone@^5.5.1:
+  version "5.5.1"
+  resolved "http://r.cnpmjs.org/dropzone/download/dropzone-5.5.1.tgz#06e2f513e61d6aa363d4b556f18574f47cf7ba26"
+  integrity sha1-BuL1E+YdaqNj1LVW8YV09Hz3uiY=
 
 duplexer@^0.1.1:
   version "0.1.1"
