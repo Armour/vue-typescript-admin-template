@@ -10,7 +10,7 @@
       {{ $t('components.dropzoneTips') }}
     </aside>
     <div class="editor-container">
-      <Dropzonec
+      <Dropzone
         id="myVueDropzone"
         url="https://httpbin.org/post"
         @dropzone-removedFile="dropzoneR"
@@ -19,16 +19,17 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Dropzonec from '@/components/Dropzone/index.vue'
+import Dropzone from '@/components/Dropzone/index.vue'
 
 @Component({
   components: {
-    Dropzonec
+    Dropzone
   }
 })
-export default class Dropzone extends Vue {
+export default class DropzoneDemo extends Vue {
   private dropzoneS(file: File) {
     console.log(file, 'file')
     this.$message({ message: 'Upload success', type: 'success' })

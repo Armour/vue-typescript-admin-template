@@ -16,18 +16,10 @@
 import Dropzone from 'dropzone'
 import 'dropzone/dist/dropzone.css'
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-
-export interface DropzoneFile extends File {
-  previewElement: HTMLElement
-  previewTemplate: HTMLElement
-  previewsContainer: HTMLElement
-  status: string
-  accepted: boolean
-  xhr?: XMLHttpRequest
-}
 Dropzone.autoDiscover = false
+
 @Component
-export default class Dropzonec extends Vue {
+export default class vmDropzoneDemo extends Vue {
   @Prop({ required: true }) private id!: string
   @Prop({ required: true }) private url!: string
   @Prop({ default: '' }) private clickable!: boolean | string | HTMLElement | (string | HTMLElement)[]
@@ -46,8 +38,9 @@ export default class Dropzonec extends Vue {
   private initOnce = true
 
   mounted() {
-    const element:any = document.getElementById(this.id)
+    const element: HTMLElement | null = document.getElementById(this.id)
     const vm = this
+    if (element == null) return
     this.dropzone = new Dropzone(element)
     if (this.dropzone) {
       this.dropzone.defaultOptions = {
@@ -100,7 +93,7 @@ export default class Dropzonec extends Vue {
           done()
         },
         sending: (file: File, xhr: XMLHttpRequest, formData: FormData) => {
-          vm.initOnce = false
+          this.initOnce = false
         }
       }
     }
@@ -108,20 +101,20 @@ export default class Dropzonec extends Vue {
       document.addEventListener('paste', this.pasteImg)
     }
     if (this.dropzone) {
-      this.dropzone.on('success', (file: DropzoneFile) => {
-        vm.$emit('dropzone-success', file, vm.dropzone)
+      this.dropzone.on('success', (file: Dropzone.DropzoneFile) => {
+        this.$emit('dropzone-success', file, this.dropzone)
       })
-      this.dropzone.on('addedfile', (file: DropzoneFile) => {
-        vm.$emit('dropzone-fileAdded', file)
+      this.dropzone.on('addedfile', (file: Dropzone.DropzoneFile) => {
+        this.$emit('dropzone-fileAdded', file)
       })
-      this.dropzone.on('removedfile', (file: DropzoneFile) => {
-        vm.$emit('dropzone-removedFile', file)
+      this.dropzone.on('removedfile', (file: Dropzone.DropzoneFile) => {
+        this.$emit('dropzone-removedFile', file)
       })
-      this.dropzone.on('error', (file: DropzoneFile, error: string | Error, xhr: XMLHttpRequest) => {
-        vm.$emit('dropzone-error', file, error, xhr)
+      this.dropzone.on('error', (file: Dropzone.DropzoneFile, error: string | Error, xhr: XMLHttpRequest) => {
+        this.$emit('dropzone-error', file, error, xhr)
       })
-      this.dropzone.on('successmultiple', (file: DropzoneFile, error: string | Error, xhr: XMLHttpRequest) => {
-        vm.$emit('dropzone-successmultiple', file, error, xhr)
+      this.dropzone.on('successmultiple', (file: Dropzone.DropzoneFile, error: string | Error, xhr: XMLHttpRequest) => {
+        this.$emit('dropzone-successmultiple', file, error, xhr)
       })
     }
   }
@@ -160,9 +153,9 @@ export default class Dropzonec extends Vue {
   }
   private initImages(val?: string[]) {
     if (!val) return
+    const mockFile: any = { name: 'name', size: 12345, url: val }
     if (Array.isArray(val)) {
       val.map((v, i) => {
-        const mockFile: any = { name: 'name', size: 12345, url: val }
         if (this.dropzone) {
           this.dropzone.addFile(mockFile)
           mockFile.previewElement.classList.add('dz-success')
@@ -171,7 +164,6 @@ export default class Dropzonec extends Vue {
         return true
       })
     } else {
-      const mockFile: any = { name: 'name', size: 12345, url: val }
       if (this.dropzone) {
         this.dropzone.addFile(mockFile)
         mockFile.previewElement.classList.add('dz-success')
