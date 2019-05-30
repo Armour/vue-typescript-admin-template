@@ -47,12 +47,12 @@ const componentsRouter: RouteConfig = {
       name: 'DropzoneDemo',
       meta: { title: 'dropzone' }
     },
-    // {
-    //   path: 'sticky',
-    //   component: () => import(/* webpackChunkName: "sticky" */ '@/views/components-demo/sticky.vue'),
-    //   name: 'StickyDemo',
-    //   meta: { title: 'sticky' }
-    // },
+    {
+      path: 'sticky',
+      component: () => import(/* webpackChunkName: "sticky" */ '@/views/components-demo/sticky.vue'),
+      name: 'StickyDemo',
+      meta: { title: 'sticky' }
+    },
     {
       path: 'count-to',
       component: () => import(/* webpackChunkName: "count-to" */ '@/views/components-demo/count-to.vue'),
