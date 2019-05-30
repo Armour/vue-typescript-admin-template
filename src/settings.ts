@@ -10,7 +10,7 @@ interface ISettings {
 
 // You can customize below settings :)
 const settings: ISettings = {
-  title: 'Vue Element Admin',
+  title: 'Vue Typescript Admin',
   showSettings: true,
   showTagsView: true,
   fixedHeader: false,
