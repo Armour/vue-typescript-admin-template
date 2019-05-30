@@ -163,8 +163,4 @@ export default class StickyDemo extends Vue {
 .time-container {
   display: inline-block;
 }
-
-.el-button--mini {
-  margin: 5px;
-}
 </style>

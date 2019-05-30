@@ -46,9 +46,3 @@ export default class CommentDropdown extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.no-padding {
-  padding: 0px !important;
-}
-</style>

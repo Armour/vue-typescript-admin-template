@@ -334,30 +334,6 @@ export default class ArticleDetail extends Vue {
 </script>
 
 <style lang="scss">
-.sub-navbar {
-  height: 50px;
-  line-height: 50px;
-  position: relative;
-  width: 100%;
-  text-align: right;
-  padding-right: 20px;
-  transition: 600ms ease position;
-  background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
-
-  .subtitle {
-    font-size: 20px;
-    color: #fff;
-  }
-
-  &.draft {
-    background: #d0d0d0;
-  }
-
-  &.deleted {
-    background: #d0d0d0;
-  }
-}
-
 .article-textarea {
   textarea {
     padding-right: 40px;
