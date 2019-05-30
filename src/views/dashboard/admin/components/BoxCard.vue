@@ -54,23 +54,9 @@ import Mallki from '@/components/TextHoverEffect/Mallki.vue'
   components: {
     PanThumb,
     Mallki
-  },
-  filters: {
-    statusFilter: (status: string) => {
-      const statusMap: { [key: string]: string } = {
-        success: 'success',
-        pending: 'danger'
-      }
-      return statusMap[status]
-    }
   }
 })
 export default class BoxCard extends Vue {
-  private statisticsData = {
-    article_count: 1024,
-    pageviews_count: 1024
-  }
-
   get name() {
     return UserModule.name
   }
@@ -89,6 +75,23 @@ export default class BoxCard extends Vue {
 .box-card-component {
   .el-card__header {
     padding: 0px!important;
+  }
+}
+
+.panThumb {
+  z-index: 100;
+  height: 70px!important;
+  width: 70px!important;
+  position: absolute!important;
+  top: -45px;
+  left: 0px;
+  border: 5px solid #ffffff;
+  background-color: #fff;
+  margin: auto;
+  box-shadow: none!important;
+
+  .pan-info {
+    box-shadow: none!important;
   }
 }
 </style>
@@ -117,23 +120,6 @@ export default class BoxCard extends Vue {
     right: 0px;
     font-size: 20px;
     font-weight: bold;
-  }
-
-  .panThumb {
-    z-index: 100;
-    height: 70px!important;
-    width: 70px!important;
-    position: absolute!important;
-    top: -45px;
-    left: 0px;
-    border: 5px solid #ffffff;
-    background-color: #fff;
-    margin: auto;
-    box-shadow: none!important;
-
-    .pan-info {
-      box-shadow: none!important;
-    }
   }
 
   .progress-item {

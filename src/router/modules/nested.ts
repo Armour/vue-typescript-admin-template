@@ -6,7 +6,10 @@ const nestedRoutes: RouteConfig = {
   component: Layout,
   redirect: '/nested/menu1',
   name: 'Nested',
-  meta: { title: 'nested', icon: 'nested' },
+  meta: {
+    title: 'nested',
+    icon: 'nested'
+  },
   children: [
     {
       path: 'menu1',

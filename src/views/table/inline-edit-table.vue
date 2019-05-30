@@ -58,7 +58,7 @@
         width="110"
       >
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
+          <el-tag :type="row.status | articleStatusFilter">
             {{ row.status }}
           </el-tag>
         </template>
@@ -120,25 +120,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
-import { fetchList } from '@/api/article'
-import * as filters from '@/filters'
+import { Component, Vue } from 'vue-property-decorator'
+import { fetchArticleList, IExampleArticleData } from '@/api/article'
 
-@Component({
-  filters: {
-    statusFilter: (status: string) => {
-      const statusMap: { [id: string]: string } = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    },
-    parseTime: filters.parseTime
-  }
-})
+@Component
 export default class InlineEditTable extends Vue {
-  private list: any[] = []
+  private list: IExampleArticleData[] = []
   private listLoading = true
   private listQuery = {
     page: 1,
@@ -151,7 +138,7 @@ export default class InlineEditTable extends Vue {
 
   private async getList() {
     this.listLoading = true
-    const { data } = await fetchList(this.listQuery)
+    const { data } = await fetchArticleList(this.listQuery)
     const items = data.items
     this.list = items.map((v: any) => {
       this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html

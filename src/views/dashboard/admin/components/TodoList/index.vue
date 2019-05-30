@@ -86,7 +86,7 @@ const defalutList = [
     Todo
   },
   filters: {
-    pluralize: (n: number, w: string) => n === 1 ? w : w + 's',
+    pluralize: (n: number, s: string) => n === 1 ? s : s + 's',
     capitalize: (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
   }
 })
@@ -115,7 +115,7 @@ export default class TodoList extends Vue {
   }
 
   private addTodo(e: KeyboardEvent) {
-    const text = (e as any).target.value
+    const text = (e.target as HTMLInputElement).value
     if (text.trim()) {
       this.todos.push({
         text,

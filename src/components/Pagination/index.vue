@@ -36,7 +36,7 @@ export default class Pagination extends Vue {
     return this.page
   }
 
-  set currentPage(value: number) {
+  set currentPage(value) {
     this.$emit('update:page', value)
   }
 
@@ -44,7 +44,7 @@ export default class Pagination extends Vue {
     return this.limit
   }
 
-  set pageSize(value: number) {
+  set pageSize(value) {
     this.$emit('update:limit', value)
   }
 

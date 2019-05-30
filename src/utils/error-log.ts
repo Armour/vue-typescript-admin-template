@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { ErrorLogModule } from '@/store/modules/errorLog'
+import { ErrorLogModule } from '@/store/modules/error-log'
 import { isArray } from '@/utils/validate'
 import settings from '@/settings'
 

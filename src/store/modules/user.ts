@@ -3,7 +3,7 @@ import { login, logout, getUserInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import router, { resetRouter } from '@/router'
 import { PermissionModule } from './permission'
-import { TagsViewModule } from './tagsView'
+import { TagsViewModule } from './tags-view'
 import store from '@/store'
 
 export interface IUserState {

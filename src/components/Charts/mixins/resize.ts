@@ -4,41 +4,62 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class ResizeMixin extends Vue {
   protected chart!: ECharts | null
-  // use $_ for mixins properties
-  // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
-  // eslint-disable-next-line camelcase
-  private $_sidebarElm?: Element
-  // eslint-disable-next-line camelcase
-  private $_chartResizeHandler?: any
+  private sidebarElm?: Element
 
   mounted() {
-    this.$_chartResizeHandler = () => {
-      if (this.chart) {
-        this.chart.resize()
-      }
-    }
-    if (this.$_chartResizeHandler) {
-      window.addEventListener('resize', this.$_chartResizeHandler)
-    }
-    this.$_sidebarElm = document.getElementsByClassName('sidebar-container')[0]
-    if (this.$_sidebarElm) {
-      this.$_sidebarElm.addEventListener('transitionend', this.$_sidebarResizeHandler)
-    }
+    this.initResizeEvent()
+    this.initSidebarResizeEvent()
   }
 
   beforeDestroy() {
-    if (this.$_chartResizeHandler) {
-      window.removeEventListener('resize', this.$_chartResizeHandler)
-    }
-    if (this.$_sidebarElm) {
-      this.$_sidebarElm.removeEventListener('transitionend', this.$_sidebarResizeHandler)
+    this.destroyResizeEvent()
+    this.destroySidebarResizeEvent()
+  }
+
+  activated() {
+    this.initResizeEvent()
+    this.initSidebarResizeEvent()
+  }
+
+  deactivated() {
+    this.destroyResizeEvent()
+    this.destroySidebarResizeEvent()
+  }
+
+  private chartResizeHandler() {
+    if (this.chart) {
+      this.chart.resize()
     }
   }
 
-  // eslint-disable-next-line camelcase
-  private $_sidebarResizeHandler(e: Event) {
-    if ((e as TransitionEvent).propertyName === 'width') {
-      this.$_chartResizeHandler()
+  private sidebarResizeHandler(e: TransitionEvent) {
+    if (e.propertyName === 'width') {
+      this.chartResizeHandler()
+    }
+  }
+
+  private initResizeEvent() {
+    if (this.chartResizeHandler) {
+      window.addEventListener('resize', this.chartResizeHandler)
+    }
+  }
+
+  private destroyResizeEvent() {
+    if (this.chartResizeHandler) {
+      window.removeEventListener('resize', this.chartResizeHandler)
+    }
+  }
+
+  private initSidebarResizeEvent() {
+    this.sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    if (this.sidebarElm) {
+      this.sidebarElm.addEventListener('transitionend', this.sidebarResizeHandler as EventListener)
+    }
+  }
+
+  private destroySidebarResizeEvent() {
+    if (this.sidebarElm) {
+      this.sidebarElm.removeEventListener('transitionend', this.sidebarResizeHandler as EventListener)
     }
   }
 }

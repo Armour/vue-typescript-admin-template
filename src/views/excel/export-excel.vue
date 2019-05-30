@@ -11,7 +11,7 @@
         icon="document"
         @click="handleDownload"
       >
-        {{ $t('excel.export') }}
+        {{ $t('excel.export') }} Excel
       </el-button>
       <a
         href="https://panjiachen.github.io/vue-element-admin-site/feature/component/excel.html"
@@ -78,10 +78,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList } from '@/api/article'
+import { fetchArticleList } from '@/api/article'
 import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
-import * as filters from '@/filters'
 import FilenameOption from './components/FilenameOption.vue'
 import AutoWidthOption from './components/AutoWidthOption.vue'
 import BookTypeOption from './components/BookTypeOption.vue'
@@ -91,9 +90,6 @@ import BookTypeOption from './components/BookTypeOption.vue'
     AutoWidthOption,
     BookTypeOption,
     FilenameOption
-  },
-  filters: {
-    parseTime: filters.parseTime
   }
 })
 export default class ExportExcel extends Vue {
@@ -110,7 +106,7 @@ export default class ExportExcel extends Vue {
 
   private async fetchData() {
     this.listLoading = true
-    const { data } = await fetchList({ /* Your params here */ })
+    const { data } = await fetchArticleList({ /* Your params here */ })
     this.list = data.items
     this.listLoading = false
   }
@@ -118,7 +114,7 @@ export default class ExportExcel extends Vue {
   private handleDownload() {
     this.downloadLoading = true
     const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-    const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
+    const filterVal = ['id', 'title', 'author', 'pageviews', 'timestamp']
     const list = this.list
     const data = formatJson(filterVal, list)
     exportJson2Excel(tHeader, data, this.filename !== '' ? this.filename : undefined, undefined, undefined, this.autoWidth, this.bookType)

@@ -62,7 +62,7 @@
       >
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.timestamp }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchList } from '@/api/article'
+import { fetchArticleList } from '@/api/article'
 import { formatJson } from '@/utils'
 import { exportTxt2Zip } from '@/utils/zip'
 
@@ -88,7 +88,7 @@ export default class ExportZip extends Vue {
 
   private async fetchData() {
     this.listLoading = true
-    const { data } = await fetchList({ /* Your params here */ })
+    const { data } = await fetchArticleList({ /* Your params here */ })
     this.list = data.items
     this.listLoading = false
   }
@@ -96,7 +96,7 @@ export default class ExportZip extends Vue {
   private handleDownload() {
     this.downloadLoading = true
     const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-    const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
+    const filterVal = ['id', 'title', 'author', 'pageviews', 'timestamp']
     const list = this.list
     const data = formatJson(filterVal, list)
     if (this.filename !== '') {

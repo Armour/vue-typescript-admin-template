@@ -33,8 +33,8 @@ import XLSX from 'xlsx'
 
 @Component
 export default class UploadExcel extends Vue {
-  @Prop({ required: true }) beforeUpload!: Function
-  @Prop({ required: true }) onSuccess!: Function
+  @Prop({ required: true }) private beforeUpload!: Function
+  @Prop({ required: true }) private onSuccess!: Function
 
   private loading = false
   private excelData = {

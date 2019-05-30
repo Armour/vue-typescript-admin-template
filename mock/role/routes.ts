@@ -3,8 +3,8 @@
 export const constantRoutes = [
   {
     path: '/redirect',
-    component: 'layout/Layout',
-    hidden: true,
+    component: 'Layout',
+    meta: { hidden: true },
     children: [
       {
         path: '/redirect/:path*',
@@ -15,58 +15,70 @@ export const constantRoutes = [
   {
     path: '/login',
     component: 'views/login/index',
-    hidden: true
+    meta: { hidden: true }
   },
   {
     path: '/auth-redirect',
-    component: 'views/login/authredirect',
-    hidden: true
+    component: 'views/login/auth-redirect',
+    meta: { hidden: true }
   },
   {
     path: '/404',
-    component: 'views/errorPage/404',
-    hidden: true
+    component: 'views/error-page/404',
+    meta: { hidden: true }
   },
   {
     path: '/401',
-    component: 'views/errorPage/401',
-    hidden: true
+    component: 'views/error-page/401',
+    meta: { hidden: true }
   },
   {
     path: '',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: 'dashboard',
     children: [
       {
         path: 'dashboard',
         component: 'views/dashboard/index',
         name: 'Dashboard',
-        meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+        meta: {
+          title: 'dashboard',
+          icon: 'dashboard',
+          affix: true
+        }
       }
     ]
   },
   {
     path: '/documentation',
-    component: 'layout/Layout',
+    component: 'Layout',
     children: [
       {
         path: 'index',
         component: 'views/documentation/index',
         name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', affix: true }
+        meta: {
+          title: 'documentation',
+          icon: 'documentation',
+          affix: true
+        }
       }
     ]
   },
   {
     path: '/guide',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: '/guide/index',
     children: [
       {
         path: 'index',
         component: 'views/guide/index',
         name: 'Guide',
-        meta: { title: 'guide', icon: 'guide', noCache: true }
+        meta: {
+          title: 'guide',
+          icon: 'guide',
+          noCache: true
+        }
       }
     ]
   }
@@ -75,13 +87,13 @@ export const constantRoutes = [
 export const asyncRoutes = [
   {
     path: '/permission',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: '/permission/index',
-    alwaysShow: true,
     meta: {
       title: 'permission',
       icon: 'lock',
-      roles: ['admin', 'editor']
+      roles: ['admin', 'editor'],
+      alwaysShow: true
     },
     children: [
       {
@@ -112,23 +124,25 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/icon',
-    component: 'layout/Layout',
+    component: 'Layout',
     children: [
       {
         path: 'index',
         component: 'views/icons/index',
         name: 'Icons',
-        meta: { title: 'icons', icon: 'icon', noCache: true }
+        meta: {
+          title: 'icons',
+          icon: 'icon',
+          noCache: true
+        }
       }
     ]
   },
-
   {
     path: '/components',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: 'noredirect',
     name: 'ComponentDemo',
     meta: {
@@ -150,7 +164,7 @@ export const asyncRoutes = [
       },
       {
         path: 'json-editor',
-        component: 'views/components-demo/jsonEditor',
+        component: 'views/components-demo/json-editor',
         name: 'JsonEditorDemo',
         meta: { title: 'jsonEditor' }
       },
@@ -162,7 +176,7 @@ export const asyncRoutes = [
       },
       {
         path: 'avatar-upload',
-        component: 'views/components-demo/avatarUpload',
+        component: 'views/components-demo/avatar-upload',
         name: 'AvatarUploadDemo',
         meta: { title: 'avatarUpload' }
       },
@@ -180,7 +194,7 @@ export const asyncRoutes = [
       },
       {
         path: 'count-to',
-        component: 'views/components-demo/countTo',
+        component: 'views/components-demo/count-to',
         name: 'CountToDemo',
         meta: { title: 'countTo' }
       },
@@ -192,39 +206,39 @@ export const asyncRoutes = [
       },
       {
         path: 'back-to-top',
-        component: 'views/components-demo/backToTop',
+        component: 'views/components-demo/back-to-top',
         name: 'BackToTopDemo',
         meta: { title: 'backToTop' }
       },
       {
-        path: 'drag-dialog',
-        component: 'views/components-demo/dragDialog',
-        name: 'DragDialogDemo',
-        meta: { title: 'dragDialog' }
+        path: 'draggable-dialog',
+        component: 'views/components-demo/draggable-dialog',
+        name: 'DraggableDialogDemo',
+        meta: { title: 'draggableDialog' }
       },
       {
-        path: 'drag-select',
-        component: 'views/components-demo/dragSelect',
-        name: 'DragSelectDemo',
-        meta: { title: 'dragSelect' }
+        path: 'draggable-select',
+        component: 'views/components-demo/draggable-select',
+        name: 'DraggableSelectDemo',
+        meta: { title: 'draggableSelect' }
       },
       {
-        path: 'dnd-list',
-        component: 'views/components-demo/dndList',
-        name: 'DndListDemo',
-        meta: { title: 'dndList' }
+        path: 'draggable-list',
+        component: 'views/components-demo/draggable-list',
+        name: 'DraggableListDemo',
+        meta: { title: 'draggableList' }
       },
       {
-        path: 'drag-kanban',
-        component: 'views/components-demo/dragKanban',
-        name: 'DragKanbanDemo',
-        meta: { title: 'dragKanban' }
+        path: 'draggable-kanban',
+        component: 'views/components-demo/draggable-kanban',
+        name: 'DraggableKanbanDemo',
+        meta: { title: 'draggableKanban' }
       }
     ]
   },
   {
     path: '/charts',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: 'noredirect',
     name: 'Charts',
     meta: {
@@ -233,28 +247,37 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'keyboard',
-        component: 'views/charts/keyboard',
-        name: 'KeyboardChart',
-        meta: { title: 'keyboardChart', noCache: true }
+        path: 'bar-chart',
+        component: 'views/charts/bar-chart',
+        name: 'BarChart',
+        meta: {
+          title: 'barChart',
+          noCache: true
+        }
       },
       {
-        path: 'line',
-        component: 'views/charts/line',
+        path: 'line-chart',
+        component: 'views/charts/line-chart',
         name: 'LineChart',
-        meta: { title: 'lineChart', noCache: true }
+        meta: {
+          title: 'lineChart',
+          noCache: true
+        }
       },
       {
-        path: 'mixchart',
-        component: 'views/charts/mixChart',
-        name: 'MixChart',
-        meta: { title: 'mixChart', noCache: true }
+        path: 'mixedchart',
+        component: 'views/charts/mixed-chart',
+        name: 'MixedChart',
+        meta: {
+          title: 'mixedChart',
+          noCache: true
+        }
       }
     ]
   },
   {
     path: '/nested',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: '/nested/menu1/menu1-1',
     name: 'Nested',
     meta: {
@@ -265,32 +288,32 @@ export const asyncRoutes = [
       {
         path: 'menu1',
         component: 'views/nested/menu1/index',
+        redirect: '/nested/menu1/menu1-1',
         name: 'Menu1',
         meta: { title: 'menu1' },
-        redirect: '/nested/menu1/menu1-1',
         children: [
           {
             path: 'menu1-1',
-            component: 'views/nested/menu1/menu1-1',
+            component: 'views/nested/menu1/menu1-1/index',
             name: 'Menu1-1',
             meta: { title: 'menu1-1' }
           },
           {
             path: 'menu1-2',
-            component: 'views/nested/menu1/menu1-2',
+            component: 'views/nested/menu1/menu1-2/index',
             name: 'Menu1-2',
             redirect: '/nested/menu1/menu1-2/menu1-2-1',
             meta: { title: 'menu1-2' },
             children: [
               {
                 path: 'menu1-2-1',
-                component: 'views/nested/menu1/menu1-2/menu1-2-1',
+                component: 'views/nested/menu1/menu1-2/menu1-2-1/index',
                 name: 'Menu1-2-1',
                 meta: { title: 'menu1-2-1' }
               },
               {
                 path: 'menu1-2-2',
-                component: 'views/nested/menu1/menu1-2/menu1-2-2',
+                component: 'views/nested/menu1/menu1-2/menu1-2-2/index',
                 name: 'Menu1-2-2',
                 meta: { title: 'menu1-2-2' }
               }
@@ -298,7 +321,7 @@ export const asyncRoutes = [
           },
           {
             path: 'menu1-3',
-            component: 'views/nested/menu1/menu1-3',
+            component: 'views/nested/menu1/menu1-3/index',
             name: 'Menu1-3',
             meta: { title: 'menu1-3' }
           }
@@ -312,10 +335,45 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  {
+    path: '/table',
+    component: 'Layout',
+    redirect: '/table/complex-table',
+    name: 'Table',
+    meta: {
+      title: 'table',
+      icon: 'table'
+    },
+    children: [
+      {
+        path: 'dynamic-table',
+        component: 'views/table/dynamic-table/index',
+        name: 'DynamicTable',
+        meta: { title: 'dynamicTable' }
+      },
+      {
+        path: 'draggable-table',
+        component: 'views/table/draggable-table',
+        name: 'DraggableTable',
+        meta: { title: 'draggableTable' }
+      },
+      {
+        path: 'inline-edit-table',
+        component: 'views/table/inline-edit-table',
+        name: 'InlineEditTable',
+        meta: { title: 'inlineEditTable' }
+      },
+      {
+        path: 'complex-table',
+        component: 'views/table/complex-table',
+        name: 'ComplexTable',
+        meta: { title: 'complexTable' }
+      }
+    ]
+  },
   {
     path: '/example',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: '/example/list',
     name: 'Example',
     meta: {
@@ -327,40 +385,51 @@ export const asyncRoutes = [
         path: 'create',
         component: 'views/example/create',
         name: 'CreateArticle',
-        meta: { title: 'createArticle', icon: 'edit' }
+        meta: {
+          title: 'createArticle',
+          icon: 'edit'
+        }
       },
       {
         path: 'edit/:id(\\d+)',
         component: 'views/example/edit',
         name: 'EditArticle',
-        meta: { title: 'editArticle', noCache: true },
-        hidden: true
+        meta: {
+          title: 'editArticle',
+          noCache: true,
+          activeMenu: '/example/list',
+          hidden: true
+        }
       },
       {
         path: 'list',
         component: 'views/example/list',
         name: 'ArticleList',
-        meta: { title: 'articleList', icon: 'list' }
+        meta: {
+          title: 'articleList',
+          icon: 'list'
+        }
       }
     ]
   },
-
   {
     path: '/tab',
-    component: 'layout/Layout',
+    component: 'Layout',
     children: [
       {
         path: 'index',
         component: 'views/tab/index',
         name: 'Tab',
-        meta: { title: 'tab', icon: 'tab' }
+        meta: {
+          title: 'tab',
+          icon: 'tab'
+        }
       }
     ]
   },
-
   {
     path: '/error',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: 'noredirect',
     name: 'ErrorPages',
     meta: {
@@ -370,36 +439,43 @@ export const asyncRoutes = [
     children: [
       {
         path: '401',
-        component: 'views/errorPage/401',
+        component: 'views/error-page/401',
         name: 'Page401',
-        meta: { title: 'page401', noCache: true }
+        meta: {
+          title: 'page401',
+          noCache: true
+        }
       },
       {
         path: '404',
-        component: 'views/errorPage/404',
+        component: 'views/error-page/404',
         name: 'Page404',
-        meta: { title: 'page404', noCache: true }
+        meta: {
+          title: 'page404',
+          noCache: true
+        }
       }
     ]
   },
-
   {
     path: '/error-log',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: 'noredirect',
     children: [
       {
         path: 'log',
-        component: 'views/errorLog/index',
+        component: 'views/error-log/index',
         name: 'ErrorLog',
-        meta: { title: 'errorLog', icon: 'bug' }
+        meta: {
+          title: 'errorLog',
+          icon: 'bug'
+        }
       }
     ]
   },
-
   {
     path: '/excel',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: '/excel/export-excel',
     name: 'Excel',
     meta: {
@@ -409,37 +485,39 @@ export const asyncRoutes = [
     children: [
       {
         path: 'export-excel',
-        component: 'views/excel/exportExcel',
+        component: 'views/excel/export-excel',
         name: 'ExportExcel',
         meta: { title: 'exportExcel' }
       },
       {
         path: 'export-selected-excel',
-        component: 'views/excel/selectExcel',
+        component: 'views/excel/select-excell',
         name: 'SelectExcel',
         meta: { title: 'selectExcel' }
       },
       {
         path: 'export-merge-header',
-        component: 'views/excel/mergeHeader',
+        component: 'views/excel/merge-header',
         name: 'MergeHeader',
         meta: { title: 'mergeHeader' }
       },
       {
         path: 'upload-excel',
-        component: 'views/excel/uploadExcel',
+        component: 'views/excel/upload-excel',
         name: 'UploadExcel',
         meta: { title: 'uploadExcel' }
       }
     ]
   },
-
   {
     path: '/zip',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: '/zip/download',
-    alwaysShow: true,
-    meta: { title: 'zip', icon: 'zip' },
+    meta: {
+      title: 'zip',
+      icon: 'zip',
+      alwaysShow: true
+    },
     children: [
       {
         path: 'download',
@@ -449,77 +527,90 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/pdf',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: '/pdf/index',
     children: [
       {
         path: 'index',
         component: 'views/pdf/index',
         name: 'PDF',
-        meta: { title: 'pdf', icon: 'pdf' }
+        meta: {
+          title: 'pdf',
+          icon: 'pdf'
+        }
       }
     ]
   },
   {
-    path: '/pdf/download',
+    path: '/pdf-download-example',
     component: 'views/pdf/download',
-    hidden: true
+    meta: { hidden: true }
   },
-
   {
     path: '/theme',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: 'noredirect',
     children: [
       {
         path: 'index',
         component: 'views/theme/index',
         name: 'Theme',
-        meta: { title: 'theme', icon: 'theme' }
+        meta: {
+          title: 'theme',
+          icon: 'theme'
+        }
       }
     ]
   },
-
   {
     path: '/clipboard',
-    component: 'layout/Layout',
+    component: 'Layout',
     redirect: 'noredirect',
     children: [
       {
         path: 'index',
         component: 'views/clipboard/index',
-        name: 'ClipboardDemo',
-        meta: { title: 'clipboardDemo', icon: 'clipboard' }
+        name: 'Clipboard',
+        meta: {
+          title: 'clipboard',
+          icon: 'clipboard'
+        }
       }
     ]
   },
-
   {
     path: '/i18n',
-    component: 'layout/Layout',
+    component: 'Layout',
     children: [
       {
         path: 'index',
         component: 'views/i18n-demo/index',
         name: 'I18n',
-        meta: { title: 'i18n', icon: 'international' }
+        meta: {
+          title: 'i18n',
+          icon: 'international'
+        }
       }
     ]
   },
-
   {
     path: 'external-link',
-    component: 'layout/Layout',
+    component: 'Layout',
     children: [
       {
-        path: 'https://github.com/PanJiaChen/vue-element-admin',
-        meta: { title: 'externalLink', icon: 'link' }
+        path: 'https://github.com/Armour/vue-typescript-admin-template',
+        meta: {
+          title: 'externalLink',
+          icon: 'link'
+        }
       }
     ]
   },
-
-  { path: '*', redirect: '/404', hidden: true }
+  {
+    path: '*',
+    redirect: '/404',
+    meta: { hidden: true }
+  }
 ]

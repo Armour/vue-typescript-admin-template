@@ -12,7 +12,6 @@ export default {
     tinymce: '富文本编辑器',
     markdown: 'Markdown',
     jsonEditor: 'JSON 编辑器',
-    dndList: '列表拖拽',
     splitPane: 'Splitpane',
     avatarUpload: '头像上传',
     dropzone: 'Dropzone',
@@ -20,13 +19,14 @@ export default {
     countTo: 'Count To',
     componentMixin: '小组件',
     backToTop: '返回顶部',
-    dragDialog: '拖拽 Dialog',
-    dragSelect: '拖拽 Select',
-    dragKanban: '可拖拽看板',
+    draggableDialog: '可拖拽对话框',
+    draggableKanban: '可拖拽看板',
+    draggableList: '可拖拽列表',
+    draggableSelect: '可拖拽选择',
     charts: '图表',
-    keyboardChart: '键盘图表',
+    barChart: '柱状图表',
     lineChart: '折线图',
-    mixChart: '混合图表',
+    mixedChart: '混合图表',
     example: '综合实例',
     nested: '路由嵌套',
     menu1: '菜单 1',
@@ -38,7 +38,7 @@ export default {
     menu2: '菜单 2',
     table: '表格',
     dynamicTable: '动态表格',
-    dragTable: '拖拽表格',
+    draggableTable: '可拖拽表格',
     inlineEditTable: '表格内编辑',
     complexTable: '综合表格',
     tab: '分栏',
@@ -100,7 +100,6 @@ export default {
   components: {
     documentation: '文档',
     tinymceTips: '富文本是管理后台一个核心的功能，但同时又是一个有很多坑的地方。在选择富文本的过程中我也走了不少的弯路，市面上常见的富文本都基本用过了，最终权衡了一下选择了Tinymce。更详细的富文本比较和介绍见',
-    dropzoneTips: '由于我司业务有特殊需求，而且要传七牛 所以没用第三方，选择了自己封装。代码非常的简单，具体代码你可以在这里看到 @/components/Dropzone',
     stickyTips: '当页面滚动到预设的位置会吸附在顶部',
     backToTopTips1: '页面滚动到指定位置会在右下角出现返回顶部按钮',
     backToTopTips2: '可自定义按钮的样式、show/hide、出现的高度、返回的位置 如需文字提示，可在外部使用Element的el-tooltip元素',
@@ -168,6 +167,7 @@ export default {
     theme: '主题色',
     showTagsView: '显示 Tags-View',
     showSidebarLogo: '显示侧边栏 Logo',
-    fixedHeader: '固定 Header'
+    fixedHeader: '固定 Header',
+    sidebarTextTheme: '侧边栏文字主题色'
   }
 }
