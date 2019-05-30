@@ -53,6 +53,7 @@
           type="datetime"
           format="yyyy-MM-dd HH:mm:ss"
           placeholder="Release time"
+          :picker-options="pickerOptions"
         />
       </div>
 
@@ -127,6 +128,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Sticky from '@/components/Sticky/index.vue'
@@ -152,6 +154,7 @@ export default class StickyDemo extends Vue {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .components-container div {
   margin: 10px;
