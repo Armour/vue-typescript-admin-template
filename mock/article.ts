@@ -75,17 +75,17 @@ export default [
   },
 
   {
-    url: '/article/pv',
+    url: '/article/pageviews',
     type: 'get',
     response: (_: any) => {
       return {
         code: 20000,
         data: {
-          pvData: [
-            { key: 'PC', pv: 1024 },
-            { key: 'mobile', pv: 1024 },
-            { key: 'ios', pv: 1024 },
-            { key: 'android', pv: 1024 }
+          pageviewsData: [
+            { key: 'PC', pageviews: 1024 },
+            { key: 'mobile', pageviews: 1024 },
+            { key: 'ios', pageviews: 1024 },
+            { key: 'android', pageviews: 1024 }
           ]
         }
       }

@@ -328,11 +328,11 @@
     </el-dialog>
 
     <el-dialog
-      :visible.sync="dialogPvVisible"
+      :visible.sync="dialogPageviewsVisible"
       title="Reading statistics"
     >
       <el-table
-        :data="pvData"
+        :data="pageviewsData"
         border
         fit
         highlight-current-row
@@ -343,8 +343,8 @@
           label="Channel"
         />
         <el-table-column
-          prop="pv"
-          label="Pv"
+          prop="pageviews"
+          label="Pageviews"
         />
       </el-table>
       <span
@@ -353,7 +353,7 @@
       >
         <el-button
           type="primary"
-          @click="dialogPvVisible = false"
+          @click="dialogPageviewsVisible = false"
         >{{ $t('table.confirm') }}</el-button>
       </span>
     </el-dialog>
@@ -422,8 +422,8 @@ export default class ComplexTable extends Vue {
     update: 'Edit',
     create: 'Create'
   }
-  private dialogPvVisible = false
-  private pvData = []
+  private dialogPageviewsVisible = false
+  private pageviewsData = []
   private rules = {
     type: [{ required: true, message: 'type is required', trigger: 'change' }],
     timestamp: [{ type: 'number', required: true, message: 'timestamp is required', trigger: 'change' }],
@@ -556,10 +556,10 @@ export default class ComplexTable extends Vue {
     this.list.splice(index, 1)
   }
 
-  private handlefetchPageviews(pv: string) {
-    fetchPageviews(pv).then(response => {
-      this.pvData = response.data.pvData
-      this.dialogPvVisible = true
+  private handlefetchPageviews(Pageviews: string) {
+    fetchPageviews(Pageviews).then(response => {
+      this.pageviewsData = response.data.pageviewsData
+      this.dialogPageviewsVisible = true
     })
   }
 

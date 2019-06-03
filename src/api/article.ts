@@ -50,11 +50,11 @@ export const fetchArticleDetail = (id: string) =>
     params: { id }
   })
 
-export const fetchPageviews = (pv: string) =>
+export const fetchPageviews = (pageviews: string) =>
   request({
-    url: '/article/pv',
+    url: '/article/pageviews',
     method: 'get',
-    params: { pv }
+    params: { pageviews }
   })
 
 export const createArticle = (data: any) =>
