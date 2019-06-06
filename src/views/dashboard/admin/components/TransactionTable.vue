@@ -4,11 +4,11 @@
     style="width: 100%;padding-top: 15px;"
   >
     <el-table-column
-      label="Order_No"
+      label="OrderID"
       min-width="200"
     >
       <template slot-scope="scope">
-        {{ scope.row.order_no | orderNoFilter }}
+        {{ scope.row.orderId | orderNoFilter }}
       </template>
     </el-table-column>
     <el-table-column
@@ -36,7 +36,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { transactionList } from '@/api/remote-search'
+import { getTransactions } from '@/api/transactions'
 
 @Component({
   filters: {
@@ -62,7 +62,7 @@ export default class TransactionTable extends Vue {
   }
 
   private async fetchData() {
-    const { data } = await transactionList({ /* Your params here */ })
+    const { data } = await getTransactions({ /* Your params here */ })
     this.list = data.items.slice(0, 8)
   }
 }

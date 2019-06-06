@@ -155,8 +155,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { isValidURL } from '@/utils/validate'
-import { fetchArticleDetail, IExampleArticleData, defaultExampleArticleData } from '@/api/article'
-import { searchUser } from '@/api/remote-search'
+import { getArticle, defaultArticleData } from '@/api/articles'
+import { getUsers } from '@/api/users'
 import { AppModule } from '@/store/modules/app'
 import { TagsViewModule, ITagView } from '@/store/modules/tags-view'
 import MaterialInput from '@/components/MaterialInput/index.vue'
@@ -215,7 +215,7 @@ export default class ArticleDetail extends Vue {
       callback()
     }
   }
-  private postForm = defaultExampleArticleData
+  private postForm = defaultArticleData
   private loading = false
   private userListOptions = []
   private rules = {
@@ -251,7 +251,7 @@ export default class ArticleDetail extends Vue {
       const id = this.$route.params && this.$route.params.id
       this.fetchData(id)
     } else {
-      this.postForm = defaultExampleArticleData
+      this.postForm = defaultArticleData
     }
     // Why need to make a copy of this.$route here?
     // Because if you enter this page and quickly switch tag, may be in the execution of this.setTagsViewTitle function, this.$route is no longer pointing to the current page
@@ -261,7 +261,7 @@ export default class ArticleDetail extends Vue {
 
   private async fetchData(id: string) {
     try {
-      const { data } = await fetchArticleDetail(id)
+      const { data } = await getArticle({ id })
       this.postForm = data
       // Just for test
       this.postForm.title += `   Article Id:${this.postForm.id}`
@@ -325,7 +325,7 @@ export default class ArticleDetail extends Vue {
   }
 
   private getRemoteUserList(name: string) {
-    searchUser(name).then(response => {
+    getUsers({ name }).then(response => {
       if (!response.data.items) return
       this.userListOptions = response.data.items.map((v: any) => v.name)
     })

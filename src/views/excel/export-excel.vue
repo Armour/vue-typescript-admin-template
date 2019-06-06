@@ -31,9 +31,9 @@
       highlight-current-row
     >
       <el-table-column
+        width="95"
         align="center"
         label="Id"
-        width="95"
       >
         <template slot-scope="scope">
           {{ scope.$index }}
@@ -46,7 +46,7 @@
       </el-table-column>
       <el-table-column
         label="Author"
-        width="110"
+        width="180"
         align="center"
       >
         <template slot-scope="scope">
@@ -54,22 +54,22 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="Readings"
         width="115"
         align="center"
+        label="Readings"
       >
         <template slot-scope="scope">
           {{ scope.row.pageviews }}
         </template>
       </el-table-column>
       <el-table-column
+        width="220"
         align="center"
         label="Date"
-        width="220"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.timestamp | parseTime() }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -78,7 +78,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchArticleList } from '@/api/article'
+import { getArticles } from '@/api/articles'
 import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
 import FilenameOption from './components/FilenameOption.vue'
@@ -106,7 +106,7 @@ export default class ExportExcel extends Vue {
 
   private async fetchData() {
     this.listLoading = true
-    const { data } = await fetchArticleList({ /* Your params here */ })
+    const { data } = await getArticles({ /* Your params here */ })
     this.list = data.items
     this.listLoading = false
   }

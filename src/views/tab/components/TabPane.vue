@@ -24,12 +24,12 @@
       label="Date"
     >
       <template slot-scope="scope">
-        <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+        <span>{{ scope.row.timestamp | parseTime() }}</span>
       </template>
     </el-table-column>
 
     <el-table-column
-      min-width="300px"
+      min-width="240px"
       label="Title"
     >
       <template slot-scope="{row}">
@@ -39,7 +39,7 @@
     </el-table-column>
 
     <el-table-column
-      width="110px"
+      width="180px"
       align="center"
       label="Author"
     >
@@ -87,7 +87,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { fetchArticleList } from '@/api/article'
+import { getArticles } from '@/api/articles'
 
 @Component
 export default class TabPane extends Vue {
@@ -109,7 +109,7 @@ export default class TabPane extends Vue {
   private getList() {
     this.loading = true
     this.$emit('create') // for test
-    fetchArticleList(this.listQuery).then(response => {
+    getArticles(this.listQuery).then(response => {
       this.list = response.data.items
       this.loading = false
     })

@@ -24,14 +24,14 @@
         label="Date"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.timestamp | parseTime() }}</span>
         </template>
       </el-table-column>
 
       <el-table-column
-        width="120px"
         align="center"
         label="Author"
+        width="180px"
       >
         <template slot-scope="scope">
           <span>{{ scope.row.author }}</span>
@@ -65,7 +65,7 @@
       </el-table-column>
 
       <el-table-column
-        min-width="300px"
+        min-width="250px"
         label="Title"
       >
         <template slot-scope="{row}">
@@ -121,11 +121,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchArticleList, IExampleArticleData } from '@/api/article'
+import { getArticles } from '@/api/articles'
+import { IArticleData } from '@/api/types'
 
 @Component
 export default class InlineEditTable extends Vue {
-  private list: IExampleArticleData[] = []
+  private list: IArticleData[] = []
   private listLoading = true
   private listQuery = {
     page: 1,
@@ -138,7 +139,7 @@ export default class InlineEditTable extends Vue {
 
   private async getList() {
     this.listLoading = true
-    const { data } = await fetchArticleList(this.listQuery)
+    const { data } = await getArticles(this.listQuery)
     const items = data.items
     this.list = items.map((v: any) => {
       this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html

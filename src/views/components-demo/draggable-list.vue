@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchArticleList } from '@/api/article'
+import { getArticles } from '@/api/articles'
 import DraggableList from '@/components/DraggableList/index.vue'
 
 @Component({
@@ -39,7 +39,7 @@ export default class DraggableListDemo extends Vue {
 
   private async fetchData() {
     this.listLoading = true
-    const { data } = await fetchArticleList({ /* Your params here */ })
+    const { data } = await getArticles({ /* Your params here */ })
     this.list1 = data.items.splice(0, 5)
     this.list2 = data.items
     this.listLoading = false

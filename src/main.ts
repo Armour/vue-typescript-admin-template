@@ -16,9 +16,6 @@ import '@/utils/error-log'
 import '@/registerServiceWorker'
 import * as filters from '@/filters'
 
-import { mockXHR } from '../mock'
-mockXHR()
-
 Vue.use(ElementUI, {
   size: AppModule.size, // Set element-ui default size
   i18n: (key: string, value: string) => i18n.t(key, value)

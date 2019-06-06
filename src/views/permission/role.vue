@@ -2,9 +2,9 @@
   <div class="app-container">
     <el-button
       type="primary"
-      @click="handleAddRole"
+      @click="handleCreateRole"
     >
-      {{ $t('permission.addRole') }}
+      {{ $t('permission.createRole') }}
     </el-button>
 
     <el-table
@@ -120,10 +120,10 @@ import { Component, Vue } from 'vue-property-decorator'
 import { RouteConfig } from 'vue-router'
 import { Tree } from 'element-ui'
 import { AppModule } from '@/store/modules/app'
-import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
+import { getRoutes, getRoles, createRole, deleteRole, updateRole } from '@/api/roles'
 
 interface Role {
-  key: string
+  key: number
   name: string
   description: string
   routes: RouteConfig[]
@@ -136,7 +136,7 @@ interface RoutesTreeData {
 }
 
 const defaultRole: Role = {
-  key: '',
+  key: 0,
   name: '',
   description: '',
   routes: []
@@ -167,13 +167,13 @@ export default class RolePermission extends Vue {
   }
 
   private async getRoutes() {
-    const res = await getRoutes()
+    const res = await getRoutes({ /* Your params here */ })
     this.serviceRoutes = res.data
     this.reshapedRoutes = this.reshapeRoutes(res.data)
   }
 
   private async getRoles() {
-    const res = await getRoles()
+    const res = await getRoles({ /* Your params here */ })
     this.rolesList = res.data
   }
 
@@ -236,7 +236,7 @@ export default class RolePermission extends Vue {
     return data
   }
 
-  private handleAddRole() {
+  private handleCreateRole() {
     this.role = defaultRole
     if (this.$refs.tree) {
       (this.$refs.tree as Tree).setCheckedKeys([])
@@ -260,15 +260,16 @@ export default class RolePermission extends Vue {
     })
   }
 
-  private handleDelete({ index, row }: {index: number, row: any}) {
+  private handleDelete(scope: any) {
+    const { $index, row } = scope
     this.$confirm('Confirm to remove the role?', 'Warning', {
       confirmButtonText: 'Confirm',
       cancelButtonText: 'Cancel',
       type: 'warning'
     })
       .then(async() => {
-        await deleteRole(row.key)
-        this.rolesList.splice(index, 1)
+        await deleteRole({ id: row.key })
+        this.rolesList.splice($index, 1)
         this.$message({
           type: 'success',
           message: 'Deleted!'
@@ -299,7 +300,7 @@ export default class RolePermission extends Vue {
     this.role.routes = this.generateTree(this.serviceRoutes, '/', checkedKeys)
 
     if (isEdit) {
-      await updateRole(this.role.key, this.role)
+      await updateRole(this.role)
       for (let index = 0; index < this.rolesList.length; index++) {
         if (this.rolesList[index].key === this.role.key) {
           this.rolesList.splice(index, 1, this.role)
@@ -307,7 +308,7 @@ export default class RolePermission extends Vue {
         }
       }
     } else {
-      const { data } = await addRole(this.role)
+      const { data } = await createRole(this.role)
       this.role.key = data.key
       this.rolesList.push(this.role)
     }

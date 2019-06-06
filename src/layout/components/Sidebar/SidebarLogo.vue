@@ -11,16 +11,9 @@
         to="/"
       >
         <img
-          v-if="logo"
-          :src="logo"
+          src="favicon.ico"
           class="sidebar-logo"
         >
-        <h1
-          v-else
-          class="sidebar-title"
-        >
-          {{ title }}
-        </h1>
       </router-link>
       <router-link
         v-else
@@ -29,8 +22,7 @@
         to="/"
       >
         <img
-          v-if="logo"
-          :src="logo"
+          src="favicon.ico"
           class="sidebar-logo"
         >
         <h1 class="sidebar-title">
@@ -49,7 +41,6 @@ export default class SidebarLogo extends Vue {
   @Prop({ required: true }) private collapse!: boolean
 
   private title = 'Vue Typescript Admin'
-  private logo = 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
 }
 </script>
 

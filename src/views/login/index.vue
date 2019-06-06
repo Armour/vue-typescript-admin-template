@@ -5,7 +5,7 @@
       :model="loginForm"
       :rules="loginRules"
       class="login-form"
-      auto-complete="on"
+      autocomplete="on"
       label-position="left"
     >
       <div class="title-container">
@@ -25,7 +25,7 @@
           :placeholder="$t('login.username')"
           name="username"
           type="text"
-          auto-complete="on"
+          autocomplete="on"
         />
       </el-form-item>
 
@@ -40,7 +40,7 @@
           :type="passwordType"
           :placeholder="$t('login.password')"
           name="password"
-          auto-complete="on"
+          autocomplete="on"
           @keyup.enter.native="handleLogin"
         />
         <span

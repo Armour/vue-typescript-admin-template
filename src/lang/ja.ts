@@ -86,7 +86,7 @@ export default {
     github: 'Github Link'
   },
   permission: {
-    addRole: 'ロール追加',
+    createRole: 'ロール追加',
     editPermission: 'ロール変更',
     roles: 'ロール',
     switchRoles: 'ロール切替',

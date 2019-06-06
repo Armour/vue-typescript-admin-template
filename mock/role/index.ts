@@ -1,9 +1,10 @@
-import Mock from 'mockjs'
+import faker from 'faker'
+import { Response, Request } from 'express'
 import { asyncRoutes, constantRoutes } from './routes'
+import { IRoleData } from '../../src/api/types'
 
 const routes = [...constantRoutes, ...asyncRoutes]
-
-const roles = [
+const roles: IRoleData[] = [
   {
     key: 'admin',
     name: 'admin',
@@ -34,64 +35,48 @@ const roles = [
   }
 ]
 
-export default [
-  // Mock get all routes form server
-  {
-    url: '/routes',
-    type: 'get',
-    response: (_: any) => {
-      return {
+export const getRoles = (req: Request, res: Response) => {
+  return res.json({
+    code: 20000,
+    data: roles
+  })
+}
+
+export const createRole = (req: Request, res: Response) => {
+  return res.json({
+    code: 20000,
+    data: {
+      key: faker.random.number({ min: 3, max: 10000 })
+    }
+  })
+}
+
+export const updateRole = (req: Request, res: Response) => {
+  const { id } = req.params
+  const { data } = req.body
+  for (const role of roles) {
+    if (role.key === id) {
+      return res.json({
         code: 20000,
-        data: routes
-      }
-    }
-  },
-
-  // Mock get all roles form server
-  {
-    url: '/roles',
-    type: 'get',
-    response: (_: any) => {
-      return {
-        code: 20000,
-        data: roles
-      }
-    }
-  },
-
-  // Add role
-  {
-    url: '/role',
-    type: 'post',
-    response: {
-      code: 20000,
-      data: {
-        key: Mock.mock('@integer(300, 5000)')
-      }
-    }
-  },
-
-  // Update role
-  {
-    url: '/role/[A-Za-z0-9]',
-    type: 'put',
-    response: {
-      code: 20000,
-      data: {
-        status: 'success'
-      }
-    }
-  },
-
-  // Delete role
-  {
-    url: '/role/[A-Za-z0-9]',
-    type: 'delete',
-    response: {
-      code: 20000,
-      data: {
-        status: 'success'
-      }
+        data
+      })
     }
   }
-]
+  return res.json({
+    code: 70001,
+    message: 'Role not found'
+  })
+}
+
+export const deleteRole = (req: Request, res: Response) => {
+  return res.json({
+    code: 20000,
+  })
+}
+
+export const getRoutes = (req: Request, res: Response) => {
+  return res.json({
+    code: 20000,
+    data: routes
+  })
+}

@@ -110,11 +110,11 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.date')"
-        width="150px"
+        width="180px"
         align="center"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.timestamp | parseTime() }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -131,7 +131,7 @@
       </el-table-column>
       <el-table-column
         :label="$t('table.author')"
-        width="110px"
+        width="180px"
         align="center"
       >
         <template slot-scope="scope">
@@ -170,7 +170,7 @@
           <span
             v-if="row.pageviews"
             class="link-type"
-            @click="handlefetchPageviews(row.pageviews)"
+            @click="handleGetPageviews(row.pageviews)"
           >{{ row.pageviews }}</span>
           <span v-else>0</span>
         </template>
@@ -363,7 +363,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Form } from 'element-ui'
-import { fetchArticleList, fetchPageviews, createArticle, updateArticle, IExampleArticleData, defaultExampleArticleData } from '@/api/article'
+import { getArticles, getPageviews, createArticle, updateArticle, defaultArticleData } from '@/api/articles'
+import { IArticleData } from '@/api/types'
 import { waves } from '@/directives/waves'
 import { exportJson2Excel } from '@/utils/excel'
 import { formatJson } from '@/utils'
@@ -397,7 +398,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc: { [key: string]: s
 })
 export default class ComplexTable extends Vue {
   private tableKey = 0
-  private list: IExampleArticleData[] = []
+  private list: IArticleData[] = []
   private total = 0
   private listLoading = true
   private listQuery = {
@@ -430,7 +431,7 @@ export default class ComplexTable extends Vue {
     title: [{ required: true, message: 'title is required', trigger: 'blur' }]
   }
   private downloadLoading = false
-  private tempArticleData = defaultExampleArticleData
+  private tempArticleData = defaultArticleData
 
   created() {
     this.getList()
@@ -438,7 +439,7 @@ export default class ComplexTable extends Vue {
 
   private getList() {
     this.listLoading = true
-    fetchArticleList(this.listQuery).then(response => {
+    getArticles(this.listQuery).then(response => {
       this.list = response.data.items
       this.total = response.data.total
 
@@ -479,7 +480,7 @@ export default class ComplexTable extends Vue {
   }
 
   private resetTempArticleData() {
-    this.tempArticleData = defaultExampleArticleData
+    this.tempArticleData = defaultArticleData
   }
 
   private handleCreate() {
@@ -494,10 +495,10 @@ export default class ComplexTable extends Vue {
   private createData() {
     (this.$refs['dataForm'] as Form).validate((valid) => {
       if (valid) {
-        this.tempArticleData.id = (Math.random() * 100 + 1024).toString() // mock a id
-        this.tempArticleData.author = 'vue-element-admin'
-        createArticle(this.tempArticleData).then(() => {
-          this.list.unshift(this.tempArticleData)
+        let { id, ...articleData } = this.tempArticleData
+        articleData.author = 'vue-element-admin'
+        createArticle(articleData).then((response) => {
+          this.list.unshift(response.data.article)
           this.dialogFormVisible = false
           this.$notify({
             title: '成功',
@@ -523,13 +524,14 @@ export default class ComplexTable extends Vue {
   private updateData() {
     (this.$refs['dataForm'] as Form).validate((valid) => {
       if (valid) {
-        const tempData = Object.assign({}, this.tempArticleData)
+        const tempData = this.tempArticleData
         tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-        updateArticle(tempData).then(() => {
+        updateArticle(tempData).then((response) => {
+          const { articleData } = response.data
           for (const v of this.list) {
-            if (v.id === this.tempArticleData.id) {
+            if (v.id === articleData.id) {
               const index = this.list.indexOf(v)
-              this.list.splice(index, 1, this.tempArticleData)
+              this.list.splice(index, 1, articleData)
               break
             }
           }
@@ -556,9 +558,9 @@ export default class ComplexTable extends Vue {
     this.list.splice(index, 1)
   }
 
-  private handlefetchPageviews(Pageviews: string) {
-    fetchPageviews(Pageviews).then(response => {
-      this.pageviewsData = response.data.pageviewsData
+  private handleGetPageviews(platform: string) {
+    getPageviews({ platform }).then(response => {
+      this.pageviewsData = response.data.pageviews
       this.dialogPageviewsVisible = true
     })
   }

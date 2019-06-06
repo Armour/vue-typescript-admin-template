@@ -62,7 +62,7 @@
 <script lang="ts">
 import Draggable from 'vuedraggable'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { IExampleArticleData } from '@/api/article'
+import { IArticleData } from '@/api/types'
 
 @Component({
   components: {
@@ -70,22 +70,22 @@ import { IExampleArticleData } from '@/api/article'
   }
 })
 export default class DraggableList extends Vue {
-  @Prop({ default: () => [] }) private list1!: IExampleArticleData[]
-  @Prop({ default: () => [] }) private list2!: IExampleArticleData[]
+  @Prop({ default: () => [] }) private list1!: IArticleData[]
+  @Prop({ default: () => [] }) private list2!: IArticleData[]
   @Prop({ default: 'list1' }) private list1Title!: string
   @Prop({ default: 'list2' }) private list2Title!: string
   @Prop({ default: '48%' }) private list1width!: string
   @Prop({ default: '48%' }) private list2width!: string
 
-  private isNotInList1(v: IExampleArticleData) {
+  private isNotInList1(v: IArticleData) {
     return this.list1.every(k => v.id !== k.id)
   }
 
-  private isNotInList2(v: IExampleArticleData) {
+  private isNotInList2(v: IArticleData) {
     return this.list2.every(k => v.id !== k.id)
   }
 
-  private deleteEle(ele: IExampleArticleData) {
+  private deleteEle(ele: IArticleData) {
     for (const item of this.list1) {
       if (item.id === ele.id) {
         const index = this.list1.indexOf(item)
@@ -98,7 +98,7 @@ export default class DraggableList extends Vue {
     }
   }
 
-  private pushEle(ele: IExampleArticleData) {
+  private pushEle(ele: IArticleData) {
     for (const item of this.list2) {
       if (item.id === ele.id) {
         const index = this.list2.indexOf(item)

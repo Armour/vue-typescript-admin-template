@@ -9,9 +9,9 @@
       style="width: 100%"
     >
       <el-table-column
+        width="80"
         align="center"
         label="ID"
-        width="80"
       >
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
@@ -24,12 +24,12 @@
         label="Date"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.timestamp | parseTime() }}</span>
         </template>
       </el-table-column>
 
       <el-table-column
-        width="120px"
+        width="180px"
         align="center"
         label="Author"
       >
@@ -109,7 +109,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchArticleList } from '@/api/article'
+import { getArticles } from '@/api/articles'
 import Pagination from '@/components/Pagination/index.vue'
 
 @Component({
@@ -132,7 +132,7 @@ export default class ArticleList extends Vue {
 
   private getList() {
     this.listLoading = true
-    fetchArticleList(this.listQuery).then(response => {
+    getArticles(this.listQuery).then(response => {
       this.list = response.data.items
       this.total = response.data.total
       this.listLoading = false

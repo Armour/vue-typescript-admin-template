@@ -27,7 +27,7 @@
         label="Date"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.timestamp | parseTime() }}</span>
         </template>
       </el-table-column>
 
@@ -41,7 +41,7 @@
       </el-table-column>
 
       <el-table-column
-        width="110px"
+        width="180px"
         align="center"
         label="Author"
       >
@@ -116,15 +116,16 @@
 <script lang="ts">
 import Sortable from 'sortablejs'
 import { Component, Vue } from 'vue-property-decorator'
-import { fetchArticleList, IExampleArticleData } from '@/api/article'
+import { getArticles } from '@/api/articles'
+import { IArticleData } from '@/api/types'
 
 @Component
 export default class DraggableTable extends Vue {
-  private list: IExampleArticleData[] = []
+  private list: IArticleData[] = []
   private listLoading = true
   private total = []
-  private oldList: string[] = []
-  private newList: string[] = []
+  private oldList: number[] = []
+  private newList: number[] = []
   private listQuery = {
     page: 1,
     limit: 10
@@ -137,7 +138,7 @@ export default class DraggableTable extends Vue {
 
   private async getList() {
     this.listLoading = true
-    const { data } = await fetchArticleList(this.listQuery)
+    const { data } = await getArticles(this.listQuery)
     this.list = data.items
     this.listLoading = false
     this.total = data.total
