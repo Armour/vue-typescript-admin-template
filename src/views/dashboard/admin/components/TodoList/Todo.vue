@@ -40,6 +40,7 @@ export interface ITodo {
 }
 
 @Component({
+  name: 'TodoDemo',
   directives: {
     focus: (el, { value }, { context }) => {
       if (value) {
@@ -52,7 +53,7 @@ export interface ITodo {
     }
   }
 })
-export default class Todo extends Vue {
+export default class extends Vue {
   @Prop({ default: { text: '', done: false } }) private todo!: ITodo
 
   private editing = false

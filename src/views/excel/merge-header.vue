@@ -76,8 +76,10 @@ import { getArticles } from '@/api/articles'
 import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
 
-@Component
-export default class MergeHeader extends Vue {
+@Component({
+  name: 'MergeHeader'
+})
+export default class extends Vue {
   private list: any[] = []
   private listLoading = true
   private downloadLoading = false

@@ -107,6 +107,7 @@ const lineChartData: { [type: string]: { expectedData: number[], actualData: num
 }
 
 @Component({
+  name: 'DashboardAdmin',
   components: {
     GithubCorner,
     BarChart,
@@ -119,7 +120,7 @@ const lineChartData: { [type: string]: { expectedData: number[], actualData: num
     TransactionTable
   }
 })
-export default class DashboardAdmin extends Vue {
+export default class extends Vue {
   private lineChartData = lineChartData.newVisitis
 
   private handleSetLineChartData(type: string) {

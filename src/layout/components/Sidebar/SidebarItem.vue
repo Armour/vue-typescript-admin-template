@@ -66,7 +66,7 @@ import SidebarItemLink from './SidebarItemLink.vue'
     SidebarItemLink
   }
 })
-export default class SidebarItem extends Vue {
+export default class extends Vue {
   @Prop({ required: true }) private item!: RouteConfig
   @Prop({ default: false }) private isCollapse!: boolean
   @Prop({ default: true }) private isFirstLevel!: boolean

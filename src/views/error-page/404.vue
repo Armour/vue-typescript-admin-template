@@ -53,8 +53,10 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
-export default class Page404 extends Vue {
+@Component({
+  name: 'Page404'
+})
+export default class extends Vue {
   private message = '404 Page Not Found'
 }
 </script>

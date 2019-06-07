@@ -205,6 +205,7 @@ import DropdownMenu from '@/components/DropdownMenu/index.vue'
 import { waves } from '@/directives/waves'
 
 @Component({
+  name: 'ComponentMixinDemo',
   components: {
     DropdownMenu,
     MaterialInput,
@@ -215,7 +216,7 @@ import { waves } from '@/directives/waves'
     waves
   }
 })
-export default class ComponentMixinDemo extends Vue {
+export default class extends Vue {
   private validateLength = (rule: any, value: string, callback: Function) => {
     if (value.length !== 6) {
       callback(new Error('请输入六个字符'))

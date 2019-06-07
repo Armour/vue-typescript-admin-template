@@ -160,8 +160,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 import local from './local'
 
-@Component
-export default class I18n extends Vue {
+@Component({
+  name: 'I18n'
+})
+export default class extends Vue {
   private date = ''
   private value = ''
   private options: any[] = []

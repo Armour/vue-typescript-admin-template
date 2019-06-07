@@ -249,7 +249,7 @@ export const asyncRoutes = [
       {
         path: 'bar-chart',
         component: 'views/charts/bar-chart',
-        name: 'BarChart',
+        name: 'BarChartDemo',
         meta: {
           title: 'barChart',
           noCache: true
@@ -258,7 +258,7 @@ export const asyncRoutes = [
       {
         path: 'line-chart',
         component: 'views/charts/line-chart',
-        name: 'LineChart',
+        name: 'LineChartDemo',
         meta: {
           title: 'lineChart',
           noCache: true
@@ -267,7 +267,7 @@ export const asyncRoutes = [
       {
         path: 'mixedchart',
         component: 'views/charts/mixed-chart',
-        name: 'MixedChart',
+        name: 'MixedChartDemo',
         meta: {
           title: 'mixedChart',
           noCache: true

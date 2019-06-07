@@ -1,8 +1,10 @@
 import { ECharts } from 'echarts'
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
-export default class ResizeMixin extends Vue {
+@Component({
+  name: 'ResizeMixin'
+})
+export default class extends Vue {
   protected chart!: ECharts | null
   private sidebarElm?: Element
 

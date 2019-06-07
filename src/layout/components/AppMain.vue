@@ -15,8 +15,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { TagsViewModule } from '@/store/modules/tags-view'
 
-@Component
-export default class AppMain extends Vue {
+@Component({
+  name: 'AppMain'
+})
+export default class extends Vue {
   get cachedViews() {
     return TagsViewModule.cachedViews
   }

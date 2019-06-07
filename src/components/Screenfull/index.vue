@@ -13,8 +13,10 @@ import { Component, Vue } from 'vue-property-decorator'
 
 const sf = screenfull
 
-@Component
-export default class Screenfull extends Vue {
+@Component({
+  name: 'Screenfull'
+})
+export default class extends Vue {
   private isFullscreen = false
 
   mounted() {

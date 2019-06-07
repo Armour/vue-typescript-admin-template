@@ -53,8 +53,10 @@ export interface IUploadObject {
   height: number
 }
 
-@Component
-export default class EditorImageUpload extends Vue {
+@Component({
+  name: 'EditorImageUpload'
+})
+export default class extends Vue {
   @Prop({ required: true }) private color!: string
 
   private dialogVisible = false

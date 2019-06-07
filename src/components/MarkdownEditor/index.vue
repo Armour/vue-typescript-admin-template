@@ -12,8 +12,10 @@ import TuiEditor from 'tui-editor'
 
 const defaultId = () => 'markdown-editor-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
 
-@Component
-export default class MarkdownEditor extends Vue {
+@Component({
+  name: 'MarkdownEditor'
+})
+export default class extends Vue {
   @Prop({ required: true }) private value!: string
   @Prop({ default: defaultId }) private id!: string
   @Prop({ default: () => defaultOptions }) private options!: tuiEditor.IEditorOptions

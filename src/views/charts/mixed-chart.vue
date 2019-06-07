@@ -12,11 +12,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import MixedChart from '@/components/Charts/MixedChart.vue'
 
 @Component({
+  name: 'MixedChartDemo',
   components: {
     MixedChart
   }
 })
-export default class MixedChartDemo extends Vue {}
+export default class extends Vue {}
 </script>
 
 <style lang="scss" scoped>

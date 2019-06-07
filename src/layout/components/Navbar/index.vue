@@ -80,6 +80,7 @@ import Screenfull from '@/components/Screenfull/index.vue'
 import SizeSelect from '@/components/SizeSelect/index.vue'
 
 @Component({
+  name: 'Navbar',
   components: {
     Breadcrumb,
     ErrorLog,
@@ -90,7 +91,7 @@ import SizeSelect from '@/components/SizeSelect/index.vue'
     SizeSelect
   }
 })
-export default class Navbar extends Vue {
+export default class extends Vue {
   get sidebar() {
     return AppModule.sidebar
   }

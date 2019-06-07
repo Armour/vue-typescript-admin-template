@@ -18,8 +18,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class BookTypeOption extends Vue {
+@Component({
+  name: 'BookTypeOption'
+})
+export default class extends Vue {
   @Prop({ default: 'xlsx' }) private value!: string
 
   private options = ['xlsx', 'csv', 'txt']

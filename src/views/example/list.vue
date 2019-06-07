@@ -113,11 +113,12 @@ import { getArticles } from '@/api/articles'
 import Pagination from '@/components/Pagination/index.vue'
 
 @Component({
+  name: 'ArticleList',
   components: {
     Pagination
   }
 })
-export default class ArticleList extends Vue {
+export default class extends Vue {
   private total = 0
   private list: any[] = []
   private listLoading = true

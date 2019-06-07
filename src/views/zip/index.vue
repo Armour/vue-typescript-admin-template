@@ -75,8 +75,10 @@ import { getArticles } from '@/api/articles'
 import { formatJson } from '@/utils'
 import { exportTxt2Zip } from '@/utils/zip'
 
-@Component
-export default class ExportZip extends Vue {
+@Component({
+  name: 'ExportZip'
+})
+export default class extends Vue {
   private list: any[] = []
   private listLoading = true
   private downloadLoading = false

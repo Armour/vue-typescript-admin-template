@@ -13,8 +13,10 @@ import ResizeMixin from '@/components/Charts/mixins/resize'
 
 const animationDuration = 3000
 
-@Component
-export default class RaddarChart extends mixins(ResizeMixin) {
+@Component({
+  name: 'RaddarChart'
+})
+export default class extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: '100%' }) private width!: string
   @Prop({ default: '300px' }) private height!: string

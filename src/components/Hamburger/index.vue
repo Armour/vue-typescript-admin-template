@@ -14,8 +14,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class Hamburger extends Vue {
+@Component({
+  name: 'Hamburger'
+})
+export default class extends Vue {
   @Prop({ default: false }) private isActive!: boolean
 
   private toggleClick() {

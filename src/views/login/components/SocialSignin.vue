@@ -25,8 +25,10 @@
 // import openWindow from '@/utils/openWindow'
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
-export default class SocialSignin extends Vue {
+@Component({
+  name: 'SocialSignin'
+})
+export default class extends Vue {
   private wechatHandleClick(thirdpart: any) {
     alert('ok')
     // this.$store.commit('SET_AUTH_TYPE', thirdpart)

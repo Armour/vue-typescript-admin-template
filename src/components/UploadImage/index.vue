@@ -48,8 +48,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class UploadImage extends Vue {
+@Component({
+  name: 'UploadImage'
+})
+export default class extends Vue {
   @Prop({ default: '' }) private value!: string
 
   private tempUrl = ''

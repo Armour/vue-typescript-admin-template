@@ -29,11 +29,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import DraggableKanban from '@/components/DraggableKanban/index.vue'
 
 @Component({
+  name: 'DraggableKanbanDemo',
   components: {
     DraggableKanban
   }
 })
-export default class DraggableKanbanDemo extends Vue {
+export default class extends Vue {
   private group = 'mission'
   private list1 = [
     { name: 'Mission', id: 1 },

@@ -384,6 +384,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc: { [key: string]: s
 }, {}) as { [key: string]: string }
 
 @Component({
+  name: 'ComplexTable',
   components: {
     Pagination
   },
@@ -396,7 +397,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc: { [key: string]: s
     }
   }
 })
-export default class ComplexTable extends Vue {
+export default class extends Vue {
   private tableKey = 0
   private list: IArticleData[] = []
   private total = 0

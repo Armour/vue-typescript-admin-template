@@ -50,11 +50,12 @@ import { elDraggableDialog } from '@/directives/el-draggable-dialog'
 import { Select } from 'element-ui'
 
 @Component({
+  name: 'DraggableDialogDemo',
   directives: {
     elDraggableDialog
   }
 })
-export default class DraggableDialogDemo extends Vue {
+export default class extends Vue {
   private dialogTableVisible = false
   private options = [
     { value: '选项1', label: '黄金糕' },

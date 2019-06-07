@@ -43,8 +43,10 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 
-@Component
-export default class Login extends Vue {
+@Component({
+  name: 'Login'
+})
+export default class extends Vue {
   get language() {
     return AppModule.language
   }

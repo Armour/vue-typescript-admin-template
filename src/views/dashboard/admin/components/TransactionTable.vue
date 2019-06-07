@@ -39,6 +39,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { getTransactions } from '@/api/transactions'
 
 @Component({
+  name: 'TransactionTable',
   filters: {
     transactionStatusFilter: (status: string) => {
       const statusMap: { [key: string]: string } = {
@@ -54,7 +55,7 @@ import { getTransactions } from '@/api/transactions'
     }
   }
 })
-export default class TransactionTable extends Vue {
+export default class extends Vue {
   private list: any[] = []
 
   created() {

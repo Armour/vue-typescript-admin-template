@@ -120,11 +120,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import countTo from 'vue-count-to'
 
 @Component({
+  name: 'CountToDemo',
   components: {
     countTo
   }
 })
-export default class CountToDemo extends Vue {
+export default class extends Vue {
   private setStartVal = 0
   private setEndVal = 2017
   private setDuration = 4000

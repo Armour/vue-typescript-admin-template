@@ -119,8 +119,10 @@ import { Component, Vue } from 'vue-property-decorator'
 import { getArticles } from '@/api/articles'
 import { IArticleData } from '@/api/types'
 
-@Component
-export default class DraggableTable extends Vue {
+@Component({
+  name: 'DraggableTable'
+})
+export default class extends Vue {
   private list: IArticleData[] = []
   private listLoading = true
   private total = []

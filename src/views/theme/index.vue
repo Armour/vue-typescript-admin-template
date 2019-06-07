@@ -98,8 +98,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { toggleClass } from '@/utils'
 import '@/assets/custom-theme/index.css' // the theme changed version element-ui css
 
-@Component
-export default class Theme extends Vue {
+@Component({
+  name: 'Theme'
+})
+export default class extends Vue {
   private theme = false
   private tags = [
     { name: 'Tag One', type: '' },

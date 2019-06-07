@@ -12,11 +12,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import LineChart from '@/components/Charts/LineChart.vue'
 
 @Component({
+  name: 'LineChartDemo',
   components: {
     LineChart
   }
 })
-export default class LineChartDemo extends Vue {}
+export default class extends Vue {}
 </script>
 
 <style lang="scss" scoped>

@@ -12,11 +12,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import BarChart from '@/components/Charts/BarChart.vue'
 
 @Component({
+  name: 'BarChartDemo',
   components: {
     BarChart
   }
 })
-export default class BarChartDemo extends Vue {}
+export default class extends Vue {}
 </script>
 
 <style lang="scss" scoped>

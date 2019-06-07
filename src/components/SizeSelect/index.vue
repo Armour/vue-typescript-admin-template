@@ -29,8 +29,10 @@ import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
 import { TagsViewModule } from '@/store/modules/tags-view'
 
-@Component
-export default class SizeSelect extends Vue {
+@Component({
+  name: 'SizeSelect'
+})
+export default class extends Vue {
   private sizeOptions = [
     { label: 'Default', value: 'default' },
     { label: 'Medium', value: 'medium' },

@@ -7,9 +7,10 @@ import { Component, Vue } from 'vue-property-decorator'
 import ArticleDetail from './components/ArticleDetail.vue'
 
 @Component({
+  name: 'CreateArticle',
   components: {
     ArticleDetail
   }
 })
-export default class CreateForm extends Vue {}
+export default class extends Vue {}
 </script>

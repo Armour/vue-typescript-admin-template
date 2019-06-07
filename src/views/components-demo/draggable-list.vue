@@ -24,11 +24,12 @@ import { getArticles } from '@/api/articles'
 import DraggableList from '@/components/DraggableList/index.vue'
 
 @Component({
+  name: 'DraggableListDemo',
   components: {
     DraggableList
   }
 })
-export default class DraggableListDemo extends Vue {
+export default class extends Vue {
   private list1 = []
   private list2 = []
   private listLoading = true

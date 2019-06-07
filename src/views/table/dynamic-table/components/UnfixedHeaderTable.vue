@@ -42,8 +42,10 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
-export default class UnfixedHeaderTable extends Vue {
+@Component({
+  name: 'UnfixedHeaderTable'
+})
+export default class extends Vue {
   private tableData = [
     {
       name: 'fruit-1',

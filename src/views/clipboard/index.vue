@@ -46,6 +46,7 @@ import { clipboard } from '@/directives/clipboard' // use clipboard by v-directi
 import { handleClipboard, clipboardSuccess } from '@/utils/clipboard' // use clipboard directly
 
 @Component({
+  name: 'Clipboard',
   directives: {
     clipboard
   },
@@ -54,7 +55,7 @@ import { handleClipboard, clipboardSuccess } from '@/utils/clipboard' // use cli
     clipboardSuccess
   }
 })
-export default class Clipboard extends Vue {
+export default class extends Vue {
   private activeName = 'directly'
   private inputData = 'https://github.com/Armour/vue-typescript-admin-template'
 }

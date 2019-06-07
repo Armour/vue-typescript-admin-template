@@ -23,11 +23,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import Dropzone from '@/components/Dropzone/index.vue'
 
 @Component({
+  name: 'DropzoneDemo',
   components: {
     Dropzone
   }
 })
-export default class DropzoneDemo extends Vue {
+export default class extends Vue {
   private dropzoneSuccess(file: File, response: any) {
     this.$message({ message: 'Upload success', type: 'success' })
   }

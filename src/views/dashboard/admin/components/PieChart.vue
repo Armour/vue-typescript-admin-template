@@ -11,8 +11,10 @@ import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from '@/components/Charts/mixins/resize'
 
-@Component
-export default class PieChart extends mixins(ResizeMixin) {
+@Component({
+  name: 'PieChart'
+})
+export default class extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: '100%' }) private width!: string
   @Prop({ default: '300px' }) private height!: string

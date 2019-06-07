@@ -17,8 +17,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class BackToTop extends Vue {
+@Component({
+  name: 'BackToTop'
+})
+export default class extends Vue {
   @Prop({ default: 400 }) private visibilityHeight!: number
   @Prop({ default: 'fade' }) private transitionName!: string
   @Prop({ default: 0 }) private backPosition!: number

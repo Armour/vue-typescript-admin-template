@@ -17,6 +17,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
-export default class PDF extends Vue {}
+@Component({
+  name: 'PDF'
+})
+export default class extends Vue {}
 </script>

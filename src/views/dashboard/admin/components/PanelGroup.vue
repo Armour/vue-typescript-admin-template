@@ -127,11 +127,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import CountTo from 'vue-count-to'
 
 @Component({
+  name: 'PanelGroup',
   components: {
     CountTo
   }
 })
-export default class PanelGroup extends Vue {
+export default class extends Vue {
   private handleSetLineChartData(type: string) {
     this.$emit('handleSetLineChartData', type)
   }

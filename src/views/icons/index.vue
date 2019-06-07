@@ -56,11 +56,12 @@ import elementIcons from './element-icons'
 import svgIcons from './svg-icons'
 
 @Component({
+  name: 'Icons',
   methods: {
     handleClipboard
   }
 })
-export default class Icons extends Vue {
+export default class extends Vue {
   private svgIcons = svgIcons
   private elementIcons = elementIcons
 

@@ -13,8 +13,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class GithubCorner extends Vue {
+@Component({
+  name: 'Mallki'
+})
+export default class extends Vue {
   @Prop({ default: '' }) private className!: string
   @Prop({ default: 'vue-typescript-admin' }) private text!: string
 }

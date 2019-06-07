@@ -88,11 +88,12 @@ const content = `
 `
 
 @Component({
+  name: 'MarkdownDemo',
   components: {
     MarkdownEditor
   }
 })
-export default class MarkdownDemo extends Vue {
+export default class extends Vue {
   private content1 = content
   private content2 = content
   private content3 = content

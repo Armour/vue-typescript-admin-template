@@ -11,12 +11,13 @@ import AdminDashboard from './admin/index.vue'
 import EditorDashboard from './editor/index.vue'
 
 @Component({
+  name: 'Dashboard',
   components: {
     AdminDashboard,
     EditorDashboard
   }
 })
-export default class Dashboard extends Vue {
+export default class extends Vue {
   private currentRole = 'admin-dashboard'
 
   get roles() {

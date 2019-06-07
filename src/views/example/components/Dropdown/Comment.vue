@@ -31,8 +31,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class CommentDropdown extends Vue {
+@Component({
+  name: 'CommentDropdown'
+})
+export default class extends Vue {
   @Prop({ default: false }) private value!: boolean
 
   get disableComment() {

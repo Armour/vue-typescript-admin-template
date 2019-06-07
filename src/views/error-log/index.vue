@@ -25,12 +25,13 @@ import ErrorA from './components/ErrorTestA.vue'
 import ErrorB from './components/ErrorTestB.vue'
 
 @Component({
+  name: 'ErrorLog',
   components: {
     ErrorA,
     ErrorB
   }
 })
-export default class ErrorLogPage extends Vue {}
+export default class extends Vue {}
 </script>
 
 <style lang="scss" scoped>

@@ -21,8 +21,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { scrollTo } from '@/utils/scroll-to'
 
-@Component
-export default class Pagination extends Vue {
+@Component({
+  name: 'Pagination'
+})
+export default class extends Vue {
   @Prop({ required: true }) private total!: number
   @Prop({ default: 1 }) private page!: number
   @Prop({ default: 20 }) private limit!: number

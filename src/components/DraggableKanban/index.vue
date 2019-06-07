@@ -24,11 +24,12 @@ import Draggable from 'vuedraggable'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component({
+  name: 'DraggableKanban',
   components: {
     Draggable
   }
 })
-export default class DraggableKanban extends Vue {
+export default class extends Vue {
   @Prop({ default: 'header' }) private headerText!: string
   @Prop({ default: () => [] }) private list!: object[]
   @Prop({ default: () => {} }) private options!: object

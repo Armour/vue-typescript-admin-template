@@ -12,8 +12,10 @@ import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from './mixins/resize'
 
-@Component
-export default class MixedChart extends mixins(ResizeMixin) {
+@Component({
+  name: 'MixedChart'
+})
+export default class extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: 'chart' }) private id!: string
   @Prop({ default: '200px' }) private width!: string

@@ -78,8 +78,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { ErrorLogModule } from '@/store/modules/error-log'
 
-@Component
-export default class ErrorLog extends Vue {
+@Component({
+  name: 'ErrorLog'
+})
+export default class extends Vue {
   private dialogTableVisible = false
 
   get errorLogs() {

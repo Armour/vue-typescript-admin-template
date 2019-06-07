@@ -86,13 +86,14 @@ import AutoWidthOption from './components/AutoWidthOption.vue'
 import BookTypeOption from './components/BookTypeOption.vue'
 
 @Component({
+  name: 'ExportExcel',
   components: {
     AutoWidthOption,
     BookTypeOption,
     FilenameOption
   }
 })
-export default class ExportExcel extends Vue {
+export default class extends Vue {
   private list: any[] = []
   private listLoading = true
   private downloadLoading = false

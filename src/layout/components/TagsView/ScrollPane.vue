@@ -14,8 +14,10 @@ import { Component, Vue } from 'vue-property-decorator'
 
 const tagSpacing = 4
 
-@Component
-export default class ScrollPane extends Vue {
+@Component({
+  name: 'ScrollPane'
+})
+export default class extends Vue {
   private handleScroll(e: MouseWheelEvent) {
     const eventDelta = (e as any).wheelDelta || -e.deltaY * 40
     const scrollContainer = this.$refs.scrollContainer as Vue

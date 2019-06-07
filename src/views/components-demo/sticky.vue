@@ -134,11 +134,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import Sticky from '@/components/Sticky/index.vue'
 
 @Component({
+  name: 'StickyDemo',
   components: {
     Sticky
   }
 })
-export default class StickyDemo extends Vue {
+export default class extends Vue {
   private time = Date
   private url = ''
   private platforms = ['a-platform']

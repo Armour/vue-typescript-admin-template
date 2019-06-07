@@ -14,8 +14,10 @@ import { SettingsModule } from '@/store/modules/settings'
 const version = require('element-ui/package.json').version // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF' // default color
 
-@Component
-export default class ThemePicker extends Vue {
+@Component({
+  name: 'ThemePicker'
+})
+export default class extends Vue {
   private chalk = '' // The content of theme-chalk css
   private theme = ''
 

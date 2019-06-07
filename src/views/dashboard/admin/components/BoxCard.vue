@@ -51,12 +51,13 @@ import PanThumb from '@/components/PanThumb/index.vue'
 import Mallki from '@/components/TextHoverEffect/Mallki.vue'
 
 @Component({
+  name: 'BoxCard',
   components: {
     PanThumb,
     Mallki
   }
 })
-export default class BoxCard extends Vue {
+export default class extends Vue {
   get name() {
     return UserModule.name
   }

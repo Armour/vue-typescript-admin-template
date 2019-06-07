@@ -25,11 +25,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
 
 @Component({
+  name: 'UploadExcel',
   components: {
     UploadExcelComponent
   }
 })
-export default class UploadExcel extends Vue {
+export default class extends Vue {
   private tableData: any = []
   private tableHeader: string[] = []
 

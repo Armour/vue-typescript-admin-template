@@ -133,6 +133,7 @@ import { checkPermission } from '@/utils/permission' // Use permission directly
 import SwitchRoles from './components/SwitchRoles.vue'
 
 @Component({
+  name: 'DirectivePermission',
   components: {
     SwitchRoles
   },
@@ -143,7 +144,7 @@ import SwitchRoles from './components/SwitchRoles.vue'
     permission
   }
 })
-export default class DirectivePermission extends Vue {
+export default class extends Vue {
   private key = 1 // 为了能每次切换权限的时候重新初始化指令
 
   private handleRolesChange() {

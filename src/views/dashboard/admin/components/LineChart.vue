@@ -11,8 +11,10 @@ import { Component, Prop, Watch } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from '@/components/Charts/mixins/resize'
 
-@Component
-export default class LineChart extends mixins(ResizeMixin) {
+@Component({
+  name: 'LineChart'
+})
+export default class extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: '100%' }) private width!: string
   @Prop({ default: '350px' }) private height!: string

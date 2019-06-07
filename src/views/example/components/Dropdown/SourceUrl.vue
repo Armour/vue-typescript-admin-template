@@ -33,8 +33,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class CommentDropdown extends Vue {
+@Component({
+  name: 'SourceUrlDropdown'
+})
+export default class extends Vue {
   @Prop({ default: '' }) private value!: string
 
   get sourceURL() {

@@ -28,8 +28,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class PlatformDropdown extends Vue {
+@Component({
+  name: 'PlatformDropdown'
+})
+export default class extends Vue {
   @Prop({ default: () => [] }) private value!: string[]
 
   private platformsOptions = [

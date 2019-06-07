@@ -34,12 +34,13 @@ import PanThumb from '@/components/PanThumb/index.vue'
 import GithubCorner from '@/components/GithubCorner/index.vue'
 
 @Component({
+  name: 'DashboardEditor',
   components: {
     PanThumb,
     GithubCorner
   }
 })
-export default class DashboardEditor extends Vue {
+export default class extends Vue {
   private emptyGif = 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3'
 
   get name() {

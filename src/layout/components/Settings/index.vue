@@ -54,11 +54,12 @@ import { SettingsModule } from '@/store/modules/settings'
 import ThemePicker from '@/components/ThemePicker/index.vue'
 
 @Component({
+  name: 'Settings',
   components: {
     ThemePicker
   }
 })
-export default class Settings extends Vue {
+export default class extends Vue {
   get fixedHeader() {
     return SettingsModule.fixedHeader
   }

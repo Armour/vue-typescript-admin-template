@@ -16,8 +16,10 @@ import Sortable from 'sortablejs'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Select } from 'element-ui'
 
-@Component
-export default class DraggableSelect extends Vue {
+@Component({
+  name: 'DraggableSelect'
+})
+export default class extends Vue {
   @Prop({ required: true }) private value!: string[]
 
   private sortable: Sortable | null = null

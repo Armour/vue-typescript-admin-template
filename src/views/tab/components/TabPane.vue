@@ -89,8 +89,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { getArticles } from '@/api/articles'
 
-@Component
-export default class TabPane extends Vue {
+@Component({
+  name: 'TabPane'
+})
+export default class extends Vue {
   @Prop({ default: 'CN' }) private type!: string
 
   private list = null

@@ -104,12 +104,13 @@ import LangSelect from '@/components/LangSelect/index.vue'
 import SocialSign from './components/SocialSignin.vue'
 
 @Component({
+  name: 'Login',
   components: {
     LangSelect,
     SocialSign
   }
 })
-export default class Login extends Vue {
+export default class extends Vue {
   private validateUsername = (rule: any, value: string, callback: Function) => {
     if (!isValidUsername(value)) {
       callback(new Error('Please enter the correct user name'))

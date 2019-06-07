@@ -14,8 +14,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class Sticky extends Vue {
+@Component({
+  name: 'Sticky'
+})
+export default class extends Vue {
   @Prop({ default: 0 }) private stickyTop!: number
   @Prop({ default: 1 }) private zIndex!: number
   @Prop({ default: '' }) private className!: string

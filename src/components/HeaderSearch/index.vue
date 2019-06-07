@@ -39,8 +39,10 @@ import { AppModule } from '@/store/modules/app'
 import { PermissionModule } from '@/store/modules/permission'
 import i18n from '@/lang' // Internationalization
 
-@Component
-export default class HeaderSearch extends Vue {
+@Component({
+  name: 'HeaderSearch'
+})
+export default class extends Vue {
   private search = ''
   private show = false
   private options: RouteConfig[] = []

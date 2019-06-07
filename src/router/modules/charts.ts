@@ -14,7 +14,7 @@ const chartsRouter: RouteConfig = {
     {
       path: 'bar-chart',
       component: () => import(/* webpackChunkName: "bar-chart" */ '@/views/charts/bar-chart.vue'),
-      name: 'BarChart',
+      name: 'BarChartDemo',
       meta: {
         title: 'barChart',
         noCache: true
@@ -23,7 +23,7 @@ const chartsRouter: RouteConfig = {
     {
       path: 'line-chart',
       component: () => import(/* webpackChunkName: "line-chart" */ '@/views/charts/line-chart.vue'),
-      name: 'LineChart',
+      name: 'LineChartDemo',
       meta: {
         title: 'lineChart',
         noCache: true
@@ -32,7 +32,7 @@ const chartsRouter: RouteConfig = {
     {
       path: 'mixed-chart',
       component: () => import(/* webpackChunkName: "mixed-chart" */ '@/views/charts/mixed-chart.vue'),
-      name: 'MixedChart',
+      name: 'MixedChartDemo',
       meta: {
         title: 'mixedChart',
         noCache: true

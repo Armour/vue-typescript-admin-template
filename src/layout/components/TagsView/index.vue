@@ -55,17 +55,17 @@
 import path from 'path'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import VueRouter, { Route, RouteRecord, RouteConfig } from 'vue-router'
-import { ElBreadcrumbItem } from 'element-ui/types/breadcrumb-item'
 import { PermissionModule } from '@/store/modules/permission'
 import { TagsViewModule, ITagView } from '@/store/modules/tags-view'
 import ScrollPane from './ScrollPane.vue'
 
 @Component({
+  name: 'TagsView',
   components: {
     ScrollPane
   }
 })
-export default class TagsView extends Vue {
+export default class extends Vue {
   private visible: boolean = false
   private top: number = 0
   private left: number = 0
@@ -145,7 +145,7 @@ export default class TagsView extends Vue {
   }
 
   private moveToCurrentTag() {
-    const tags = this.$refs.tag as ElBreadcrumbItem[]
+    const tags = this.$refs.tag as any[] // TODO: better typescript support for router-link
     this.$nextTick(() => {
       for (const tag of tags) {
         if ((tag.to as ITagView).path === this.$route.path) {

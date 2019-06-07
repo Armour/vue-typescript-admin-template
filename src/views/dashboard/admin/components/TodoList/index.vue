@@ -82,6 +82,7 @@ const defalutList = [
 ]
 
 @Component({
+  name: 'TodoList',
   components: {
     Todo
   },
@@ -90,7 +91,7 @@ const defalutList = [
     capitalize: (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
   }
 })
-export default class TodoList extends Vue {
+export default class extends Vue {
   private visibility = 'all'
   private todos = defalutList
 

@@ -28,8 +28,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import content from './content'
 
-@Component
-export default class PDFDownload extends Vue {
+@Component({
+  name: 'PDFDownload'
+})
+export default class extends Vue {
   private article = {}
   private fullscreenLoading = true
 

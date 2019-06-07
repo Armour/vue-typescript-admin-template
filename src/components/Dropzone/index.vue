@@ -27,11 +27,12 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { SettingsModule } from '@/store/modules/settings'
 
 @Component({
+  name: 'Dropzone',
   components: {
     VueDropzone
   }
 })
-export default class Dropzone extends Vue {
+export default class extends Vue {
   // You can add more Prop, see: https://www.dropzonejs.com/#configuration
   @Prop({ required: true }) private id!: string
   @Prop({ required: true }) private url!: string

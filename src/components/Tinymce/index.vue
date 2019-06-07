@@ -66,12 +66,13 @@ import { plugins, toolbar } from './config'
 const defaultId = () => 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
 
 @Component({
+  name: 'Tinymce',
   components: {
     EditorImageUpload,
     TinymceEditor
   }
 })
-export default class Tinymce extends Vue {
+export default class extends Vue {
   @Prop({ required: true }) private value!: string
   @Prop({ default: defaultId }) private id!: string
   @Prop({ default: () => [] }) private toolbar!: string[]

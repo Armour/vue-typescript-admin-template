@@ -18,8 +18,10 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-@Component
-export default class PanThumb extends Vue {
+@Component({
+  name: 'PanThumb'
+})
+export default class extends Vue {
   @Prop({ required: true }) private image!: string
   @Prop({ default: '150px' }) private width!: string
   @Prop({ default: '150px' }) private height!: string

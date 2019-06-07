@@ -37,12 +37,13 @@ import SidebarLogo from './SidebarLogo.vue'
 import variables from '@/styles/_variables.scss'
 
 @Component({
+  name: 'SideBar',
   components: {
     SidebarItem,
     SidebarLogo
   }
 })
-export default class SideBar extends Vue {
+export default class extends Vue {
   get sidebar() {
     return AppModule.sidebar
   }

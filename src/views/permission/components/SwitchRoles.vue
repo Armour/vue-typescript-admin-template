@@ -15,8 +15,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/user'
 
-@Component
-export default class SwitchRoles extends Vue {
+@Component({
+  name: 'SwitchRoles'
+})
+export default class extends Vue {
   get roles() {
     return UserModule.roles
   }

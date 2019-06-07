@@ -133,11 +133,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import BackToTop from '@/components/BackToTop/index.vue'
 
 @Component({
+  name: 'BackToTopDemo',
   components: {
     BackToTop
   }
 })
-export default class BackToTopDemo extends Vue {
+export default class extends Vue {
   private myBackToTopStyle = {
     right: '50px',
     bottom: '50px',

@@ -89,8 +89,10 @@ import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
 import { Table } from 'element-ui'
 
-@Component
-export default class SelectExcel extends Vue {
+@Component({
+  name: 'SelectExcel'
+})
+export default class extends Vue {
   private list: any[] = []
   private listLoading = true
   private multipleSelection = []

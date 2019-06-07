@@ -135,6 +135,7 @@
           style="margin-bottom: 30px;"
         >
           <tinymce
+            v-if="tinymceActive"
             ref="editor"
             v-model="postForm.fullContent"
             :height="400"
@@ -168,6 +169,7 @@ import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown
 import { Form } from 'element-ui'
 
 @Component({
+  name: 'ArticleDetail',
   components: {
     CommentDropdown,
     PlatformDropdown,
@@ -179,7 +181,7 @@ import { Form } from 'element-ui'
     Warning
   }
 })
-export default class ArticleDetail extends Vue {
+export default class extends Vue {
   @Prop({ default: false }) private isEdit!: boolean
 
   private validateRequire = (rule: any, value: string, callback: Function) => {
@@ -225,6 +227,7 @@ export default class ArticleDetail extends Vue {
     sourceURL: [{ validator: this.validateSourceUrl, trigger: 'blur' }]
   }
   private tempTagView?: ITagView
+  private tinymceActive = true
 
   get abstractContentLength() {
     return this.postForm.abstractContent.length
@@ -257,6 +260,14 @@ export default class ArticleDetail extends Vue {
     // Because if you enter this page and quickly switch tag, may be in the execution of this.setTagsViewTitle function, this.$route is no longer pointing to the current page
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempTagView = Object.assign({}, this.$route)
+  }
+
+  deactivated() {
+    this.tinymceActive = false
+  }
+
+  activated() {
+    this.tinymceActive = true
   }
 
   private async fetchData(id: string) {

@@ -124,8 +124,10 @@ import { Component, Vue } from 'vue-property-decorator'
 import { getArticles } from '@/api/articles'
 import { IArticleData } from '@/api/types'
 
-@Component
-export default class InlineEditTable extends Vue {
+@Component({
+  name: 'InlineEditTable'
+})
+export default class extends Vue {
   private list: IArticleData[] = []
   private listLoading = true
   private listQuery = {

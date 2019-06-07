@@ -65,11 +65,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { IArticleData } from '@/api/types'
 
 @Component({
+  name: 'DraggableList',
   components: {
     Draggable
   }
 })
-export default class DraggableList extends Vue {
+export default class extends Vue {
   @Prop({ default: () => [] }) private list1!: IArticleData[]
   @Prop({ default: () => [] }) private list2!: IArticleData[]
   @Prop({ default: 'list1' }) private list1Title!: string

@@ -31,11 +31,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import DraggableSelect from '@/components/DraggableSelect/index.vue'
 
 @Component({
+  name: 'DraggableSelectDemo',
   components: {
     DraggableSelect
   }
 })
-export default class DraggableSelectDemo extends Vue {
+export default class extends Vue {
   private value = ['Apple', 'Banana', 'Orange']
   private options = [{
     value: 'Apple',

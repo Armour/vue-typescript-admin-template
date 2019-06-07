@@ -13,8 +13,10 @@ import ResizeMixin from '@/components/Charts/mixins/resize'
 
 const animationDuration = 6000
 
-@Component
-export default class BarChart extends mixins(ResizeMixin) {
+@Component({
+  name: 'BarChart'
+})
+export default class extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: '100%' }) private width!: string
   @Prop({ default: '300px' }) private height!: string

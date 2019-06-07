@@ -120,8 +120,10 @@
 // Source: https://github.com/wemake-services/vue-material-input/blob/master/src/components/MaterialInput.vue
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 
-@Component
-export default class MaterialInput extends Vue {
+@Component({
+  name: 'MaterialInput'
+})
+export default class extends Vue {
   @Prop({ default: '' }) private icon!: string
   @Prop({ default: '' }) private name!: string
   @Prop({ default: 'text' }) private type!: string

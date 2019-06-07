@@ -18,8 +18,10 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 /* eslint-disable import/no-webpack-loader-syntax */
 require('script-loader!jsonlint')
 
-@Component
-export default class JsonEditor extends Vue {
+@Component({
+  name: 'JsonEditor'
+})
+export default class extends Vue {
   @Prop({ required: true }) private value!: string
 
   private jsonEditor?: Editor

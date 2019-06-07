@@ -35,11 +35,12 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import TabPane from './components/TabPane.vue'
 
 @Component({
+  name: 'Tab',
   components: {
     TabPane
   }
 })
-export default class Tab extends Vue {
+export default class extends Vue {
   private tabMapOptions = [
     { label: 'China', key: 'CN' },
     { label: 'USA', key: 'US' },

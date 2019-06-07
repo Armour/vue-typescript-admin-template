@@ -23,8 +23,10 @@ import 'driver.js/dist/driver.min.css'
 import { Component, Vue } from 'vue-property-decorator'
 import steps from './steps'
 
-@Component
-export default class Guide extends Vue {
+@Component({
+  name: 'Guide'
+})
+export default class extends Vue {
   private driver: Driver | null = null
 
   mounted() {

@@ -26,8 +26,10 @@ import pathToRegexp from 'path-to-regexp'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteRecord, Route } from 'vue-router'
 
-@Component
-export default class Breadcrumb extends Vue {
+@Component({
+  name: 'Breadcrumb'
+})
+export default class extends Vue {
   private breadcrumbs: RouteRecord[] = []
 
   @Watch('$route')

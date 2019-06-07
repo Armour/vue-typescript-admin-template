@@ -35,6 +35,7 @@ import RightPanel from '@/components/RightPanel/index.vue'
 import ResizeMixin from './mixin/resize'
 
 @Component({
+  name: 'Layout',
   components: {
     AppMain,
     Navbar,
@@ -44,7 +45,7 @@ import ResizeMixin from './mixin/resize'
     TagsView
   }
 })
-export default class Layout extends mixins(ResizeMixin) {
+export default class extends mixins(ResizeMixin) {
   get classObj() {
     return {
       hideSidebar: !this.sidebar.opened,

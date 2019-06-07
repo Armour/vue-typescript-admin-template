@@ -14,12 +14,12 @@ Vue.use(Router)
 
 /*
   Note: sub-menu only appear when children.length>=1
-  Detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
+  Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
 */
 
 /*
-  name:'router-name'             the name is required when using <keep-alive>
-    https://vuejs.org/v2/guide/components-dynamic-async.html#keep-alive-with-Dynamic-Components
+  name:'router-name'             the name field is required when using <keep-alive>, it should also match its component's name property
+                                 detail see : https://vuejs.org/v2/guide/components-dynamic-async.html#keep-alive-with-Dynamic-Components
   redirect:                      if set to 'noredirect', no redirect action will be trigger when clicking the breadcrumb
   meta: {
     roles: ['admin', 'editor']   will control the page roles (allow setting multiple roles)
@@ -253,7 +253,7 @@ export const asyncRoutes: RouteConfig[] = [
       {
         path: '401',
         component: () => import(/* webpackChunkName: "error-page-401" */ '@/views/error-page/401.vue'),
-        name: 'ErrorPage401',
+        name: 'Page401',
         meta: {
           title: 'page401',
           noCache: true
@@ -262,7 +262,7 @@ export const asyncRoutes: RouteConfig[] = [
       {
         path: '404',
         component: () => import(/* webpackChunkName: "error-page-404" */ '@/views/error-page/404.vue'),
-        name: 'ErrorPage404',
+        name: 'Page404',
         meta: {
           title: 'page404',
           noCache: true
