@@ -6,10 +6,15 @@
 </template>
 
 <script lang="ts">
-import echarts from 'echarts'
+import echarts, { EChartOption } from 'echarts'
 import { Component, Prop, Watch } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from '@/components/Charts/mixins/resize'
+
+export interface ILineChartData {
+  expectedData: number[]
+  actualData: number[]
+}
 
 @Component({
   name: 'LineChart'
@@ -18,10 +23,10 @@ export default class extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: '100%' }) private width!: string
   @Prop({ default: '350px' }) private height!: string
-  @Prop({ required: true }) private chartData!: object
+  @Prop({ required: true }) private chartData!: ILineChartData
 
   @Watch('chartData', { deep: true })
-  private onChartDataChange(value: any) {
+  private onChartDataChange(value: ILineChartData) {
     this.setOptions(value)
   }
 
@@ -44,7 +49,7 @@ export default class extends mixins(ResizeMixin) {
     this.setOptions(this.chartData)
   }
 
-  private setOptions({ expectedData, actualData }: any) {
+  private setOptions(chartData: ILineChartData) {
     if (this.chart) {
       this.chart.setOption({
         xAxis: {
@@ -79,17 +84,15 @@ export default class extends mixins(ResizeMixin) {
         series: [{
           name: 'expected',
           itemStyle: {
-            normal: {
+            color: '#FF005A',
+            lineStyle: {
               color: '#FF005A',
-              lineStyle: {
-                color: '#FF005A',
-                width: 2
-              }
+              width: 2
             }
           },
           smooth: true,
           type: 'line',
-          data: expectedData,
+          data: chartData.expectedData,
           animationDuration: 2800,
           animationEasing: 'cubicInOut'
         },
@@ -98,22 +101,20 @@ export default class extends mixins(ResizeMixin) {
           smooth: true,
           type: 'line',
           itemStyle: {
-            normal: {
+            color: '#3888fa',
+            lineStyle: {
               color: '#3888fa',
-              lineStyle: {
-                color: '#3888fa',
-                width: 2
-              },
-              areaStyle: {
-                color: '#f3f8ff'
-              }
+              width: 2
+            },
+            areaStyle: {
+              color: '#f3f8ff'
             }
           },
-          data: actualData,
+          data: chartData.actualData,
           animationDuration: 2800,
           animationEasing: 'quadraticOut'
         }]
-      })
+      } as EChartOption<EChartOption.SeriesLine>)
     }
   }
 }

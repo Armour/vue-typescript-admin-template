@@ -15,7 +15,7 @@
         :lg="8"
       >
         <div class="chart-wrapper">
-          <raddar-chart />
+          <radar-chart />
         </div>
       </el-col>
       <el-col
@@ -74,20 +74,20 @@
 </template>
 
 <script lang="ts">
-import 'echarts/theme/macarons.js' // Theme used in BarChart, LineChart, PieChart and RaddarChart
+import 'echarts/theme/macarons.js' // Theme used in BarChart, LineChart, PieChart and RadarChart
 import { Component, Vue } from 'vue-property-decorator'
 import { UserModule } from '@/store/modules/user'
 import GithubCorner from '@/components/GithubCorner/index.vue'
 import BarChart from './components/BarChart.vue'
 import BoxCard from './components/BoxCard.vue'
-import LineChart from './components/LineChart.vue'
+import LineChart, { ILineChartData } from './components/LineChart.vue'
 import PanelGroup from './components/PanelGroup.vue'
 import PieChart from './components/PieChart.vue'
-import RaddarChart from './components/RaddarChart.vue'
+import RadarChart from './components/RadarChart.vue'
 import TodoList from './components/TodoList/index.vue'
 import TransactionTable from './components/TransactionTable.vue'
 
-const lineChartData: { [type: string]: { expectedData: number[], actualData: number[] } } = {
+const lineChartData: { [type: string]: ILineChartData } = {
   newVisitis: {
     expectedData: [100, 120, 161, 134, 105, 160, 165],
     actualData: [120, 82, 91, 154, 162, 140, 145]
@@ -115,7 +115,7 @@ const lineChartData: { [type: string]: { expectedData: number[], actualData: num
     LineChart,
     PanelGroup,
     PieChart,
-    RaddarChart,
+    RadarChart,
     TodoList,
     TransactionTable
   }

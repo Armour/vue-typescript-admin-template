@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import echarts from 'echarts'
+import echarts, { EChartOption } from 'echarts'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from './mixins/resize'
@@ -37,7 +37,6 @@ export default class extends mixins(ResizeMixin) {
 
   private initChart() {
     this.chart = echarts.init(document.getElementById(this.id) as HTMLDivElement)
-
     const xData = (function() {
       const data = []
       for (let i = 1; i < 13; i++) {
@@ -60,7 +59,7 @@ export default class extends mixins(ResizeMixin) {
         }
       },
       tooltip: {
-        trigger: 'axis' as 'axis'
+        trigger: 'axis'
       },
       grid: {
         left: '5%',
@@ -153,17 +152,15 @@ export default class extends mixins(ResizeMixin) {
         barMaxWidth: 35,
         barGap: '10%',
         itemStyle: {
-          normal: {
-            color: 'rgba(255,144,128,1)',
-            label: {
-              show: true,
-              textStyle: {
-                color: '#fff'
-              },
-              position: 'insideTop',
-              formatter(p: any) {
-                return p.value > 0 ? p.value : ''
-              }
+          color: 'rgba(255,144,128,1)',
+          label: {
+            show: true,
+            textStyle: {
+              color: '#fff'
+            },
+            position: 'insideTop',
+            formatter(p: any) {
+              return p.value > 0 ? p.value : ''
             }
           }
         },
@@ -188,15 +185,13 @@ export default class extends mixins(ResizeMixin) {
         type: 'bar',
         stack: 'total',
         itemStyle: {
-          normal: {
-            color: 'rgba(0,191,183,1)',
-            barBorderRadius: 0,
-            label: {
-              show: true,
-              position: 'top',
-              formatter(p: any) {
-                return p.value > 0 ? p.value : ''
-              }
+          color: 'rgba(0,191,183,1)',
+          barBorderRadius: 0,
+          label: {
+            show: true,
+            position: 'top',
+            formatter(p: any) {
+              return p.value > 0 ? p.value : ''
             }
           }
         },
@@ -221,15 +216,13 @@ export default class extends mixins(ResizeMixin) {
         symbolSize: 10,
         symbol: 'circle',
         itemStyle: {
-          normal: {
-            color: 'rgba(252,230,48,1)',
-            barBorderRadius: 0,
-            label: {
-              show: true,
-              position: 'top',
-              formatter(p: any) {
-                return p.value > 0 ? p.value : ''
-              }
+          color: 'rgba(252,230,48,1)',
+          barBorderRadius: 0,
+          label: {
+            show: true,
+            position: 'top',
+            formatter(p: any) {
+              return p.value > 0 ? p.value : ''
             }
           }
         },
@@ -249,7 +242,7 @@ export default class extends mixins(ResizeMixin) {
         ]
       }
       ]
-    })
+    } as EChartOption<EChartOption.SeriesLine | EChartOption.SeriesBar>)
   }
 }
 </script>

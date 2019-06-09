@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import echarts from 'echarts'
+import echarts, { EChartOption } from 'echarts'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from '@/components/Charts/mixins/resize'
@@ -14,7 +14,7 @@ import ResizeMixin from '@/components/Charts/mixins/resize'
 const animationDuration = 3000
 
 @Component({
-  name: 'RaddarChart'
+  name: 'RadarChart'
 })
 export default class extends mixins(ResizeMixin) {
   @Prop({ default: 'chart' }) private className!: string
@@ -40,8 +40,8 @@ export default class extends mixins(ResizeMixin) {
     this.chart.setOption({
       tooltip: {
         trigger: 'axis',
-        axisPointer: { // 坐标轴指示器，坐标轴触发有效
-          type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+        axisPointer: {
+          type: 'shadow'
         }
       },
       radar: {
@@ -76,13 +76,11 @@ export default class extends mixins(ResizeMixin) {
         type: 'radar',
         symbolSize: 0,
         areaStyle: {
-          normal: {
-            shadowBlur: 13,
-            shadowColor: 'rgba(0,0,0,.2)',
-            shadowOffsetX: 0,
-            shadowOffsetY: 10,
-            opacity: 1
-          }
+          shadowBlur: 13,
+          shadowColor: 'rgba(0,0,0,.2)',
+          shadowOffsetX: 0,
+          shadowOffsetY: 10,
+          opacity: 1
         },
         data: [
           {
@@ -100,7 +98,7 @@ export default class extends mixins(ResizeMixin) {
         ],
         animationDuration: animationDuration
       }]
-    })
+    } as EChartOption<EChartOption.SeriesRadar>)
   }
 }
 </script>

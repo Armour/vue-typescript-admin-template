@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import echarts from 'echarts'
+import echarts, { EChartOption } from 'echarts'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from './mixins/resize'
@@ -37,7 +37,6 @@ export default class extends mixins(ResizeMixin) {
 
   private initChart() {
     this.chart = echarts.init(document.getElementById(this.id) as HTMLDivElement)
-
     const xAxisData: string[] = []
     const data: number[] = []
     const data2: number[] = []
@@ -91,12 +90,10 @@ export default class extends mixins(ResizeMixin) {
         data: data2,
         z: 1,
         itemStyle: {
-          normal: {
-            opacity: 0.4,
-            barBorderRadius: 5,
-            shadowBlur: 3,
-            shadowColor: '#111'
-          }
+          opacity: 0.4,
+          barBorderRadius: 5,
+          shadowBlur: 3,
+          shadowColor: '#111'
         }
       }, {
         name: 'Simulate Shadow',
@@ -108,16 +105,12 @@ export default class extends mixins(ResizeMixin) {
         animationEasing: 'linear',
         animationDuration: 1200,
         lineStyle: {
-          normal: {
-            color: 'transparent'
-          }
+          color: 'transparent'
         },
         areaStyle: {
-          normal: {
-            color: '#08263a',
-            shadowBlur: 50,
-            shadowColor: '#000'
-          }
+          color: '#08263a',
+          shadowBlur: 50,
+          shadowColor: '#000'
         }
       }, {
         name: 'front',
@@ -126,9 +119,7 @@ export default class extends mixins(ResizeMixin) {
         xAxisIndex: 1,
         z: 3,
         itemStyle: {
-          normal: {
-            barBorderRadius: 5
-          }
+          barBorderRadius: 5
         }
       }],
       animationEasing: 'elasticOut',
@@ -139,7 +130,7 @@ export default class extends mixins(ResizeMixin) {
       animationDelayUpdate(idx: number) {
         return idx * 20
       }
-    })
+    } as EChartOption<EChartOption.SeriesBar>)
   }
 }
 </script>

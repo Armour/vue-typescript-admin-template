@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import echarts from 'echarts'
+import echarts, { EChartOption } from 'echarts'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import ResizeMixin from '@/components/Charts/mixins/resize'
@@ -40,8 +40,8 @@ export default class extends mixins(ResizeMixin) {
     this.chart.setOption({
       tooltip: {
         trigger: 'axis',
-        axisPointer: { // 坐标轴指示器，坐标轴触发有效
-          type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+        axisPointer: {
+          type: 'shadow'
         }
       },
       grid: {
@@ -68,25 +68,25 @@ export default class extends mixins(ResizeMixin) {
         name: 'pageA',
         type: 'bar',
         stack: 'vistors',
-        barWidth: '60%',
+        // barWidth: '60%',
         data: [79, 52, 200, 334, 390, 330, 220],
         animationDuration
       }, {
         name: 'pageB',
         type: 'bar',
         stack: 'vistors',
-        barWidth: '60%',
+        // barWidth: '60%',
         data: [80, 52, 200, 334, 390, 330, 220],
         animationDuration
       }, {
         name: 'pageC',
         type: 'bar',
         stack: 'vistors',
-        barWidth: '60%',
+        // barWidth: '60%',
         data: [30, 52, 200, 334, 390, 330, 220],
         animationDuration
       }]
-    })
+    } as EChartOption<EChartOption.SeriesBar>)
   }
 }
 </script>
