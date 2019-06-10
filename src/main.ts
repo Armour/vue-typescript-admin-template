@@ -13,7 +13,7 @@ import i18n from '@/lang' // Internationalization
 import '@/icons/components'
 import '@/permission'
 import '@/utils/error-log'
-import '@/registerServiceWorker'
+import '@/pwa/register-service-worker'
 import * as filters from '@/filters'
 
 Vue.use(ElementUI, {

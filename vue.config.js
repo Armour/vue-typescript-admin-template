@@ -32,14 +32,18 @@ module.exports = {
     }
   },
   pwa: {
-    name: name
+    name: name,
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: path.resolve(__dirname, 'src/pwa/service-worker.js')
+    }
   },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
       patterns: [
-        path.resolve(__dirname, './src/styles/_variables.scss'),
-        path.resolve(__dirname, './src/styles/_mixins.scss')
+        path.resolve(__dirname, 'src/styles/_variables.scss'),
+        path.resolve(__dirname, 'src/styles/_mixins.scss')
       ]
     }
   },
@@ -74,7 +78,7 @@ module.exports = {
                 },
                 commons: {
                   name: 'chunk-commons',
-                  test: path.join(__dirname, 'src/components'),
+                  test: path.resolve(__dirname, 'src/components'),
                   minChunks: 3, //  minimum common number
                   priority: 5,
                   reuseExistingChunk: true
