@@ -35,12 +35,12 @@ const componentsRouter: RouteConfig = {
     //   name: 'SplitpaneDemo',
     //   meta: { title: 'splitPane' }
     // },
-    // {
-    //   path: 'avatar-upload',
-    //   component: () => import(/* webpackChunkName: "avatar-upload" */ '@/views/components-demo/avatar-upload.vue'),
-    //   name: 'AvatarUploadDemo',
-    //   meta: { title: 'avatarUpload' }
-    // },
+    {
+      path: 'avatar-upload',
+      component: () => import(/* webpackChunkName: "avatar-upload" */ '@/views/components-demo/avatar-upload.vue'),
+      name: 'AvatarUploadDemo',
+      meta: { title: 'avatarUpload' }
+    },
     {
       path: 'dropzone',
       component: () => import(/* webpackChunkName: "dropzone" */ '@/views/components-demo/dropzone.vue'),
