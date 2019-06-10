@@ -73,6 +73,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { getArticles } from '@/api/articles'
+import { IArticleData } from '@/api/types'
 import { formatJson } from '@/utils'
 import { exportJson2Excel } from '@/utils/excel'
 
@@ -80,7 +81,7 @@ import { exportJson2Excel } from '@/utils/excel'
   name: 'MergeHeader'
 })
 export default class extends Vue {
-  private list: any[] = []
+  private list: IArticleData[] = []
   private listLoading = true
   private downloadLoading = false
 

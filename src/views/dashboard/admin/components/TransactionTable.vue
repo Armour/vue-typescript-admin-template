@@ -37,6 +37,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { getTransactions } from '@/api/transactions'
+import { ITransactionData } from '@/api/types'
 
 @Component({
   name: 'TransactionTable',
@@ -56,7 +57,7 @@ import { getTransactions } from '@/api/transactions'
   }
 })
 export default class extends Vue {
-  private list: any[] = []
+  private list: ITransactionData[] = []
 
   created() {
     this.fetchData()

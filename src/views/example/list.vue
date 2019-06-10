@@ -110,6 +110,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { getArticles } from '@/api/articles'
+import { IArticleData } from '@/api/types'
 import Pagination from '@/components/Pagination/index.vue'
 
 @Component({
@@ -120,7 +121,7 @@ import Pagination from '@/components/Pagination/index.vue'
 })
 export default class extends Vue {
   private total = 0
-  private list: any[] = []
+  private list: IArticleData[] = []
   private listLoading = true
   private listQuery = {
     page: 1,

@@ -72,6 +72,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { getArticles } from '@/api/articles'
+import { IArticleData } from '@/api/types'
 import { formatJson } from '@/utils'
 import { exportTxt2Zip } from '@/utils/zip'
 
@@ -79,7 +80,7 @@ import { exportTxt2Zip } from '@/utils/zip'
   name: 'ExportZip'
 })
 export default class extends Vue {
-  private list: any[] = []
+  private list: IArticleData[] = []
   private listLoading = true
   private downloadLoading = false
   private filename = ''
