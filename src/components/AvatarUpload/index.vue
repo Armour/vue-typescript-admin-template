@@ -20,6 +20,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import imgUpload from 'vue-image-crop-upload'
@@ -30,7 +31,6 @@ import imgUpload from 'vue-image-crop-upload'
     imgUpload
   }
 })
-
 export default class extends Vue {
   @Prop({ default: true }) private value!: boolean
 
