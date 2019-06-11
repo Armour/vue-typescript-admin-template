@@ -37,7 +37,7 @@ export default class extends Vue {
       }
     }
   })
-  private customStyle!: Object
+  private customStyle!: object
 
   private visible = false
   private isMoving = false

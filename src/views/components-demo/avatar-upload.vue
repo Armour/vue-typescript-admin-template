@@ -14,20 +14,20 @@
       type="primary"
       icon="upload"
       tyle="position: absolute;bottom: 15px;margin-left: 40px;"
-      @click="imagecropperShow=true"
+      @click="toggleShow"
     >
       Change Avatar
     </el-button>
-
     <avatar-upload
-      v-show="imagecropperShow"
-      :key="imagecropperKey"
+      v-model="showImageUpload"
+      field="avatar"
       :width="300"
       :height="300"
+      :params="params"
+      :headers="headers"
       url="https://httpbin.org/post"
-      lang-type="en"
-      @close="close"
-      @crop-upload-success="cropSuccess"
+      @close="onClose"
+      @crop-upload-success="onCropUploadSuccess"
     />
   </div>
 </template>
@@ -45,23 +45,27 @@ import PanThumb from '@/components/PanThumb/index.vue'
   }
 })
 export default class extends Vue {
-  private imagecropperShow = false
-  private imagecropperKey = 0
+  private showImageUpload = false
   private image = 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191'
+  private params = { some_params: 'your_params_goes_here' }
+  private headers = { smail: '*_~' }
 
-  private cropSuccess(resData: string) {
-    this.imagecropperShow = false
-    this.imagecropperKey = this.imagecropperKey + 1
-    this.image = resData
+  private toggleShow() {
+    this.showImageUpload = !this.showImageUpload
   }
 
-  private close() {
-    this.imagecropperShow = false
+  private onCropUploadSuccess(jsonData: any, field: string) {
+    this.showImageUpload = false
+    this.image = jsonData.files[field]
+  }
+
+  private onClose() {
+    this.showImageUpload = false
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .avatar {
   width: 200px;
   height: 200px;
