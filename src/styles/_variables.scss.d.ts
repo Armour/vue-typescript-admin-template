@@ -1,11 +1,7 @@
 export interface IScssVariables {
-  subMenuBg: string
-  subMenuHover: string
-  subMenuActiveText: string
+  menuBg: string
   menuText: string
   menuActiveText: string
-  menuBg: string
-  menuHover: string
 }
 
 export const variables: IScssVariables
