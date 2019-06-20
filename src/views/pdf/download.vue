@@ -32,7 +32,7 @@ import content from './content'
   name: 'PDFDownload'
 })
 export default class extends Vue {
-  private article = {}
+  private article: { title?: string, content?: string } = {}
   private fullscreenLoading = true
 
   mounted() {

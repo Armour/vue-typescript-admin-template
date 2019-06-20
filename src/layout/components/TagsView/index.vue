@@ -28,7 +28,7 @@
     </scroll-pane>
     <ul
       v-show="visible"
-      :style="{left: left+'px',top: top+'px'}"
+      :style="{left: left+'px', top: top+'px'}"
       class="contextmenu"
     >
       <li @click="refreshSelectedTag(selectedTag)">

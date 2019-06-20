@@ -9,7 +9,7 @@
         @click.self="clickTitle"
       >{{ title }}</span>
       <div
-        v-for="(item,index) of items"
+        v-for="(item, index) of items"
         :key="index"
         class="share-dropdown-menu-item"
       >
@@ -31,7 +31,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'DropdownMenu'
 })
 export default class extends Vue {
-  @Prop({ default: () => [] }) private items!: object[]
+  @Prop({ default: () => [] }) private items!: any[]
   @Prop({ default: 'vue' }) private title!: string
 
   private isActive = false

@@ -38,15 +38,17 @@
           slot="title"
         >{{ $t('route.' + item.meta.title) }}</span>
       </template>
-      <sidebar-item
-        v-for="child in item.children"
-        :key="child.path"
-        :item="child"
-        :is-collapse="isCollapse"
-        :is-first-level="false"
-        :base-path="resolvePath(child.path)"
-        class="nest-menu"
-      />
+      <template v-if="item.children">
+        <sidebar-item
+          v-for="child in item.children"
+          :key="child.path"
+          :item="child"
+          :is-collapse="isCollapse"
+          :is-first-level="false"
+          :base-path="resolvePath(child.path)"
+          class="nest-menu"
+        />
+      </template>
     </el-submenu>
   </div>
 </template>

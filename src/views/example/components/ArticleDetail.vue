@@ -66,7 +66,7 @@
                       placeholder="Search user"
                     >
                       <el-option
-                        v-for="(item,index) in userListOptions"
+                        v-for="(item, index) in userListOptions"
                         :key="item+index"
                         :label="item"
                         :value="item"

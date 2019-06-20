@@ -56,14 +56,12 @@ import elementIcons from './element-icons'
 import svgIcons from './svg-icons'
 
 @Component({
-  name: 'Icons',
-  methods: {
-    handleClipboard
-  }
+  name: 'Icons'
 })
 export default class extends Vue {
   private svgIcons = svgIcons
   private elementIcons = elementIcons
+  private handleClipboard = handleClipboard
 
   private generateElementIconCode(symbol: string) {
     return `<i class="el-icon-${symbol}" />`
