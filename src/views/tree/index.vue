@@ -21,8 +21,10 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Tree as ElTree } from 'element-ui'
 import { TreeData } from 'element-ui/types/tree'
 
-@Component
-export default class Tree extends Vue {
+@Component({
+  name: 'Tree'
+})
+export default class extends Vue {
   private filterText = '';
   private data2 = [{
     id: 1,
@@ -65,8 +67,8 @@ export default class Tree extends Vue {
   };
 
   @Watch('filterText')
-  private onFilterTextChange(val: string) {
-    (this.$refs.tree2 as ElTree).filter(val)
+  private onFilterTextChange(value: string) {
+    (this.$refs.tree2 as ElTree).filter(value)
   }
 
   private filterNode(value: string, data: TreeData) {

@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export const getList = (params: any) =>
+export const getArticles = (params: any) =>
   request({
-    url: '/table/list',
+    url: '/articles',
     method: 'get',
     params
   })

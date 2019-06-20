@@ -4,22 +4,22 @@
       <div class="pic-404">
         <img
           class="pic-404__parent"
-          src="@/assets/404_images/404.png"
+          src="@/assets/404-images/404.png"
           alt="404"
         >
         <img
           class="pic-404__child left"
-          src="@/assets/404_images/404_cloud.png"
+          src="@/assets/404-images/404-cloud.png"
           alt="404"
         >
         <img
           class="pic-404__child mid"
-          src="@/assets/404_images/404_cloud.png"
+          src="@/assets/404-images/404-cloud.png"
           alt="404"
         >
         <img
           class="pic-404__child right"
-          src="@/assets/404_images/404_cloud.png"
+          src="@/assets/404-images/404-cloud.png"
           alt="404"
         >
       </div>
@@ -28,41 +28,41 @@
           OOPS!
         </div>
         <div class="text-404__info">
-          版权所有
+          All rights reserved
           <a
-            class="link-type"
+            style="color:#20a0ff"
             href="https://wallstreetcn.com"
             target="_blank"
-          >华尔街见闻</a>
+          >wallstreetcn</a>
         </div>
         <div class="text-404__headline">
           {{ message }}
         </div>
         <div class="text-404__info">
-          请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告
+          Please check that the URL you entered is correct, or click the button below to return to the homepage.
         </div>
         <a
-          href="/"
+          href=""
           class="text-404__return-home"
-        >返回首页</a>
+        >Back to home</a>
       </div>
     </div>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
-export default class NotFound extends Vue {
-  get message() {
-    return '404 此页面不存在'
-  }
+@Component({
+  name: 'Page404'
+})
+export default class extends Vue {
+  private message = '404 Page Not Found'
 }
 </script>
 
 <style lang="scss" scoped>
-.wscn-http404-container{
+.wscn-http404-container {
   transform: translate(-50%,-50%);
   position: absolute;
   top: 40%;

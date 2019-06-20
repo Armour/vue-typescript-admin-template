@@ -4,18 +4,18 @@
       name="fade-transform"
       mode="out-in"
     >
-      <!-- or name="fade" -->
-      <!-- <router-view :key="key"></router-view> -->
       <router-view />
     </transition>
   </section>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
-@Component
-export default class AppMain extends Vue {}
+@Component({
+  name: 'AppMain'
+})
+export default class extends Vue {}
 </script>
 
 <style lang="scss" scoped>

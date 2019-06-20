@@ -24,7 +24,7 @@
       </el-table-column>
       <el-table-column
         label="Author"
-        width="110"
+        width="180"
         align="center"
       >
         <template slot-scope="scope">
@@ -55,12 +55,12 @@
       <el-table-column
         align="center"
         prop="created_at"
-        label="Display_time"
-        width="200"
+        label="Created at"
+        width="250"
       >
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.timestamp | parseTime }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -68,36 +68,46 @@
 </template>
 
 <script lang="ts">
-import { getList } from '@/api/table'
 import { Component, Vue } from 'vue-property-decorator'
+import { getArticles } from '@/api/articles'
+import { IArticleData } from '@/api/types'
 
 @Component({
+  name: 'ArticleList',
   filters: {
-    statusFilter(status: string) {
-      const statusMap: { [id: string]: string } = {
+    statusFilter: (status: string) => {
+      const statusMap: { [key: string]: string } = {
         published: 'success',
         draft: 'gray',
         deleted: 'danger'
       }
       return statusMap[status]
+    },
+    parseTime: (timestamp: string) => {
+      return new Date(timestamp).toISOString()
     }
   }
 })
-export default class Table extends Vue {
-  private list = null;
-  private listLoading = true;
-  private listQuery = {};
-
-  private created() {
-    this.fetchData()
+export default class extends Vue {
+  private list: IArticleData[] = []
+  private listLoading = true
+  private listQuery = {
+    page: 1,
+    limit: 20
   }
 
-  private fetchData() {
+  created() {
+    this.getList()
+  }
+
+  private async getList() {
     this.listLoading = true
-    getList(this.listQuery).then((response) => {
-      this.list = response.data.items
+    const { data } = await getArticles(this.listQuery)
+    this.list = data.items
+    // Just to simulate the time of the request
+    setTimeout(() => {
       this.listLoading = false
-    })
+    }, 0.5 * 1000)
   }
 }
 </script>
