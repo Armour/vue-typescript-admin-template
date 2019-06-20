@@ -132,13 +132,15 @@ export default class extends Vue {
     this.getList()
   }
 
-  private getList() {
+  private async getList() {
     this.listLoading = true
-    getArticles(this.listQuery).then(response => {
-      this.list = response.data.items
-      this.total = response.data.total
+    const { data } = await getArticles(this.listQuery)
+    this.list = data.items
+    this.total = data.total
+    // Just to simulate the time of the request
+    setTimeout(() => {
       this.listLoading = false
-    })
+    }, 0.5 * 1000)
   }
 }
 </script>

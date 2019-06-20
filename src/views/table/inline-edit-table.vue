@@ -148,7 +148,10 @@ export default class extends Vue {
       v.originalTitle = v.title // will be used when user click the cancel botton
       return v
     })
-    this.listLoading = false
+    // Just to simulate the time of the request
+    setTimeout(() => {
+      this.listLoading = false
+    }, 0.5 * 1000)
   }
 
   private cancelEdit(row: any) {

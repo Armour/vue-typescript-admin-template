@@ -39,7 +39,7 @@ export default {
     table: 'Table',
     dynamicTable: 'Dynamic Table',
     draggableTable: 'Draggable Table',
-    inlineEditTable: 'Inline Edit',
+    inlineEditTable: 'Inline Edit Table',
     complexTable: 'Complex Table',
     tab: 'Tab',
     form: 'Form',

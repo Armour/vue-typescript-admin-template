@@ -90,7 +90,9 @@ export const getUserInfo = (req: Request, res: Response) => {
   // Mock data based on access token
   return res.json({
     code: 20000,
-    data: req.header('X-Access-Token') == 'admin-token' ? userList[0] : userList[1]
+    data: {
+      user: req.header('X-Access-Token') == 'admin-token' ? userList[0] : userList[1]
+    }
   })
 }
 
@@ -100,7 +102,9 @@ export const getUserByName = (req: Request, res: Response) => {
     if (user.username === username) {
       return res.json({
         code: 20000,
-        data: user
+        data: {
+          user
+        }
       })
     }
   }
@@ -112,12 +116,14 @@ export const getUserByName = (req: Request, res: Response) => {
 
 export const updateUser = (req: Request, res: Response) => {
   const { username } = req.params
-  const { data } = req.body
-  for (const user of userList) {
-    if (user.username === username) {
+  const { user } = req.body
+  for (const v of userList) {
+    if (v.username === username) {
       return res.json({
         code: 20000,
-        data
+        data: {
+          user
+        }
       })
     }
   }

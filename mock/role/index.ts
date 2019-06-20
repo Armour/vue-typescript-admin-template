@@ -38,7 +38,10 @@ const roles: IRoleData[] = [
 export const getRoles = (req: Request, res: Response) => {
   return res.json({
     code: 20000,
-    data: roles
+    data: {
+      total: roles.length,
+      items: roles
+    }
   })
 }
 
@@ -52,19 +55,12 @@ export const createRole = (req: Request, res: Response) => {
 }
 
 export const updateRole = (req: Request, res: Response) => {
-  const { id } = req.params
-  const { data } = req.body
-  for (const role of roles) {
-    if (role.key === id) {
-      return res.json({
-        code: 20000,
-        data
-      })
-    }
-  }
+  const { role } = req.body
   return res.json({
-    code: 70001,
-    message: 'Role not found'
+    code: 20000,
+    data: {
+      role
+    }
   })
 }
 
@@ -77,6 +73,8 @@ export const deleteRole = (req: Request, res: Response) => {
 export const getRoutes = (req: Request, res: Response) => {
   return res.json({
     code: 20000,
-    data: routes
+    data: {
+      routes
+    }
   })
 }

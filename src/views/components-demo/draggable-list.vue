@@ -32,18 +32,15 @@ import DraggableList from '@/components/DraggableList/index.vue'
 export default class extends Vue {
   private list1 = []
   private list2 = []
-  private listLoading = true
 
   created() {
     this.fetchData()
   }
 
   private async fetchData() {
-    this.listLoading = true
     const { data } = await getArticles({ /* Your params here */ })
     this.list1 = data.items.splice(0, 5)
     this.list2 = data.items
-    this.listLoading = false
   }
 }
 </script>

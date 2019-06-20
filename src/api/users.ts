@@ -14,25 +14,23 @@ export const getUserInfo = (data: any) =>
     data
   })
 
-export const getUserByName = (params: any) =>
+export const getUserByName = (username: string) =>
   request({
-    url: `/users/${params.username}`,
-    method: 'get',
-    params
+    url: `/users/${username}`,
+    method: 'get'
   })
 
-export const updateUser = (data: any) =>
+export const updateUser = (username: string, data: any) =>
   request({
-    url: `/users/${data.username}`,
+    url: `/users/${username}`,
     method: 'put',
     data
   })
 
-export const deleteUser = (data: any) =>
+export const deleteUser = (username: string) =>
   request({
-    url: `/users/${data.username}`,
-    method: 'delete',
-    data
+    url: `/users/${username}`,
+    method: 'delete'
   })
 
 export const login = (data: any) =>

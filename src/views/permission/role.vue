@@ -116,6 +116,7 @@
 
 <script lang="ts">
 import path from 'path'
+import { cloneDeep } from 'lodash'
 import { Component, Vue } from 'vue-property-decorator'
 import { RouteConfig } from 'vue-router'
 import { Tree } from 'element-ui'
@@ -146,7 +147,7 @@ const defaultRole: Role = {
   name: 'RolePermission'
 })
 export default class extends Vue {
-  private role = defaultRole
+  private role = Object.assign({}, defaultRole)
   private reshapedRoutes: RouteConfig[] = []
   private serviceRoutes: RouteConfig[] = []
   private rolesList: Role[] = []
@@ -169,14 +170,14 @@ export default class extends Vue {
   }
 
   private async getRoutes() {
-    const res = await getRoutes({ /* Your params here */ })
-    this.serviceRoutes = res.data
-    this.reshapedRoutes = this.reshapeRoutes(res.data)
+    const { data } = await getRoutes({ /* Your params here */ })
+    this.serviceRoutes = data.routes
+    this.reshapedRoutes = this.reshapeRoutes(data.routes)
   }
 
   private async getRoles() {
-    const res = await getRoles({ /* Your params here */ })
-    this.rolesList = res.data
+    const { data } = await getRoles({ /* Your params here */ })
+    this.rolesList = data.items
   }
 
   private generateTreeData(routes: RouteConfig[]) {
@@ -199,7 +200,7 @@ export default class extends Vue {
 
   // Reshape the routes structure so that it looks the same as the sidebar
   private reshapeRoutes(routes: RouteConfig[], basePath = '/') {
-    const res: RouteConfig[] = []
+    const reshapedRoutes: RouteConfig[] = []
     for (let route of routes) {
       // Skip hidden routes
       if (route.meta && route.meta.hidden) {
@@ -219,9 +220,9 @@ export default class extends Vue {
       if (route.children) {
         data.children = this.reshapeRoutes(route.children, data.path)
       }
-      res.push(data)
+      reshapedRoutes.push(data)
     }
-    return res
+    return reshapedRoutes
   }
 
   private flattenRoutes(routes: RouteConfig[]) {
@@ -239,7 +240,7 @@ export default class extends Vue {
   }
 
   private handleCreateRole() {
-    this.role = defaultRole
+    this.role = Object.assign({}, defaultRole)
     if (this.$refs.tree) {
       (this.$refs.tree as Tree).setCheckedKeys([])
     }
@@ -251,7 +252,7 @@ export default class extends Vue {
     this.dialogType = 'edit'
     this.dialogVisible = true
     this.checkStrictly = true
-    this.role = scope.row
+    this.role = cloneDeep(scope.row)
     this.$nextTick(() => {
       const routes = this.flattenRoutes(this.reshapeRoutes(this.role.routes))
       const treeData = this.generateTreeData(routes)
@@ -270,7 +271,7 @@ export default class extends Vue {
       type: 'warning'
     })
       .then(async() => {
-        await deleteRole({ id: row.key })
+        await deleteRole(row.key)
         this.rolesList.splice($index, 1)
         this.$message({
           type: 'success',
@@ -299,18 +300,18 @@ export default class extends Vue {
     const isEdit = this.dialogType === 'edit'
     const checkedKeys = (this.$refs.tree as Tree).getCheckedKeys()
 
-    this.role.routes = this.generateTree(this.serviceRoutes, '/', checkedKeys)
+    this.role.routes = this.generateTree(cloneDeep(this.serviceRoutes), '/', checkedKeys)
 
     if (isEdit) {
-      await updateRole(this.role)
+      await updateRole(this.role.key, { role: this.role })
       for (let index = 0; index < this.rolesList.length; index++) {
         if (this.rolesList[index].key === this.role.key) {
-          this.rolesList.splice(index, 1, this.role)
+          this.rolesList.splice(index, 1, Object.assign({}, this.role))
           break
         }
       }
     } else {
-      const { data } = await createRole(this.role)
+      const { data } = await createRole({ role: this.role })
       this.role.key = data.key
       this.rolesList.push(this.role)
     }
@@ -322,7 +323,7 @@ export default class extends Vue {
       dangerouslyUseHTMLString: true,
       message: `
           <div>Role Key: ${key}</div>
-          <div>Role Nmae: ${name}</div>
+          <div>Role Name: ${name}</div>
           <div>Description: ${description}</div>
         `,
       type: 'success'

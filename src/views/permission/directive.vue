@@ -128,7 +128,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { permission } from '@/directives/permission' // Use permission by v-directive
 import { checkPermission } from '@/utils/permission' // Use permission directly
 import SwitchRoles from './components/SwitchRoles.vue'
 
@@ -139,9 +138,6 @@ import SwitchRoles from './components/SwitchRoles.vue'
   },
   methods: {
     checkPermission
-  },
-  directives: {
-    permission
   }
 })
 export default class extends Vue {

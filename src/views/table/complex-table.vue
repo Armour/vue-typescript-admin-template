@@ -365,7 +365,6 @@ import { Component, Vue } from 'vue-property-decorator'
 import { Form } from 'element-ui'
 import { getArticles, getPageviews, createArticle, updateArticle, defaultArticleData } from '@/api/articles'
 import { IArticleData } from '@/api/types'
-import { waves } from '@/directives/waves'
 import { exportJson2Excel } from '@/utils/excel'
 import { formatJson } from '@/utils'
 import Pagination from '@/components/Pagination/index.vue'
@@ -387,9 +386,6 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc: { [key: string]: s
   name: 'ComplexTable',
   components: {
     Pagination
-  },
-  directives: {
-    waves
   },
   filters: {
     typeFilter: (type: string) => {
@@ -428,7 +424,7 @@ export default class extends Vue {
   private pageviewsData = []
   private rules = {
     type: [{ required: true, message: 'type is required', trigger: 'change' }],
-    timestamp: [{ type: 'number', required: true, message: 'timestamp is required', trigger: 'change' }],
+    timestamp: [{ required: true, message: 'timestamp is required', trigger: 'change' }],
     title: [{ required: true, message: 'title is required', trigger: 'blur' }]
   }
   private downloadLoading = false
@@ -438,17 +434,15 @@ export default class extends Vue {
     this.getList()
   }
 
-  private getList() {
+  private async getList() {
     this.listLoading = true
-    getArticles(this.listQuery).then(response => {
-      this.list = response.data.items
-      this.total = response.data.total
-
-      // Just to simulate the time of the request
-      setTimeout(() => {
-        this.listLoading = false
-      }, 1.5 * 1000)
-    })
+    const { data } = await getArticles(this.listQuery)
+    this.list = data.items
+    this.total = data.total
+    // Just to simulate the time of the request
+    setTimeout(() => {
+      this.listLoading = false
+    }, 0.5 * 1000)
   }
 
   private handleFilter() {
@@ -494,26 +488,25 @@ export default class extends Vue {
   }
 
   private createData() {
-    (this.$refs['dataForm'] as Form).validate((valid) => {
+    (this.$refs['dataForm'] as Form).validate(async(valid) => {
       if (valid) {
         let { id, ...articleData } = this.tempArticleData
         articleData.author = 'vue-element-admin'
-        createArticle(articleData).then((response) => {
-          this.list.unshift(response.data.article)
-          this.dialogFormVisible = false
-          this.$notify({
-            title: '成功',
-            message: '创建成功',
-            type: 'success',
-            duration: 2000
-          })
+        const { data } = await createArticle({ article: articleData })
+        this.list.unshift(data.article)
+        this.dialogFormVisible = false
+        this.$notify({
+          title: '成功',
+          message: '创建成功',
+          type: 'success',
+          duration: 2000
         })
       }
     })
   }
 
   private handleUpdate(row: any) {
-    this.tempArticleData = Object.assign({}, row) // copy obj
+    this.tempArticleData = Object.assign({}, row)
     this.tempArticleData.timestamp = +new Date(this.tempArticleData.timestamp)
     this.dialogStatus = 'update'
     this.dialogFormVisible = true
@@ -523,47 +516,33 @@ export default class extends Vue {
   }
 
   private updateData() {
-    (this.$refs['dataForm'] as Form).validate((valid) => {
+    (this.$refs['dataForm'] as Form).validate(async(valid) => {
       if (valid) {
-        const tempData = this.tempArticleData
+        const tempData = Object.assign({}, this.tempArticleData)
         tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-        updateArticle(tempData).then((response) => {
-          const { articleData } = response.data
-          for (const v of this.list) {
-            if (v.id === articleData.id) {
-              const index = this.list.indexOf(v)
-              this.list.splice(index, 1, articleData)
-              break
-            }
+        const { data } = await updateArticle(tempData.id, { article: tempData })
+        for (const v of this.list) {
+          if (v.id === data.article.id) {
+            const index = this.list.indexOf(v)
+            this.list.splice(index, 1, data.article)
+            break
           }
-          this.dialogFormVisible = false
-          this.$notify({
-            title: '成功',
-            message: '更新成功',
-            type: 'success',
-            duration: 2000
-          })
+        }
+        this.dialogFormVisible = false
+        this.$notify({
+          title: '成功',
+          message: '更新成功',
+          type: 'success',
+          duration: 2000
         })
       }
     })
   }
 
-  private handleDelete(row: any) {
-    this.$notify({
-      title: '成功',
-      message: '删除成功',
-      type: 'success',
-      duration: 2000
-    })
-    const index = this.list.indexOf(row)
-    this.list.splice(index, 1)
-  }
-
-  private handleGetPageviews(platform: string) {
-    getPageviews({ platform }).then(response => {
-      this.pageviewsData = response.data.pageviews
-      this.dialogPageviewsVisible = true
-    })
+  private async handleGetPageviews(pageviews: string) {
+    const { data } = await getPageviews({ /* Your params here */ })
+    this.pageviewsData = data.pageviews
+    this.dialogPageviewsVisible = true
   }
 
   private handleDownload() {

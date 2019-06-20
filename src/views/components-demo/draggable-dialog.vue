@@ -46,14 +46,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { elDraggableDialog } from '@/directives/el-draggable-dialog'
 import { Select } from 'element-ui'
 
 @Component({
-  name: 'DraggableDialogDemo',
-  directives: {
-    elDraggableDialog
-  }
+  name: 'DraggableDialogDemo'
 })
 export default class extends Vue {
   private dialogTableVisible = false

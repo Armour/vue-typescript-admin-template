@@ -42,14 +42,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { clipboard } from '@/directives/clipboard' // use clipboard by v-directive
 import { handleClipboard, clipboardSuccess } from '@/utils/clipboard' // use clipboard directly
 
 @Component({
   name: 'Clipboard',
-  directives: {
-    clipboard
-  },
   methods: {
     handleClipboard,
     clipboardSuccess

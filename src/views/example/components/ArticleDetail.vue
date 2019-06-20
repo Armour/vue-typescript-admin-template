@@ -217,7 +217,7 @@ export default class extends Vue {
       callback()
     }
   }
-  private postForm = defaultArticleData
+  private postForm = Object.assign({}, defaultArticleData)
   private loading = false
   private userListOptions = []
   private rules = {
@@ -252,9 +252,9 @@ export default class extends Vue {
   created() {
     if (this.isEdit) {
       const id = this.$route.params && this.$route.params.id
-      this.fetchData(id)
+      this.fetchData(parseInt(id))
     } else {
-      this.postForm = defaultArticleData
+      this.postForm = Object.assign({}, defaultArticleData)
     }
     // Why need to make a copy of this.$route here?
     // Because if you enter this page and quickly switch tag, may be in the execution of this.setTagsViewTitle function, this.$route is no longer pointing to the current page
@@ -270,10 +270,10 @@ export default class extends Vue {
     this.tinymceActive = true
   }
 
-  private async fetchData(id: string) {
+  private async fetchData(id: number) {
     try {
-      const { data } = await getArticle({ id })
-      this.postForm = data
+      const { data } = await getArticle(id, { /* Your params here */ })
+      this.postForm = data.article
       // Just for test
       this.postForm.title += `   Article Id:${this.postForm.id}`
       this.postForm.abstractContent += `   Article Id:${this.postForm.id}`
@@ -310,7 +310,10 @@ export default class extends Vue {
           duration: 2000
         })
         this.postForm.status = 'published'
-        this.loading = false
+        // Just to simulate the time of the request
+        setTimeout(() => {
+          this.loading = false
+        }, 0.5 * 1000)
       } else {
         console.error('Submit Error!')
         return false
@@ -335,11 +338,10 @@ export default class extends Vue {
     this.postForm.status = 'draft'
   }
 
-  private getRemoteUserList(name: string) {
-    getUsers({ name }).then(response => {
-      if (!response.data.items) return
-      this.userListOptions = response.data.items.map((v: any) => v.name)
-    })
+  private async getRemoteUserList(name: string) {
+    const { data } = await getUsers({ name })
+    if (!data.items) return
+    this.userListOptions = data.items.map((v: any) => v.name)
   }
 }
 </script>

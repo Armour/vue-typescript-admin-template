@@ -108,13 +108,15 @@ export default class extends Vue {
     this.getList()
   }
 
-  private getList() {
+  private async getList() {
     this.loading = true
     this.$emit('create') // for test
-    getArticles(this.listQuery).then(response => {
-      this.list = response.data.items
+    const { data } = await getArticles(this.listQuery)
+    this.list = data.items
+    // Just to simulate the time of the request
+    setTimeout(() => {
       this.loading = false
-    })
+    }, 0.5 * 1000)
   }
 }
 </script>

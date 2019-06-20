@@ -110,7 +110,10 @@ export default class extends Vue {
     this.listLoading = true
     const { data } = await getArticles({ /* Your params here */ })
     this.list = data.items
-    this.listLoading = false
+    // Just to simulate the time of the request
+    setTimeout(() => {
+      this.listLoading = false
+    }, 0.5 * 1000)
   }
 
   private handleDownload() {

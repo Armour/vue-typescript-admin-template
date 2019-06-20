@@ -96,7 +96,7 @@ paths:
       security:
         - AccessTokenAuth: []
       parameters:
-        - name: data
+        - name: article
           in: query
           required: true
           description: The data for new article.
@@ -114,7 +114,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/Article'
+                    type: object
+                    properties:
+                      article:
+                        $ref: '#/components/schemas/Article'
         401:
           $ref: '#/components/responses/Unauthorized'
   /articles/{id}:
@@ -146,7 +149,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/Article'
+                    type: object
+                    properties:
+                      article:
+                        $ref: '#/components/schemas/Article'
         401:
           $ref: '#/components/responses/Unauthorized'
         404:
@@ -167,8 +173,9 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: data
+        - name: article
           in: query
+          required: true
           description: data for the updated article.
           schema:
             $ref: '#/components/schemas/Article'
@@ -184,7 +191,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/Article'
+                    type: object
+                    properties:
+                      article:
+                        $ref: '#/components/schemas/Article'
         401:
           $ref: '#/components/responses/Unauthorized'
         404:
@@ -226,7 +236,7 @@ paths:
         - articles
       summary: Get Pageviews Data
       description: Return a list of pageviews for each platforms.
-      operationId: getPageViews
+      operationId: getPageviews
       responses:
         200:
           description: OK
@@ -310,7 +320,7 @@ paths:
       security:
         - AccessTokenAuth: []
       parameters:
-        - name: data
+        - name: role
           in: query
           required: true
           description: The data for new role.
@@ -352,8 +362,9 @@ paths:
           schema:
             type: integer
             format: int64
-        - name: data
+        - name: role
           in: query
+          required: true
           description: The data for updated role.
           schema:
             $ref: '#/components/schemas/Role'
@@ -369,7 +380,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/Role'
+                    type: object
+                    properties:
+                      role:
+                        $ref: '#/components/schemas/Role'
         401:
           $ref: '#/components/responses/Unauthorized'
         404:
@@ -424,7 +438,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/Role/properties/routes'
+                    type: object
+                    properties:
+                      routes:
+                        $ref: '#/components/schemas/Role/properties/routes'
   /users:
     get:
       tags:
@@ -468,7 +485,7 @@ paths:
       description: This can only be done by the logged in user.
       operationId: register
       parameters:
-        - name: data
+        - name: user
           in: query
           required: true
           description: The data for created user.
@@ -581,7 +598,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/User'
+                    type: object
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
         400:
           $ref: '#/components/responses/InvalidUser'
         401:
@@ -603,7 +623,7 @@ paths:
           description: Name that need to be updated.
           schema:
             type: string
-        - name: data
+        - name: user
           in: query
           required: true
           description: The data for updated user.
@@ -621,7 +641,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/User'
+                    type: object
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
         400:
           $ref: '#/components/responses/InvalidUser'
         401:
@@ -681,7 +704,10 @@ paths:
                     type: integer
                     format: int32
                   data:
-                    $ref: '#/components/schemas/User'
+                    type: object
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
         401:
           $ref: '#/components/responses/Unauthorized'
 components:

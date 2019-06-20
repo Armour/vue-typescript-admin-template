@@ -57,7 +57,9 @@ export const getArticle = (req: Request, res: Response) => {
     if (article.id.toString() === id) {
       return res.json({
         code: 20000,
-        data: article
+        data: {
+          article
+        }
       })
     }
   }
@@ -68,21 +70,25 @@ export const getArticle = (req: Request, res: Response) => {
 }
 
 export const createArticle = (req: Request, res: Response) => {
-  const { data } = req.body
+  const { article } = req.body
   return res.json({
     code: 20000,
-    data
+    data: {
+      article
+    }
   })
 }
 
 export const updateArticle = (req: Request, res: Response) => {
   const { id } = req.params
-  const { data } = req.body
-  for (const article of articleList) {
-    if (article.id.toString() === id) {
+  const { article } = req.body
+  for (const v of articleList) {
+    if (v.id.toString() === id) {
       return res.json({
         code: 20000,
-        data
+        data: {
+          article
+        }
       })
     }
   }

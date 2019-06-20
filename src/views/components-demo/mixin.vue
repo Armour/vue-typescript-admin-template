@@ -202,7 +202,6 @@ import PanThumb from '@/components/PanThumb/index.vue'
 import MaterialInput from '@/components/MaterialInput/index.vue'
 import Mallki from '@/components/TextHoverEffect/Mallki.vue'
 import DropdownMenu from '@/components/DropdownMenu/index.vue'
-import { waves } from '@/directives/waves'
 
 @Component({
   name: 'ComponentMixinDemo',
@@ -211,9 +210,6 @@ import { waves } from '@/directives/waves'
     MaterialInput,
     Mallki,
     PanThumb
-  },
-  directives: {
-    waves
   }
 })
 export default class extends Vue {

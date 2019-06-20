@@ -14,18 +14,17 @@ export const createRole = (data: any) =>
     data
   })
 
-export const updateRole = (data: any) =>
+export const updateRole = (id: number, data: any) =>
   request({
-    url: `/roles/${data.id}`,
+    url: `/roles/${id}`,
     method: 'put',
     data
   })
 
-export const deleteRole = (data: any) =>
+export const deleteRole = (id: number) =>
   request({
-    url: `/roles/${data.id}`,
-    method: 'delete',
-    data
+    url: `/roles/${id}`,
+    method: 'delete'
   })
 
 export const getRoutes = (params: any) =>

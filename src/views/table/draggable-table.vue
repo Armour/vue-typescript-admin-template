@@ -142,7 +142,10 @@ export default class extends Vue {
     this.listLoading = true
     const { data } = await getArticles(this.listQuery)
     this.list = data.items
-    this.listLoading = false
+    // Just to simulate the time of the request
+    setTimeout(() => {
+      this.listLoading = false
+    }, 0.5 * 1000)
     this.total = data.total
     this.oldList = this.list.map((v) => v.id)
     this.newList = this.oldList.slice()
