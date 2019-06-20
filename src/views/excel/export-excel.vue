@@ -69,7 +69,7 @@
       >
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.timestamp | parseTime() }}</span>
+          <span>{{ scope.row.timestamp | parseTime }}</span>
         </template>
       </el-table-column>
     </el-table>

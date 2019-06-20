@@ -5,7 +5,7 @@ workflow "Deploy on GitHub Pages" {
 
 action "Filters for GitHub Actions" {
   uses = "actions/bin/filter@master"
-  args = "branch full-features"
+  args = "branch master"
 }
 
  action "Yarn install" {

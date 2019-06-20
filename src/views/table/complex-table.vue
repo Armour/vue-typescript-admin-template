@@ -114,7 +114,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime() }}</span>
+          <span>{{ scope.row.timestamp | parseTime }}</span>
         </template>
       </el-table-column>
       <el-table-column
