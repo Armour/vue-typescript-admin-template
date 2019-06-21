@@ -61,14 +61,16 @@ export default {
     theme: '换肤',
     clipboard: '粘贴板',
     i18n: '国际化',
-    externalLink: '外链'
+    externalLink: '外链',
+    profile: '个人中心'
   },
   navbar: {
     logOut: '退出登录',
     dashboard: '首页',
     github: '项目地址',
     theme: '换肤',
-    size: '布局大小'
+    size: '布局大小',
+    profile: '个人中心'
   },
   login: {
     title: '系统登录',

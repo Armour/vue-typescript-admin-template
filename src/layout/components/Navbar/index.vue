@@ -36,6 +36,11 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
+          <router-link to="/profile/">
+            <el-dropdown-item>
+              {{ $t('navbar.profile') }}
+            </el-dropdown-item>
+          </router-link>
           <router-link to="/">
             <el-dropdown-item>
               {{ $t('navbar.dashboard') }}
@@ -51,7 +56,7 @@
           </a>
           <a
             target="_blank"
-            href="https://panjiachen.github.io/vue-element-admin-site/#/"
+            href="https://armour.github.io/vue-typescript-admin-docs/"
           >
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
