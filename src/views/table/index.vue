@@ -73,7 +73,7 @@ import { getArticles } from '@/api/articles'
 import { IArticleData } from '@/api/types'
 
 @Component({
-  name: 'ArticleList',
+  name: 'Table',
   filters: {
     statusFilter: (status: string) => {
       const statusMap: { [key: string]: string } = {

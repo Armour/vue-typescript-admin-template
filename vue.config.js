@@ -2,7 +2,7 @@ const path = require('path')
 const name = 'Vue Typescript Admin'
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/', // TODO: Remember to change this to fit your need
   lintOnSave: process.env.NODE_ENV === 'development',
   pwa: {
     name: name
@@ -17,7 +17,7 @@ module.exports = {
     }
   },
   chainWebpack(config) {
-    // provide the app's title in webpack's name field, so that
+    // Provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
   }
