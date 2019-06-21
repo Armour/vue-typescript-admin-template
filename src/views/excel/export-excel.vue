@@ -14,7 +14,7 @@
         {{ $t('excel.export') }} Excel
       </el-button>
       <a
-        href="https://panjiachen.github.io/vue-element-admin-site/feature/component/excel.html"
+        href="https://armour.github.io/vue-typescript-admin-docs/features/components/excel.html"
         target="_blank"
         style="margin-left:15px;"
       >

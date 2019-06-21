@@ -5,7 +5,7 @@
         <a
           class="link-type link-title"
           target="_blank"
-          href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/theme.html"
+          href="https://armour.github.io/vue-typescript-admin-docs/guide/advanced/theme.html"
         >
           {{ $t('theme.documentation') }}
         </a>

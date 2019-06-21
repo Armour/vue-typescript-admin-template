@@ -2,7 +2,7 @@
   <div class="icons-container">
     <aside>
       <a
-        href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/icon.html"
+        href="https://armour.github.io/vue-typescript-admin-docs/guide/advanced/icon.html"
         target="_blank"
       >Add and use
       </a>

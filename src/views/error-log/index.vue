@@ -8,7 +8,7 @@
       <a
         target="_blank"
         class="link-type"
-        href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/error.html"
+        href="https://armour.github.io/vue-typescript-admin-docs/guide/advanced/error.html"
       >
         {{ $t('errorLog.documentation') }}
       </a>

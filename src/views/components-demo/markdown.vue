@@ -8,7 +8,7 @@
       >tui.editor</a> ，simply wrapped with Vue.
       <a
         target="_blank"
-        href="https://panjiachen.github.io/vue-element-admin-site/feature/component/markdown-editor.html"
+        href="https://armour.github.io/vue-typescript-admin-docs/features/components/markdown-editor.html"
       >
         Documentation </a>
     </aside>

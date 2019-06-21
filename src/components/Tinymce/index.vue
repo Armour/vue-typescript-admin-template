@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-// Docs: https://panjiachen.github.io/vue-element-admin-site/feature/component/rich-editor.html#tinymce
+// Docs: https://armour.github.io/vue-typescript-admin-docs/features/components/rich-editor.html#tinymce
 import 'tinymce/tinymce'
 import 'tinymce/themes/silver' // Import themes
 import 'tinymce/themes/mobile'

@@ -5,7 +5,7 @@
       <a
         target="_blank"
         class="link-type"
-        href="https://panjiachen.github.io/vue-element-admin-site/component/rich-editor.html"
+        href="https://armour.github.io/vue-typescript-admin-docs/features/components/rich-editor.html"
       >{{ $t('components.documentation') }}</a>
     </aside>
     <div>
