@@ -29,12 +29,12 @@ const componentsRouter: RouteConfig = {
       name: 'JsonEditorDemo',
       meta: { title: 'jsonEditor' }
     },
-    // {
-    //   path: 'split-pane',
-    //   component: () => import(/* webpackChunkName: "split-pane" */ '@/views/components-demo/split-pane.vue'),
-    //   name: 'SplitpaneDemo',
-    //   meta: { title: 'splitPane' }
-    // },
+    {
+      path: 'split-pane',
+      component: () => import(/* webpackChunkName: "split-pane" */ '@/views/components-demo/split-pane.vue'),
+      name: 'SplitPaneDemo',
+      meta: { title: 'splitPane' }
+    },
     {
       path: 'avatar-upload',
       component: () => import(/* webpackChunkName: "avatar-upload" */ '@/views/components-demo/avatar-upload.vue'),

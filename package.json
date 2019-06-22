@@ -46,6 +46,7 @@
     "vue-image-crop-upload": "^2.5.0",
     "vue-property-decorator": "^8.2.1",
     "vue-router": "^3.0.6",
+    "vue-splitpane": "^1.0.4",
     "vue-svgicon": "^3.2.6",
     "vue2-dropzone": "^3.5.9",
     "vuedraggable": "^2.21.0",

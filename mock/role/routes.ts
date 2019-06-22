@@ -169,9 +169,9 @@ export const asyncRoutes = [
         meta: { title: 'jsonEditor' }
       },
       {
-        path: 'splitpane',
-        component: 'views/components-demo/splitpane',
-        name: 'SplitpaneDemo',
+        path: 'split-pane',
+        component: 'views/components-demo/split-pane',
+        name: 'SplitPaneDemo',
         meta: { title: 'splitPane' }
       },
       {

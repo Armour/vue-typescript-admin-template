@@ -12416,6 +12416,11 @@ vue-router@^3.0.6:
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.6.tgz#2e4f0f9cbb0b96d0205ab2690cfe588935136ac3"
   integrity sha512-Ox0ciFLswtSGRTHYhGvx2L44sVbTPNS+uD2kRISuo8B39Y79rOo0Kw0hzupTmiVtftQYCZl87mwldhh2L9Aquw==
 
+vue-splitpane@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vue-splitpane/-/vue-splitpane-1.0.4.tgz#cdf744a8f31bedcb086e9545a9453565d360bd02"
+  integrity sha512-aSLmwNyqWCtn4q/JlEXa/UB9/zP1SLODfmMJof+qitL91Rz6g13cJKGmNEHJtBp6ivsk6p74fGfXUJUB3Izuig==
+
 vue-style-loader@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
