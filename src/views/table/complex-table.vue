@@ -491,7 +491,7 @@ export default class extends Vue {
     (this.$refs['dataForm'] as Form).validate(async(valid) => {
       if (valid) {
         let { id, ...articleData } = this.tempArticleData
-        articleData.author = 'vue-element-admin'
+        articleData.author = 'vue-typescript-admin'
         const { data } = await createArticle({ article: articleData })
         this.list.unshift(data.article)
         this.dialogFormVisible = false

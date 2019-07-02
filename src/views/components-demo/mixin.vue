@@ -98,6 +98,7 @@
             >
               <el-form-item prop="title">
                 <material-input
+                  id="material-input-demo"
                   v-model="demo.title"
                   icon="search"
                   name="title"
@@ -125,7 +126,7 @@
               height="100px"
               image="https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191"
             >
-              vue-element-admin
+              vue-typescript-admin
             </pan-thumb>
           </div>
         </el-card>
@@ -161,7 +162,7 @@
           <div class="component-item">
             <mallki
               class-name="mallki-text"
-              text="vue-element-admin"
+              text="vue-typescript-admin"
             />
           </div>
         </el-card>

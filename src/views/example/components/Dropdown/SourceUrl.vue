@@ -37,7 +37,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'SourceUrlDropdown'
 })
 export default class extends Vue {
-  @Prop({ default: '' }) private value!: string
+  @Prop({ required: true }) private value!: string
 
   get sourceURL() {
     return this.value

@@ -11,99 +11,106 @@
       />
       <input
         v-if="type === 'email'"
-        v-model="currentValue"
+        :id="id"
+        v-model="valueCopy"
+        type="email"
+        class="material-input"
         :name="name"
-        :placeholder="fillPlaceHolder"
+        :placeholder="filledPlaceholder"
         :readonly="readonly"
         :disabled="disabled"
         :autocomplete="autoComplete"
         :required="required"
-        type="email"
-        class="material-input"
         @focus="handleFocus"
         @blur="handleBlur"
         @input="handleInput"
       >
       <input
         v-if="type === 'url'"
-        v-model="currentValue"
+        :id="id"
+        v-model="valueCopy"
+        type="url"
+        class="material-input"
         :name="name"
-        :placeholder="fillPlaceHolder"
+        :placeholder="filledPlaceholder"
         :readonly="readonly"
         :disabled="disabled"
         :autocomplete="autoComplete"
         :required="required"
-        type="url"
-        class="material-input"
         @focus="handleFocus"
         @blur="handleBlur"
         @input="handleInput"
       >
       <input
         v-if="type === 'number'"
-        v-model="currentValue"
+        :id="id"
+        v-model="valueCopy"
+        type="number"
+        class="material-input"
         :name="name"
-        :placeholder="fillPlaceHolder"
-        :step="step"
+        :placeholder="filledPlaceholder"
         :readonly="readonly"
         :disabled="disabled"
         :autocomplete="autoComplete"
         :max="max"
         :min="min"
+        :step="step"
         :minlength="minlength"
         :maxlength="maxlength"
         :required="required"
-        type="number"
-        class="material-input"
         @focus="handleFocus"
         @blur="handleBlur"
         @input="handleInput"
       >
       <input
         v-if="type === 'password'"
-        v-model="currentValue"
+        :id="id"
+        v-model="valueCopy"
+        type="password"
+        class="material-input"
         :name="name"
-        :placeholder="fillPlaceHolder"
+        :placeholder="filledPlaceholder"
         :readonly="readonly"
         :disabled="disabled"
         :autocomplete="autoComplete"
         :max="max"
         :min="min"
+        :step="step"
         :required="required"
-        type="password"
-        class="material-input"
         @focus="handleFocus"
         @blur="handleBlur"
         @input="handleInput"
       >
       <input
         v-if="type === 'tel'"
-        v-model="currentValue"
+        :id="id"
+        v-model="valueCopy"
+        type="tel"
+        class="material-input"
         :name="name"
-        :placeholder="fillPlaceHolder"
+        :placeholder="filledPlaceholder"
         :readonly="readonly"
         :disabled="disabled"
         :autocomplete="autoComplete"
         :required="required"
-        type="tel"
-        class="material-input"
         @focus="handleFocus"
         @blur="handleBlur"
         @input="handleInput"
       >
       <input
         v-if="type === 'text'"
-        v-model="currentValue"
+        :id="id"
+        v-model="valueCopy"
+        type="text"
+        class="material-input"
         :name="name"
-        :placeholder="fillPlaceHolder"
+        :placeholder="filledPlaceholder"
         :readonly="readonly"
         :disabled="disabled"
         :autocomplete="autoComplete"
         :minlength="minlength"
         :maxlength="maxlength"
         :required="required"
-        type="text"
-        class="material-input"
         @focus="handleFocus"
         @blur="handleBlur"
         @input="handleInput"
@@ -124,37 +131,44 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
   name: 'MaterialInput'
 })
 export default class extends Vue {
+  @Prop({ required: true }) private value!: any
+  @Prop({ default: 'text' }) private type!: string
+  @Prop({ default: '' }) private id!: string
   @Prop({ default: '' }) private icon!: string
   @Prop({ default: '' }) private name!: string
-  @Prop({ default: 'text' }) private type!: string
-  @Prop({ default: () => [] }) private value!: (string | number)[]
-  @Prop({ default: null }) private placeholder!: string | null
+  @Prop({ default: '' }) private placeholder!: string
   @Prop({ default: false }) private readonly!: boolean
   @Prop({ default: false }) private disabled!: boolean
-  @Prop({ default: '' }) private min!: string
-  @Prop({ default: '' }) private max!: string
-  @Prop({ default: '' }) private step!: string
-  @Prop({ default: 0 }) private minlength!: number
-  @Prop({ default: 0 }) private maxlength!: number
   @Prop({ default: true }) private required!: boolean
   @Prop({ default: 'off' }) private autoComplete!: string
+  @Prop({ default: 0 }) private min!: number | Date
+  @Prop({ default: 10000 }) private max!: number | Date
+  @Prop({ default: 1 }) private step!: number
+  @Prop({ default: 0 }) private minlength!: number
+  @Prop({ default: 20 }) private maxlength!: number
   @Prop({ default: true }) private validateEvent!: boolean
 
-  private currentValue = this.value
+  private valueCopy = this.value
   private focus = false
-  private fillPlaceHolder: string | null = null
+
+  @Watch('value')
+  private onValueChange(value: any) {
+    this.valueCopy = value
+  }
 
   get computedClasses() {
     return {
       'material--active': this.focus,
       'material--disabled': this.disabled,
-      'material--raised': Boolean(this.focus || this.currentValue) // has value
+      'material--raised': Boolean(this.focus || this.valueCopy)
     }
   }
 
-  @Watch('value')
-  private onValueChange(value: (string | number)[]) {
-    this.currentValue = value
+  get filledPlaceholder() {
+    if (this.focus) {
+      return this.placeholder
+    }
+    return ''
   }
 
   private handleInput(event: KeyboardEvent) {
@@ -165,24 +179,19 @@ export default class extends Vue {
         this.$parent.$emit('el.form.change', [value])
       }
     }
-    this.$emit('change', value)
   }
 
   private handleFocus(event: FocusEvent) {
     this.focus = true
     this.$emit('focus', event)
-    if (this.placeholder && this.placeholder !== '') {
-      this.fillPlaceHolder = this.placeholder
-    }
   }
 
   private handleBlur(event: FocusEvent) {
     this.focus = false
     this.$emit('blur', event)
-    this.fillPlaceHolder = null
     if (this.$parent.$options.name === 'ElFormItem') {
       if (this.validateEvent) {
-        this.$parent.$emit('el.form.blur', [this.currentValue])
+        this.$parent.$emit('el.form.blur', [this.valueCopy])
       }
     }
   }
@@ -192,16 +201,14 @@ export default class extends Vue {
 <style lang="scss" scoped>
 // Fonts:
 $font-size-base: 16px;
-$font-size-small: 18px;
+$font-size-small: 14px;
 $font-size-smallest: 12px;
 $font-weight-normal: normal;
 $font-weight-bold: bold;
-$apixel: 1px;
 
 // Utils
-$spacer: 12px;
+$spacer: 10px;
 $transition: 0.2s ease all;
-$index: 0px;
 $index-has-icon: 30px;
 
 // Theme:
@@ -232,7 +239,7 @@ $color-black: black;
 
 // Component:
 .material-input__component {
-  margin-top: 36px;
+  margin-top: 45px;
   position: relative;
 
   * {
@@ -264,11 +271,10 @@ $color-black: black;
 
   .material-input {
     font-size: $font-size-base;
-    padding: $spacer $spacer $spacer - $apixel * 10 $spacer / 2;
+    padding: $spacer $spacer $spacer $spacer / 2;
     display: block;
     width: 100%;
     border: none;
-    line-height: 1;
     border-radius: 0;
 
     &:focus {
@@ -279,13 +285,13 @@ $color-black: black;
   }
 
   .material-label {
+    font-size: $font-size-small;
     font-weight: $font-weight-normal;
     position: absolute;
     pointer-events: none;
-    left: $index;
+    left: 0;
     top: 0;
     transition: $transition;
-    font-size: $font-size-small;
   }
 
   .material-input-bar {
@@ -327,6 +333,22 @@ $color-black: black;
       }
     }
   }
+
+  // Errors:
+  .material-errors {
+    position: relative;
+    overflow: hidden;
+
+    .material-error {
+      font-size: $font-size-smallest;
+      line-height: $font-size-smallest + 2px;
+      overflow: hidden;
+      margin-top: 0;
+      padding-top: $spacer / 2;
+      padding-right: $spacer / 2;
+      padding-left: 0;
+    }
+  }
 }
 
 .material-input__component {
@@ -335,7 +357,6 @@ $color-black: black;
   .material-input {
     background: none;
     color: $color-black;
-    text-indent: $index;
     border-bottom: 1px solid $color-grey-light;
   }
 
@@ -354,20 +375,6 @@ $color-black: black;
   &.material--active {
     .material-label {
       color: $color-blue;
-    }
-  }
-
-  // Errors:
-  &.material--has-errors {
-    &.material--active .material-label {
-      color: $color-red;
-    }
-
-    .material-input-bar {
-      &:before,
-      &:after {
-        background: transparent;
-      }
     }
   }
 }

@@ -35,7 +35,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'CommentDropdown'
 })
 export default class extends Vue {
-  @Prop({ default: false }) private value!: boolean
+  @Prop({ required: true }) private value!: boolean
 
   get disableComment() {
     return this.value

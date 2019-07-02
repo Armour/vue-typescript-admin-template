@@ -20,10 +20,10 @@ export interface ILineChartData {
   name: 'LineChart'
 })
 export default class extends mixins(ResizeMixin) {
+  @Prop({ required: true }) private chartData!: ILineChartData
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: '100%' }) private width!: string
   @Prop({ default: '350px' }) private height!: string
-  @Prop({ required: true }) private chartData!: ILineChartData
 
   @Watch('chartData', { deep: true })
   private onChartDataChange(value: ILineChartData) {

@@ -47,15 +47,6 @@ export default class extends Vue {
       -webkit-transform: translate3d(100%, 0, 0);
       transform: translate3d(100%, 0, 0);
     }
-
-    span::before {
-      -webkit-transition-delay: 0.3s;
-      transition-delay: 0.3s;
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-      -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-      transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-    }
   }
 
   &::before {
@@ -110,5 +101,14 @@ export default class extends Vue {
       transform: translate3d(0, -100%, 0);
     }
   }
+}
+
+.link--mallki:hover span::before {
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
 </style>

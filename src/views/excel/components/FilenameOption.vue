@@ -20,7 +20,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'FilenameOption'
 })
 export default class extends Vue {
-  @Prop({ default: '' }) private value!: string
+  @Prop({ required: true }) private value!: string
 
   get filename() {
     return this.value

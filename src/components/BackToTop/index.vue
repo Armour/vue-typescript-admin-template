@@ -36,8 +36,7 @@ export default class extends Vue {
         background: '#e7eaf1'
       }
     }
-  })
-  private customStyle!: object
+  }) private customStyle!: object
 
   private visible = false
   private isMoving = false
