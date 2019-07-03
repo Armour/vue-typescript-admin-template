@@ -1,7 +1,7 @@
-/* global transition css for vue.js */
-/* see https://vuejs.org/v2/guide/transitions.html for detail */
+/* Global transition */
+// See https://vuejs.org/v2/guide/transitions.html for detail
 
-/* fade */
+// fade
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.28s;
@@ -12,7 +12,7 @@
   opacity: 0;
 }
 
-/* fade-transform */
+// fade-transform
 .fade-transform-leave-active,
 .fade-transform-enter-active {
   transition: all .5s;
@@ -28,7 +28,7 @@
   transform: translateX(30px);
 }
 
-/* fade */
+// breadcrumb
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
   transition: all .5s;

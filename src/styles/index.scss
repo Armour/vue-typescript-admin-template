@@ -1,8 +1,9 @@
-@import './element-variables.scss';
-@import './variables.scss';
-@import './mixins.scss';
+// @import './variables.scss'; // Already imported in style-resources-loader
+// @import './mixins.scss'; // Already imported in style-resources-loader
 @import './transition.scss';
 @import './svgicon.scss';
+
+/* Global scss */
 
 body {
   height: 100%;
