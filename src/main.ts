@@ -3,6 +3,8 @@ import Vue, { DirectiveOptions } from 'vue'
 import 'normalize.css'
 import ElementUI from 'element-ui'
 import SvgIcon from 'vue-svgicon'
+
+import '@/styles/element-variables.scss'
 import '@/styles/index.scss'
 
 import App from '@/App.vue'
