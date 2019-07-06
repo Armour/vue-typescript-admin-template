@@ -363,6 +363,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Form } from 'element-ui'
+import { cloneDeep } from 'lodash'
 import { getArticles, getPageviews, createArticle, updateArticle, defaultArticleData } from '@/api/articles'
 import { IArticleData } from '@/api/types'
 import { exportJson2Excel } from '@/utils/excel'
@@ -475,7 +476,7 @@ export default class extends Vue {
   }
 
   private resetTempArticleData() {
-    this.tempArticleData = defaultArticleData
+    this.tempArticleData = cloneDeep(defaultArticleData)
   }
 
   private handleCreate() {

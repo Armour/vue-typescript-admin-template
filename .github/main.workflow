@@ -8,21 +8,21 @@ action "Filters for GitHub Actions" {
   args = "branch master"
 }
 
- action "Yarn install" {
-  uses = "borales/actions-yarn@master"
+action "Yarn install" {
   needs = ["Filters for GitHub Actions"]
+  uses = "borales/actions-yarn@master"
   args = "install"
 }
 
- action "Yarn build" {
-  uses = "borales/actions-yarn@master"
+action "Yarn build" {
   needs = ["Yarn install"]
+  uses = "borales/actions-yarn@master"
   args = "build:prod"
 }
 
 action "Deploy" {
-  uses = "maxheld83/ghpages@v0.2.1"
   needs = ["Yarn build"]
+  uses = "maxheld83/ghpages@v0.2.1"
   env = {
     BUILD_DIR = "dist/"
   }
