@@ -146,7 +146,7 @@ export const asyncRoutes: RouteConfig[] = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/permission/index',
+    redirect: '/permission/directive',
     meta: {
       title: 'permission',
       icon: 'lock',
