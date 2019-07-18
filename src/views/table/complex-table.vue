@@ -103,6 +103,7 @@
         sortable="custom"
         align="center"
         width="80"
+        :class-name="getSortClass('id')"
       >
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
@@ -473,6 +474,11 @@ export default class extends Vue {
       this.listQuery.sort = '-id'
     }
     this.handleFilter()
+  }
+
+  private getSortClass(key: string) {
+    const sort = this.listQuery.sort
+    return sort === `+${key}` ? 'ascending' : sort === `-${key}` ? 'descending' : ''
   }
 
   private resetTempArticleData() {
