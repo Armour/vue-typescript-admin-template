@@ -1,6 +1,6 @@
 {
   "name": "vue-typescript-admin-template",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "author": "Chong Guo <armourcy@gmail.com>",
   "scripts": {
@@ -45,7 +45,7 @@
     "vue-i18n": "^8.12.0",
     "vue-image-crop-upload": "^2.5.0",
     "vue-property-decorator": "^8.2.1",
-    "vue-router": "^3.1.1",
+    "vue-router": "^3.1.2",
     "vue-splitpane": "^1.0.4",
     "vue-svgicon": "^3.2.6",
     "vue2-dropzone": "^3.6.0",
