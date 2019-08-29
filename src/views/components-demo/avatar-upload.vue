@@ -12,7 +12,7 @@
     <pan-thumb :image="image" />
     <el-button
       type="primary"
-      icon="upload"
+      icon="el-icon-upload"
       tyle="position: absolute;bottom: 15px;margin-left: 40px;"
       @click="toggleShow"
     >

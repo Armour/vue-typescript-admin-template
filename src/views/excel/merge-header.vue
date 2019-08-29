@@ -4,7 +4,7 @@
       :loading="downloadLoading"
       style="margin-bottom:20px"
       type="primary"
-      icon="document"
+      icon="el-icon-document"
       @click="handleDownload"
     >
       {{ $t('excel.export') }}

@@ -100,7 +100,7 @@
                 <material-input
                   id="material-input-demo"
                   v-model="demo.title"
-                  icon="search"
+                  icon="el-icon-search"
                   name="title"
                   placeholder="输入标题"
                 >

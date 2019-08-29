@@ -12,7 +12,7 @@
         />
         <el-button
           type="primary"
-          icon="document"
+          icon="el-icon-document"
           @click="handleClipboard(inputData, $event)"
         >
           copy
@@ -31,7 +31,7 @@
           v-clipboard:copy="inputData"
           v-clipboard:success="clipboardSuccess"
           type="primary"
-          icon="document"
+          icon="el-icon-document"
         >
           copy
         </el-button>

@@ -1,7 +1,7 @@
 <template>
   <div class="errPage-container">
     <el-button
-      icon="arrow-left"
+      icon="el-icon-arrow-left"
       class="back-btn"
       @click="back"
     >
