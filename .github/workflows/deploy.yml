@@ -12,15 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Yarn install
-      uses: borales/actions-yarn@master
+      uses: borales/actions-yarn@v2.0.0
       with:
-        args: install
+        cmd: install
     - name: Yarn build
-      uses: borales/actions-yarn@master
+      uses: borales/actions-yarn@v2.0.0
       with:
-        args: build:prod
+        cmd: build:prod
     - name: Deploy
-      uses: maxheld83/ghpages@master
+      uses: maxheld83/ghpages@v0.2.1
       env:
         BUILD_DIR: dist/
         GH_PAT: ${{ secrets.GH_PAT }}
