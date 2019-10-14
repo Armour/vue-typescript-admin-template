@@ -1,15 +1,16 @@
-on: push
 name: Deploy on GitHub Pages
+
+on:
+  push:
+    branches:
+    - master
+
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Filters for GitHub Actions
-      uses: actions/bin/filter@master
-      with:
-        args: branch master
     - name: Yarn install
       uses: borales/actions-yarn@master
       with:
