@@ -20,34 +20,32 @@ export default class extends Vue {
   private isFullscreen = false
 
   mounted() {
-    if (sf && sf.enabled) {
+    if (sf.isEnabled) {
       sf.on('change', this.change)
     }
   }
 
   beforeDestory() {
-    if (sf && sf.enabled) {
+    if (sf.isEnabled) {
       sf.off('change', this.change)
     }
   }
 
   private change() {
-    if (sf && sf.enabled) {
+    if (sf.isEnabled) {
       this.isFullscreen = sf.isFullscreen
     }
   }
 
   private click() {
-    if (sf) {
-      if (!sf.enabled) {
-        this.$message({
-          message: 'you browser can not work',
-          type: 'warning'
-        })
-        return false
-      }
-      sf.toggle()
+    if (!sf.isEnabled) {
+      this.$message({
+        message: 'you browser can not work',
+        type: 'warning'
+      })
+      return false
     }
+    sf.toggle()
   }
 }
 </script>

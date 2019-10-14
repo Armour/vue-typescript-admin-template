@@ -28,8 +28,8 @@ export const parseTime = (
     s: date.getSeconds(),
     a: date.getDay()
   }
-  const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-    let value = formatObj[key]
+  const timeStr = format.replace(/{([ymdhisa])+}/g, (result, key) => {
+    const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') {
       return ['日', '一', '二', '三', '四', '五', '六'][value]

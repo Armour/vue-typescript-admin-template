@@ -15,12 +15,12 @@
         :to="{path: tag.path, query: tag.query, fullPath: tag.fullPath}"
         tag="span"
         class="tags-view-item"
-        @click.middle.native="closeSelectedTag(tag)"
+        @click.middle.native="!isAffix(tag)?closeSelectedTag(tag):''"
         @contextmenu.prevent.native="openMenu(tag, $event)"
       >
         {{ $t('route.' + tag.meta.title) }}
         <span
-          v-if="!tag.meta.affix"
+          v-if="!isAffix(tag)"
           class="el-icon-close"
           @click.prevent.stop="closeSelectedTag(tag)"
         />
@@ -35,7 +35,7 @@
         {{ $t('tagsView.refresh') }}
       </li>
       <li
-        v-if="!(selectedTag.meta&&selectedTag.meta.affix)"
+        v-if="!isAffix(selectedTag)"
         @click="closeSelectedTag(selectedTag)"
       >
         {{
@@ -102,6 +102,10 @@ export default class extends Vue {
 
   private isActive(route: ITagView) {
     return route.path === this.$route.path
+  }
+
+  private isAffix(tag: ITagView) {
+    return tag.meta && tag.meta.affix
   }
 
   private filterAffixTags(routes: RouteConfig[], basePath = '/') {

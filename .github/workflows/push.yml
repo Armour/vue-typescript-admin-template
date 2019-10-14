@@ -1,8 +1,8 @@
 on: push
 name: Deploy on GitHub Pages
 jobs:
-  filtersForGitHubActions:
-    name: Filters for GitHub Actions
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master

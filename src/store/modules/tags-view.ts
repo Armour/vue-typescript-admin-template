@@ -46,12 +46,8 @@ class TagsView extends VuexModule implements ITagsViewState {
 
   @Mutation
   private DEL_CACHED_VIEW(view: ITagView) {
-    for (const [i, v] of this.cachedViews.entries()) {
-      if (v === view.name) {
-        this.cachedViews.splice(i, 1)
-        break
-      }
-    }
+    const index = this.cachedViews.indexOf(view.name)
+    index > -1 && this.cachedViews.splice(index, 1)
   }
 
   @Mutation
@@ -63,11 +59,12 @@ class TagsView extends VuexModule implements ITagsViewState {
 
   @Mutation
   private DEL_OTHERS_CACHED_VIEWS(view: ITagView) {
-    for (const [i, v] of this.cachedViews.entries()) {
-      if (v === view.name) {
-        this.cachedViews = this.cachedViews.slice(i, i + 1)
-        break
-      }
+    const index = this.cachedViews.indexOf(view.name)
+    if (index > -1) {
+      this.cachedViews = this.cachedViews.slice(index, index + 1)
+    } else {
+      // if index = -1, there is no cached tags
+      this.cachedViews = []
     }
   }
 

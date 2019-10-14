@@ -51,11 +51,11 @@ export default class extends mixins(ResizeMixin) {
         top: '20',
         textStyle: {
           color: '#fff',
-          fontSize: '22'
+          fontSize: 22
         },
         subtextStyle: {
           color: '#90979c',
-          fontSize: '16'
+          fontSize: 16
         }
       },
       tooltip: {
