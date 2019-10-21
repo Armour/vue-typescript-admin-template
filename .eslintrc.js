@@ -5,12 +5,11 @@ module.exports = {
     node: true,
     es6: true
   },
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    sourceType: 'module'
-  },
-  plugins: [
-    'vue'
+  'extends': [
+    'eslint:recommended',
+    'plugin:vue/recommended',
+    '@vue/standard',
+    '@vue/typescript'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -28,10 +27,18 @@ module.exports = {
     'vue/match-component-file-name': 'error',
     'vue/object-curly-spacing': 'error'
   },
-  'extends': [
-    'eslint:recommended',
-    'plugin:vue/recommended',
-    '@vue/standard',
-    '@vue/typescript'
+  parserOptions: {
+    parser: '@typescript-eslint/parser'
+  },
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)'
+      ],
+      env: {
+        jest: true
+      }
+    }
   ]
 }
