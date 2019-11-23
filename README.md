@@ -27,9 +27,9 @@ English | [简体中文](./README-zh.md)
 
 ## Overview
 
-[vue-typescript-admin-template](http://armour.github.io/vue-typescript-admin-template) is a production-ready front-end solution for admin interfaces which based on [vue](https://github.com/vuejs/vue), [typescript](https://www.typescriptlang.org/) and UI Toolkit [element-ui](https://github.com/ElemeFE/element). The original Javascript version code [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin/) was written by [PanJiaChen](https://github.com/PanJiaChen), many thanks to him for the awesome open source project! :)
+[vue-typescript-admin-template](http://armour.github.io/vue-typescript-admin-template) is a production-ready front-end solution for admin interfaces based on [vue](https://github.com/vuejs/vue), [typescript](https://www.typescriptlang.org/) and UI Toolkit [element-ui](https://github.com/ElemeFE/element). The original Javascript version code [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin/) was written by [PanJiaChen](https://github.com/PanJiaChen), many thanks to him for the awesome open source project! :)
 
-If you want to get start with a minimal template code instead of integration solution, you can take a look at [minimal](https://github.com/Armour/vue-typescript-admin-template/tree/minimal) branch.
+If you want to get started with a minimal template code instead of integration solution, you can take a look at the [minimal](https://github.com/Armour/vue-typescript-admin-template/tree/minimal) branch.
 
 ## Documentation
 
@@ -59,75 +59,66 @@ Javascript version:
 
 ## Features
 
-```txt
-- Login / Logout
 
-- Permission Authentication
-  - Page permission
-  - Directive permission
-  - Permission configuration page
-  - Two-step login
+* Login / Logout
+* Permission Authentication
+    * Page permission
+    * Directive permission
+    * Permission configuration page
+    * Two-step login
+* Multi-environment build
+    * Dev / Stage / Prod
+* Global Features
+    * I18n
+    * Dynamic themes
+    * Dynamic sidebar (supports multi-level routing)
+    * Dynamic breadcrumb
+    * Tags-view (supports right-click operation)
+    * Clipboard
+    * Svg icons
+    * Search
+    * Screenfull
+    * Settings
+    * Mock data / Mock server
+    * PWA support
+* Components
+    * Editors
+        * Rich Text Editor
+        * Markdown Editor
+        * JSON Editor
+    * Avatar Upload
+    * Back To Top
+    * CountTo
+    * Dropzone
+    * Draggable Dialog
+    * Draggable Kanban
+    * Draggable List
+    * Draggable Select
+    * ECharts
+    * Mixin
+    * SplitPane
+    * Sticky
+* Table
+    * Dynamic Table
+    * Draggable Table
+    * Inline Edit Table
+    * Complex Table
+* Excel
+    * Export Excel
+    * Upload Excel
+    * Excel Visualization
+* Zip
+    * Export zip
+* PDF
+    * Download pdf
+* Dashboard
+* Guide Page
+* Advanced Example Page
+* Error Log
+* Error Page
+    * 401
+    * 404
 
-- Multi-environment build
-  - Dev / Stage / Prod
-
-- Global Features
-  - I18n
-  - Dynamic themes
-  - Dynamic sidebar (supports multi-level routing)
-  - Dynamic breadcrumb
-  - Tags-view (supports right-click operation)
-  - Clipboard
-  - Svg icons
-  - Search
-  - Screenfull
-  - Settings
-  - Mock data / Mock server
-  - PWA support
-
-- Components
-  - Editors
-    - Rich Text Editor
-    - Markdown Editor
-    - JSON Editor
-  - Avatar Upload
-  - Back To Top
-  - CountTo
-  - Dropzone
-  - Draggable Dialog
-  - Draggable Kanban
-  - Draggable List
-  - Draggable Select
-  - ECharts
-  - Mixin
-  - SplitPane
-  - Sticky
-
-- Table
-  - Dynamic Table
-  - Draggable Table
-  - Inline Edit Table
-  - Complex Table
-
-- Excel
-  - Export Excel
-  - Upload Excel
-  - Excel Visualization
-
-- Zip
-  - Export zip
-
-- PDF
-  - Download pdf
-
-- Dashboard
-- Guide Page
-- Advanced Example Page
-- Error Log
-- Error Page
-  - 401
-  - 404
-```
 
 ## Preparation
 
@@ -179,49 +170,51 @@ Understanding and learning these knowledge in advance will greatly help you on u
 
 ## Project setup
 
-### Install dependencies
+With [yarn](https://yarnpkg.com/lang/en/) or [npm](https://www.npmjs.com/get-npm)
+
+#### Install dependencies
 
 ```bash
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 
 ```bash
 yarn run serve
 ```
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 
 ```bash
 yarn run build:prod
 ```
 
-### Lints and fixes files
+#### Lints and fixes files
 
 ```bash
 yarn run lint
 ```
 
-### Run your unit tests
+#### Run your unit tests
 
 ```bash
 yarn run test:unit
 ```
 
-### Run your end-to-end tests
+#### Run your end-to-end tests
 
 ```bash
 yarn run test:e2e
 ```
 
-### Generate all svg components
+#### Generate all svg components
 
 ```bash
 yarn run svg
 ```
 
-### Customize Vue configuration
+#### Customize Vue configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
