@@ -59,66 +59,75 @@ Javascript version:
 
 ## Features
 
+```txt
+- Login / Logout
 
-* Login / Logout
-* Permission Authentication
-    * Page permission
-    * Directive permission
-    * Permission configuration page
-    * Two-step login
-* Multi-environment build
-    * Dev / Stage / Prod
-* Global Features
-    * I18n
-    * Dynamic themes
-    * Dynamic sidebar (supports multi-level routing)
-    * Dynamic breadcrumb
-    * Tags-view (supports right-click operation)
-    * Clipboard
-    * Svg icons
-    * Search
-    * Screenfull
-    * Settings
-    * Mock data / Mock server
-    * PWA support
-* Components
-    * Editors
-        * Rich Text Editor
-        * Markdown Editor
-        * JSON Editor
-    * Avatar Upload
-    * Back To Top
-    * CountTo
-    * Dropzone
-    * Draggable Dialog
-    * Draggable Kanban
-    * Draggable List
-    * Draggable Select
-    * ECharts
-    * Mixin
-    * SplitPane
-    * Sticky
-* Table
-    * Dynamic Table
-    * Draggable Table
-    * Inline Edit Table
-    * Complex Table
-* Excel
-    * Export Excel
-    * Upload Excel
-    * Excel Visualization
-* Zip
-    * Export zip
-* PDF
-    * Download pdf
-* Dashboard
-* Guide Page
-* Advanced Example Page
-* Error Log
-* Error Page
-    * 401
-    * 404
+- Permission Authentication
+  - Page permission
+  - Directive permission
+  - Permission configuration page
+  - Two-step login
 
+- Multi-environment build
+  - Dev / Stage / Prod
+
+- Global Features
+  - I18n
+  - Dynamic themes
+  - Dynamic sidebar (supports multi-level routing)
+  - Dynamic breadcrumb
+  - Tags-view (supports right-click operation)
+  - Clipboard
+  - Svg icons
+  - Search
+  - Screenfull
+  - Settings
+  - Mock data / Mock server
+  - PWA support
+
+- Components
+  - Editors
+    - Rich Text Editor
+    - Markdown Editor
+    - JSON Editor
+  - Avatar Upload
+  - Back To Top
+  - CountTo
+  - Dropzone
+  - Draggable Dialog
+  - Draggable Kanban
+  - Draggable List
+  - Draggable Select
+  - ECharts
+  - Mixin
+  - SplitPane
+  - Sticky
+
+- Table
+  - Dynamic Table
+  - Draggable Table
+  - Inline Edit Table
+  - Complex Table
+
+- Excel
+  - Export Excel
+  - Upload Excel
+  - Excel Visualization
+
+- Zip
+  - Export zip
+
+- PDF
+  - Download pdf
+
+- Dashboard
+- Guide Page
+- Advanced Example Page
+- Error Log
+- Error Page
+  - 401
+  - 404
+```
 
 ## Preparation
 
