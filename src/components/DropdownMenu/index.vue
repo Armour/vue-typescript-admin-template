@@ -103,7 +103,7 @@ $transition-time: .1s;
     .share-dropdown-menu-item {
       @for $i from 1 through $item-length {
         &:nth-of-type(#{$i}) {
-         transition-delay: ($item-length - $i)*$transition-time;
+          transition-delay: ($item-length - $i)*$transition-time;
           transform: translate3d(0, ($i - 1)*60px, 0);
         }
       }

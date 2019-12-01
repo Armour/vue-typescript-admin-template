@@ -18,6 +18,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    progress: false,
     proxy: {
       // change xxx-api/login => /mock-api/v1/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
@@ -55,8 +56,17 @@ module.exports = {
     // https://webpack.js.org/configuration/devtool/#development
     config
       .when(process.env.NODE_ENV === 'development',
-        config => config.devtool('cheap-source-map')
+        config => config.devtool('cheap-eval-source-map')
       )
+
+    // remove vue-cli-service's progress output
+    config.plugins.delete('progress')
+    // replace with another progress output plugin to solve the this bug:
+    // https://github.com/vuejs/vue-cli/issues/4557
+    config.plugin('simple-progress-webpack-plugin')
+      .use(require.resolve('simple-progress-webpack-plugin'), [{
+        format: 'compact'
+      }])
 
     config
       .when(process.env.NODE_ENV !== 'development',

@@ -120,7 +120,7 @@ export default class extends mixins(ResizeMixin) {
           }, {
             offset: 0.8,
             color: 'rgba(137, 189, 27, 0)'
-          }], false) as any,
+          }], false),
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowBlur: 10
         },
@@ -147,7 +147,7 @@ export default class extends mixins(ResizeMixin) {
           }, {
             offset: 0.8,
             color: 'rgba(0, 136, 212, 0)'
-          }], false) as any,
+          }], false),
           shadowColor: 'rgba(0, 0, 0, 0.1)',
           shadowBlur: 10
         },
