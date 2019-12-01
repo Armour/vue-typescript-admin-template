@@ -34,10 +34,7 @@ export const parseTime = (
     if (key === 'a') {
       return ['日', '一', '二', '三', '四', '五', '六'][value]
     }
-    if (result.length > 0 && value < 10) {
-      return '0' + value
-    }
-    return String(value) || '0'
+    return value.toString().padStart(2, '0')
   })
   return timeStr
 }

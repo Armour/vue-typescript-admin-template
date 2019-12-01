@@ -26,7 +26,7 @@
       ref="multipleTable"
       v-loading="listLoading"
       :data="list"
-      element-loading-text="拼命加载中"
+      element-loading-text="Loading..."
       border
       fit
       highlight-current-row
