@@ -31,6 +31,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@types/js-cookie": "^2.2.2",
+    "@types/node": "~12.12.23",
     "@types/nprogress": "^0.2.0",
     "@types/webpack-env": "^1.14.0",
     "@vue/cli-plugin-babel": "^3.11.0",
