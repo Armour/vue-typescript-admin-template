@@ -50,6 +50,7 @@ $transition-time: .1s;
   width: 250px;
   position: relative;
   z-index: 1;
+  height: auto!important;
 
   &-title {
     width: 100%;
@@ -74,10 +75,12 @@ $transition-time: .1s;
     position: absolute;
     width: 100%;
     background: #e0e0e0;
+    color: black;
     line-height: 60px;
     height: 60px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
+    overflow: hidden;
     opacity: 1;
     transition: transform 0.28s ease;
 
