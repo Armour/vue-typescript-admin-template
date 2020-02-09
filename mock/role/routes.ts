@@ -7,7 +7,7 @@ export const constantRoutes = [
     meta: { hidden: true },
     children: [
       {
-        path: '/redirect/:path*',
+        path: '/redirect/:path(.*)',
         component: 'views/redirect/index'
       }
     ]

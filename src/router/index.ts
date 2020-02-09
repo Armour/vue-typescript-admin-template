@@ -47,7 +47,7 @@ export const constantRoutes: RouteConfig[] = [
     meta: { hidden: true },
     children: [
       {
-        path: '/redirect/:path*',
+        path: '/redirect/:path(.*)',
         component: () => import(/* webpackChunkName: "redirect" */ '@/views/redirect/index.vue')
       }
     ]
