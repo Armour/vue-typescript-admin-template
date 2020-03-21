@@ -105,7 +105,8 @@ export default class extends Vue {
     'en': 'en_US',
     'zh': 'zh_CN',
     'es': 'es_ES',
-    'ja': 'ja_JP'
+    'ja': 'ja_JP',
+    'ko': 'ko_KR'
   }
 
   mounted() {
