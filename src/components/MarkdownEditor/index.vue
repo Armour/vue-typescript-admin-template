@@ -82,7 +82,9 @@ export default class extends Vue {
       this.markdownEditor.setValue(this.value)
     }
     this.markdownEditor.on('change', () => {
-      this.$emit('input', this.markdownEditor!.getValue())
+      if (this.markdownEditor !== undefined) {
+        this.$emit('input', this.markdownEditor.getValue())
+      }
     })
   }
 

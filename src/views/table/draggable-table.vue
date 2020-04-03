@@ -132,6 +132,7 @@ export default class extends Vue {
     page: 1,
     limit: 10
   }
+
   private sortable: Sortable | null = null
 
   created() {

@@ -221,12 +221,15 @@ export default class extends Vue {
       callback()
     }
   }
+
   private demo = {
     title: ''
   }
+
   private demoRules = {
     title: [{ validator: this.validateLength, trigger: 'change' }]
   }
+
   private articleList = [
     { title: '基础篇', href: 'https://juejin.im/post/59097cd7a22b9d0065fb61d2' },
     { title: '登录权限篇', href: 'https://juejin.im/post/591aa14f570c35006961acac' },

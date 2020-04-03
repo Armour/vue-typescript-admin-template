@@ -148,6 +148,7 @@ export default class extends Vue {
     { key: 'b-platform', name: 'platformB' },
     { key: 'c-platform', name: 'platformC' }
   ]
+
   private pickerOptions = {
     disabledDate(time: Date) {
       return time.getTime() > Date.now()

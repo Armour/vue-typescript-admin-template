@@ -42,11 +42,13 @@ export default class extends Vue {
     { name: 'Mission', id: 3 },
     { name: 'Mission', id: 4 }
   ]
+
   private list2 = [
     { name: 'Mission', id: 5 },
     { name: 'Mission', id: 6 },
     { name: 'Mission', id: 7 }
   ]
+
   private list3 = [
     { name: 'Mission', id: 8 },
     { name: 'Mission', id: 9 },

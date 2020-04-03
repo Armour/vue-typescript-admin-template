@@ -102,10 +102,10 @@ export default class extends Vue {
   // Mapping for local lang to tuiEditor lang
   // https://github.com/nhnent/tui.editor/tree/master/src/js/langs
   private languageTypeList: { [key: string]: string } = {
-    'en': 'en_US',
-    'zh': 'zh_CN',
-    'es': 'es_ES',
-    'ja': 'ja_JP'
+    en: 'en_US',
+    zh: 'zh_CN',
+    es: 'es_ES',
+    ja: 'ja_JP'
   }
 
   mounted() {

@@ -129,6 +129,7 @@ export default class extends Vue {
       callback()
     }
   }
+
   private validatePassword = (rule: any, value: string, callback: Function) => {
     if (value.length < 6) {
       callback(new Error('The password can not be less than 6 digits'))
@@ -136,14 +137,17 @@ export default class extends Vue {
       callback()
     }
   }
+
   private loginForm = {
     username: 'admin',
     password: '111111'
   }
+
   private loginRules = {
     username: [{ validator: this.validateUsername, trigger: 'blur' }],
     password: [{ validator: this.validatePassword, trigger: 'blur' }]
   }
+
   private passwordType = 'password'
   private loading = false
   private showDialog = false

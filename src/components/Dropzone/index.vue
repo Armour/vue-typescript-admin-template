@@ -23,7 +23,7 @@
 <script lang="ts">
 import VueDropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import { SettingsModule } from '@/store/modules/settings'
 
 @Component({

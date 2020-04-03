@@ -29,22 +29,20 @@ import { Component, Vue } from 'vue-property-decorator'
   name: 'SocialSignin'
 })
 export default class extends Vue {
-  private wechatHandleClick(thirdpart: any) {
-    alert('ok')
-    // this.$store.commit('SET_AUTH_TYPE', thirdpart)
+  private wechatHandleClick(param: string) {
+    alert('handle ' + param + ' here')
     // const appid = 'xxxxx'
     // const redirect_uri = encodeURIComponent('xxx/redirect?redirect=' + window.location.origin + '/auth-redirect')
     // const url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&response_type=code&scope=snsapi_login#wechat_redirect'
-    // openWindow(url, thirdpart, 540, 540)
+    // openWindow(url, 'wechat', 540, 540)
   }
 
-  private tencentHandleClick(thirdpart: any) {
-    alert('ok')
-    // this.$store.commit('SET_AUTH_TYPE', thirdpart)
+  private tencentHandleClick(param: string) {
+    alert('handle ' + param + ' here')
     // const client_id = 'xxxxx'
     // const redirect_uri = encodeURIComponent('xxx/redirect?redirect=' + window.location.origin + '/auth-redirect')
     // const url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirect_uri
-    // openWindow(url, thirdpart, 540, 540)
+    // openWindow(url, 'tencent', 540, 540)
   }
 }
 </script>

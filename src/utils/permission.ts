@@ -9,7 +9,7 @@ export const checkPermission = (value: string[]): boolean => {
     })
     return hasPermission
   } else {
-    console.error(`need roles! Like v-permission="['admin','editor']"`)
+    console.error('need roles! Like v-permission="[\'admin\',\'editor\']"')
     return false
   }
 }

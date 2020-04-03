@@ -102,6 +102,7 @@ export default class extends Vue {
     type: this.type,
     sort: 'id'
   }
+
   private loading = false
 
   created() {

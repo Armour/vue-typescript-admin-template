@@ -127,7 +127,7 @@ export default class extends Vue {
     for (let C = range.s.c; C <= range.e.c; ++C) { // walk every column in the range
       const cell = sheet[XLSX.utils.encode_cell({ c: C, r: R })]
       // find the cell in the first row
-      let hdr: string = ''
+      let hdr = ''
       if (cell && cell.t) hdr = XLSX.utils.format_cell(cell)
       if (hdr === '') {
         hdr = 'UNKNOWN ' + C // replace with your desired default

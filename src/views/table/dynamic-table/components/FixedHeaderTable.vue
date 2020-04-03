@@ -63,6 +63,7 @@ export default class extends Vue {
       orange: 'orange-20'
     }
   ]
+
   private key = 1 // Table key
   private formTheadOptions = ['apple', 'banana', 'orange']
   private checkboxVal = defaultFormThead

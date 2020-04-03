@@ -47,7 +47,7 @@ import PanThumb from '@/components/PanThumb/index.vue'
 export default class extends Vue {
   private showImageUpload = false
   private image = 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191'
-  private params = { some_params: 'your_params_goes_here' }
+  private params = { someParams: 'your_params_goes_here' }
   private headers = { smail: '*_~' }
 
   private toggleShow() {

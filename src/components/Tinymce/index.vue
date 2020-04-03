@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/camelcase */
 // Docs: https://armour.github.io/vue-typescript-admin-docs/features/components/rich-editor.html#tinymce
 import 'tinymce/tinymce'
 import 'tinymce/themes/silver' // Import themes
@@ -86,10 +87,10 @@ export default class extends Vue {
   // https://www.tiny.cloud/docs/configure/localization/#language
   // and also see langs files under public/tinymce/langs folder
   private languageTypeList: { [key: string]: string } = {
-    'en': 'en',
-    'zh': 'zh_CN',
-    'es': 'es',
-    'ja': 'ja'
+    en: 'en',
+    zh: 'zh_CN',
+    es: 'es',
+    ja: 'ja'
   }
 
   get language() {

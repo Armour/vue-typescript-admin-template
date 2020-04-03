@@ -56,7 +56,7 @@
 <script lang="ts">
 import path from 'path'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { Route, RouteConfig } from 'vue-router'
+import { RouteConfig } from 'vue-router'
 import { isExternal } from '@/utils/validate'
 import SidebarItemLink from './SidebarItemLink.vue'
 
@@ -100,7 +100,7 @@ export default class extends Vue {
       return null
     }
     if (this.item.children) {
-      for (let child of this.item.children) {
+      for (const child of this.item.children) {
         if (!child.meta || !child.meta.hidden) {
           return child
         }

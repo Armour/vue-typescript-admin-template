@@ -60,6 +60,7 @@ export default class extends Vue {
       orange: 'orange-20'
     }
   ]
+
   private formThead = ['apple', 'banana']
 }
 </script>

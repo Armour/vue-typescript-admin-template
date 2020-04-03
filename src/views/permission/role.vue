@@ -120,23 +120,22 @@ import { cloneDeep } from 'lodash'
 import { Component, Vue } from 'vue-property-decorator'
 import { RouteConfig } from 'vue-router'
 import { Tree } from 'element-ui'
-import { AppModule } from '@/store/modules/app'
 import { getRoutes, getRoles, createRole, deleteRole, updateRole } from '@/api/roles'
 
-interface Role {
+interface IRole {
   key: number
   name: string
   description: string
   routes: RouteConfig[]
 }
 
-interface RoutesTreeData {
-  children: RoutesTreeData[]
+interface IRoutesTreeData {
+  children: IRoutesTreeData[]
   title: string
   path: string
 }
 
-const defaultRole: Role = {
+const defaultRole: IRole = {
   key: 0,
   name: '',
   description: '',
@@ -150,7 +149,7 @@ export default class extends Vue {
   private role = Object.assign({}, defaultRole)
   private reshapedRoutes: RouteConfig[] = []
   private serviceRoutes: RouteConfig[] = []
-  private rolesList: Role[] = []
+  private rolesList: IRole[] = []
   private dialogVisible = false
   private dialogType = 'new'
   private checkStrictly = false
@@ -181,9 +180,9 @@ export default class extends Vue {
   }
 
   private generateTreeData(routes: RouteConfig[]) {
-    const data: RoutesTreeData[] = []
-    for (let route of routes) {
-      const tmp: RoutesTreeData = {
+    const data: IRoutesTreeData[] = []
+    for (const route of routes) {
+      const tmp: IRoutesTreeData = {
         children: [],
         title: '',
         path: ''

@@ -8,6 +8,7 @@ self.addEventListener('message', (e) => {
   }
 })
 
+/* eslint-disable no-undef */
 workbox.clientsClaim()
 
 // The precaching code provided by Workbox. You don't need to change this part.

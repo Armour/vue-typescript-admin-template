@@ -24,6 +24,7 @@ class App extends VuexModule implements IAppState {
     opened: getSidebarStatus() !== 'closed',
     withoutAnimation: false
   }
+
   public device = DeviceType.Desktop
   public language = getLocale()
   public size = getSize() || 'medium'

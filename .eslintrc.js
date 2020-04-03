@@ -1,20 +1,31 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
     node: true,
-    es6: true
   },
   'extends': [
-    'eslint:recommended',
     'plugin:vue/recommended',
     '@vue/standard',
-    '@vue/typescript'
+    '@vue/typescript/recommended'
   ],
+  parserOptions: {
+    ecmaVersion: 2020
+  },
   rules: {
+    '@typescript-eslint/interface-name-prefix': ['error', { "prefixWithI": "always" }],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/member-delimiter-style': ['error',
+      {
+        'multiline': {
+          'delimiter': 'none'
+        },
+        'singleline': {
+          'delimiter': 'comma'
+        }
+      }],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'space-before-function-paren': [2, 'never'],
+    'space-before-function-paren': ['error', 'never'],
     'vue/array-bracket-spacing': 'error',
     'vue/arrow-spacing': 'error',
     'vue/block-spacing': 'error',
@@ -26,9 +37,6 @@ module.exports = {
     'vue/key-spacing': 'error',
     'vue/match-component-file-name': 'error',
     'vue/object-curly-spacing': 'error'
-  },
-  parserOptions: {
-    parser: '@typescript-eslint/parser'
   },
   overrides: [
     {

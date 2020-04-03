@@ -32,7 +32,7 @@
         <el-option
           v-for="item in calendarTypeOptions"
           :key="item.key"
-          :label="item.display_name+'('+item.key+')'"
+          :label="item.displayName+'('+item.key+')'"
           :value="item.key"
         />
       </el-select>
@@ -260,7 +260,7 @@
             <el-option
               v-for="item in calendarTypeOptions"
               :key="item.key"
-              :label="item.display_name"
+              :label="item.displayName"
               :value="item.key"
             />
           </el-select>
@@ -372,15 +372,15 @@ import { formatJson } from '@/utils'
 import Pagination from '@/components/Pagination/index.vue'
 
 const calendarTypeOptions = [
-  { key: 'CN', display_name: 'China' },
-  { key: 'US', display_name: 'USA' },
-  { key: 'JP', display_name: 'Japan' },
-  { key: 'EU', display_name: 'Eurozone' }
+  { key: 'CN', displayName: 'China' },
+  { key: 'US', displayName: 'USA' },
+  { key: 'JP', displayName: 'Japan' },
+  { key: 'EU', displayName: 'Eurozone' }
 ]
 
 // arr to obj, such as { CN : "China", US : "USA" }
 const calendarTypeKeyValue = calendarTypeOptions.reduce((acc: { [key: string]: string }, cur) => {
-  acc[cur.key] = cur.display_name
+  acc[cur.key] = cur.displayName
   return acc
 }, {}) as { [key: string]: string }
 
@@ -408,12 +408,14 @@ export default class extends Vue {
     type: undefined,
     sort: '+id'
   }
+
   private importanceOptions = [1, 2, 3]
   private calendarTypeOptions = calendarTypeOptions
   private sortOptions = [
     { label: 'ID Ascending', key: '+id' },
     { label: 'ID Descending', key: '-id' }
   ]
+
   private statusOptions = ['published', 'draft', 'deleted']
   private showReviewer = false
   private dialogFormVisible = false
@@ -422,6 +424,7 @@ export default class extends Vue {
     update: 'Edit',
     create: 'Create'
   }
+
   private dialogPageviewsVisible = false
   private pageviewsData = []
   private rules = {
@@ -429,6 +432,7 @@ export default class extends Vue {
     timestamp: [{ required: true, message: 'timestamp is required', trigger: 'change' }],
     title: [{ required: true, message: 'title is required', trigger: 'blur' }]
   }
+
   private downloadLoading = false
   private tempArticleData = defaultArticleData
 
@@ -490,14 +494,15 @@ export default class extends Vue {
     this.dialogStatus = 'create'
     this.dialogFormVisible = true
     this.$nextTick(() => {
-      (this.$refs['dataForm'] as Form).clearValidate()
+      (this.$refs.dataForm as Form).clearValidate()
     })
   }
 
   private createData() {
-    (this.$refs['dataForm'] as Form).validate(async(valid) => {
+    (this.$refs.dataForm as Form).validate(async(valid) => {
       if (valid) {
-        let { id, ...articleData } = this.tempArticleData
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { id, ...articleData } = this.tempArticleData
         articleData.author = 'vue-typescript-admin'
         const { data } = await createArticle({ article: articleData })
         this.list.unshift(data.article)
@@ -518,12 +523,12 @@ export default class extends Vue {
     this.dialogStatus = 'update'
     this.dialogFormVisible = true
     this.$nextTick(() => {
-      (this.$refs['dataForm'] as Form).clearValidate()
+      (this.$refs.dataForm as Form).clearValidate()
     })
   }
 
   private updateData() {
-    (this.$refs['dataForm'] as Form).validate(async(valid) => {
+    (this.$refs.dataForm as Form).validate(async(valid) => {
       if (valid) {
         const tempData = Object.assign({}, this.tempArticleData)
         tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
@@ -547,7 +552,7 @@ export default class extends Vue {
   }
 
   private async handleGetPageviews(pageviews: string) {
-    const { data } = await getPageviews({ /* Your params here */ })
+    const { data } = await getPageviews({ pageviews })
     this.pageviewsData = data.pageviews
     this.dialogPageviewsVisible = true
   }

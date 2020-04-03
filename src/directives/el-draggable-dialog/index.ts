@@ -23,8 +23,8 @@ export const elDraggableDialog: DirectiveOptions = {
       const minDragDomTop = dragDom.offsetTop
       const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomHeight
 
-      let styleLeftStr = getComputedStyle(dragDom)['left']
-      let styleTopStr = getComputedStyle(dragDom)['top']
+      const styleLeftStr = getComputedStyle(dragDom).left
+      const styleTopStr = getComputedStyle(dragDom).top
       if (!styleLeftStr || !styleTopStr) return
       let styleLeft: number
       let styleTop: number

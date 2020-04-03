@@ -59,6 +59,7 @@ export default class extends Vue {
     { value: '选项3', label: '蚵仔煎' },
     { value: '选项4', label: '龙须面' }
   ]
+
   private value = ''
   private gridData = [{
     date: '2016-05-02',

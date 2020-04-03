@@ -54,7 +54,7 @@
 <script lang="ts">
 import path from 'path'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import VueRouter, { Route, RouteRecord, RouteConfig } from 'vue-router'
+import { RouteConfig } from 'vue-router'
 import { PermissionModule } from '@/store/modules/permission'
 import { TagsViewModule, ITagView } from '@/store/modules/tags-view'
 import ScrollPane from './ScrollPane.vue'
@@ -66,9 +66,9 @@ import ScrollPane from './ScrollPane.vue'
   }
 })
 export default class extends Vue {
-  private visible: boolean = false
-  private top: number = 0
-  private left: number = 0
+  private visible = false
+  private top = 0
+  private left = 0
   private selectedTag: ITagView = {}
   private affixTags: ITagView[] = []
 
@@ -182,7 +182,9 @@ export default class extends Vue {
   }
 
   private closeOthersTags() {
-    this.$router.push(this.selectedTag)
+    if (this.selectedTag.title !== undefined) {
+      this.$router.push(this.selectedTag.title)
+    }
     TagsViewModule.delOthersViews(this.selectedTag)
     this.moveToCurrentTag()
   }
@@ -197,8 +199,8 @@ export default class extends Vue {
 
   private toLastView(visitedViews: ITagView[], view: ITagView) {
     const latestView = visitedViews.slice(-1)[0]
-    if (latestView) {
-      this.$router.push(latestView)
+    if (latestView !== undefined && latestView.title !== undefined) {
+      this.$router.push(latestView.title)
     } else {
       // Default redirect to the home page if there is no tags-view, adjust it if you want
       if (view.name === 'Dashboard') {

@@ -112,6 +112,7 @@ export default class extends Vue {
     'https://wpimg.wallstcn.com/d1d7b033-d75e-4cd6-ae39-fcd5f1c0a7c5.jpg',
     'https://wpimg.wallstcn.com/50530061-851b-4ca5-9dc5-2fead928a939.jpg'
   ]
+
   private avatarPrefix = '?imageView2/1/w/80/h/80'
   private carouselPrefix = '?imageView2/2/h/440'
 }

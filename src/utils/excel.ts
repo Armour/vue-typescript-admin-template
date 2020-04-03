@@ -32,7 +32,7 @@ const generateArray = (table: HTMLElement) => {
       if (rowspanStr) {
         rowspan = parseInt(rowspanStr)
       }
-      let cellValue = cell.innerText
+      const cellValue = cell.innerText
       // Skip ranges
       ranges.forEach(function(range) {
         if (R >= range.s.r && R <= range.e.r && outRow.length >= range.s.c && outRow.length <= range.e.c) {
@@ -133,7 +133,7 @@ export const exportTable2Excel = (id: string) => {
 
     /* original data */
     const data = oo[0]
-    const wsName: string = 'SheetJS'
+    const wsName = 'SheetJS'
 
     const wb = new Workbook()
     const ws = sheetFromDataArray(data)
@@ -158,7 +158,7 @@ export const exportTable2Excel = (id: string) => {
   }
 }
 
-export const exportJson2Excel = (header: string[], data: any, filename: string = 'excel-list', multiHeader: string[][] = [], merges:any[] = [], autoWidth: boolean = true, bookType: string = 'xlsx') => {
+export const exportJson2Excel = (header: string[], data: any, filename = 'excel-list', multiHeader: string[][] = [], merges: any[] = [], autoWidth = true, bookType = 'xlsx') => {
   data = [...data]
   data.unshift(header)
   for (let i = multiHeader.length - 1; i > -1; i--) {
@@ -184,25 +184,25 @@ export const exportJson2Excel = (header: string[], data: any, filename: string =
       // 先判断是否为 null/undefined
       if (val == null) {
         return {
-          'wch': 10
+          wch: 10
         }
       // 再判断是否为中文
       } else if (val.toString().charCodeAt(0) > 255) {
         return {
-          'wch': val.toString().length * 2
+          wch: val.toString().length * 2
         }
       } else {
         return {
-          'wch': val.toString().length
+          wch: val.toString().length
         }
       }
     }))
     // 以第一行为初始值
-    let result = colWidth[0]
+    const result = colWidth[0]
     for (let i = 1; i < colWidth.length; i++) {
       for (let j = 0; j < colWidth[i].length; j++) {
-        if (result[j]['wch'] < colWidth[i][j]['wch']) {
-          result[j]['wch'] = colWidth[i][j]['wch']
+        if (result[j].wch < colWidth[i][j].wch) {
+          result[j].wch = colWidth[i][j].wch
         }
       }
     }
