@@ -1,3 +1,4 @@
 dist/*.js
 src/assets
 tests/unit/coverage
+public/**/*.js
