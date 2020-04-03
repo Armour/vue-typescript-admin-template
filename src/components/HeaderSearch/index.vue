@@ -168,7 +168,7 @@ export default class extends Vue {
   private querySearch(query: string) {
     if (query !== '') {
       if (this.fuse) {
-        this.options = this.fuse.search(query) as any
+        this.options = this.fuse.search(query).map((result) => result.item)
       }
     } else {
       this.options = []

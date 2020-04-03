@@ -182,8 +182,8 @@ export default class extends Vue {
   }
 
   private closeOthersTags() {
-    if (this.selectedTag.title !== undefined) {
-      this.$router.push(this.selectedTag.title)
+    if (this.selectedTag.fullPath !== undefined) {
+      this.$router.push(this.selectedTag.fullPath)
     }
     TagsViewModule.delOthersViews(this.selectedTag)
     this.moveToCurrentTag()
@@ -199,8 +199,8 @@ export default class extends Vue {
 
   private toLastView(visitedViews: ITagView[], view: ITagView) {
     const latestView = visitedViews.slice(-1)[0]
-    if (latestView !== undefined && latestView.title !== undefined) {
-      this.$router.push(latestView.title)
+    if (latestView !== undefined && latestView.fullPath !== undefined) {
+      this.$router.push(latestView.fullPath)
     } else {
       // Default redirect to the home page if there is no tags-view, adjust it if you want
       if (view.name === 'Dashboard') {
