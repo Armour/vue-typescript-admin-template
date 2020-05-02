@@ -17,8 +17,8 @@
         label="Role Key"
         width="220"
       >
-        <template slot-scope="scope">
-          {{ scope.row.key }}
+        <template slot-scope="{row}">
+          {{ row.key }}
         </template>
       </el-table-column>
       <el-table-column
@@ -26,16 +26,16 @@
         label="Role Name"
         width="220"
       >
-        <template slot-scope="scope">
-          {{ scope.row.name }}
+        <template slot-scope="{row}">
+          {{ row.name }}
         </template>
       </el-table-column>
       <el-table-column
         align="header-center"
         label="Description"
       >
-        <template slot-scope="scope">
-          {{ scope.row.description }}
+        <template slot-scope="{row}">
+          {{ row.description }}
         </template>
       </el-table-column>
       <el-table-column

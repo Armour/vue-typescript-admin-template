@@ -13,8 +13,8 @@
       width="65"
       element-loading-text="请给我点时间！"
     >
-      <template slot-scope="scope">
-        <span>{{ scope.row.id }}</span>
+      <template slot-scope="{row}">
+        <span>{{ row.id }}</span>
       </template>
     </el-table-column>
 
@@ -23,8 +23,8 @@
       align="center"
       label="Date"
     >
-      <template slot-scope="scope">
-        <span>{{ scope.row.timestamp | parseTime }}</span>
+      <template slot-scope="{row}">
+        <span>{{ row.timestamp | parseTime }}</span>
       </template>
     </el-table-column>
 
@@ -43,8 +43,8 @@
       align="center"
       label="Author"
     >
-      <template slot-scope="scope">
-        <span>{{ scope.row.author }}</span>
+      <template slot-scope="{row}">
+        <span>{{ row.author }}</span>
       </template>
     </el-table-column>
 
@@ -52,9 +52,9 @@
       width="120px"
       label="Importance"
     >
-      <template slot-scope="scope">
+      <template slot-scope="{row}">
         <svg-icon
-          v-for="n in +scope.row.importance"
+          v-for="n in +row.importance"
           :key="n"
           name="star"
         />
@@ -66,8 +66,8 @@
       label="Readings"
       width="95"
     >
-      <template slot-scope="scope">
-        <span>{{ scope.row.pageviews }}</span>
+      <template slot-scope="{row}">
+        <span>{{ row.pageviews }}</span>
       </template>
     </el-table-column>
 

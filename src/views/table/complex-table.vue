@@ -105,8 +105,8 @@
         width="80"
         :class-name="getSortClass('id')"
       >
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
+        <template slot-scope="{row}">
+          <span>{{ row.id }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -114,8 +114,8 @@
         width="180px"
         align="center"
       >
-        <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime }}</span>
+        <template slot-scope="{row}">
+          <span>{{ row.timestamp | parseTime }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -135,8 +135,8 @@
         width="180px"
         align="center"
       >
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+        <template slot-scope="{row}">
+          <span>{{ row.author }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -145,17 +145,17 @@
         width="110px"
         align="center"
       >
-        <template slot-scope="scope">
-          <span style="color:red;">{{ scope.row.reviewer }}</span>
+        <template slot-scope="{row}">
+          <span style="color:red;">{{ row.reviewer }}</span>
         </template>
       </el-table-column>
       <el-table-column
         :label="$t('table.importance')"
         width="105px"
       >
-        <template slot-scope="scope">
+        <template slot-scope="{row}">
           <svg-icon
-            v-for="n in +scope.row.importance"
+            v-for="n in +row.importance"
             :key="n"
             name="star"
             class="meta-item__icon"
@@ -193,7 +193,7 @@
         width="230"
         class-name="fixed-width"
       >
-        <template slot-scope="{row}">
+        <template slot-scope="{row, $index}">
           <el-button
             type="primary"
             size="mini"
@@ -220,7 +220,7 @@
             v-if="row.status!=='deleted'"
             size="mini"
             type="danger"
-            @click="handleModifyStatus(row,'deleted')"
+            @click="handleDelete(row, $index)"
           >
             {{ $t('table.delete') }}
           </el-button>
@@ -482,7 +482,7 @@ export default class extends Vue {
 
   private getSortClass(key: string) {
     const sort = this.listQuery.sort
-    return sort === `+${key}` ? 'ascending' : sort === `-${key}` ? 'descending' : ''
+    return sort === `+${key}` ? 'ascending' : 'descending'
   }
 
   private resetTempArticleData() {
@@ -501,10 +501,11 @@ export default class extends Vue {
   private createData() {
     (this.$refs.dataForm as Form).validate(async(valid) => {
       if (valid) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { id, ...articleData } = this.tempArticleData
+        const articleData = this.tempArticleData
+        articleData.id = Math.round(Math.random() * 100) + 1024 // mock a id
         articleData.author = 'vue-typescript-admin'
         const { data } = await createArticle({ article: articleData })
+        data.article.timestamp = Date.parse(data.article.timestamp)
         this.list.unshift(data.article)
         this.dialogFormVisible = false
         this.$notify({
@@ -533,13 +534,8 @@ export default class extends Vue {
         const tempData = Object.assign({}, this.tempArticleData)
         tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
         const { data } = await updateArticle(tempData.id, { article: tempData })
-        for (const v of this.list) {
-          if (v.id === data.article.id) {
-            const index = this.list.indexOf(v)
-            this.list.splice(index, 1, data.article)
-            break
-          }
-        }
+        const index = this.list.findIndex(v => v.id === data.article.id)
+        this.list.splice(index, 1, data.article)
         this.dialogFormVisible = false
         this.$notify({
           title: '成功',
@@ -549,6 +545,16 @@ export default class extends Vue {
         })
       }
     })
+  }
+
+  private handleDelete(row: any, index: number) {
+    this.$notify({
+      title: 'Success',
+      message: 'Delete Successfully',
+      type: 'success',
+      duration: 2000
+    })
+    this.list.splice(index, 1)
   }
 
   private async handleGetPageviews(pageviews: string) {

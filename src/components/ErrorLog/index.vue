@@ -65,8 +65,8 @@
           </template>
         </el-table-column>
         <el-table-column label="Stack">
-          <template slot-scope="scope">
-            {{ scope.row.err.stack }}
+          <template slot-scope="{row}">
+            {{ row.err.stack }}
           </template>
         </el-table-column>
       </el-table>

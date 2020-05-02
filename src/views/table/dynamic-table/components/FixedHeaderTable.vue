@@ -32,8 +32,8 @@
         :key="fruit"
         :label="fruit"
       >
-        <template slot-scope="scope">
-          {{ scope.row[fruit] }}
+        <template slot-scope="{row}">
+          {{ row[fruit] }}
         </template>
       </el-table-column>
     </el-table>

@@ -7,8 +7,8 @@
       label="OrderID"
       min-width="200"
     >
-      <template slot-scope="scope">
-        {{ scope.row.orderId | orderNoFilter }}
+      <template slot-scope="{row}">
+        {{ row.orderId | orderNoFilter }}
       </template>
     </el-table-column>
     <el-table-column
@@ -16,8 +16,8 @@
       width="195"
       align="center"
     >
-      <template slot-scope="scope">
-        ¥{{ scope.row.price | toThousandFilter }}
+      <template slot-scope="{row}">
+        ¥{{ row.price | toThousandFilter }}
       </template>
     </el-table-column>
     <el-table-column

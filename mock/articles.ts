@@ -9,7 +9,7 @@ const mockFullContent = '<p>I am testing data, I am testing data.</p><p><img src
 for (let i = 0; i < articleCount; i++) {
   articleList.push({
     id: i,
-    status: faker.random.arrayElement(['published', 'draft', 'deleted']),
+    status: faker.random.arrayElement(['published', 'draft']),
     title: faker.lorem.sentence(6, 10),
     abstractContent: faker.lorem.sentences(2),
     fullContent: mockFullContent,
