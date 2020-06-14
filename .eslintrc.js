@@ -1,9 +1,9 @@
 module.exports = {
   root: true,
   env: {
-    node: true,
+    node: true
   },
-  'extends': [
+  extends: [
     'plugin:vue/recommended',
     '@vue/standard',
     '@vue/typescript/recommended'
@@ -12,17 +12,18 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
-    '@typescript-eslint/interface-name-prefix': ['error', { "prefixWithI": "always" }],
-    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/member-delimiter-style': ['error',
       {
-        'multiline': {
-          'delimiter': 'none'
+        multiline: {
+          delimiter: 'none'
         },
-        'singleline': {
-          'delimiter': 'comma'
+        singleline: {
+          delimiter: 'comma'
         }
       }],
+    '@typescript-eslint/no-explicit-any': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'space-before-function-paren': ['error', 'never'],

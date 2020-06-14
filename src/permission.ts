@@ -71,6 +71,7 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
 
 router.afterEach((to: Route) => {
   // Finish progress bar
+  // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
   NProgress.done()
 
   // set page title

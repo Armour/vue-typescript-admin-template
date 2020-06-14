@@ -20,12 +20,16 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/camelcase */
-// Docs: https://armour.github.io/vue-typescript-admin-docs/features/components/rich-editor.html#tinymce
+// Docs: https://www.tiny.cloud/docs/advanced/usage-with-module-loaders/
+// Import TinyMCE
 import 'tinymce/tinymce'
-import 'tinymce/themes/silver' // Import themes
+// Default icons are required for TinyMCE 5.3 or above
+import 'tinymce/icons/default'
+// Import themes
+import 'tinymce/themes/silver'
 import 'tinymce/themes/mobile'
-import 'tinymce/plugins/advlist' // Any plugins you want to use has to be imported
+// Any plugins you want to use has to be imported
+import 'tinymce/plugins/advlist'
 import 'tinymce/plugins/anchor'
 import 'tinymce/plugins/autolink'
 import 'tinymce/plugins/autosave'

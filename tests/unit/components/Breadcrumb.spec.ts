@@ -104,7 +104,8 @@ describe('Breadcrumb.vue', () => {
     await wrapper.vm.$nextTick()
     const breadcrumbArray = wrapper.findAll('.el-breadcrumb__item')
     const redirectBreadcrumb = breadcrumbArray.at(2)
-    expect(redirectBreadcrumb.contains('a')).toBe(false)
+    const length = redirectBreadcrumb.findAll('a').length
+    expect(length).toBe(0)
   })
 
   it('last breadcrumb', async() => {
@@ -112,6 +113,7 @@ describe('Breadcrumb.vue', () => {
     await wrapper.vm.$nextTick()
     const breadcrumbArray = wrapper.findAll('.el-breadcrumb__item')
     const redirectBreadcrumb = breadcrumbArray.at(3)
-    expect(redirectBreadcrumb.contains('a')).toBe(false)
+    const length = redirectBreadcrumb.findAll('a').length
+    expect(length).toBe(0)
   })
 })

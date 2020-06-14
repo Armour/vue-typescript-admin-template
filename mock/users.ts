@@ -76,7 +76,7 @@ export const getUsers = (req: Request, res: Response) => {
   const { name } = req.query
   const users = userList.filter(user => {
     const lowerCaseName = user.name.toLowerCase()
-    return !(name && lowerCaseName.indexOf(name.toLowerCase()) < 0)
+    return !(name && lowerCaseName.indexOf((name as string).toLowerCase()) < 0)
   })
   return res.json({
     code: 20000,

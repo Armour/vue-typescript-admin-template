@@ -6,6 +6,7 @@
     <scroll-pane
       ref="scrollPane"
       class="tags-view-wrapper"
+      @scroll="handleScroll"
     >
       <router-link
         v-for="tag in visitedViews"
@@ -230,6 +231,10 @@ export default class extends Vue {
 
   private closeMenu() {
     this.visible = false
+  }
+
+  private handleScroll() {
+    this.closeMenu()
   }
 }
 </script>

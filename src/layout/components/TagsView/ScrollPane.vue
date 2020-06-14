@@ -18,18 +18,32 @@ const tagSpacing = 4
   name: 'ScrollPane'
 })
 export default class extends Vue {
+  get scrollWrapper() {
+    return (this.$refs.scrollContainer as Vue).$refs.wrap as HTMLElement
+  }
+
+  mounted() {
+    this.scrollWrapper.addEventListener('scroll', this.emitScroll, true)
+  }
+
+  beforeDestroy() {
+    this.scrollWrapper.removeEventListener('scroll', this.emitScroll)
+  }
+
   private handleScroll(e: MouseWheelEvent) {
     const eventDelta = (e as any).wheelDelta || -e.deltaY * 40
-    const scrollContainer = this.$refs.scrollContainer as Vue
-    const scrollWrapper = scrollContainer.$refs.wrap as HTMLElement
+    const scrollWrapper = this.scrollWrapper
     scrollWrapper.scrollLeft = scrollWrapper.scrollLeft + eventDelta / 4
   }
 
+  private emitScroll() {
+    this.$emit('scroll')
+  }
+
   public moveToTarget(currentTag: HTMLElement) {
-    const scrollContainer = this.$refs.scrollContainer as Vue
-    const container = scrollContainer.$el as HTMLElement
+    const container = (this.$refs.scrollContainer as Vue).$el as HTMLElement
     const containerWidth = container.offsetWidth
-    const scrollWrapper = scrollContainer.$refs.wrap as HTMLElement
+    const scrollWrapper = this.scrollWrapper
     const tagList = this.$parent.$refs.tag as any[]
 
     let firstTag = null
