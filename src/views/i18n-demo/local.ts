@@ -98,5 +98,25 @@ export default {
       two: '둘',
       three: '셋'
     }
+  },
+  it: {
+    i18nView: {
+      title: 'Cambia Lingua',
+      note: 'L\'internalizzazione di questo progetto è basata su vue-i18n',
+      datePlaceholder: 'Scegli un giorno',
+      selectPlaceholder: 'Seleziona',
+      tableDate: 'Data',
+      tableName: 'Nome',
+      tableAddress: 'Indirizzo',
+      default: 'default',
+      primary: 'primario',
+      success: 'successo',
+      info: 'info',
+      warning: 'attenzione',
+      danger: 'pericolo',
+      one: 'Uno',
+      two: 'Due',
+      three: 'Tre'
+    }
   }
 }

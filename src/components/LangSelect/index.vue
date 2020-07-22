@@ -41,6 +41,12 @@
       >
         한국어
       </el-dropdown-item>
+      <el-dropdown-item
+        :disabled="language==='it'"
+        command="it"
+      >
+        Italiano
+      </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
