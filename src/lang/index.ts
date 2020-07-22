@@ -16,6 +16,7 @@ import zhLocale from './zh'
 import esLocale from './es'
 import jaLocale from './ja'
 import koLocale from './ko'
+import itLocale from './it'
 
 Vue.use(VueI18n)
 
@@ -39,6 +40,9 @@ const messages = {
   ko: {
     ...koLocale,
     ...elementKoLocale
+  },
+  it: {
+    ...itLocale
   }
 }
 

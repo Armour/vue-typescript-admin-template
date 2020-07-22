@@ -46,6 +46,13 @@
           >
             한국어
           </el-radio>
+          <el-radio
+            label="it"
+            style="margin-left: 0; margin-top: 10px"
+            border
+          >
+            Italiano
+          </el-radio>
         </el-radio-group>
         <el-tag
           style="margin-top: 15px; display: block;"
@@ -212,6 +219,7 @@ export default class extends Vue {
       this.$i18n.mergeLocaleMessage('es', local.es)
       this.$i18n.mergeLocaleMessage('ja', local.ja)
       this.$i18n.mergeLocaleMessage('ko', local.ko)
+      this.$i18n.mergeLocaleMessage('it', local.it)
     }
     this.setOptions() // set default select options
   }
