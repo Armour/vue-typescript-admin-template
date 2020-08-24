@@ -54,6 +54,17 @@ module.exports = {
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
 
+    // it can improve the speed of the first screen, it is recommended to turn on preload
+    config.plugin('preload').tap(() => [
+      {
+        rel: 'preload',
+        // to ignore runtime.js
+        // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+        include: 'initial'
+      }
+    ])
+
     // https://webpack.js.org/configuration/devtool/#development
     // Change development env source map if you want.
     // The default in vue-cli is 'eval-cheap-module-source-map'.
@@ -89,6 +100,7 @@ module.exports = {
                 }
               }
             })
+          // https://webpack.js.org/configuration/optimization/#optimizationruntimechunk
           config.optimization.runtimeChunk('single')
         }
       )

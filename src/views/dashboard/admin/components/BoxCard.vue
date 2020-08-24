@@ -30,7 +30,7 @@
         <el-progress :percentage="45" />
       </div>
       <div class="progress-item">
-        <span>Css</span>
+        <span>CSS</span>
         <el-progress :percentage="4" />
       </div>
       <div class="progress-item">
