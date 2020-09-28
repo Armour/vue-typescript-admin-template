@@ -44,7 +44,8 @@ export default class extends Vue {
     zh: 'zh',
     es: 'es-MX',
     ja: 'ja',
-    ko: 'ko'
+    ko: 'ko',
+    it: 'it'
   }
 
   get show() {
