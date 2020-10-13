@@ -204,11 +204,12 @@ export default class extends Vue {
   position: absolute;
   right: 6px;
   top: 6px;
+  z-index: 1002;
+}
 
-  &.fullscreen {
-    z-index: 10000;
-    position: fixed;
-  }
+.fullscreen .editor-custom-btn-container {
+  z-index: 10000;
+  position: fixed;
 }
 
 .editor-upload-btn {
