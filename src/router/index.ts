@@ -54,13 +54,10 @@ export const constantRoutes: RouteConfig[] = [
   },
 
   {
-    path: '/dashbord-case',
-    component: () => import(/* webpackChunkName: "404" */ '@/views/dashbord-case.vue'),
+    path: '/dashboard-case',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/dashboard-case.vue'),
     meta: { hidden: true }
   },
-
-
-
 
   {
     path: '/login',
@@ -72,7 +69,7 @@ export const constantRoutes: RouteConfig[] = [
     component: () => import(/* webpackChunkName: "auth-redirect" */ '@/views/login/auth-redirect.vue'),
     meta: { hidden: true }
   },
-  
+
   {
     path: '/404',
     component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/404.vue'),

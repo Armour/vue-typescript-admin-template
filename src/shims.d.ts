@@ -22,3 +22,6 @@ declare module 'vue2-dropzone'
 
 // TODO: remove this part after vue-image-crop-upload has its typescript file
 declare module 'vue-image-crop-upload'
+
+// TODO: remove this part after vue-grid-layout has its typescript file
+declare module 'vue-grid-layout';

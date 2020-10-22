@@ -43,6 +43,7 @@
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.5",
     "vue-count-to": "^1.0.13",
+    "vue-grid-layout": "^2.3.11",
     "vue-i18n": "^8.21.0",
     "vue-image-crop-upload": "^2.5.0",
     "vue-property-decorator": "^9.0.0",
