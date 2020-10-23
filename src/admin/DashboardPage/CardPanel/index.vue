@@ -1,5 +1,8 @@
 <template>
-  <div class="card-background">
+  <div
+    class="card-background"
+    @click="clickHandler"
+  >
     <div
       class="card-panel"
       :style="{'--color': state.color}"
@@ -17,7 +20,7 @@
         <count-to
           :start-val="0"
           :end-val="state.number"
-          :duration="3000"
+          :duration="1000"
           class="card-panel-num"
         />
       </div>
@@ -38,6 +41,10 @@ import CardPanelState from './CardPanelState'
 })
 export default class extends Vue {
   @Prop({ required: true }) state!:CardPanelState;
+
+  private clickHandler() {
+    // if (this.state.action) { (this.$store as ArkfbpStore).runAction(this.state.action) }
+  }
 }
 </script>
 

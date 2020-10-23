@@ -19,8 +19,9 @@
         :w="item.w"
         :h="item.h"
         :i="item.i"
+        @resized="resizedHandler"
       >
-        <DashboardItem :state="item" />
+        <DashboardItem :state="state.items[item.i]" />
       </grid-item>
     </grid-layout>
   </div>
@@ -50,15 +51,23 @@ export default class extends Vue {
   freshLayout() {
     if (this.state.items == null) { return }
 
-    this.layout = []
+    this.layout?.splice(0, this.layout.length)
     for (let i = 0; i < this.state.items.length; i++) {
       const item = this.state.items[i]
-      this.layout.push({
-        ...item.position,
-        i: i
-      })
+      if (item.position) { item.position.i = i }
+      this.layout?.push(item.position)
     }
-    // console.log('freshLayout', this.layout)
+    console.log('freshLayout', this.layout)
+  }
+
+  resizedHandler(i:number, newH:number, newW:number) {
+    if (this.state.items) {
+      const item = this.state.items[i]
+      if (item.position) {
+        item.position.h = newH
+        item.position.w = newW
+      }
+    }
   }
 }
 </script>

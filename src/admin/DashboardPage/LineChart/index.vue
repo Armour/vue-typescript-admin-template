@@ -21,9 +21,9 @@ export default class extends mixins(ResizeMixin) {
   }
 
   mounted() {
-    this.$nextTick(() => {
+    setTimeout(() => {
       this.initChart()
-    })
+    }, 1)
   }
 
   beforeDestroy() {
@@ -49,17 +49,15 @@ export default class extends mixins(ResizeMixin) {
           seriesData.push({
             name: serie.name,
             itemStyle: {
-              color: serie.color,
               lineStyle: {
-                color: serie.color,
                 width: 2
               }
             },
             smooth: true,
             type: 'line',
-            data: serie.data,
-            animationDuration: 2800,
-            animationEasing: 'cubicInOut'
+            data: serie.data
+            // animationDuration: 2800,
+            // animationEasing: 'cubicInOut'
           })
         })
       }

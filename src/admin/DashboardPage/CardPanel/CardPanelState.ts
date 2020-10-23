@@ -3,4 +3,5 @@ export default interface CardPanelState {
   icon?:string
   title?:string
   number?:number
+  action?:string // flow name
 }

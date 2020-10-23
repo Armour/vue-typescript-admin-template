@@ -2,8 +2,6 @@ interface LineData {
   name?: string
 
   data?: number[]
-
-  color?: string
 }
 
 export default interface LineChartState {

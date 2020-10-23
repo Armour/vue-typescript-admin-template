@@ -3,11 +3,11 @@ interface Position {
   y?:number
   w?:number
   h?:number
+  i?:number
 }
 
 export default interface DashboardItemState {
   type?:string
   position?:Position
-  props?:object
-  on?:object
+  state?:any
 }

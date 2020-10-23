@@ -1,40 +1,61 @@
+<template>
+  <component :is="item" />
+</template>
 <script lang="ts">
 import DashboardItemState from '@/admin/DashboardPage/DashboardItem/DashboardItemState'
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import { VNode } from 'vue/types/umd'
 import CardPanel from '../CardPanel/index.vue'
+import LineChart from '../LineChart/index.vue'
+import PieChart from '../PieChart/index.vue'
 
 @Component({
   name: 'DashboardItem',
   components: {
-    CardPanel
+    CardPanel,
+    LineChart,
+    PieChart
   }
 })
 export default class extends Vue {
   @Prop({ required: true }) state!:DashboardItemState;
 
-  render(h:Function):VNode {
-    return h(
-      'CardPanel',
-      {
-        class: 'div',
-        props: {
-          state: {
-            color: '#ff0000',
-            icon: 'peoples',
-            number: 3498719,
-            title: 'xxx总数'
+  @Watch('state', { immediate: true, deep: true })
+  fresh() {
+    this.item = this.getItem()
+    console.log('fresh', this.item)
+    this.$forceUpdate()
+  }
+
+  item?:object
+
+  getItem():object {
+    return {
+      components: {
+        CardPanel,
+        LineChart,
+        PieChart
+      },
+      render: (h:Function) => {
+        return h(
+          this.state.type,
+          {
+            class: 'full',
+            props: {
+              state: this.state.state
+            }
           }
-        }
+        )
       }
-    )
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.div{
+.full{
   width: 100%;
   height: 100%;
+  background-color: white;
 }
 </style>
