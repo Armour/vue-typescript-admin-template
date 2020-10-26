@@ -26,12 +26,17 @@ module.exports = {
     'vue/eqeqeq': 'error',
     'vue/key-spacing': 'error',
     'vue/match-component-file-name': 'error',
-    'vue/object-curly-spacing': 'error'
+    'vue/object-curly-spacing': 'error',
+    // typescript-eslint
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-var-requires': 0
   },
-  'extends': [
-    'eslint:recommended',
+  extends: [
+    // 'eslint:recommended',
     'plugin:vue/recommended',
     '@vue/standard',
-    '@vue/typescript'
+    '@vue/typescript/recommended'
   ]
 }
