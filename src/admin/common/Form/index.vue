@@ -1,25 +1,25 @@
 <template>
   <el-form>
-    <el-row
+    <div
       v-for="item in state.items"
       :key="state.items.indexOf(item)"
-      :gutter="20"
+      class="row"
     >
-      <el-col
+      <div
         v-for="it in item"
         :key="item.indexOf(it)"
-        :span="item.indexOf(it)%2 === 0?Math.floor(24/item.length):Math.ceil(24/item.length)"
+        class="col"
       >
         <form-item :state="it" />
-      </el-col>
-    </el-row>
+      </div>
+    </div>
   </el-form>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import FormState from './FormState'
-import FormItem from '../FromItem/index.vue'
+import FormItem from './FormItem/index.vue'
 
 @Component({
   name: 'Form',
@@ -31,3 +31,13 @@ export default class extends Vue {
   @Prop({ required: true }) state!:FormState;
 }
 </script>
+
+<style lang="scss" scoped>
+.row {
+  display: flex;
+}
+.col {
+  margin: 12px;
+  flex: auto;
+}
+</style>

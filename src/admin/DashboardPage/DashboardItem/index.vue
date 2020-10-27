@@ -1,13 +1,14 @@
 <template>
-  <component :is="item" />
+  <component
+    :is="item"
+  />
 </template>
 <script lang="ts">
 import DashboardItemState from '@/admin/DashboardPage/DashboardItem/DashboardItemState'
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import { VNode } from 'vue/types/umd'
-import CardPanel from '../CardPanel/index.vue'
-import LineChart from '../LineChart/index.vue'
-import PieChart from '../PieChart/index.vue'
+import CardPanel from '@/admin/common/panel/CardPanel/index.vue'
+import LineChart from '@/admin/common/echart/LineChart/index.vue'
+import PieChart from '@/admin/common/echart/PieChart/index.vue'
 
 @Component({
   name: 'DashboardItem',
