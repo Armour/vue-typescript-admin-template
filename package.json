@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.2",
+    "arkfbp": "0.0.3",
     "axios": "^0.20.0",
     "clipboard": "^2.0.6",
     "codemirror": "^5.57.0",

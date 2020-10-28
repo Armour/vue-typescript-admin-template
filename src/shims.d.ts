@@ -3,6 +3,8 @@ declare module '*.vue' {
   export default Vue
 }
 
+declare module '*.json'
+
 declare module 'element-ui/lib/locale/lang/*' {
   export const elementLocale: any
 }
@@ -24,4 +26,4 @@ declare module 'vue2-dropzone'
 declare module 'vue-image-crop-upload'
 
 // TODO: remove this part after vue-grid-layout has its typescript file
-declare module 'vue-grid-layout';
+declare module 'vue-grid-layout'

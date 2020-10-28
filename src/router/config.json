@@ -1,0 +1,19 @@
+{
+  "management": {
+      "title": "management", 
+      "path": "management", 
+      "icon": "table", 
+      "children": [
+          {
+              "title": "speaker", 
+              "path": "speaker", 
+              "icon": "table" 
+          },
+          {
+            "title": "演讲管理", 
+            "path": "speech", 
+            "icon": "table" 
+        }
+      ]
+  }
+}
