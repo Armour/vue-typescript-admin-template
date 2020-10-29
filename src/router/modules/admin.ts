@@ -1,7 +1,7 @@
 import { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 import Admin from '@/views/admin/index.vue'
-import routerConfig from '@/router/config.json'
+import routerConfig from '@/router/admin.json'
 
 function initRouter() {
   const routers: RouteConfig[] = []

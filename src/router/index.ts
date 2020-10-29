@@ -53,35 +53,6 @@ export const constantRoutes: RouteConfig[] = [
       }
     ]
   },
-
-  // {
-  //   path: '/case',
-  //   component: Layout,
-  //   redirect: '/case/dashboard',
-  //   children: [
-  //     {
-  //       path: 'dashboard',
-  //       component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard-case.vue'),
-  //       name: 'Dashboard',
-  //       meta: {
-  //         title: 'dashboard',
-  //         icon: 'dashboard',
-  //         affix: true
-  //       }
-  //     },
-  //     {
-  //       path: 'formpage',
-  //       component: () => import(/* webpackChunkName: "dashboard" */ '@/views/formpage-case.vue'),
-  //       name: 'formpage',
-  //       meta: {
-  //         title: 'formpage',
-  //         icon: 'dashboard',
-  //         affix: true
-  //       }
-  //     }
-  //   ]
-  // },
-
   {
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
