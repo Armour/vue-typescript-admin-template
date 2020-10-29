@@ -1,18 +1,18 @@
 {
-  "management": {
-      "title": "management", 
-      "path": "management", 
-      "icon": "table", 
+  "case": {
+      "title": "case", 
+      "path": "case", 
+      "icon": "dashboard", 
       "children": [
           {
-              "title": "speaker", 
-              "path": "speaker", 
-              "icon": "table" 
+              "title": "dashboard", 
+              "path": "dashboard", 
+              "icon": "dashboard" 
           },
           {
-            "title": "演讲管理", 
-            "path": "speech", 
-            "icon": "table" 
+            "title": "formpage", 
+            "path": "formpage", 
+            "icon": "dashboard" 
         }
       ]
   }
