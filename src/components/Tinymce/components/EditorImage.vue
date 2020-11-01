@@ -9,7 +9,10 @@
     >
       upload
     </el-button>
-    <el-dialog :visible.sync="dialogVisible">
+    <el-dialog
+      :visible.sync="dialogVisible"
+      :modal-append-to-body="false"
+    >
       <el-upload
         :multiple="true"
         :file-list="defaultFileList"
