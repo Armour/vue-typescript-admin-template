@@ -61,6 +61,7 @@ export default class extends Vue {
       label: 'Level two 3-2'
     }]
   }];
+
   private defaultProps = {
     children: 'children',
     label: 'label'
