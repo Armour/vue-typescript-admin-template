@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import pathToRegexp from 'path-to-regexp'
+import { compile } from 'path-to-regexp'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { RouteRecord, Route } from 'vue-router'
 
@@ -68,7 +68,7 @@ export default class extends Vue {
   private pathCompile(path: string) {
     // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
     const { params } = this.$route
-    const toPath = pathToRegexp.compile(path)
+    const toPath = compile(path)
     return toPath(params)
   }
 
