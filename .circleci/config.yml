@@ -25,6 +25,8 @@ jobs:
 
       - run: yarn lint
 
+      - run: yarn test:unit
+
       - run: yarn build
 
       # Cache dependencies
