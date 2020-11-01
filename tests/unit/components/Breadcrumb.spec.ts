@@ -91,7 +91,7 @@ describe('Breadcrumb.vue', () => {
     const breadcrumbArray = wrapper.findAll('.el-breadcrumb__item')
     const second = breadcrumbArray.at(1)
     const href = second.find('a').text()
-    expect(href).toBe('route.menu1')
+    expect(href).toBe('menu1')
   })
 
   it('last breadcrumb', async() => {
