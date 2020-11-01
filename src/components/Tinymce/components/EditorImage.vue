@@ -5,14 +5,11 @@
       icon="el-icon-upload"
       size="mini"
       type="primary"
-      @click="dialogVisible=true"
+      @click=" dialogVisible=true"
     >
       upload
     </el-button>
-    <el-dialog
-      :visible.sync="dialogVisible"
-      :modal-append-to-body="false"
-    >
+    <el-dialog :visible.sync="dialogVisible">
       <el-upload
         :multiple="true"
         :file-list="defaultFileList"
@@ -76,7 +73,7 @@ export default class extends Vue {
       this.$message('Please wait for all images to be uploaded successfully. If there is a network problem, please refresh the page and upload again!')
       return
     }
-    this.$emit('successCBK', arr)
+    this.$emit('success-callback', arr)
     this.listObj = {}
     this.defaultFileList = []
     this.dialogVisible = false

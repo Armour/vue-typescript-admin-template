@@ -10,7 +10,7 @@
       v-el-draggable-dialog
       :visible.sync="dialogTableVisible"
       title="Shipping address"
-      @onDialogDrag="handleDialogDrag"
+      @on-dialog-drag="handleDialogDrag"
     >
       <el-select
         ref="select"
@@ -79,7 +79,7 @@ export default class extends Vue {
     address: 'No.1518,  Jinshajiang Road, Putuo District'
   }]
 
-  // v-el-dialog-draggable onDialogDrag callback function
+  // v-el-dialog-draggable on-dialog-drag callback function
   private handleDialogDrag() {
     (this.$refs.select as Select).blur()
   }

@@ -57,12 +57,12 @@ export const elDraggableDialog: DirectiveOptions = {
         // Move current element
         dragDom.style.cssText += `;left:${left + styleLeft}px;top:${top + styleTop}px;`
 
-        // Emit onDialogDrag event
+        // Emit on-dialog-drag event
         // See https://stackoverflow.com/questions/49264426/vuejs-custom-directive-emit-event
         if (vnode.componentInstance) {
-          vnode.componentInstance.$emit('onDialogDrag')
+          vnode.componentInstance.$emit('on-dialog-drag')
         } else if (vnode.elm) {
-          vnode.elm.dispatchEvent(new CustomEvent('onDialogDrag'))
+          vnode.elm.dispatchEvent(new CustomEvent('on-dialog-drag'))
         }
       }
 

@@ -90,15 +90,6 @@ describe('Breadcrumb.vue', () => {
     expect(len).toBe(3)
   })
 
-  it('click link', async() => {
-    router.push('/menu/menu1/menu1-2/menu1-2-2')
-    await wrapper.vm.$nextTick()
-    const breadcrumbArray = wrapper.findAll('.el-breadcrumb__item')
-    const second = breadcrumbArray.at(1)
-    const href = second.find('a').text()
-    expect(href).toBe('route.menu1')
-  })
-
   it('noredirect', async() => {
     router.push('/menu/menu1/menu1-2/menu1-2-1')
     await wrapper.vm.$nextTick()
@@ -106,6 +97,15 @@ describe('Breadcrumb.vue', () => {
     const redirectBreadcrumb = breadcrumbArray.at(2)
     const length = redirectBreadcrumb.findAll('a').length
     expect(length).toBe(0)
+  })
+
+  it('click link', async() => {
+    router.push('/menu/menu1/menu1-2/menu1-2-2')
+    await wrapper.vm.$nextTick()
+    const breadcrumbArray = wrapper.findAll('.el-breadcrumb__item')
+    const second = breadcrumbArray.at(1)
+    const href = second.find('a').text()
+    expect(href).toBe('route.menu1')
   })
 
   it('last breadcrumb', async() => {

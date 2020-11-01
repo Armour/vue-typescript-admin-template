@@ -210,12 +210,6 @@ yarn lint
 yarn test:unit
 ```
 
-### 运行端对端测试
-
-```bash
-yarn test:e2e
-```
-
 ### 自动生成 svg 组件
 
 ```bash

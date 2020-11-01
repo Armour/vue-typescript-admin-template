@@ -14,9 +14,6 @@ declare module '*.gif' {
 // TODO: remove this part after vue-count-to has its typescript file
 declare module 'vue-count-to'
 
-// TODO: remove this part after vuedraggable has its typescript file
-declare module 'vuedraggable'
-
 // TODO: remove this part after vue2-dropzone has its typescript file
 declare module 'vue2-dropzone'
 

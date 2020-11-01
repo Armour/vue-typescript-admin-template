@@ -50,9 +50,13 @@ module.exports = {
     }
   },
   chainWebpack(config) {
-    // provide the app's title in webpack's name field, so that
+    // provide the app's title in html-webpack-plugin's options list so that
     // it can be accessed in index.html to inject the correct title.
-    config.set('name', name)
+    // https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-plugin
+    config.plugin('html').tap(args => {
+      args[0].title = name
+      return args
+    })
 
     // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [

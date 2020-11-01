@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router, { RouteConfig } from 'vue-router'
+import VueRouter, { RouteConfig } from 'vue-router'
 
 /* Layout */
 import Layout from '@/layout/index.vue'
@@ -10,7 +10,7 @@ import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 /*
   Note: sub-menu only appear when children.length>=1
@@ -439,7 +439,7 @@ export const asyncRoutes: RouteConfig[] = [
   }
 ]
 
-const createRouter = () => new Router({
+const createRouter = () => new VueRouter({
   // mode: 'history',  // Disabled due to Github Pages doesn't support this, enable this if you need.
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {

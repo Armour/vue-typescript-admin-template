@@ -30,7 +30,7 @@ export default class extends Vue {
     this.scrollWrapper.removeEventListener('scroll', this.emitScroll)
   }
 
-  private handleScroll(e: MouseWheelEvent) {
+  private handleScroll(e: WheelEvent) {
     const eventDelta = (e as any).wheelDelta || -e.deltaY * 40
     const scrollWrapper = this.scrollWrapper
     scrollWrapper.scrollLeft = scrollWrapper.scrollLeft + eventDelta / 4

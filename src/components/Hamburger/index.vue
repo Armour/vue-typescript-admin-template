@@ -21,7 +21,7 @@ export default class extends Vue {
   @Prop({ default: false }) private isActive!: boolean
 
   private toggleClick() {
-    this.$emit('toggleClick')
+    this.$emit('toggle-click')
   }
 }
 </script>

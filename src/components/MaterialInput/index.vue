@@ -176,6 +176,8 @@ export default class extends Vue {
     this.$emit('input', value)
     if (this.$parent.$options.name === 'ElFormItem') {
       if (this.validateEvent) {
+        // See https://github.com/ElemeFE/element/blob/dev/packages/form/src/form-item.vue#L293
+        // eslint-disable-next-line vue/custom-event-name-casing
         this.$parent.$emit('el.form.change', [value])
       }
     }
@@ -191,6 +193,8 @@ export default class extends Vue {
     this.$emit('blur', event)
     if (this.$parent.$options.name === 'ElFormItem') {
       if (this.validateEvent) {
+        // See https://github.com/ElemeFE/element/blob/dev/packages/form/src/form-item.vue#L292
+        // eslint-disable-next-line vue/custom-event-name-casing
         this.$parent.$emit('el.form.blur', [this.valueCopy])
       }
     }

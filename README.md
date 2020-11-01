@@ -211,12 +211,6 @@ yarn run lint
 yarn run test:unit
 ```
 
-#### Run your end-to-end tests
-
-```bash
-yarn run test:e2e
-```
-
 #### Generate all svg components
 
 ```bash

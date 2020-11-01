@@ -134,7 +134,7 @@ import CountTo from 'vue-count-to'
 })
 export default class extends Vue {
   private handleSetLineChartData(type: string) {
-    this.$emit('handleSetLineChartData', type)
+    this.$emit('handle-set-line-chart-data', type)
   }
 }
 </script>

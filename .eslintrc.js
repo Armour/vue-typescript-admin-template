@@ -4,7 +4,7 @@ module.exports = {
     node: true
   },
   extends: [
-    'plugin:vue/recommended',
+    'plugin:vue/essential',
     '@vue/standard',
     '@vue/typescript/recommended'
   ],
@@ -24,6 +24,7 @@ module.exports = {
         }
       }],
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'space-before-function-paren': ['error', 'never'],
@@ -33,7 +34,7 @@ module.exports = {
     'vue/brace-style': 'error',
     'vue/camelcase': 'error',
     'vue/comma-dangle': 'error',
-    'vue/component-name-in-template-casing': 'error',
+    'vue/component-name-in-template-casing': ['error', 'kebab-case'],
     'vue/eqeqeq': 'error',
     'vue/key-spacing': 'error',
     'vue/match-component-file-name': 'error',

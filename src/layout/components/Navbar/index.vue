@@ -4,7 +4,7 @@
       id="hamburger-container"
       :is-active="sidebar.opened"
       class="hamburger-container"
-      @toggleClick="toggleSideBar"
+      @toggle-click="toggleSideBar"
     />
     <breadcrumb
       id="breadcrumb-container"
