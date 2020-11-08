@@ -169,7 +169,6 @@ Understanding and learning these knowledge in advance will greatly help you on u
 ├── .env.xxx                   # env variable configuration
 ├── .eslintrc.js               # eslint config
 ├── babel.config.js            # babel config
-├── cypress.json               # e2e test config
 ├── jest.config.js             # jest unit test config
 ├── package.json               # package.json
 ├── postcss.config.js          # postcss config

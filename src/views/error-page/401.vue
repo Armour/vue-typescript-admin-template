@@ -72,7 +72,9 @@ export default class extends Vue {
 
   private back() {
     if (this.$route.query.noGoBack) {
-      this.$router.push({ path: '/dashboard' })
+      this.$router.push({ path: '/dashboard' }).catch(err => {
+        console.warn(err)
+      })
     } else {
       this.$router.go(-1)
     }

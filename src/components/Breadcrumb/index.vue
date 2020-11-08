@@ -75,15 +75,11 @@ export default class extends Vue {
     const { redirect, path } = item
     if (redirect) {
       this.$router.push(redirect).catch(err => {
-        // Throw Error "NavigationDuplicated"
-        // https://github.com/vuejs/vue-router/issues/2872#issuecomment-522341874
         console.warn(err)
       })
       return
     }
     this.$router.push(this.pathCompile(path)).catch(err => {
-      // Throw Error "NavigationDuplicated"
-      // https://github.com/vuejs/vue-router/issues/2872#issuecomment-522341874
       console.warn(err)
     })
   }

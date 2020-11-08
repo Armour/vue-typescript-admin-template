@@ -198,6 +198,8 @@ export default class extends Vue {
         this.$router.push({
           path: this.redirect || '/',
           query: this.otherQuery
+        }).catch(err => {
+          console.warn(err)
         })
         // Just to simulate the time of the request
         setTimeout(() => {

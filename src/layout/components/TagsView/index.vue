@@ -171,6 +171,8 @@ export default class extends Vue {
     this.$nextTick(() => {
       this.$router.replace({
         path: '/redirect' + fullPath
+      }).catch(err => {
+        console.warn(err)
       })
     })
   }
@@ -184,7 +186,9 @@ export default class extends Vue {
 
   private closeOthersTags() {
     if (this.selectedTag.fullPath !== this.$route.path && this.selectedTag.fullPath !== undefined) {
-      this.$router.push(this.selectedTag.fullPath)
+      this.$router.push(this.selectedTag.fullPath).catch(err => {
+        console.warn(err)
+      })
     }
     TagsViewModule.delOthersViews(this.selectedTag)
     this.moveToCurrentTag()
@@ -201,14 +205,20 @@ export default class extends Vue {
   private toLastView(visitedViews: ITagView[], view: ITagView) {
     const latestView = visitedViews.slice(-1)[0]
     if (latestView !== undefined && latestView.fullPath !== undefined) {
-      this.$router.push(latestView.fullPath)
+      this.$router.push(latestView.fullPath).catch(err => {
+        console.warn(err)
+      })
     } else {
       // Default redirect to the home page if there is no tags-view, adjust it if you want
       if (view.name === 'Dashboard') {
         // to reload home page
-        this.$router.replace({ path: '/redirect' + view.fullPath })
+        this.$router.replace({ path: '/redirect' + view.fullPath }).catch(err => {
+          console.warn(err)
+        })
       } else {
-        this.$router.push('/')
+        this.$router.push('/').catch(err => {
+          console.warn(err)
+        })
       }
     }
   }

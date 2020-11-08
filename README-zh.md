@@ -170,7 +170,6 @@ Javascript 版本:
 ├── .env.xxx                   # 环境变量配置
 ├── .eslintrc.js               # eslint 配置
 ├── babel.config.js            # babel-loader 配置
-├── cypress.json               # e2e 测试配置
 ├── jest.config.js             # jest 单元测试配置
 ├── package.json               # package.json 依赖
 ├── postcss.config.js          # postcss 配置
