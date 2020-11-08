@@ -69,6 +69,9 @@ module.exports = {
       }
     ])
 
+    // when there are many pages, it will cause too many meaningless requests
+    config.plugins.delete('prefetch')
+
     // https://webpack.js.org/configuration/devtool/#development
     // Change development env source map if you want.
     // The default in vue-cli is 'eval-cheap-module-source-map'.
