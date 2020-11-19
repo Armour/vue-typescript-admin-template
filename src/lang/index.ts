@@ -49,6 +49,7 @@ const messages = {
 export const getLocale = () => {
   const cookieLanguage = getLanguage()
   if (cookieLanguage) {
+    document.documentElement.lang = cookieLanguage
     return cookieLanguage
   }
 
@@ -56,6 +57,7 @@ export const getLocale = () => {
   const locales = Object.keys(messages)
   for (const locale of locales) {
     if (language.indexOf(locale) > -1) {
+      document.documentElement.lang = locale
       return locale
     }
   }

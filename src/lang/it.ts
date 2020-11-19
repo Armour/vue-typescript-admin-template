@@ -105,7 +105,8 @@ export default {
     tinymceTips: 'Il testo ricco è una funzionalità fondamentale della gestione backend, ma allo stesso tempo è un posto molto scosceso. Nel processo di selezionare un Rich Text editor o fatto molte ricerche. I Rich Text editor comuni sul mercato sono molto usati, per questo alla fine ho scelto Tinymce. Vedi la più dettagliata comparazione e introduzione al Rich text editor.',
     backToTopTips1: 'Quando la pagina viene spostata alla posizione specificata, il bottone "Torna Su" compare nell\'angolo in basso a destra',
     backToTopTips2: 'Puoi personalizzare lo stile dei bottoni, mostra / nascondi, altezza di apparizione, altezza del ritorno a capo. Se hai bisogno di un prompt di testo, puoi utilizzare gli elementi element-ui el-tooltip esternamente',
-    imageUploadTips: 'Da quando usavo la verione 1 di Vue che non è compatibile con mockjs, la ho modificata io stesst, e se la userai, è meglio utilizzare versioni ufficiali.'
+    imageUploadTips: 'Da quando usavo la verione 1 di Vue che non è compatibile con mockjs, la ho modificata io stesst, e se la userai, è meglio utilizzare versioni ufficiali.',
+    changeLanguageTips: 'Cambio lingua riuscito'
   },
   table: {
     dynamicTips1: 'Intestazione Fissa, ordinato dall\'ordine delle intestazioni',
