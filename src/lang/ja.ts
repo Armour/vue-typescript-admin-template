@@ -105,7 +105,8 @@ export default {
     stickyTips: 'ページの指定位置へスクロールした場合、表示されます。',
     backToTopTips1: 'トップへスクロールが表示されます。',
     backToTopTips2: 'ボタンのスタイルはカスタマイズできます。例えば、show/hide、height、position。 またはElementのel-tooltipを使って、ツールチップを実装できます。',
-    imageUploadTips: 'mockjsは使えないため、カスタマイズしています。公式の最新バージョンを使ってください。'
+    imageUploadTips: 'mockjsは使えないため、カスタマイズしています。公式の最新バージョンを使ってください。',
+    changeLanguageTips: '言語切り替えの成功'
   },
   table: {
     dynamicTips1: '先頭は固定、最後に追加',
