@@ -18,6 +18,7 @@ import '@/utils/error-log'
 import '@/pwa/register-service-worker'
 import * as directives from '@/directives'
 import * as filters from '@/filters'
+import VueRouter from 'vue-router'
 
 Vue.use(ElementUI, {
   size: AppModule.size, // Set element-ui default size
@@ -41,6 +42,8 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.config.productionTip = false
+
+Vue.use(VueRouter)
 
 new Vue({
   router,

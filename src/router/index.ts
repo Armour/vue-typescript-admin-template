@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
 /* Layout */
@@ -9,8 +8,6 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
-
-Vue.use(VueRouter)
 
 /*
   Note: sub-menu only appear when children.length>=1
