@@ -47,6 +47,12 @@
       >
         Italiano
       </el-dropdown-item>
+      <el-dropdown-item
+        :disabled="language==='br'"
+        command="br"
+      >
+        Português Brasil
+      </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
