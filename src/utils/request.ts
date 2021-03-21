@@ -42,11 +42,11 @@ service.interceptors.response.use(
       })
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         MessageBox.confirm(
-          '你已被登出，可以取消继续留在该页面，或者重新登录',
-          '确定登出',
+          '로그 아웃 한 경우 페이지를 취소하거나 다시 로그인 할 수 있습니다.',
+          '결정',
           {
-            confirmButtonText: '重新登录',
-            cancelButtonText: '取消',
+            confirmButtonText: '다시 등록하십시오',
+            cancelButtonText: '취소',
             type: 'warning'
           }
         ).then(() => {

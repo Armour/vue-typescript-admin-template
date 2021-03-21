@@ -186,6 +186,12 @@ export const asyncRoutes: RouteConfig[] = [
   {
     path: '/icon',
     component: Layout,
+    meta: {
+      title: 'icons',
+      icon: 'lock',
+      roles: ['admin', 'editor'], // you can set roles in root nav
+      alwaysShow: true // will always show the root menu
+    },
     children: [
       {
         path: 'index',

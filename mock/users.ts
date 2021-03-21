@@ -12,7 +12,7 @@ const userList: IUserData[] = [
     introduction: 'I am a super administrator',
     email: 'admin@test.com',
     phone: '1234567890',
-    roles: ['admin'],
+    roles: ['admin']
   },
   {
     id: 1,
@@ -23,12 +23,23 @@ const userList: IUserData[] = [
     introduction: 'I am an editor',
     email: 'editor@test.com',
     phone: '1234567890',
-    roles: ['editor'],
+    roles: ['editor']
+  },
+  {
+    id: 3,
+    username: 'visitor',
+    password: 'any',
+    name: 'guest Editor',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    introduction: 'I am an visitor',
+    email: 'visitor@test.com',
+    phone: '1234567890',
+    roles: ['visitor']
   }
 ]
 const userCount = 100
 
-for (let i = 2; i < userCount; i++) {
+for (let i = 3; i < userCount; i++) {
   userList.push({
     id: i,
     username: 'user_' + faker.random.alphaNumeric(9),
@@ -91,7 +102,7 @@ export const getUserInfo = (req: Request, res: Response) => {
   return res.json({
     code: 20000,
     data: {
-      user: req.header('X-Access-Token') == 'admin-token' ? userList[0] : userList[1]
+      user: (req.header('X-Access-Token') === 'admin-token') ? userList[0] : ((req.header('X-Access-Token') === 'editor-token') ? userList[1] : userList[2])
     }
   })
 }

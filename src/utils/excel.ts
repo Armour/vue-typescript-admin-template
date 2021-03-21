@@ -179,14 +179,14 @@ export const exportJson2Excel = (header: string[], data: any, filename = 'excel-
   }
 
   if (autoWidth) {
-    // 设置worksheet每列的最大宽度
+    // 워크 시트의 각 열의 최대 너비를 설정하십시오
     const colWidth = data.map((row: any) => row.map((val: any) => {
-      // 先判断是否为 null/undefined
+      // 첫 번째 판단은 null/undefined
       if (val == null) {
         return {
           wch: 10
         }
-      // 再判断是否为中文
+      // 그것이 중국인 경우 다시 생각해보십시오
       } else if (val.toString().charCodeAt(0) > 255) {
         return {
           wch: val.toString().length * 2
@@ -197,7 +197,7 @@ export const exportJson2Excel = (header: string[], data: any, filename = 'excel-
         }
       }
     }))
-    // 以第一行为初始值
+    // 첫 번째 행동으로 초기 값
     const result = colWidth[0]
     for (let i = 1; i < colWidth.length; i++) {
       for (let j = 0; j < colWidth[i].length; j++) {

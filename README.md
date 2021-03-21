@@ -216,6 +216,9 @@ yarn run test:unit
 yarn run svg
 ```
 
+'''bash
+http://localhost:9527
+```
 #### Customize Vue configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).

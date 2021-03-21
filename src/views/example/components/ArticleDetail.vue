@@ -15,6 +15,7 @@
         <source-url-dropdown v-model="postForm.sourceURL" />
         <el-button
           v-loading="loading"
+          v-permission="['admin','editor']"
           style="margin-left: 10px;"
           type="success"
           @click="submitForm"
@@ -24,6 +25,7 @@
         <el-button
           v-loading="loading"
           type="warning"
+          :round="true"
           @click="draftForm"
         >
           Draft
@@ -146,7 +148,7 @@
           prop="imageURL"
           style="margin-bottom: 30px;"
         >
-          <upload-image v-model="postForm.imageURL" />
+          <upload-image v-model="postForm.imageURL"   />
         </el-form-item>
       </div>
     </el-form>

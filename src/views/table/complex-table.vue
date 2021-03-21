@@ -458,7 +458,7 @@ export default class extends Vue {
 
   private handleModifyStatus(row: any, status: string) {
     this.$message({
-      message: '操作成功',
+      message: '성공적인 조작',
       type: 'success'
     })
     row.status = status
@@ -509,8 +509,8 @@ export default class extends Vue {
         this.list.unshift(data.article)
         this.dialogFormVisible = false
         this.$notify({
-          title: '成功',
-          message: '创建成功',
+          title: '성공',
+          message: '성공을 창출하십시오',
           type: 'success',
           duration: 2000
         })
@@ -539,7 +539,7 @@ export default class extends Vue {
         this.dialogFormVisible = false
         this.$notify({
           title: '成功',
-          message: '更新成功',
+          message: '업데이트 완료',
           type: 'success',
           duration: 2000
         })
