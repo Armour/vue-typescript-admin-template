@@ -1,4 +1,4 @@
-// Doc: https://nhn.github.io/tui.editor/api/latest/ToastUIEditor.html#ToastUIEditor
+// Doc: https://nhn.github.io/tui.editor/latest/ToastUIEditor
 export default {
   previewStyle: 'vertical',
   usageStatistics: false,

@@ -9,6 +9,7 @@ import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'
 import elementEsLocale from 'element-ui/lib/locale/lang/es'
 import elementJaLocale from 'element-ui/lib/locale/lang/ja'
 import elementKoLocale from 'element-ui/lib/locale/lang/ko'
+import elementItLocale from 'element-ui/lib/locale/lang/it'
 
 // User defined lang
 import enLocale from './en'
@@ -42,13 +43,15 @@ const messages = {
     ...elementKoLocale
   },
   it: {
-    ...itLocale
+    ...itLocale,
+    ...elementItLocale
   }
 }
 
 export const getLocale = () => {
   const cookieLanguage = getLanguage()
   if (cookieLanguage) {
+    document.documentElement.lang = cookieLanguage
     return cookieLanguage
   }
 
@@ -56,6 +59,7 @@ export const getLocale = () => {
   const locales = Object.keys(messages)
   for (const locale of locales) {
     if (language.indexOf(locale) > -1) {
+      document.documentElement.lang = locale
       return locale
     }
   }
