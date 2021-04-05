@@ -3,12 +3,16 @@
 </template>
 
 <script lang="ts">
-import 'codemirror/lib/codemirror.css' // codemirror
-import 'tui-editor/dist/tui-editor.css' // editor ui
-import 'tui-editor/dist/tui-editor-contents.css' // editor content
+import 'codemirror/lib/codemirror.css' // Editor's Dependency Style
+import '@toast-ui/editor/dist/toastui-editor.css' // Editor's Style
+import '@toast-ui/editor/dist/i18n/es-es'
+import '@toast-ui/editor/dist/i18n/it-it'
+import '@toast-ui/editor/dist/i18n/ja-jp'
+import '@toast-ui/editor/dist/i18n/ko-kr'
+import '@toast-ui/editor/dist/i18n/zh-cn'
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import Editor, { EditorOptions } from '@toast-ui/editor'
 import defaultOptions from './default-options'
-import tuiEditor from 'tui-editor'
 
 const defaultId = () => 'markdown-editor-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
 
@@ -16,31 +20,31 @@ const defaultId = () => 'markdown-editor-' + +new Date() + ((Math.random() * 100
   name: 'MarkdownEditor'
 })
 export default class extends Vue {
-  @Prop({ required: true }) private value!: string
+  @Prop({ required: true }) private initialValue!: string
   @Prop({ default: defaultId }) private id!: string
-  @Prop({ default: () => defaultOptions }) private options!: tuiEditor.IEditorOptions
+  @Prop({ default: () => defaultOptions }) private options!: EditorOptions
   @Prop({ default: 'markdown' }) private mode!: string
   @Prop({ default: '300px' }) private height!: string
-  // https://github.com/nhnent/tui.editor/tree/master/src/js/langs
-  @Prop({ default: 'en_US' }) private language!: string
+  @Prop({ default: 'en' }) private language!: string
 
-  private markdownEditor?: tuiEditor.Editor
+  private markdownEditor?: Editor
+  // Mapping for local lang to tuiEditor lang
+  // https://github.com/nhn/tui.editor/blob/master/apps/editor/docs/i18n.md#supported-languages
+  private languageTypeList: { [key: string]: string } = {
+    en: 'en',
+    zh: 'zh-CN',
+    es: 'es',
+    ja: 'ja',
+    ko: 'ko',
+    it: 'it'
+  }
 
   get editorOptions() {
     const options = Object.assign({}, defaultOptions, this.options)
     options.initialEditType = this.mode
     options.height = this.height
-    options.language = this.language
+    options.language = this.languageTypeList[this.language]
     return options
-  }
-
-  @Watch('value')
-  private onValueChange(value: string, oldValue: string) {
-    if (this.markdownEditor) {
-      if (value !== oldValue && value !== this.markdownEditor.getValue()) {
-        this.markdownEditor.setValue(value)
-      }
-    }
   }
 
   @Watch('language')
@@ -75,23 +79,15 @@ export default class extends Vue {
     const editorElement = document.getElementById(this.id)
     if (!editorElement) return
     // eslint-disable-next-line new-cap
-    this.markdownEditor = new tuiEditor({
-      el: editorElement,
-      ...this.editorOptions
+    this.markdownEditor = new Editor({
+      ...this.editorOptions,
+      el: editorElement
     })
-    if (this.value) {
-      this.markdownEditor.setValue(this.value)
-    }
-    this.markdownEditor.on('change', () => {
-      if (this.markdownEditor !== undefined) {
-        this.$emit('input', this.markdownEditor.getValue())
-      }
-    })
+    this.markdownEditor.insertText(this.initialValue)
   }
 
   private destroyEditor() {
     if (!this.markdownEditor) return
-    this.markdownEditor.off('change')
     this.markdownEditor.remove()
     this.markdownEditor = undefined
   }
@@ -100,19 +96,6 @@ export default class extends Vue {
     if (this.markdownEditor) {
       this.markdownEditor.focus()
     }
-  }
-
-  public setValue(value: string) {
-    if (this.markdownEditor) {
-      this.markdownEditor.setValue(value)
-    }
-  }
-
-  public getValue() {
-    if (this.markdownEditor) {
-      return this.markdownEditor.getValue()
-    }
-    return ''
   }
 
   public setHtml(value: string) {

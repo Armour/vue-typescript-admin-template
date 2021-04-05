@@ -17,12 +17,12 @@ for (let i = 0; i < articleCount; i++) {
     imageURL: faker.image.imageUrl(),
     timestamp: faker.date.past().getTime(),
     platforms: [faker.random.arrayElement(['a-platform', 'b-platform', 'c-platform'])],
-    disableComment: faker.random.boolean(),
-    importance: faker.random.number({ min: 1, max: 3}),
+    disableComment: faker.datatype.boolean(),
+    importance: faker.datatype.number({ min: 1, max: 3 }),
     author: faker.name.findName(),
     reviewer: faker.name.findName(),
     type: faker.random.arrayElement(['CN', 'US', 'JP', 'EU']),
-    pageviews: faker.random.number({ min: 300, max: 500 })
+    pageviews: faker.datatype.number({ min: 300, max: 500 })
   })
 }
 
@@ -100,7 +100,7 @@ export const updateArticle = (req: Request, res: Response) => {
 
 export const deleteArticle = (req: Request, res: Response) => {
   return res.json({
-    code: 20000,
+    code: 20000
   })
 }
 

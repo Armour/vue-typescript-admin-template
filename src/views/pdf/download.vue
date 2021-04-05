@@ -115,7 +115,6 @@ export default class extends Vue {
     font-size: 21px;
     line-height: 1.58;
     letter-spacing: -.003em;
-
   }
 
   ul {

@@ -93,7 +93,7 @@ export default class extends Vue {
   private hasInit = false
   private fullscreen = false
   // https://www.tiny.cloud/docs/configure/localization/#language
-  // and also see langs files under public/tinymce/langs folder
+  // when adding a new language, please also add the corresponding lang file under public/tinymce/langs folder
   private languageTypeList: { [key: string]: string } = {
     en: 'en',
     zh: 'zh_CN',

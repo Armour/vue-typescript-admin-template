@@ -92,7 +92,7 @@ export default class extends Vue {
   }
 
   private getCSSString(url: string, variable: string) {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       const xhr = new XMLHttpRequest()
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {

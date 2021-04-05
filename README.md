@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/ElemeFE/element">
-    <img src="https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg" alt="element-ui">
+    <img src="https://img.shields.io/badge/element--ui-2.15.1-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://circleci.com/gh/Armour/vue-typescript-admin-template/tree/master">
     <img src="https://circleci.com/gh/Armour/vue-typescript-admin-template/tree/master.svg?style=shield" alt="CircleCI">

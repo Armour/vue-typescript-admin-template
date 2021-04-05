@@ -10,6 +10,7 @@ import elementEsLocale from 'element-ui/lib/locale/lang/es'
 import elementJaLocale from 'element-ui/lib/locale/lang/ja'
 import elementKoLocale from 'element-ui/lib/locale/lang/ko'
 import elementBrLocale from 'element-ui/lib/locale/lang/pt-br'
+import elementItLocale from 'element-ui/lib/locale/lang/it'
 
 // User defined lang
 import enLocale from './en'
@@ -44,7 +45,8 @@ const messages = {
     ...elementKoLocale
   },
   it: {
-    ...itLocale
+    ...itLocale,
+    ...elementItLocale
   },
   br: {
     ...brLocale,
