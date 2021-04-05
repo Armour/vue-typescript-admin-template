@@ -100,7 +100,8 @@ export default class extends Vue {
     es: 'es',
     ja: 'ja',
     ko: 'ko_KR',
-    it: 'it'
+    it: 'it',
+    br: 'br'
   }
 
   get language() {
