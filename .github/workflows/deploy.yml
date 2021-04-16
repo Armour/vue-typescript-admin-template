@@ -11,10 +11,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Install and Build
-      run: |
-          npm install
-          npm run build:prod
+    - name: Yarn install
+      uses: Borales/actions-yarn@v2.3.0
+      with:
+        cmd: install
+    - name: Yarn build
+      uses: Borales/actions-yarn@v2.3.0
+      with:
+        cmd: build:prod
     - name: Deploy
       uses: maxheld83/ghpages@v0.3.0
       env:
