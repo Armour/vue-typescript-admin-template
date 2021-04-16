@@ -9,6 +9,7 @@ import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN'
 import elementEsLocale from 'element-ui/lib/locale/lang/es'
 import elementJaLocale from 'element-ui/lib/locale/lang/ja'
 import elementKoLocale from 'element-ui/lib/locale/lang/ko'
+import elementBrLocale from 'element-ui/lib/locale/lang/pt-br'
 import elementItLocale from 'element-ui/lib/locale/lang/it'
 
 // User defined lang
@@ -18,6 +19,7 @@ import esLocale from './es'
 import jaLocale from './ja'
 import koLocale from './ko'
 import itLocale from './it'
+import brLocale from './br'
 
 Vue.use(VueI18n)
 
@@ -45,6 +47,10 @@ const messages = {
   it: {
     ...itLocale,
     ...elementItLocale
+  },
+  br: {
+    ...brLocale,
+    ...elementBrLocale
   }
 }
 

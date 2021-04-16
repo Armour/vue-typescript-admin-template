@@ -53,6 +53,12 @@
           >
             Italiano
           </el-radio>
+          <el-radio
+            label="br"
+            border
+          >
+            Português Brasil
+          </el-radio>
         </el-radio-group>
         <el-tag
           style="margin-top: 15px; display: block;"
@@ -220,6 +226,7 @@ export default class extends Vue {
       this.$i18n.mergeLocaleMessage('ja', local.ja)
       this.$i18n.mergeLocaleMessage('ko', local.ko)
       this.$i18n.mergeLocaleMessage('it', local.it)
+      this.$i18n.mergeLocaleMessage('br', local.br)
     }
     this.setOptions() // set default select options
   }
