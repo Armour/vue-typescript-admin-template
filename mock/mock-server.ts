@@ -1,5 +1,4 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import compression from 'compression'
 import morgan from 'morgan'
 import cors from 'cors'
@@ -8,10 +7,10 @@ import path from 'path'
 import yaml from 'yamljs'
 import * as api from './api'
 import { accessTokenAuth } from './security'
+import { connector, summarise } from 'swagger-routes-express'
 
 const app = express()
 const port = 9528
-const { connector, summarise } = require('swagger-routes-express')
 
 // Compression
 app.use(compression())
@@ -20,8 +19,8 @@ app.use(morgan('dev'))
 // Enable CORS
 app.use(cors())
 // POST, PUT, DELETE body parser
-app.use(bodyParser.json({ limit: '20mb' }))
-app.use(bodyParser.urlencoded({
+app.use(express.json({ limit: '20mb' }))
+app.use(express.urlencoded({
   limit: '20mb',
   extended: false
 }))
@@ -48,7 +47,7 @@ const apiSummary = summarise(apiDefinition)
 console.log(apiSummary)
 
 // Catch 404 error
-app.use((req, res, next) => {
+app.use((req, res) => {
   const err = new Error('Not Found')
   res.status(404).json({
     message: err.message,
