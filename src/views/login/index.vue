@@ -62,6 +62,21 @@
         </el-form-item>
       </el-tooltip>
 
+      <el-form-item prop="First name">
+        <span class="svg-container">
+          <svg-icon name="First name" />
+        </span>
+        <el-input
+          ref="First name"
+          v-model="loginForm.firstname"
+          :placeholder="$t('First name and last name')"
+          name="Firstname"
+          type="text"
+          tabindex="1"
+          autocomplete="on"
+        />
+      </el-form-item>
+
       <el-button
         :loading="loading"
         type="primary"
