@@ -24,6 +24,17 @@ const userList: IUserData[] = [
     email: 'editor@test.com',
     phone: '1234567890',
     roles: ['editor']
+  },
+  {
+    id: 2,
+    username: 'user',
+    password: 'any',
+    name: 'Normal user',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    introduction: 'I am an user',
+    email: 'user@test.com',
+    phone: '1234567890',
+    roles: ['user']
   }
 ]
 const userCount = 100

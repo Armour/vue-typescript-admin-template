@@ -95,6 +95,10 @@
           <span>{{ $t('login.username') }} : editor </span>
           <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
         </div>
+        <div class="tips">
+          <span>{{ $t('login.username') }} : user </span>
+          <span>{{ $t('login.password') }} : {{ $t('login.any') }} </span>
+        </div>
 
         <el-button
           class="thirdparty-button"
