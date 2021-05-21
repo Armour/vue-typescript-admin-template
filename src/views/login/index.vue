@@ -76,7 +76,18 @@
           autocomplete="on"
         />
       </el-form-item>
-
+      <el-form-item prop="F">
+      <select v-model="selected">
+        <option disabled value="">Vui lòng chọn giới tính</option>
+        <option>Nam</option>
+        <option>Nữ</option>
+        <option>Bê Đê</option>
+        <option>Less</option>
+        <option>Lưỡng Tính</option>
+        <option>Đã Chuyển Giới</option>
+      </select>
+      <span> {{ selected }}</span>`
+      </el-form-item>
       <el-button
         :loading="loading"
         type="primary"
@@ -300,7 +311,7 @@ export default class extends Vue {
 
   .tips {
     font-size: 14px;
-    color: #fff;
+    color: #fdfaff;
     margin-bottom: 10px;
 
     span {

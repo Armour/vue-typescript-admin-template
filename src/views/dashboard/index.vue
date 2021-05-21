@@ -27,10 +27,10 @@ export default class extends Vue {
   }
 
   created() {
-    if (!this.roles.includes('admin')) {
+    if (!this.roles.includes('editor')) {
       this.currentRole = 'editor-dashboard'
     }
-    if (!this.roles.includes('editor')) {
+    if (!this.roles.includes('user')) {
       this.currentRole = 'user-dashboard'
     }
   }
