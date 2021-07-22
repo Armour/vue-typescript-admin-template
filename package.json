@@ -52,7 +52,7 @@
     "vuedraggable": "^2.24.3",
     "vuex": "^3.6.2",
     "vuex-module-decorators": "^1.0.1",
-    "xlsx": "^0.16.9",
+    "xlsx": "^0.17.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
