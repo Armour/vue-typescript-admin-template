@@ -85,8 +85,8 @@ export const toggleClass = (ele: HTMLElement, className: string) => {
     classString += '' + className
   } else {
     classString =
-      classString.substr(0, nameIndex) +
-      classString.substr(nameIndex + className.length)
+      classString.slice(0, nameIndex) +
+      classString.slice(nameIndex + className.length)
   }
   ele.className = classString
 }
