@@ -15,7 +15,7 @@
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.6",
     "@toast-ui/editor": "^2.5.1",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "clipboard": "^2.0.8",
     "codemirror": "^5.60.0",
     "core-js": "^3.10.0",
