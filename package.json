@@ -28,7 +28,7 @@
     "fuse.js": "^6.4.6",
     "js-cookie": "^2.2.1",
     "jsonlint": "^1.6.3",
-    "jszip": "^3.6.0",
+    "jszip": "^3.7.0",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "normalize.css": "^8.0.1",
