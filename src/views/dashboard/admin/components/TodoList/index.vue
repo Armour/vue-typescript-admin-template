@@ -318,9 +318,8 @@ export default class extends Vue {
 
   .todo-list li.editing .edit {
     display: block;
-    width: 506px;
     padding: 12px 16px;
-    margin: 0 0 0 43px;
+    margin: 0;
   }
 
   .todo-list li.editing .view {
@@ -364,7 +363,7 @@ export default class extends Vue {
 
   .todo-list li label {
     word-break: break-all;
-    padding: 15px 15px 15px 50px;
+    padding: 15px 25px 15px 50px;
     display: block;
     line-height: 1.0;
         font-size: 14px;
@@ -380,7 +379,7 @@ export default class extends Vue {
     display: none;
     position: absolute;
     top: 0;
-    right: 10px;
+    right: 0;
     bottom: 0;
     width: 40px;
     height: 40px;
