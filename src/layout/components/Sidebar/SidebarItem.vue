@@ -1,9 +1,9 @@
 <template>
   <div
     v-if="!item.meta || !item.meta.hidden"
-    :class="[isCollapse ? 'simple-mode' : 'full-mode', {'first-level': isFirstLevel}]"
+    :class="['menu-wrapper', isCollapse ? 'simple-mode' : 'full-mode', {'first-level': isFirstLevel}]"
   >
-    <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
+    <template v-if="theOnlyOneChild && !theOnlyOneChild.children">
       <sidebar-item-link
         v-if="theOnlyOneChild.meta"
         :to="resolvePath(theOnlyOneChild.path)"
@@ -19,7 +19,7 @@
           <span
             v-if="theOnlyOneChild.meta.title"
             slot="title"
-          >{{ $t('route.' + theOnlyOneChild.meta.title) }}</span>
+          >{{ theOnlyOneChild.meta.title }}</span>
         </el-menu-item>
       </sidebar-item-link>
     </template>
@@ -36,7 +36,7 @@
         <span
           v-if="item.meta && item.meta.title"
           slot="title"
-        >{{ $t('route.' + item.meta.title) }}</span>
+        >{{ item.meta.title }}</span>
       </template>
       <template v-if="item.children">
         <sidebar-item
@@ -73,13 +73,6 @@ export default class extends Vue {
   @Prop({ default: false }) private isCollapse!: boolean
   @Prop({ default: true }) private isFirstLevel!: boolean
   @Prop({ default: '' }) private basePath!: string
-
-  get alwaysShowRootMenu() {
-    if (this.item.meta && this.item.meta.alwaysShow) {
-      return true
-    }
-    return false
-  }
 
   get showingChildNumber() {
     if (this.item.children) {
