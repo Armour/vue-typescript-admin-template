@@ -27,7 +27,7 @@ jobs:
 
       - run: yarn test:unit
 
-      - run: yarn build:prod
+      - run: yarn build
 
       # Cache dependencies
       - save_cache:

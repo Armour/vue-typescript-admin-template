@@ -1,46 +1,36 @@
 <template>
-  <div :class="{'has-logo': showLogo}">
-    <sidebar-logo
-      v-if="showLogo"
+  <el-scrollbar wrap-class="scrollbar-wrapper">
+    <el-menu
+      :default-active="activeMenu"
       :collapse="isCollapse"
-    />
-    <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu
-        :default-active="activeMenu"
-        :collapse="isCollapse"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
-        :active-text-color="menuActiveTextColor"
-        :unique-opened="false"
-        :collapse-transition="false"
-        mode="vertical"
-      >
-        <sidebar-item
-          v-for="route in routes"
-          :key="route.path"
-          :item="route"
-          :base-path="route.path"
-          :is-collapse="isCollapse"
-        />
-      </el-menu>
-    </el-scrollbar>
-  </div>
+      :background-color="variables.menuBg"
+      :text-color="variables.menuText"
+      :active-text-color="variables.menuActiveText"
+      :unique-opened="false"
+      :collapse-transition="false"
+      mode="vertical"
+    >
+      <sidebar-item
+        v-for="route in routes"
+        :key="route.path"
+        :item="route"
+        :base-path="route.path"
+        :is-collapse="isCollapse"
+      />
+    </el-menu>
+  </el-scrollbar>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
-import { PermissionModule } from '@/store/modules/permission'
-import { SettingsModule } from '@/store/modules/settings'
 import SidebarItem from './SidebarItem.vue'
-import SidebarLogo from './SidebarLogo.vue'
 import variables from '@/styles/_variables.scss'
 
 @Component({
   name: 'SideBar',
   components: {
-    SidebarItem,
-    SidebarLogo
+    SidebarItem
   }
 })
 export default class extends Vue {
@@ -49,19 +39,7 @@ export default class extends Vue {
   }
 
   get routes() {
-    return PermissionModule.routes
-  }
-
-  get showLogo() {
-    return SettingsModule.showSidebarLogo
-  }
-
-  get menuActiveTextColor() {
-    if (SettingsModule.sidebarTextTheme) {
-      return SettingsModule.theme
-    } else {
-      return variables.menuActiveText
-    }
+    return (this.$router as any).options.routes
   }
 
   get variables() {
@@ -71,7 +49,6 @@ export default class extends Vue {
   get activeMenu() {
     const route = this.$route
     const { meta, path } = route
-    // if set path, the sidebar will highlight the path you set
     if (meta.activeMenu) {
       return meta.activeMenu
     }
@@ -114,12 +91,6 @@ export default class extends Vue {
 <style lang="scss" scoped>
 .el-scrollbar {
   height: 100%
-}
-
-.has-logo {
-  .el-scrollbar {
-    height: calc(100% - 50px);
-  }
 }
 
 .el-menu {

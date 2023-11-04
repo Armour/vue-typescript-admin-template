@@ -2,48 +2,37 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
-import i18n from '@/lang' // Internationalization
 
 const localVue = createLocalVue()
 localVue.use(VueRouter)
-localVue.use(ElementUI, {
-  i18n: (key: string, value: string) => i18n.t(key, value)
-})
+localVue.use(ElementUI)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
     children: [{
-      path: 'dashboard',
-      name: 'dashboard'
+      path: 'dashboard'
     }]
   },
   {
     path: '/menu',
-    name: 'menu',
     children: [{
       path: 'menu1',
-      name: 'menu1',
       meta: { title: 'menu1' },
       children: [{
         path: 'menu1-1',
-        name: 'menu1-1',
         meta: { title: 'menu1-1' }
       },
       {
         path: 'menu1-2',
-        name: 'menu1-2',
         redirect: 'noredirect',
         meta: { title: 'menu1-2' },
         children: [{
           path: 'menu1-2-1',
-          name: 'menu1-2-1',
           meta: { title: 'menu1-2-1' }
         },
         {
-          path: 'menu1-2-2',
-          name: 'menu1-2-2'
+          path: 'menu1-2-2'
         }]
       }]
     }]
@@ -55,10 +44,7 @@ const router = new VueRouter({
 
 const wrapper = mount(Breadcrumb, {
   localVue,
-  router,
-  mocks: {
-    $t: (msg: string) => msg
-  }
+  router
 })
 
 describe('Breadcrumb.vue', () => {
@@ -105,7 +91,7 @@ describe('Breadcrumb.vue', () => {
     const breadcrumbArray = wrapper.findAll('.el-breadcrumb__item')
     const second = breadcrumbArray.at(1)
     const href = second.find('a').text()
-    expect(href).toBe('route.menu1')
+    expect(href).toBe('menu1')
   })
 
   it('last breadcrumb', async() => {
